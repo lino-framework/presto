@@ -39,10 +39,8 @@ class Site(Site):
         #~ 'lino.modlib.projects',
         yield 'lino.modlib.blogs'
         yield 'lino.modlib.notes'
-        # yield 'lino.modlib.tickets'
-        yield 'lino.modlib.clocking'
+        yield 'lino_noi.lib.clocking'
         # yield 'lino.modlib.uploads'
-        #~ 'lino.modlib.thirds',
         yield 'lino.modlib.extensible'
         yield 'lino.modlib.cal'
         # yield 'lino.modlib.outbox'
