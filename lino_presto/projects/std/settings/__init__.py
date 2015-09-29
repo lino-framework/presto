@@ -30,12 +30,12 @@ class Site(Site):
         yield 'lino.modlib.addresses'
         yield 'lino.modlib.humanlinks',
         yield 'lino.modlib.products'
-        yield 'lino.modlib.accounts'
+        yield 'lino_cosi.lib.accounts'
         # yield 'lino.modlib.ledger'
-        yield 'lino.modlib.vat'
-        yield 'lino.modlib.sepa'
-        yield 'lino.modlib.finan'
-        yield 'lino.modlib.auto.sales'
+        yield 'lino_cosi.lib.vat'
+        yield 'lino_cosi.lib.sepa'
+        yield 'lino_cosi.lib.finan'
+        yield 'lino_cosi.lib.auto.sales'
         #~ 'lino.modlib.projects',
         yield 'lino.modlib.blogs'
         yield 'lino.modlib.notes'
