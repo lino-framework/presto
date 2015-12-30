@@ -23,7 +23,7 @@ def my_details(sender, **kw):
     site = sender
     site.modules.accounts.Accounts.set_detail_layout("""
     ref:10 name id:5
-    seqno chart group type clearable
+    seqno group type clearable
     ledger.MovementsByAccount
     """)
 
