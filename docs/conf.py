@@ -29,7 +29,7 @@ for n in 'atelier lino'.split():
 
 # General information about the project.
 project = settings.SITE.title
-copyright = u'2014, Luc Saffre'
+copyright = u'2014-2016, Luc Saffre'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
