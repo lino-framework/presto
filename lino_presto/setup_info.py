@@ -95,7 +95,6 @@ lino_presto.projects
 lino_presto.projects.mini
 lino_presto.projects.std
 lino_presto.projects.std.settings
-lino_presto.projects.std.tests
 """.splitlines() if n])
 
 SETUP_INFO.update(message_extractors={
