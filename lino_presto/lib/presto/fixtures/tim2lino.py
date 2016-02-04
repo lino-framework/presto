@@ -53,6 +53,7 @@ from lino.modlib.accounts.choicelists import AccountTypes
 
 from lino.core.utils import resolve_model, obj2str
 from lino.core.utils import is_valid_email
+from lino.utils.quantities import Duration
 
 from lino.modlib.ledger.choicelists import JournalGroups
 
@@ -848,7 +849,7 @@ class TimLoader(object):
                 return
             if v == '24:00':
                 v = '0:00'
-            kw[fldname] = v
+            kw[fldname] = Duration(v)
 
         set_time(kw, 'start_time', row.von)
         set_time(kw, 'end_time', row.bis)
