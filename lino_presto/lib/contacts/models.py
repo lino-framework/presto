@@ -22,8 +22,8 @@ from lino.api import dd, rt, _
 
 from lino.modlib.contacts.models import *
 
-from lino.modlib.cal.workflows import take, feedback
-from lino.modlib.addresses.mixins import AddressOwner
+from lino_xl.lib.cal.workflows import take, feedback
+from lino_xl.lib.addresses.mixins import AddressOwner
 
 
 class Partner(Partner, AddressOwner, mixins.CreatedModified):
