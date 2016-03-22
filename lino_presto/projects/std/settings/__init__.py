@@ -35,7 +35,7 @@ class Site(Site):
         yield 'lino_cosi.lib.vat'
         yield 'lino_cosi.lib.sepa'
         yield 'lino_cosi.lib.finan'
-        yield 'lino_cosi.lib.auto.sales'
+        yield 'lino_cosi.lib.invoicing'
         #~ 'lino_xl.lib.projects',
         yield 'lino_xl.lib.blogs'
         yield 'lino_xl.lib.notes'
