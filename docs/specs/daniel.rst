@@ -33,11 +33,17 @@ False
 
 When a psychologist starts a session, they want to assign it to a
 "dossier".  A dossier is either a single person, or a family or
-household, or a *therapeutic group*. These correspond to Lino's notion
-of partners.
-
+household, or a *therapeutic group*. 
 A dossier is their central database object.
-For their statistics they need reports per dossier.
+Many statistical reports are based on these dossiers.
+
+Their dossiers correspond to Lino's notion of partners.
+
+>>> print(dd.plugins.clocking.ticket_model)
+<class 'lino_presto.lib.contacts.models.Partner'>
+
+>>> print(settings.SITE.project_model)
+<class 'lino_presto.lib.contacts.models.Partner'>
 
 There might be (it is not yet decided) a differetiation between
 "partner" and "dossier": a same partner can have more than one dossier
