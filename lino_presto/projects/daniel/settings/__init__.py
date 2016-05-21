@@ -18,6 +18,7 @@
 # <http://www.gnu.org/licenses/>.
 
 """
+The settings package.
 
 .. autosummary::
    :toctree:

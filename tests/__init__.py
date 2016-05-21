@@ -19,6 +19,9 @@ class SpecsTests(LinoTestCase):
     def test_presto(self):
         self.run_simple_doctests('docs/specs/test_presto.rst')
 
+    def test_daniel(self):
+        self.run_simple_doctests('docs/specs/daniel.rst')
+
 
 class Tutorials(LinoTestCase):
 

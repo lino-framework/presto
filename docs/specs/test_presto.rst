@@ -9,8 +9,8 @@ Miscellaneous tests in Lino Presto
     
     doctest init
 
-    >>> import os
-    >>> os.environ['DJANGO_SETTINGS_MODULE'] = 'lino_presto.projects.std.settings.doctests'
+    >>> from lino import startup
+    >>> startup('lino_presto.projects.std.settings.doctests')
     >>> from lino.api.doctest import *
 
 Test whether the bootstrap3 user interface works:
