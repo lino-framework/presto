@@ -8,4 +8,5 @@ cleanable_files:
 
 demo_projects:
     - lino_presto.projects.std.settings.demo
+    - lino_presto.projects.daniel.settings.demo
 

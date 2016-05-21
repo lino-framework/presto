@@ -23,7 +23,7 @@ class SpecsTests(LinoTestCase):
 class Tutorials(LinoTestCase):
 
     def test_mini(self):
-        self.run_django_manage_test("lino_presto/projects/mini")
+        self.run_django_manage_test("lino_presto/projects/daniel")
     
 
 class DumpTests(LinoTestCase):

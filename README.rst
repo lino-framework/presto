@@ -8,9 +8,13 @@ Description
 -----------
 
 
-Lino Presto is an application for managing the work of Rumma & Ko OÜ.
-"Presto" means "quick" in Italian, and in French it reminds
-"prestations de service" (providements of services?)
+Lino Presto is an application for managing the work of organisations
+where time is money, i.e. where time tracker sessions are the base for
+writing invoices.
+
+The name "Presto" originally comes from "prestations de service", the
+French expression for service providements.  It also means "quick" in
+Italian.
 
 **Status: not yet usable**
 
@@ -21,6 +25,8 @@ It is a seamless combination of the following general functionalities:
 
 - Project management, issue tracking, generating service reports and
   invoices for services.
+
+Maybe later:
 
 - Subscription management (generating regular invoices based to
   subscription contracts)

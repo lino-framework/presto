@@ -1,5 +1,17 @@
+# -*- coding: UTF-8 -*-
 # Copyright 2011-2016 Luc Saffre
-# License: BSD (see file COPYING for details)
+# This file is part of Lino Presto.
+# Lino Presto is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# Lino Presto is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Affero General Public License for more details.
+# You should have received a copy of the GNU Affero General Public
+# License along with Lino Presto.  If not, see
+# <http://www.gnu.org/licenses/>.
 
 from lino.projects.std.settings import *
 
@@ -21,6 +33,7 @@ class Site(Site):
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()
         yield 'lino.modlib.gfks'
+        # yield 'lino.modlib.users'
         yield 'lino.modlib.users'
         yield 'lino.modlib.countries'
         yield 'lino_xl.lib.properties'
@@ -29,30 +42,33 @@ class Site(Site):
         yield 'lino_xl.lib.lists'
         yield 'lino_xl.lib.addresses'
         yield 'lino_xl.lib.humanlinks',
-        yield 'lino_xl.lib.products'
+        # yield 'lino_xl.lib.products'
+        yield 'lino_noi.lib.products'
         yield 'lino_cosi.lib.accounts'
         # yield 'lino.modlib.ledger'
         yield 'lino_cosi.lib.vat'
         yield 'lino_cosi.lib.sepa'
         yield 'lino_cosi.lib.finan'
         yield 'lino_cosi.lib.invoicing'
-        #~ 'lino_xl.lib.projects',
+        # 'lino_xl.lib.projects',
         yield 'lino_xl.lib.blogs'
         yield 'lino_xl.lib.notes'
+        yield 'lino_noi.lib.faculties'
         yield 'lino_noi.lib.clocking'
         # yield 'lino.modlib.uploads'
         yield 'lino_xl.lib.extensible'
         yield 'lino_xl.lib.cal'
         # yield 'lino_xl.lib.outbox'
-        # yield 'lino_xl.lib.excerpts'
+        yield 'lino_xl.lib.excerpts'
         yield 'lino_xl.lib.appypod'
-        #~ yield 'lino_xl.lib.postings'
-        #~ yield 'lino_xl.lib.pages'
+        # yield 'lino_xl.lib.postings'
+        # yield 'lino_xl.lib.pages'
 
         yield 'lino.modlib.export_excel'
         yield 'lino.modlib.plausibility'
         yield 'lino.modlib.tinymce'
-        yield 'lino.modlib.wkhtmltopdf'
+        # yield 'lino.modlib.wkhtmltopdf'
+        yield 'lino.modlib.weasyprint'
 
         yield 'lino_presto.lib.presto'
 
@@ -72,7 +88,7 @@ class Site(Site):
                     sar, str(d.day), style="font-size:xx-small;")
 
             yield get_report(ar, datefmt=datefmt)
-        yield self.modules.clocking.WorkedHours
+        # yield self.modules.clocking.WorkedHours
         # yield self.modules.tickets.MyTickets
-        yield self.modules.tickets.ActiveTickets
+        # yield self.modules.tickets.ActiveTickets
 

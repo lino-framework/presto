@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2015 Luc Saffre
+# Copyright 2015-2016 Luc Saffre
 # This file is part of Lino Presto.
 # Lino Presto is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -13,13 +13,12 @@
 # License along with Lino Presto.  If not, see
 # <http://www.gnu.org/licenses/>.
 
-
-#~ Note that this module may not have a docstring because any
-#~ global variable defined here will override the global
-#~ namespace of lino/__init__.py who includes it with execfile.
+# Note that this module may not have a docstring because any
+# global variable defined here will override the global
+# namespace of lino/__init__.py who includes it with execfile.
 
 # This module is part of the Lino test suite.
-# To test only this module:
+# To test just this module:
 #
 #   $ python setup.py test -s tests.PackagesTests
 
@@ -59,9 +58,13 @@ SETUP_INFO = dict(
 
 SETUP_INFO.update(long_description="""\
 
-Lino Presto is an application for managing the work of Rumma & Ko OÜ.
-"Presto" means "quick" in Italian, and in French it reminds
-"prestations de service" (providements of services?)
+Lino Presto is an application for managing the work of organisations
+where time is money, i.e. where time tracker sessions are the base for
+writing invoices.
+
+The name "Presto" originally comes from "prestations de service", the
+French expression for service providements.  It also means "quick" in
+Italian.
 
 **Status: not yet usable**
 
@@ -72,6 +75,8 @@ It is a seamless combination of the following general functionalities:
 
 - Project management, issue tracking, generating service reports and
   invoices for services.
+
+Maybe later:
 
 - Subscription management (generating regular invoices based to
   subscription contracts)
@@ -92,9 +97,11 @@ lino_presto.lib.contacts.fixtures
 lino_presto.lib.presto
 lino_presto.lib.presto.fixtures
 lino_presto.projects
-lino_presto.projects.mini
 lino_presto.projects.std
 lino_presto.projects.std.settings
+lino_presto.projects.daniel
+lino_presto.projects.daniel.tests
+lino_presto.projects.daniel.settings
 """.splitlines() if n])
 
 SETUP_INFO.update(message_extractors={
