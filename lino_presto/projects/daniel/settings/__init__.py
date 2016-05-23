@@ -41,8 +41,7 @@ class Site(Site):
 
     verbose_name = "Lino for psychologists"
 
-    demo_fixtures = ['std', 'demo', 'demo2']
-
+    demo_fixtures = 'std demo novat minimal_ledger demo_bookings demo2'.split()
     project_model = 'contacts.Partner'
 
     def get_apps_modifiers(self, **kw):

@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2015-2016 Luc Saffre
+# Copyright 2016 Luc Saffre
 # This file is part of Lino Presto.
 #
 # Lino Presto is free software: you can redistribute it and/or modify
@@ -16,14 +16,24 @@
 # License along with Lino Presto.  If not, see
 # <http://www.gnu.org/licenses/>.
 
-"""See :ref:`presto`.
+"""
+An extension of :mod:`lino_noi.lib.clocking`
 
 .. autosummary::
    :toctree:
 
-    clocking
-    contacts
-    presto
+    models
+    fixtures
+    choicelists
 
 
 """
+
+from lino_noi.lib.clocking import Plugin
+
+
+class Plugin(Plugin):
+
+    extends_models = ['Session']
+
+    ticket_model = 'contacts.Partner'

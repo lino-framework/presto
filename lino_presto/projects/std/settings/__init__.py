@@ -22,13 +22,13 @@ class Site(Site):
     version = "0.1"
     url = "http://presto.lino-framework.org"
 
-    demo_fixtures = 'std few_languages props democfg demo demo2'.split()
+    demo_fixtures = 'std euvatrates minimal_ledger demo_bookings demo demo2'.split()
 
     languages = 'en de fr et'
 
     project_model = 'tickets.Project'
 
-    user_profiles_module = 'lino_noi.lib.noi.roles'
+    user_profiles_module = 'lino_presto.lib.presto.roles'
 
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()
@@ -42,11 +42,11 @@ class Site(Site):
         yield 'lino_xl.lib.lists'
         yield 'lino_xl.lib.addresses'
         yield 'lino_xl.lib.humanlinks',
-        yield 'lino_xl.lib.products'
+        # yield 'lino_xl.lib.products'
         # yield 'lino_noi.lib.products'
-        yield 'lino_cosi.lib.accounts'
-        # yield 'lino.modlib.ledger'
-        yield 'lino_cosi.lib.vat'
+        # yield 'lino_cosi.lib.accounts'
+        yield 'lino_cosi.lib.sales'
+        # yield 'lino_cosi.lib.vat'
         yield 'lino_cosi.lib.sepa'
         yield 'lino_cosi.lib.finan'
         yield 'lino_cosi.lib.invoicing'
