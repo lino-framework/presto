@@ -5,5 +5,5 @@ Lino Presto functional specs
 .. toctree::
    :maxdepth: 1
 
-   daniel
+   psico
    test_presto

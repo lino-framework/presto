@@ -25,7 +25,7 @@ from django.db import models
 from lino.api import dd, _
 
 
-class PaymentModes(dd.Choicelist):
+class PaymentModes(dd.ChoiceList):
     verbose_name = _("Payment mode")
     verbose_name_plural = _("Payment modes")
 

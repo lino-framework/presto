@@ -16,9 +16,9 @@
 # License along with Lino Presto.  If not, see
 # <http://www.gnu.org/licenses/>.
 
-"""The "Daniel" variant of Lino Presto.
+"""The "Psico" variant of Lino Presto.
 
-See :ref:`presto.specs.daniel`.
+See :ref:`presto.specs.psico`.
 
 .. autosummary::
    :toctree:

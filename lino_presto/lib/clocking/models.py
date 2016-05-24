@@ -29,9 +29,9 @@ from .choicelists import PaymentModes, SessionStates
 
 class Session(Session, Invoiceable):
 
-    class Meta(Clocking.Meta):
+    class Meta(Session.Meta):
         app_label = 'clocking'
-        abstract = dd.is_abstract_model(__name__, 'Clocking')
+        abstract = dd.is_abstract_model(__name__, 'Session')
 
     invoiceable_date_field = 'end_date'
 

@@ -22,7 +22,7 @@ class Site(Site):
     version = "0.1"
     url = "http://presto.lino-framework.org"
 
-    demo_fixtures = 'std euvatrates minimal_ledger demo_bookings demo demo2'.split()
+    demo_fixtures = 'std demo euvatrates minimal_ledger demo_bookings demo2'.split()
 
     languages = 'en de fr et'
 
@@ -55,6 +55,7 @@ class Site(Site):
         yield 'lino_xl.lib.notes'
         yield 'lino_noi.lib.faculties'
         yield 'lino_noi.projects.team.lib.clocking'
+        # yield 'lino_presto.lib.clocking'
         # yield 'lino.modlib.uploads'
         yield 'lino_xl.lib.extensible'
         yield 'lino_xl.lib.cal'

@@ -22,7 +22,7 @@
    :toctree:
 
    std
-   daniel
+   psico
 
 
 """
