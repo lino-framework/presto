@@ -50,7 +50,9 @@ class Site(Site):
         # kw.update(tickets=None)
         # alternative implementations:
         # kw.update(tickets='lino_noi.projects.care.lib.tickets')
-        kw.update(clocking='lino_noi.lib.clocking')
+        kw.update(clocking='lino_presto.projects.psico.lib.clocking')
+        kw.update(contacts='lino_presto.projects.psico.lib.contacts')
+        kw.update(lists='lino_presto.projects.psico.lib.lists')
         return kw
 
     def setup_plugins(self):

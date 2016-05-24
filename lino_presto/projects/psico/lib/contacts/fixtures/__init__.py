@@ -17,23 +17,13 @@
 # <http://www.gnu.org/licenses/>.
 
 """
-An extension of :mod:`lino_noi.lib.clocking`
+The `contacts` fixtures specific to :ref:`psico`.
 
 .. autosummary::
    :toctree:
 
-    models
-    fixtures
-    choicelists
+    std
+    demo
 
 
 """
-
-from lino_noi.lib.clocking import Plugin
-
-
-class Plugin(Plugin):
-
-    extends_models = ['Session']
-
-    ticket_model = 'contacts.Partner'

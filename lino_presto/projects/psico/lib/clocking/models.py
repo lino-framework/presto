@@ -60,7 +60,7 @@ class Session(Session, Invoiceable):
             q2 = models.Q(partner__invoice_recipient=partner)
             qs = cls.objects.filter(models.Q(q1 | q2))
         else:
-            return
+            return []
         # dd.logger.info("20160513 %s (%d rows)", qs.query, qs.count())
         return qs.order_by(cls.invoiceable_date_field)
 

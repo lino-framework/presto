@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2013-2015 Luc Saffre
+# Copyright 2013-2016 Luc Saffre
 # This file is part of Lino Presto.
 #
 # Lino Presto is free software: you can redistribute it and/or modify
@@ -28,9 +28,11 @@ from lino_xl.lib.addresses.mixins import AddressOwner
 
 class Partner(Partner, AddressOwner, mixins.CreatedModified):
 
-    class Meta:
-        verbose_name = _("Partner")
-        verbose_name_plural = _("Partners")
+    class Meta(Partner.Meta):
+        app_label = 'contacts'
+        # verbose_name = _("Partner")
+        # verbose_name_plural = _("Partners")
+        abstract = dd.is_abstract_model(__name__, 'Partner')
 
     isikukood = models.CharField(
         _("isikukood"), max_length=20, blank=True)
@@ -98,9 +100,11 @@ class Person(Partner, Person):
     """
 
     class Meta(Person.Meta):
-        verbose_name = _("Person")
-        verbose_name_plural = _("Persons")
+        app_label = 'contacts'
+        # verbose_name = _("Person")
+        # verbose_name_plural = _("Persons")
         #~ ordering = ['last_name','first_name']
+        abstract = dd.is_abstract_model(__name__, 'Person')
 
     def get_queryset(self, ar):
         return self.model.objects.select_related('country', 'city')
@@ -164,7 +168,9 @@ class Persons(Persons):
 
 
 class Company(Partner, Company):
-    pass
+    class Meta(Company.Meta):
+        app_label = 'contacts'
+        abstract = dd.is_abstract_model(__name__, 'Company')
 
     # class Meta:
     #     verbose_name = _("Organisation")
