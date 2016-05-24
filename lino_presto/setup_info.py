@@ -96,14 +96,19 @@ lino_presto.lib.contacts
 lino_presto.lib.contacts.fixtures
 lino_presto.lib.presto
 lino_presto.lib.presto.fixtures
-lino_presto.lib.clocking
-lino_presto.lib.clocking.fixtures
 lino_presto.projects
 lino_presto.projects.std
 lino_presto.projects.std.settings
 lino_presto.projects.psico
 lino_presto.projects.psico.tests
 lino_presto.projects.psico.settings
+lino_presto.projects.psico.lib
+lino_presto.projects.psico.lib.clocking
+lino_presto.projects.psico.lib.clocking.fixtures
+lino_presto.projects.psico.lib.contacts
+lino_presto.projects.psico.lib.contacts.fixtures
+lino_presto.projects.psico.lib.lists
+lino_presto.projects.psico.lib.lists.fixtures
 """.splitlines() if n])
 
 SETUP_INFO.update(message_extractors={
