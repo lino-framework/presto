@@ -12,6 +12,12 @@ Lino Presto is an application for managing the work of organisations
 where time is money, i.e. where time tracker sessions are the base for
 writing invoices.
 
+- For *introductions* and *commercial information* about Lino Presto
+  please see `www.saffre-rumma.net
+  <http://www.saffre-rumma.net/presto/>`__.
+
+- The central project homepage is http://presto.lino-framework.org
+
 The name "Presto" originally comes from "prestations de service", the
 French expression for service providements.  It also means "quick" in
 Italian.

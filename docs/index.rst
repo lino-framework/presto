@@ -4,7 +4,7 @@
 Lino Presto
 ===========
 
-Welcome to the *Lino Presto* project homepage.
+Welcome to the **Lino Presto** project homepage.
 
 .. py2rst::
 

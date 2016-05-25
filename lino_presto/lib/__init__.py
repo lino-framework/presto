@@ -21,7 +21,6 @@
 .. autosummary::
    :toctree:
 
-    clocking
     contacts
     presto
 
