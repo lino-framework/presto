@@ -22,6 +22,9 @@ class SpecsTests(LinoTestCase):
     def test_psico(self):
         self.run_simple_doctests('docs/specs/psico.rst')
 
+    def test_teams(self):
+        self.run_simple_doctests('docs/specs/teams.rst')
+
 
 class Tutorials(LinoTestCase):
 

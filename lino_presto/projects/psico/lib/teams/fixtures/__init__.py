@@ -16,15 +16,13 @@
 # License along with Lino Presto.  If not, see
 # <http://www.gnu.org/licenses/>.
 
-"""Plugins specific to :ref:`psico`.
+"""
+The `teams` fixtures specific to :ref:`psico`.
 
 .. autosummary::
    :toctree:
 
-    clocking
-    lists
-    contacts
-    teams
+    demo
 
 
 """

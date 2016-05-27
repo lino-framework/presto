@@ -44,6 +44,10 @@ class Site(Site):
     demo_fixtures = 'std demo novat minimal_ledger demo_bookings demo2'.split()
     project_model = 'contacts.Partner'
 
+    def get_installed_apps(self):
+        yield super(Site, self).get_installed_apps()
+        yield 'lino_presto.projects.psico.lib.teams'
+
     def get_apps_modifiers(self, **kw):
         kw = super(Site, self).get_apps_modifiers(**kw)
         # remove whole plugin:
@@ -53,6 +57,7 @@ class Site(Site):
         kw.update(clocking='lino_presto.projects.psico.lib.clocking')
         kw.update(contacts='lino_presto.projects.psico.lib.contacts')
         kw.update(lists='lino_presto.projects.psico.lib.lists')
+        kw.update(users='lino_presto.projects.psico.lib.users')
         return kw
 
     def setup_plugins(self):

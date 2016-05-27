@@ -15,16 +15,13 @@
 # You should have received a copy of the GNU Affero General Public
 # License along with Lino Presto.  If not, see
 # <http://www.gnu.org/licenses/>.
+"""The `demo` fixture for this plugin."""
 
-"""Plugins specific to :ref:`psico`.
-
-.. autosummary::
-   :toctree:
-
-    clocking
-    lists
-    contacts
-    teams
+from lino.api import rt, _
 
 
-"""
+def objects():
+    Team = rt.models.teams.Team
+    yield Team(name="Eupen")
+    yield Team(name="St.Vith")
+

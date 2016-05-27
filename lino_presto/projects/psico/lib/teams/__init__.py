@@ -16,15 +16,25 @@
 # License along with Lino Presto.  If not, see
 # <http://www.gnu.org/licenses/>.
 
-"""Plugins specific to :ref:`psico`.
+"""
+The `teams` plugin specific to :ref:`psico`.
 
 .. autosummary::
    :toctree:
 
-    clocking
-    lists
-    contacts
-    teams
+    models
+    fixtures
 
 
 """
+
+from lino_xl.lib.teams import Plugin
+
+from lino.api import _
+
+
+class Plugin(Plugin):
+
+    verbose_name = _("Departments")
+
+    extends_models = ['Team']

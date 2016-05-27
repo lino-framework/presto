@@ -6,4 +6,5 @@ Lino Presto functional specs
    :maxdepth: 1
 
    psico
+   teams
    test_presto

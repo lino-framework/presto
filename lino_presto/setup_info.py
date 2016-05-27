@@ -115,6 +115,8 @@ lino_presto.projects.psico.lib.contacts
 lino_presto.projects.psico.lib.contacts.fixtures
 lino_presto.projects.psico.lib.lists
 lino_presto.projects.psico.lib.lists.fixtures
+lino_presto.projects.psico.lib.teams
+lino_presto.projects.psico.lib.teams.fixtures
 """.splitlines() if n])
 
 SETUP_INFO.update(message_extractors={

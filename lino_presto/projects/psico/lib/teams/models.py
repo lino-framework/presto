@@ -15,16 +15,34 @@
 # You should have received a copy of the GNU Affero General Public
 # License along with Lino Presto.  If not, see
 # <http://www.gnu.org/licenses/>.
+"""Database models for this plugin."""
 
-"""Plugins specific to :ref:`psico`.
+from __future__ import unicode_literals
 
-.. autosummary::
-   :toctree:
+from lino.api import _
 
-    clocking
-    lists
-    contacts
-    teams
+from lino_xl.lib.teams.models import *
 
 
-"""
+class Team(Team):
+    
+    class Meta(Team.Meta):
+        app_label = 'teams'
+        abstract = dd.is_abstract_model(__name__, 'Team')
+        verbose_name = _("Department")
+        verbose_name_plural = _("Departments")
+
+
+dd.inject_field(
+    'contacts.Partner', 'team',
+    dd.ForeignKey('teams.Team', blank=True, null=True))
+
+# dd.inject_field(
+#     'clocking.Session', 'team',
+#     dd.ForeignKey('teams.Team', blank=True, null=True))
+
+dd.inject_field(
+    'ledger.Journal', 'team',
+    dd.ForeignKey('teams.Team', blank=True, null=True))
+
+
