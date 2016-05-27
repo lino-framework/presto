@@ -17,4 +17,10 @@ Teams in Lino Psico
 
 
 >>> rt.show(teams.Teams)
-
+============= ================== ==================
+ Designation   Designation (de)   Designation (fr)
+------------- ------------------ ------------------
+ Eupen
+ St.Vith
+============= ================== ==================
+<BLANKLINE>
