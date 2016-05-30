@@ -20,8 +20,9 @@ settings.SITE.title = "Lino Presto Reference Manual"
 
 intersphinx_mapping = {}
 from importlib import import_module
-for n in 'atelier lino'.split():
+for n in 'atelier lino_book'.split():
     m = import_module(n)
+    n = n.replace('_', "")
     intersphinx_mapping[n] = (m.intersphinx_urls['docs'], None)
 
 # General configuration
