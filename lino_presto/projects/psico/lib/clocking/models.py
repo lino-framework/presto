@@ -50,7 +50,7 @@ class Session(Session, Invoiceable):
     def get_invoiceables_for_plan(cls, plan, partner=None):
 
         qs = cls.objects.filter(**{
-            cls.invoiceable_date_field + '__lte': plan.max_date})
+            cls.invoiceable_date_field + '__lte': plan.max_date or plan.today})
         if partner is None:
             partner = plan.partner
         if partner:
@@ -75,9 +75,12 @@ class Session(Session, Invoiceable):
             None, 'clocking/Session/item_description.html',
             obj=self, item=item)
 
-    def get_invoiceable_product(self):
+    def get_invoiceable_product(self, plan):
         # dd.logger.info('20160223 %s', self.course)
+        max_date = plan.max_date or plan.today
         if not self.state.invoiceable:
+            return
+        if self.start_date > max_date:
             return
         return self.fee
 
