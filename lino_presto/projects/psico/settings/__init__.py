@@ -41,7 +41,7 @@ class Site(Site):
 
     verbose_name = "Lino for psychologists"
 
-    demo_fixtures = 'std demo novat minimal_ledger demo_bookings demo2'.split()
+    demo_fixtures = 'std demo novat minimal_ledger demo_bookings payments demo2'.split()
     project_model = 'contacts.Partner'
 
     def get_installed_apps(self):
