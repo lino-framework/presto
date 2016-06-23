@@ -20,7 +20,7 @@ from __future__ import unicode_literals
 
 from lino.api import dd, rt, _
 
-from lino.modlib.contacts.models import *
+from lino_cosi.lib.contacts.models import *
 
 from lino_xl.lib.cal.workflows import take, feedback
 from lino_xl.lib.addresses.mixins import AddressOwner
@@ -226,11 +226,14 @@ class Companies(Companies):
     detail_layout = CompanyDetail()
 
 
-@dd.receiver(dd.post_analyze)
-def my_details(sender, **kw):
-    contacts = sender.modules.contacts
+Partners.set_detail_layout(PartnerDetail())
+Companies.set_detail_layout(CompanyDetail())
 
-    contacts.Partners.set_detail_layout(contacts.PartnerDetail())
-    contacts.Companies.set_detail_layout(contacts.CompanyDetail())
+# @dd.receiver(dd.post_analyze)
+# def my_details(sender, **kw):
+#     contacts = sender.modules.contacts
+
+#     contacts.Partners.set_detail_layout(contacts.PartnerDetail())
+#     contacts.Companies.set_detail_layout(contacts.CompanyDetail())
 
 

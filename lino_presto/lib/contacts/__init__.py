@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2014-2015 Luc Saffre
+# Copyright 2014-2016 Luc Saffre
 # This file is part of Lino Presto.
 #
 # Lino Presto is free software: you can redistribute it and/or modify
@@ -20,11 +20,9 @@
 An extension of :mod:`lino.modlib.contacts`
 """
 
-from lino.modlib.contacts import Plugin
+from lino_cosi.lib.contacts import Plugin
 
 
 class Plugin(Plugin):
 
-    extends_models = ['Partner',
-                      'Person',
-                      'Company']
+    extends_models = ['Partner', 'Person', 'Company']
