@@ -35,7 +35,7 @@ class Site(Site):
         yield 'lino.modlib.gfks'
         # yield 'lino.modlib.users'
         yield 'lino.modlib.users'
-        yield 'lino.modlib.countries'
+        yield 'lino_xl.lib.countries'
         yield 'lino_xl.lib.properties'
         yield 'lino_presto.lib.contacts'
         yield 'lino_xl.lib.households'

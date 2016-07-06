@@ -17,7 +17,7 @@
 # <http://www.gnu.org/licenses/>.
 
 """
-An extension of :mod:`lino.modlib.contacts`
+An extension of :mod:`lino_xl.lib.contacts`
 """
 
 from lino_cosi.lib.contacts import Plugin
