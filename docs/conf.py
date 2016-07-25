@@ -143,4 +143,10 @@ html_use_opensearch = ''
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'presto'
 
-from lino.sphinxcontrib.help_text_builder import setup
+extensions += ['lino.sphinxcontrib.help_texts_extractor']
+help_texts_builder_targets = {
+    'lino_presto.': 'lino_presto.lib.presto'
+}
+
+
+
