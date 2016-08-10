@@ -5,7 +5,7 @@ Miscellaneous tests in Lino Presto
 ==================================
 
 .. to run only this test:
-    $ python setup.py test -s tests.DocsTests.test_presto
+    $ python setup.py test -s tests.SpecsTests.test_presto
     
     doctest init
 

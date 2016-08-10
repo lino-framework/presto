@@ -51,6 +51,7 @@ class Site(Site):
     def get_apps_modifiers(self, **kw):
         kw = super(Site, self).get_apps_modifiers(**kw)
         # remove whole plugin:
+        kw.update(deploy=None)
         # kw.update(tickets=None)
         # alternative implementations:
         # kw.update(tickets='lino_noi.projects.care.lib.tickets')
