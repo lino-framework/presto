@@ -22,7 +22,7 @@ from lino.api import dd, rt, _
 
 from lino_cosi.lib.contacts.models import *
 
-from lino_xl.lib.cal.workflows import take, feedback
+from lino_xl.lib.cal.workflows import feedback
 from lino_xl.lib.addresses.mixins import AddressOwner
 
 

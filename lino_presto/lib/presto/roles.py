@@ -28,7 +28,8 @@ from lino.core.roles import UserRole, SiteAdmin
 from lino.modlib.office.roles import OfficeStaff, OfficeUser
 from lino_cosi.lib.ledger.roles import LedgerUser, LedgerStaff
 from lino_cosi.lib.sepa.roles import SepaUser, SepaStaff
-from lino_noi.lib.tickets.roles import Worker, Triager
+from lino_noi.lib.tickets.roles import Triager
+from lino_noi.lib.clocking.roles import Worker
 
 
 class Secretary(OfficeUser, LedgerUser, SepaUser):
