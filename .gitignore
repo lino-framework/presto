@@ -17,5 +17,6 @@ docs/api
 .build
 .DS_Store
 
-.idea
 .coverage
+.coverage.*
+.eggs
