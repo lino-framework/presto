@@ -1,11 +1,8 @@
-==========================
-lino_presto README
-==========================
+===========================
+The ``lino_presto`` package
+===========================
 
-A Lino application which combines Cosi and Noi
 
-Description
------------
 
 
 Lino Presto is an application for managing the work of organisations
@@ -44,5 +41,3 @@ it to be reusable by other service providers such as software
 developers, tax consultants, accountants,...
 
 
-
-Read more on http://presto.lino-framework.org
