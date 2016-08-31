@@ -25,6 +25,7 @@
 from lino.api import _
 from lino.modlib.users.choicelists import UserProfiles
 from lino.core.roles import UserRole, SiteAdmin
+from lino_xl.lib.contacts.roles import ContactsUser
 from lino.modlib.office.roles import OfficeStaff, OfficeUser
 from lino_cosi.lib.ledger.roles import LedgerUser, LedgerStaff
 from lino_cosi.lib.sepa.roles import SepaUser, SepaStaff
@@ -32,11 +33,11 @@ from lino_noi.lib.tickets.roles import Triager
 from lino_noi.lib.clocking.roles import Worker
 
 
-class Secretary(OfficeUser, LedgerUser, SepaUser):
+class Secretary(ContactsUser, OfficeUser, LedgerUser, SepaUser):
     pass
 
 
-class Worker(Secretary, Worker):
+class Consultant(ContactsUser, OfficeUser, LedgerUser, SepaUser, Worker):
     pass
 
 
@@ -50,6 +51,6 @@ add = UserProfiles.add_item
 
 add('000', _("Anonymous"), UserRole, name='anonymous', readonly=True)
 add('100', _("Secretary"), Secretary)
-add('200', _("Worker"), Worker)
+add('200', _("Consultant"), Consultant)
 add('900', _("Administrator"), SiteAdmin, name='admin')
 
