@@ -28,7 +28,7 @@ class Site(Site):
 
     project_model = 'tickets.Project'
 
-    user_profiles_module = 'lino_presto.lib.presto.roles'
+    user_types_module = 'lino_presto.lib.presto.roles'
 
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()
