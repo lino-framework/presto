@@ -52,3 +52,5 @@ class Company(Partner, Company):
         app_label = 'contacts'
         abstract = dd.is_abstract_model(__name__, 'Company')
 
+
+dd.update_field(Person, 'first_name', blank=True)
