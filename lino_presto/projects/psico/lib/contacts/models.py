@@ -24,9 +24,10 @@ from lino.api import _
 from lino_presto.lib.contacts.models import *
 
 from .choicelists import PartnerTariffs
+from lino_noi.lib.clocking.mixins import Workable
 
 
-class Partner(Partner):
+class Partner(Partner, Workable):
 
     class Meta(Partner.Meta):
         app_label = 'contacts'
