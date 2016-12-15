@@ -27,6 +27,7 @@ class Site(Site):
     languages = 'en de fr et'
 
     project_model = 'tickets.Project'
+    workflows_module = 'lino_noi.lib.noi.workflows'
 
     user_types_module = 'lino_presto.lib.presto.roles'
 
