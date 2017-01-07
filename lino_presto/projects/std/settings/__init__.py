@@ -80,7 +80,7 @@ class Site(Site):
         super(Site, self).setup_plugins()
         self.plugins.countries.configure(country_code='BE')
 
-    def get_admin_main_items(self, user):
+    def unused_get_dashboard_items(self, user):
         if False:
             from lino.utils.weekly import get_report
 
