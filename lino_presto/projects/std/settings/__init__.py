@@ -59,7 +59,7 @@ class Site(Site):
         yield 'lino_noi.projects.team.lib.clocking'
         yield 'lino_noi.lib.deploy'
         # yield 'lino_presto.lib.clocking'
-        # yield 'lino.modlib.uploads'
+        yield 'lino.modlib.uploads'
         yield 'lino_xl.lib.extensible'
         yield 'lino_xl.lib.cal'
         # yield 'lino_xl.lib.outbox'
