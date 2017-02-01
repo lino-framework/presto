@@ -51,7 +51,7 @@ class Site(Site):
     
     workflows_module = 'lino_noi.lib.noi.workflows'
 
-    user_types_module = 'lino_presto.lib.presto.roles'
+    user_types_module = 'lino_presto.lib.presto.user_types'
 
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()

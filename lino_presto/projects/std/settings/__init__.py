@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2011-2016 Luc Saffre
+# Copyright 2011-2017 Luc Saffre
 # This file is part of Lino Presto.
 # Lino Presto is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -29,7 +29,7 @@ class Site(Site):
     project_model = 'tickets.Project'
     workflows_module = 'lino_noi.lib.noi.workflows'
 
-    user_types_module = 'lino_presto.lib.presto.roles'
+    user_types_module = 'lino_presto.lib.presto.user_types'
 
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()
