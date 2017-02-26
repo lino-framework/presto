@@ -76,9 +76,9 @@ class Site(Site):
         # 'lino_xl.lib.projects',
         yield 'lino_xl.lib.blogs'
         yield 'lino_xl.lib.notes'
+        # yield 'lino_presto.lib.tickets'
         yield 'lino_noi.lib.faculties'
         # yield 'lino_noi.lib.votes'
-        # yield 'lino_noi.lib.tickets'
         yield 'lino_presto.projects.psico.lib.clocking'
         # yield 'lino_noi.lib.deploy'
         # yield 'lino_presto.lib.clocking'
@@ -104,6 +104,7 @@ class Site(Site):
         super(Site, self).setup_plugins()
         self.plugins.countries.configure(country_code='BE')
         self.plugins.clocking.configure(ticket_model='contacts.Partner')
+        self.plugins.faculties.configure(demander_model='contacts.Partner')
 
 # the following line should not be active in a checked-in version
 # DATABASES['default']['NAME'] = ':memory:'
