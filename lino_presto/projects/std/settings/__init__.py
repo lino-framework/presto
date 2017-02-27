@@ -45,12 +45,12 @@ class Site(Site):
         yield 'lino_xl.lib.humanlinks',
         # yield 'lino_xl.lib.products'
         # yield 'lino_noi.lib.products'
-        # yield 'lino_cosi.lib.accounts'
-        yield 'lino_cosi.lib.sales'
-        # yield 'lino_cosi.lib.vat'
-        yield 'lino_cosi.lib.sepa'
-        yield 'lino_cosi.lib.finan'
-        yield 'lino_cosi.lib.invoicing'
+        # yield 'lino_xl.lib.accounts'
+        yield 'lino_xl.lib.sales'
+        # yield 'lino_xl.lib.vat'
+        yield 'lino_xl.lib.sepa'
+        yield 'lino_xl.lib.finan'
+        yield 'lino_xl.lib.invoicing'
         # 'lino_xl.lib.projects',
         yield 'lino_xl.lib.blogs'
         yield 'lino_xl.lib.notes'
