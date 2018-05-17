@@ -1,4 +1,4 @@
-from atelier.invlib.ns import setup_from_tasks
+from atelier.invlib import setup_from_tasks
 ns = setup_from_tasks(
     globals(), "lino_presto",
     languages="en de fr et".split(),
