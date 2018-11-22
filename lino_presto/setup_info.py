@@ -1,17 +1,6 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2015-2017 Luc Saffre
-# This file is part of Lino Presto.
-# Lino Presto is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-# Lino Presto is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# Affero General Public License for more details.
-# You should have received a copy of the GNU Affero General Public
-# License along with Lino Presto.  If not, see
-# <http://www.gnu.org/licenses/>.
+# Copyright 2015-2018 Rumma & Ko Ltd
+# License: BSD (see file COPYING for details)
 
 # Note that this module may not have a docstring because any
 # global variable defined here will override the global
@@ -27,11 +16,11 @@ from __future__ import unicode_literals
 SETUP_INFO = dict(
     name='lino_presto',
     version='0.0.1',
-    install_requires=['lino_cosi', 'lino_noi'],
+    install_requires=['lino_xl'],
     tests_require=[],
 
-    description="A Lino application which combines Cosi and Noi",
-    license='GNU Affero General Public License v3',
+    description="A Lino application for managing services",
+    license='BSD License',
     include_package_data=True,
     zip_safe=False,
     author='Luc Saffre',
@@ -58,40 +47,23 @@ SETUP_INFO = dict(
 
 SETUP_INFO.update(long_description="""\
 
-Lino Presto is an application for managing the work of organisations
-where time is money, i.e. where time tracker sessions are the base for
-writing invoices.
+Lino Presto is an application for managing services with physical
+on-site presence of the workers.  For organisations where calendar
+entries are the base for writing invoices.  Services can be
+individually scheduled or recurring calendar entries based on
+contracts.  Integrated calendar and contacts.  Automatically generate
+invoices.  Optional functionalities include accounting (payments,
+purchases, general ledger, VAT declarations).
+
+- The central project homepage is http://presto.lino-framework.org
 
 - For *introductions* and *commercial information* about Lino Presto
   please see `www.saffre-rumma.net
-  <http://www.saffre-rumma.net/presto/>`__.
-
-- The central project homepage is http://presto.lino-framework.org
+  <http://www.saffre-rumma.net/lino/>`__.
 
 The name "Presto" originally comes from "prestations de service", the
 French expression for service providements.  It also means "quick" in
 Italian.
-
-**Status: not yet usable**
-
-It is a seamless combination of the following general functionalities:
-
-- Accounting (general ledger, sales, purchases, VAT declarations, bank
-  journals, ...)
-
-- Project management, issue tracking, generating service reports and
-  invoices for services.
-
-Maybe later:
-
-- Subscription management (generating regular invoices based to
-  subscription contracts)
-
-- Content management, blogs, newsletters and classical web pages
-
-Lino-Presto is not yet usable.  When one day it will be ready, we plan
-it to be reusable by other service providers such as software
-developers, tax consultants, accountants,...
 
 """)
 

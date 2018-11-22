@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2017 Luc Saffre
+# Copyright 2017 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 """Database models for this plugin.
 
@@ -16,7 +16,7 @@ class TicketDetail(TicketDetail):
 
     general = dd.Panel("""
     general1:60 #votes.VotesByVotable:20
-    description:30 comments.CommentsByRFC:30 faculties.DemandsByDemander #clocking.SessionsByTicket:20
+    description:30 comments.CommentsByRFC:30 skills.DemandsByDemander #working.SessionsByTicket:20
     """, label=_("General"))
 
     general1 = """
@@ -30,7 +30,7 @@ class TicketDetail(TicketDetail):
     # """, label=_("History"), required_roles=dd.login_required(Triager))
 
     more = dd.Panel("""
-    more1:60 faculties.AssignableWorkersByTicket:20
+    more1:60 skills.AssignableWorkersByTicket:20
     upgrade_notes:20 LinksByTicket:20
     """, label=_("More"), required_roles=dd.login_required(Triager))
 

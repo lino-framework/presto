@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2013-2016 Luc Saffre
+# Copyright 2013-2016 Rumma & Ko Ltd
 # This file is part of Lino Presto.
 #
 # Lino Presto is free software: you can redistribute it and/or modify
@@ -23,10 +23,10 @@ from lino.api import dd, rt, _
 from lino_cosi.lib.contacts.models import *
 
 from lino_xl.lib.cal.workflows import feedback
-from lino_xl.lib.addresses.mixins import AddressOwner
+# from lino_xl.lib.addresses.mixins import AddressOwner
 
 
-class Partner(Partner, AddressOwner, mixins.CreatedModified):
+class Partner(Partner, mixins.CreatedModified):
 
     class Meta(Partner.Meta):
         app_label = 'contacts'
@@ -40,17 +40,17 @@ class Partner(Partner, AddressOwner, mixins.CreatedModified):
     hidden_columns = 'created modified'
 
     faculty = None
-    """Required by :mod:`lino_xl.lib.clocking`.
+    """Required by :mod:`lino_xl.lib.working`.
     """
 
-    def get_overview_elems(self, ar):
-        # In the base classes, Partner must come first because
-        # otherwise Django won't inherit `meta.verbose_name`. OTOH we
-        # want to get the `get_overview_elems` from AddressOwner, not
-        # from Partner (i.e. AddressLocation).
-        elems = super(Partner, self).get_overview_elems(ar)
-        elems += AddressOwner.get_overview_elems(self, ar)
-        return elems
+    # def get_overview_elems(self, ar):
+    #     # In the base classes, Partner must come first because
+    #     # otherwise Django won't inherit `meta.verbose_name`. OTOH we
+    #     # want to get the `get_overview_elems` from AddressOwner, not
+    #     # from Partner (i.e. AddressLocation).
+    #     elems = super(Partner, self).get_overview_elems(ar)
+    #     elems += AddressOwner.get_overview_elems(self, ar)
+    #     return elems
 
 
 class PartnerDetail(PartnerDetail):

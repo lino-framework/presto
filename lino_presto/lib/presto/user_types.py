@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2016-2017 Luc Saffre
+# Copyright 2016-2017 Rumma & Ko Ltd
 # This file is part of Lino Presto.
 #
 # Lino Presto is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ from lino.modlib.office.roles import OfficeStaff, OfficeUser
 from lino_xl.lib.ledger.roles import LedgerUser, LedgerStaff
 from lino_xl.lib.sepa.roles import SepaUser, SepaStaff
 from lino_xl.lib.tickets.roles import Triager
-from lino_xl.lib.clocking.roles import Worker
+from lino_xl.lib.working.roles import Worker
 
 
 class Secretary(ContactsUser, OfficeUser, LedgerUser, SepaUser,

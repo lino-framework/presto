@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2014-2015 Luc Saffre
+# Copyright 2014-2015 Rumma & Ko Ltd
 # This file is part of Lino Presto.
 #
 # Lino Presto is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 def objects():
     return []
     # create a primary Address for each Partner
-    # for obj in rt.modules.contacts.Partner.objects.all():
+    # for obj in rt.models.contacts.Partner.objects.all():
     #     obj.repairdata()
     #     yield obj
 

@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2012-2015 Luc Saffre
+# Copyright 2012-2015 Rumma & Ko Ltd
 # This file is part of Lino Presto.
 #
 # Lino Presto is free software: you can redistribute it and/or modify
@@ -34,5 +34,6 @@ execfile(join(dirname(__file__), 'setup_info.py'))
 __version__ = SETUP_INFO['version']
 intersphinx_urls = dict(docs="http://presto.lino-framework.org")
 srcref_url = 'https://github.com/lsaffre/presto/blob/master/%s'
+doc_trees = ['docs']
 
 

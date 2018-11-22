@@ -1,4 +1,4 @@
-# Copyright 2015, Luc Saffre
+# Copyright 2015, Rumma & Ko Ltd
 # This file is part of Lino Presto.
 #
 # Lino Presto is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ from lino.api import dd
 @dd.receiver(dd.post_analyze)
 def my_details(sender, **kw):
     site = sender
-    site.modules.accounts.Accounts.set_detail_layout("""
+    site.modules.ledger.Accounts.set_detail_layout("""
     ref:10 name id:5
     seqno group type clearable
     ledger.MovementsByAccount
