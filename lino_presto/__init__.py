@@ -30,7 +30,9 @@
 from os.path import join, dirname
 
 SETUP_INFO = dict()
-execfile(join(dirname(__file__), 'setup_info.py'))
+# execfile(join(dirname(__file__), 'setup_info.py'))
+with open(join(dirname(__file__), 'setup_info.py')) as setup_info:
+    exec(setup_info.read())
 __version__ = SETUP_INFO['version']
 intersphinx_urls = dict(docs="http://presto.lino-framework.org")
 srcref_url = 'https://github.com/lsaffre/presto/blob/master/%s'
