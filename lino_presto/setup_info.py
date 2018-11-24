@@ -76,8 +76,8 @@ lino_presto.lib.presto
 lino_presto.lib.presto.fixtures
 lino_presto.lib.tickets
 lino_presto.projects
-lino_presto.projects.std
-lino_presto.projects.std.settings
+lino_presto.projects.noereth
+lino_presto.projects.noereth.settings
 """.splitlines() if n])
 
 SETUP_INFO.update(message_extractors={

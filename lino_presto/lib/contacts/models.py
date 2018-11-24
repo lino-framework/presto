@@ -1,20 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2013-2016 Rumma & Ko Ltd
-# This file is part of Lino Presto.
-#
-# Lino Presto is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# Lino Presto is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public
-# License along with Lino Presto.  If not, see
-# <http://www.gnu.org/licenses/>.
+# Copyright 2013-2018 Rumma & Ko Ltd
 
 from __future__ import unicode_literals
 
@@ -128,7 +113,7 @@ class PersonDetail(PersonDetail):
     general = dd.Panel("""
     overview:20 general2:40 general3:40
     contacts.RolesByPerson:20 households.MembersByPerson:40 \
-    humanlinks.LinksByHuman
+    # humanlinks.LinksByHuman
     """, label=_("General"))
 
     general2 = """

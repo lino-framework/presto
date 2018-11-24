@@ -11,7 +11,7 @@
 extensions = []
 
 from lino.sphinxcontrib import configure
-configure(globals(), 'lino_presto.projects.std.settings.doctests')
+configure(globals(), 'lino_presto.projects.noereth.settings.doctests')
 
 extensions += ['lino.sphinxcontrib.logo']
 

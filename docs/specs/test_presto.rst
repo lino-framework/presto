@@ -4,15 +4,10 @@
 Miscellaneous tests in Lino Presto
 ==================================
 
-.. to run only this test:
-   
-    $ python setup.py test -s tests.SpecsTests.test_presto
-    
-    doctest init
 
-    >>> from lino import startup
-    >>> startup('lino_presto.projects.std.settings.doctests')
-    >>> from lino.api.doctest import *
+>>> from lino import startup
+>>> startup('lino_presto.projects.noereth.settings.doctests')
+>>> from lino.api.doctest import *
 
 Test whether the bootstrap3 user interface works:
 

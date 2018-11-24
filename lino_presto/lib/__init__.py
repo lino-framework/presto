@@ -23,7 +23,6 @@
 
     contacts
     presto
-    tickets
 
 
 """
