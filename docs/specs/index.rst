@@ -1,8 +1,12 @@
-============================
-Lino Presto functional specs
-============================
+===============
+Technical specs
+===============
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 1
 
-   test_presto
+    overview
+    contacts
+    courses
+
+

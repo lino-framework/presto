@@ -1,57 +1,49 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2016-2017 Rumma & Ko Ltd
-# This file is part of Lino Presto.
-#
-# Lino Presto is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# Lino Presto is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public
-# License along with Lino Presto.  If not, see
-# <http://www.gnu.org/licenses/>.
+# Copyright 2017-2018 Rumma & Ko Ltd
+# License: BSD (see file COPYING for details)
 
-
-"""Defines a default set of user roles and fills
-:class:`lino.modlib.users.choicelists.UserTypes`.
+"""Defines the user types for Lino Tera.
 
 This is used as the :attr:`user_types_module
-<lino.core.site.Site.user_types_module>` for
-:mod:`lino_presto.projects.std`.
+<lino.core.site.Site.user_types_module>` for Tera sites.
 
+Redefines the choices in :class:`lino.modlib.users.UserTypes`.
 
 """
 
+from __future__ import unicode_literals
+
 from lino.api import _
 from lino.modlib.users.choicelists import UserTypes
-from lino.core.roles import UserRole, SiteAdmin
-from lino_xl.lib.contacts.roles import ContactsUser
+from lino.core.roles import UserRole, SiteAdmin, SiteUser, SiteStaff
+from lino_xl.lib.contacts.roles import ContactsUser, ContactsStaff
 from lino_xl.lib.products.roles import ProductsUser, ProductsStaff
 from lino_xl.lib.excerpts.roles import ExcerptsUser, ExcerptsStaff
+from lino_xl.lib.courses.roles import CoursesUser, CoursesTeacher
 from lino.modlib.office.roles import OfficeStaff, OfficeUser
-from lino_xl.lib.ledger.roles import LedgerUser, LedgerStaff
+from lino_xl.lib.cal.roles import GuestOperator
+from lino_xl.lib.ledger.roles import LedgerStaff
 from lino_xl.lib.sepa.roles import SepaUser, SepaStaff
-from lino_xl.lib.tickets.roles import Triager
-from lino_xl.lib.working.roles import Worker
 
 
-class Secretary(ContactsUser, OfficeUser, LedgerUser, SepaUser,
-                ExcerptsUser, ProductsStaff):
+class Secretary(SiteStaff, ContactsUser, OfficeUser,
+                GuestOperator,
+                LedgerStaff, SepaUser, CoursesUser, ExcerptsUser,
+                ProductsStaff):
     pass
 
 
-class Consultant(ContactsUser, OfficeUser, LedgerUser, SepaUser,
-                 Worker, ExcerptsUser, ProductsUser):
+class Worker(SiteUser, ContactsUser, OfficeUser,
+                GuestOperator,
+                SepaUser, CoursesUser, CoursesTeacher, ExcerptsUser,
+                ProductsUser):
     pass
 
 
-class SiteAdmin(SiteAdmin, OfficeStaff, LedgerStaff, SepaStaff,
-                Worker, Triager, ExcerptsStaff, ProductsStaff):
+class SiteAdmin(SiteAdmin, ContactsStaff, OfficeStaff,
+                GuestOperator,
+                LedgerStaff, SepaStaff, CoursesUser, CoursesTeacher,
+                ExcerptsStaff, ProductsStaff):
     pass
 
 UserTypes.clear()
@@ -59,7 +51,7 @@ UserTypes.clear()
 add = UserTypes.add_item
 
 add('000', _("Anonymous"), UserRole, name='anonymous', readonly=True)
-add('100', _("Secretary"), Secretary)
-add('200', _("Consultant"), Consultant)
+add('100', _("Secretary"), Secretary, name="secretary")
+add('200', _("Worker"), Worker, name="worker")
 add('900', _("Administrator"), SiteAdmin, name='admin')
 

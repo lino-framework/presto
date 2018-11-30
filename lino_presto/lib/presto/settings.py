@@ -14,7 +14,7 @@ class Site(Site):
     # demo_fixtures = 'std demo minimal_ledger euvatrates demo_bookings payments demo2'.split()
     demo_fixtures = 'std demo minimal_ledger demo_bookings payments demo2'.split()
 
-    languages = 'en de fr et'
+    languages = 'en de fr'
 
     project_model = 'courses.Course'
     workflows_module = 'lino_presto.lib.presto.workflows'
@@ -24,7 +24,7 @@ class Site(Site):
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()
         yield 'lino.modlib.gfks'
-        yield 'lino_xl.lib.courses'
+        yield 'lino_presto.lib.courses'
         yield 'lino.modlib.users'
         yield 'lino.modlib.dashboard'
         yield 'lino_xl.lib.countries'
@@ -39,15 +39,16 @@ class Site(Site):
         yield 'lino_xl.lib.sales'
         # yield 'lino_xl.lib.vat'
         yield 'lino_xl.lib.invoicing'
+
         yield 'lino_xl.lib.sepa'
         yield 'lino_xl.lib.finan'
         yield 'lino_xl.lib.bevats'
         yield 'lino_xl.lib.ana'
         yield 'lino_xl.lib.sheets'
 
-        yield 'lino_xl.lib.notes'
+        # yield 'lino_xl.lib.notes'
         # yield 'lino_xl.lib.skills'
-        yield 'lino.modlib.uploads'
+        # yield 'lino.modlib.uploads'
         yield 'lino_xl.lib.excerpts'
         yield 'lino_xl.lib.appypod'
         yield 'lino.modlib.export_excel'

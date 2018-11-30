@@ -5,10 +5,8 @@ from __future__ import unicode_literals
 
 from lino.api import dd, rt, _
 
-from lino_cosi.lib.contacts.models import *
-
-from lino_xl.lib.cal.workflows import feedback
-# from lino_xl.lib.addresses.mixins import AddressOwner
+from lino_xl.lib.contacts.models import *
+from lino_xl.lib.courses.mixins import Enrollable
 
 
 class Partner(Partner, mixins.CreatedModified):
@@ -103,8 +101,7 @@ class Person(Partner, Person):
         return self.language
 
 dd.update_field(Person, 'first_name', blank=False)
-dd.update_field(Person, 'last_name', blank=False)
-
+# dd.update_field(Person, 'last_name', blank=False)
 
 class PersonDetail(PersonDetail):
 
@@ -225,4 +222,11 @@ Companies.set_detail_layout(CompanyDetail())
 #     contacts.Partners.set_detail_layout(contacts.PartnerDetail())
 #     contacts.Companies.set_detail_layout(contacts.CompanyDetail())
 
+
+class Worker(Person, Enrollable):
+    class Meta:
+        app_label = 'contacts'
+        verbose_name = _("Worker")
+        verbose_name_plural = _("Workers")
+        abstract = dd.is_abstract_model(__name__, 'Worker')
 
