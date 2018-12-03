@@ -8,8 +8,8 @@ from lino_xl.lib.courses.choicelists import *
 
 CourseAreas.clear()
 add = CourseAreas.add_item
-add('10', _("Home help"), 'default')
-add('20', _("Garden contracts"), 'garden')
+add('10', _("Home help"), 'default', 'courses.HomeContracts')
+add('20', _("Garden contracts"), 'garden', 'courses.GardenContracts')
 
 
 # Stand der Beratung:

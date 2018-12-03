@@ -53,7 +53,7 @@ class Line(Line):
     #     'courses.CourseType', blank=True, null=True)
     invoicing_policy = InvoicingPolicies.field(default='by_event')
 
-class TeraInvoiceable(InvoiceGenerator): 
+class MyInvoiceGenerator(InvoiceGenerator):
     
     class Meta(object):
         abstract = True
@@ -174,7 +174,7 @@ class TeraInvoiceable(InvoiceGenerator):
         for product, events in collector.items():
             tariff = self.get_invoiceable_tariff(product)
             description = ', '.join([fmt(ev, None) for ev in events])
-            title = _("{} appointments").format(len(events))
+            title = _("{} deployments").format(len(events))
             kwargs = dict(
                 invoiceable=self,
                 product=product,
@@ -189,20 +189,6 @@ class TeraInvoiceable(InvoiceGenerator):
             yield invoice.add_voucher_item(**kwargs)
             # yield model(**kwargs)
 
-        for ev in info.used_events:
-            if ev.amount:
-                pp = self.get_cash_daybook(ev)
-                if not pp:
-                    raise Exception(_("No cash daybook defined"))
-                kwargs = dict(
-                    invoiceable=self, product=pp)
-                    # total_incl=-ev.amount)
-                # kwargs.update(title=gettext("Prepayment"))
-                i = invoice.add_voucher_item(**kwargs)
-                # i = model(**kwargs)
-                i.set_amount(ar, -ev.amount)
-                yield i
-                
     def get_invoiceable_amount(self, ie):
         prod = self.get_invoiceable_product()
         return prod.sales_price or 5
@@ -211,7 +197,7 @@ class TeraInvoiceable(InvoiceGenerator):
 
 
 @dd.python_2_unicode_compatible
-class Course(Referrable, Course, TeraInvoiceable, Modified):
+class Course(Referrable, Course, MyInvoiceGenerator, Modified):
     """
     Extends the standard model by adding a field :attr:`fee`.
 
@@ -277,8 +263,8 @@ class Course(Referrable, Course, TeraInvoiceable, Modified):
     class Meta(Course.Meta):
         app_label = 'courses'
         abstract = dd.is_abstract_model(__name__, 'Course')
-        verbose_name = _("Dossier")
-        verbose_name_plural = _('Dossiers')
+        verbose_name = _("Contract")
+        verbose_name_plural = _('Contracts')
 
     ref_max_length = 8
     
@@ -446,11 +432,12 @@ class Course(Referrable, Course, TeraInvoiceable, Modified):
         # qs = cls.objects.filter(**{
         #     cls.invoiceable_date_field + '__lte':
         #       plan.max_date or plan.today})
-        
-        if plan.course is None:
-            qs = qs.filter(state=CourseStates.active)
-        else:
-            qs = qs.filter(id=plan.course.id)
+
+        qs = qs.filter(state=CourseStates.active)
+        # if plan.course is None:
+        #     qs = qs.filter(state=CourseStates.active)
+        # else:
+        #     qs = qs.filter(id=plan.course.id)
             
         # dd.logger.info("20181113 c %s", qs)
         
@@ -495,7 +482,7 @@ dd.update_field(Course, 'user', verbose_name=_("Manager"))
 #         return [o.pupil for o in ar.selected_rows]
 
 
-class Enrolment(Enrolment, TeraInvoiceable):
+class Enrolment(Enrolment, MyInvoiceGenerator):
     """Adds
 
     .. attribute:: fee
@@ -636,11 +623,12 @@ class Enrolment(Enrolment, TeraInvoiceable):
     def get_generators_for_plan(cls, plan, partner=None):
         
         qs = cls.objects.all()
-        
-        if plan.course is None:
-            qs = qs.filter(course__state=CourseStates.active)
-        else:
-            qs = qs.filter(course__id=plan.course.id)
+
+        qs = qs.filter(course__state=CourseStates.active)
+        # if plan.course is None:
+        #     qs = qs.filter(course__state=CourseStates.active)
+        # else:
+        #     qs = qs.filter(course__id=plan.course.id)
 
         # dd.logger.info("20181113 c %s", qs)
         

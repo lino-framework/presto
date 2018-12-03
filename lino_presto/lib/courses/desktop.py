@@ -236,9 +236,19 @@ class Courses(Courses):
         return kw
 
 
+class HomeContracts(Courses):
+    label = _("Home contracts")
+    _course_area = CourseAreas.default
+
+
+class GardenContracts(Courses):
+    label = _("Garden contracts")
+    _course_area = CourseAreas.garden
+
+
 class CoursesByPartner(Courses):
     _course_area = None
-    label = _("Invoice recipient in dossiers")
+    label = _("Invoice recipient in contracts")
     master_key = 'partner'
     column_names = "start_date overview workflow_buttons *"
     order_by = ['-start_date']

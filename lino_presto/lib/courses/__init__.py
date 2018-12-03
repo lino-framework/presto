@@ -31,3 +31,48 @@ class Plugin(Plugin):
     # in main menu:
     needs_plugins = []
 
+    def setup_main_menu(self, site, user_type, m):
+        sm = m.add_menu(self.app_label, self.verbose_name)
+        sm.add_action('courses.MyCoursesGiven')
+        # sm.add_action('courses.Pupils')
+        # sm.add_action('courses.Teachers')
+        sm.add_separator()
+        for ca in site.models.courses.CourseAreas.objects():
+            sm.add_action(ca.courses_table)
+        # sm.add_action('courses.Courses')
+        # sm.add_separator()
+        # sm.add_action('courses.DraftCourses')
+        # sm.add_action('courses.InactiveCourses')
+        # sm.add_action('courses.ActiveCourses')
+        # sm.add_action('courses.ClosedCourses')
+        # sm.add_separator()
+        # sm.add_action('courses.PendingRequestedEnrolments')
+        # sm.add_action('courses.PendingConfirmedEnrolments')
+        # sm.add_action('tera.MyClients')
+
+        # o = site.plugins.office
+        # sm = m.add_menu(o.app_label, o.verbose_name)
+        # sm.add_action('courses.MyCourses')
+
+    def setup_config_menu(self, site, user_type, m):
+        m1 = m.add_menu(self.app_label, self.verbose_name)
+        # m.add_action('courses.CourseTypes')
+        # m.add_separator()
+        m1.add_action('courses.Lines')
+        m1.add_action('courses.Topics')
+
+        mg = site.plugins.sales
+        m2 = m.add_menu(mg.app_label, mg.verbose_name)
+        m2.add_action('courses.PriceRules')
+
+        # m.add_action('courses.TeacherTypes')
+        # m.add_action('courses.PupilTypes')
+        # m.add_action('courses.Slots')
+
+    def setup_reports_menu(self, site, user_type, m):
+        m = m.add_menu(self.app_label, self.verbose_name)
+        m.add_action('courses.StatusReport')
+
+    def get_dashboard_items(self, user):
+        # we don't want to see any therapies on the dashboard
+        return []

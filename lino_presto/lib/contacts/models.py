@@ -109,8 +109,7 @@ class PersonDetail(PersonDetail):
 
     general = dd.Panel("""
     overview:20 general2:40 general3:40
-    contacts.RolesByPerson:20 households.MembersByPerson:40 \
-    # humanlinks.LinksByHuman
+    contacts.RolesByPerson:20
     """, label=_("General"))
 
     general2 = """
@@ -128,7 +127,7 @@ class PersonDetail(PersonDetail):
     """
 
     contact = dd.Panel("""
-    lists.MembersByPartner
+    # lists.MembersByPartner
     remarks:30 sepa.AccountsByPartner
     """, label=_("Contact"))
 
@@ -188,7 +187,7 @@ class CompanyDetail(CompanyDetail):
     """
 
     contact = dd.Panel("""
-    lists.MembersByPartner
+    # lists.MembersByPartner
     remarks:30 sepa.AccountsByPartner
     """, label=_("Contact"))
 

@@ -21,17 +21,14 @@ from lino.api import dd
 @dd.receiver(dd.post_analyze)
 def my_details(sender, **kw):
     site = sender
-    site.modules.ledger.Accounts.set_detail_layout("""
-    ref:10 name id:5
-    seqno group type clearable
-    ledger.MovementsByAccount
-    """)
+    # site.modules.ledger.Accounts.set_detail_layout("""
+    # ref:10 name id:5
+    # seqno group type clearable
+    # ledger.MovementsByAccount
+    # """)
 
     site.modules.system.SiteConfigs.set_detail_layout("""
     site_company next_partner_id:10
     default_build_method
-    clients_account   sales_account
-    suppliers_account purchases_account tax_offices_account
-    wages_account clearings_account
     max_auto_events default_event_type site_calendar
     """)

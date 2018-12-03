@@ -72,16 +72,16 @@ lino_presto
 lino_presto.lib
 lino_presto.lib.contacts
 lino_presto.lib.contacts.fixtures
+lino_presto.lib.courses
 lino_presto.lib.presto
 lino_presto.lib.presto.fixtures
-lino_presto.lib.tickets
 lino_presto.projects
 lino_presto.projects.noereth
 lino_presto.projects.noereth.settings
 """.splitlines() if n])
 
 SETUP_INFO.update(message_extractors={
-    'lino': [
+    'lino_presto': [
         ('**/sandbox/**',        'ignore', None),
         ('**/cache/**',          'ignore', None),
         ('**.py',                'python', None),

@@ -29,6 +29,8 @@ from lino_presto.lib.courses.choicelists import InvoicingPolicies
 
 AMOUNTS = Cycler("5.00", None, None, "15.00", "20.00", None, None)
 
+from lino_xl.lib.products.choicelists import DeliveryUnits
+
 
 def objects():
     Partner = rt.models.contacts.Partner
@@ -58,8 +60,11 @@ def objects():
     presence = ProductCat(**dd.str2kw('name', _("Fees")))
     yield presence
 
-    cash = ProductCat(**dd.str2kw('name', _("Cash daybooks")))
-    yield cash
+    yield Product(**dd.str2kw('name', _("Ironing of a shirt"), delivery_unit=DeliveryUnits.piece))
+    yield Product(**dd.str2kw('name', _("Ironing of a pair of trousers"), delivery_unit=DeliveryUnits.piece))
+    yield Product(**dd.str2kw('name', _("Ironing of a skirt"), delivery_unit=DeliveryUnits.piece))
+    yield Product(**dd.str2kw('name', _("Washing per Kg"), delivery_unit=DeliveryUnits.kg))
+
 
     obj = Company(
         name="Home Helpers",
