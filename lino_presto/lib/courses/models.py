@@ -386,21 +386,21 @@ class Course(Referrable, Course, MyInvoiceGenerator, Modified):
         owned.project = self
         super(Course, self).update_owned_instance(owned)
 
-    @dd.displayfield(_("Patient"))
+    @dd.displayfield(_("Client"))
     def client(self, ar):
         if ar is None or self.partner_id is None:
             return
-        obj = get_child(self.partner, rt.models.tera.Client)
-        if obj is not None:
-            return obj.obj2href(ar)
+        # obj = get_child(self.partner, rt.models.presto.Client)
+        # if obj is not None:
+        #     return obj.obj2href(ar)
 
     @dd.displayfield(_("Household"))
     def household(self, ar):
         if ar is None or self.partner_id is None:
             return
-        obj = get_child(self.partner, rt.models.households.Household)
-        if obj is not None:
-            return obj.obj2href(ar)
+        # obj = get_child(self.partner, rt.models.households.Household)
+        # if obj is not None:
+        #     return obj.obj2href(ar)
 
     @dd.displayfield(_("Organization"))
     def company(self, ar):
