@@ -85,20 +85,20 @@ class EnrolmentsByPupil(EnrolmentsByPupil):
     """
 from lino.core.actions import ShowInsert
 
-class ShowInsertColleague(ShowInsert):
-    help_text = _("Add a colleague")
-    icon_name = None
-    button_text = u"👤"  # U+1F464 BUST IN SILHOUETTE
-
-    def create_instance(self, ar):
-        obj = super(ShowInsertColleague, self).create_instance(ar)
-        # temporary solution with hard-coded pk:
-        obj.guest_role = rt.models.cal.GuestRole.objects.filter(is_teacher=True).first()
-        return obj
+# class ShowInsertColleague(ShowInsert):
+#     help_text = _("Add a colleague")
+#     icon_name = None
+#     button_text = u"👤"  # U+1F464 BUST IN SILHOUETTE
+#
+#     def create_instance(self, ar):
+#         obj = super(ShowInsertColleague, self).create_instance(ar)
+#         # temporary solution with hard-coded pk:
+#         # obj.guest_role = rt.models.cal.GuestRole.objects.filter(is_teacher=True).first()
+#         return obj
 
 
 class EnrolmentsByCourse(EnrolmentsByCourse):
-    """The Voga version of :class:`EnrolmentsByCourse
+    """The presto version of :class:`EnrolmentsByCourse
     <lino_xl.lib.courses.ui.EnrolmentsByCourse>`.
 
     """
@@ -112,7 +112,7 @@ class EnrolmentsByCourse(EnrolmentsByCourse):
     # request_date user
     """
 
-    show_insert2 = ShowInsertColleague()
+    # show_insert2 = ShowInsertColleague()
 
 class EnrolmentsAndPaymentsByCourse(Enrolments):
     """Show enrolments of a course together with
