@@ -16,10 +16,13 @@ class Site(Site):
 
     languages = 'en de fr'
 
+    textfield_format = 'html'
+    obj2text_template = "**{0}**"
     project_model = 'courses.Course'
     workflows_module = 'lino_presto.lib.presto.workflows'
     user_types_module = 'lino_presto.lib.presto.user_types'
     auto_configure_logger_names = "atelier django lino lino_xl lino_presto"
+    default_build_method = 'appypdf'
 
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()
