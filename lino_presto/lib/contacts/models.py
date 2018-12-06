@@ -81,7 +81,7 @@ class PartnerDetail(PartnerDetail):
     """, label=_("Miscellaneous"))
 
 
-class Person(Partner, Person):
+class Person(Partner, Person, Enrollable):
     """
     Represents a physical person.
     """
