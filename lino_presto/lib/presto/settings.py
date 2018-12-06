@@ -38,7 +38,7 @@ class Site(Site):
         #yield 'lino_xl.lib.addresses'
         #yield 'lino_xl.lib.humanlinks',
         yield 'lino_xl.lib.cal'
-        yield 'lino_xl.lib.products'
+        yield 'lino_presto.lib.products'
         yield 'lino_xl.lib.sales'
         # yield 'lino_xl.lib.vat'
         yield 'lino_xl.lib.invoicing'
