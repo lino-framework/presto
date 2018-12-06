@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2014-2016 Rumma & Ko Ltd
+# Copyright 2014-2018 Rumma & Ko Ltd
 # This file is part of Lino Presto.
 #
 # Lino Presto is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 # <http://www.gnu.org/licenses/>.
 
 """
-An extension of :mod:`lino_xl.lib.contacts`
+An extension of :mod:`lino_xl.lib.products`
 """
 
 from lino_xl.lib.products import Plugin
