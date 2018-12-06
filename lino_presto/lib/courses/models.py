@@ -347,7 +347,8 @@ class Course(Referrable, Course, MyInvoiceGenerator, Modified):
         return s
 
     def update_cal_event_type(self):
-        return self.teacher.event_type
+        return self.line.event_type
+        # return self.teacher.event_type
 
     def update_cal_summary(self, et, i):
         label = dd.babelattr(et, 'event_label')
