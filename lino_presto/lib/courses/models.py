@@ -132,7 +132,7 @@ class MyInvoiceGenerator(InvoiceGenerator):
                 event__owner_type=ct, event__owner_id=course.id)
 
             invoiceable_states = (rt.models.cal.GuestStates.present,
-                                  rt.models.cal.GuestStates.absent)
+                                  rt.models.cal.GuestStates.missing)
             flt.update(state__in=invoiceable_states)
 
             if start_date:
