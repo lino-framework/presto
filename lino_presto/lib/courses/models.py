@@ -139,8 +139,7 @@ class MyInvoiceGenerator(InvoiceGenerator):
                 flt.update(event__start_date__gte=start_date)
             if max_date:
                 flt.update(event__start_date__lte=max_date)
-            
-            qs = rt.models.cal.Guest(*flt).order_by(
+            qs = rt.models.cal.Guest.objects.filter(**flt).order_by(
                 "event__start_date")
         # dd.logger.info(
         #     "20181116 get_invoiceable_events() for %s (%s) "
