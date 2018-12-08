@@ -229,3 +229,5 @@ class Worker(Person, Enrollable):
         verbose_name_plural = _("Workers")
         abstract = dd.is_abstract_model(__name__, 'Worker')
 
+class Workers(Persons):
+    model = 'contacts.Worker'
