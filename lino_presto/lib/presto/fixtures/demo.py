@@ -111,6 +111,9 @@ def objects():
     worker = GuestRole(**dd.str2kw('name', _("Worker")))
     yield worker
 
+    student = GuestRole(**dd.str2kw('name', _("Student")))
+    yield student
+
     garden_et = EventType(
         force_guest_states=True,
         **dd.str2kw('name', _("Garden works")))
