@@ -51,7 +51,7 @@ class Line(Line):
 
     # course_type = dd.ForeignKey(
     #     'courses.CourseType', blank=True, null=True)
-    invoicing_policy = InvoicingPolicies.field(default='by_event')
+    # invoicing_policy = InvoicingPolicies.field(default='by_guest')
 
 class MyInvoiceGenerator(InvoiceGenerator):
     
@@ -86,10 +86,10 @@ class MyInvoiceGenerator(InvoiceGenerator):
 
     def get_invoiceable_event_formatter(self):
         course = self.get_invoiceable_course()
-        if course.line.invoicing_policy == InvoicingPolicies.by_event:
-            ev2entry = lambda ie: ie
-        else:
-            ev2entry = lambda ie: ie.event
+        # if course.line.invoicing_policy == InvoicingPolicies.by_event:
+        #     ev2entry = lambda ie: ie
+        # else:
+        ev2entry = lambda ie: ie.event
 
         def fmt(ie, ar=None):
             event = ev2entry(ie)
@@ -102,47 +102,47 @@ class MyInvoiceGenerator(InvoiceGenerator):
     
     def get_cash_daybook(self, ie):
         course = self.get_invoiceable_course()
-        if course.line.invoicing_policy == InvoicingPolicies.by_event:
-            u = ie.user
-        else:
-            u = ie.event.user
+        # if course.line.invoicing_policy == InvoicingPolicies.by_event:
+        #     u = ie.user
+        # else:
+        u = ie.event.user
         return u.cash_daybook
     
     def get_invoiceable_events(self, start_date, max_date):
         course = self.get_invoiceable_course()
         if course is None:
             return []
-        elif course.line.invoicing_policy == InvoicingPolicies.by_event:
+        # elif course.line.invoicing_policy == InvoicingPolicies.by_event:
             # flt = dict(
             #     state=rt.models.cal.EntryStates.took_place)
-            invoiceable_states = (rt.models.cal.EntryStates.took_place,
-                                  rt.models.cal.EntryStates.missed)
-            flt = dict(state__in=invoiceable_states)
+            # invoiceable_states = (rt.models.cal.EntryStates.took_place,
+            #                       rt.models.cal.EntryStates.missed)
+            # flt = dict(state__in=invoiceable_states)
+            #
+            # if start_date:
+            #     flt.update(start_date__gte=start_date)
+            # if max_date:
+            #     flt.update(start_date__lte=max_date)
+            # qs = course.events_by_course(**flt).order_by("start_date")
+        # else:
+        flt = dict()
+        ct = rt.models.contenttypes.ContentType.objects.get_for_model(
+            course.__class__)
+        flt.update(
+            event__owner_type=ct, event__owner_id=course.id)
 
-            if start_date:
-                flt.update(start_date__gte=start_date)
-            if max_date:
-                flt.update(start_date__lte=max_date)
-            qs = course.events_by_course(**flt).order_by("start_date")
-        else:
-            flt = dict()
-            ct = rt.models.contenttypes.ContentType.objects.get_for_model(
-                course.__class__)
-            flt.update(
-                event__owner_type=ct, event__owner_id=course.id)
+        invoiceable_states = (rt.models.cal.GuestStates.present,
+                              rt.models.cal.GuestStates.missing)
+        flt.update(state__in=invoiceable_states)
 
-            invoiceable_states = (rt.models.cal.GuestStates.present,
-                                  rt.models.cal.GuestStates.missing)
-            flt.update(state__in=invoiceable_states)
-
-            if start_date:
-                flt.update(event__start_date__gte=start_date)
-            if max_date:
-                flt.update(event__start_date__lte=max_date)
-            qs = rt.models.cal.Guest.objects.filter(**flt).order_by(
-                "event__start_date")
+        if start_date:
+            flt.update(event__start_date__gte=start_date)
+        if max_date:
+            flt.update(event__start_date__lte=max_date)
+        qs = rt.models.cal.Guest.objects.filter(**flt).order_by(
+            "event__start_date")
         # dd.logger.info(
-        #     "20181116 get_invoiceable_events() for %s (%s) "
+        #     "20181116 get_invoiceable_eventsget_invoiceable_events() for %s (%s) "
         #     "returns %d rows", course, qs.query, qs.count())
         return qs
 
@@ -156,10 +156,10 @@ class MyInvoiceGenerator(InvoiceGenerator):
         collector = OrderedDict()
         for ev in info.used_events:
             # dd.logger.info("20181116b %s", ev)
-            if course.line.invoicing_policy == InvoicingPolicies.by_event:
-                entry = ev
-            else:
-                entry = ev.event
+            # if course.line.invoicing_policy == InvoicingPolicies.by_event:
+            #     entry = ev
+            # else:
+            entry = ev.event
             product = get_rule_fee(
                 self.get_invoiceable_partner(), self.get_invoiceable_tariff(),
                 entry.event_type)

@@ -23,7 +23,7 @@ class Plugin(Plugin):
     teacher_label = _("Worker")
     
     # pupil_model = 'tera.Client'
-    pupil_model = 'contacts.Person'
+    pupil_model = 'contacts.Worker'
     # pupil_name_fields = "pupil__client__name"
     extends_models = ['Enrolment', 'Course', 'Line']
     

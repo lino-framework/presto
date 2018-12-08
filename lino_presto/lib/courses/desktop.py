@@ -29,14 +29,14 @@ Lines.detail_layout = """
     id ref course_area
     name 
     #topic fees_cat fee #options_cat body_template
-    #course_type event_type guest_role every_unit every invoicing_policy
+    #course_type event_type guest_role every_unit every #invoicing_policy
     # description
     excerpt_title
     courses.CoursesByLine
     """
 
 Lines.column_names = ("ref name course_area "
-                      "event_type guest_role #fees_cat #fee invoicing_policy *")
+                      "event_type guest_role #fees_cat #fee #invoicing_policy *")
 
 
 # Enrolments.detail_layout = """
@@ -227,7 +227,7 @@ class CourseDetail(CourseDetail):
 class Courses(Courses):
     # other groups
     order_by = ['ref', '-start_date', '-start_time']
-    column_names = "ref name teacher start_date end_date " \
+    column_names = "ref name partner start_date end_date " \
                    "workflow_buttons *"
     @classmethod
     def param_defaults(self, ar, **kw):
