@@ -20,5 +20,6 @@ Content
 
    specs/index
    api/index
-   changes
+   changes/index
+
    
