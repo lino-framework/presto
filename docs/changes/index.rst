@@ -1,7 +1,7 @@
 .. _presto.changes: 
 
 ========================
-Changes in Lino Presto
+Releases notes
 ========================
 
 .. toctree::
