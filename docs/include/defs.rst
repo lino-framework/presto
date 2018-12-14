@@ -3,7 +3,6 @@
 .. |eject|  image:: /images/buttons/eject.png
 .. |search|  image:: /images/buttons/search.png
 .. |refresh|  image:: /images/buttons/refresh.png
-.. |asterisk|  image:: /images/buttons/asterisk.png
 .. |lightning|  image:: https://github.com/lino-framework/lino/blob/master/lino/static/images/mjames/lightning.png?raw=true
 .. |delete|  image:: https://github.com/lino-framework/lino/blob/master/lino/static/images/mjames/delete.png?raw=true
 .. |insert|  image:: https://github.com/lino-framework/lino/blob/master/lino/static/images/mjames/add.png?raw=true
