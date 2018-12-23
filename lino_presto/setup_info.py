@@ -75,6 +75,7 @@ lino_presto.lib.contacts.fixtures
 lino_presto.lib.courses
 lino_presto.lib.presto
 lino_presto.lib.presto.fixtures
+lino_presto.lib.products
 lino_presto.projects
 lino_presto.projects.noereth
 lino_presto.projects.noereth.settings
