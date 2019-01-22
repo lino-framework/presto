@@ -16,9 +16,8 @@ purchases, general ledger, VAT declarations).
 - The central project homepage is http://presto.lino-framework.org
 
 - For *introductions* and *commercial information* about Lino Presto
-  please see `www.saffre-rumma.net
-  <http://www.saffre-rumma.net/lino/>`__.
-
+  see http://www.saffre-rumma.net
+  
 The name "Presto" originally comes from "prestations de service", the
 French expression for service providements.  It also means "quick" in
 Italian.

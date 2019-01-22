@@ -1,5 +1,5 @@
 .. doctest docs/specs/courses.rst
-.. include:: /include/defs.rst
+.. include:: /../../book/docs/shared/include/defs.rst
 
 .. _presto.specs.courses:
 
@@ -10,7 +10,7 @@ Contracts
 Contracts in Presto are implemented using the :mod:`lino_xl.lib.courses`
 plugin.
 
-.. include:: /include/tested.rst
+.. include:: /../../book/docs/shared/include/tested.rst
 
 >>> from lino import startup
 >>> startup('lino_presto.projects.noereth.settings.doctests')

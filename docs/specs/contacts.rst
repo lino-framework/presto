@@ -1,4 +1,4 @@
-.. include:: /include/defs.rst
+.. include:: /../../book/docs/shared/include/tested.rst
 
 .. _presto.specs.contacts:
 
