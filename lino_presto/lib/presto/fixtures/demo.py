@@ -19,7 +19,6 @@ from lino.utils import Cycler
 from lino.utils.mldbc import babel_named as named, babeld
 from lino.modlib.users.utils import create_user
 from lino_xl.lib.cal.choicelists import EntryStates, GuestStates
-from lino_presto.lib.courses.choicelists import InvoicingPolicies
 
 # from django.conf import settings
 
@@ -35,13 +34,14 @@ from lino_xl.lib.products.choicelists import DeliveryUnits
 def objects():
     Partner = rt.models.contacts.Partner
     Worker = rt.models.contacts.Worker
+    LifeMode = rt.models.presto.LifeMode
     # Pupil = dd.plugins.courses.pupil_model
-    Teacher = dd.plugins.courses.teacher_model
-    Line = rt.models.courses.Line
+    # Teacher = dd.plugins.courses.teacher_model
+    # Line = rt.models.courses.Line
     EventType = rt.models.cal.EventType
     GuestRole = rt.models.cal.GuestRole
-    Course = rt.models.courses.Course
-    Enrolment = rt.models.courses.Enrolment
+    # Course = rt.models.courses.Course
+    Enrolment = rt.models.orders.Enrolment
     DurationUnits = rt.models.cal.DurationUnits
     SalesRule = rt.models.invoicing.SalesRule
     UserTypes = rt.models.users.UserTypes
@@ -51,20 +51,24 @@ def objects():
     ProductTypes = rt.models.products.ProductTypes
     ProductCat = rt.models.products.ProductCat
     Account = rt.models.ledger.Account
-    CommonItems = rt.models.sheets.CommonItems
-    CourseAreas = rt.models.courses.CourseAreas
-    PriceRule = rt.models.courses.PriceRule
+    # CommonItems = rt.models.sheets.CommonItems
+    # CourseAreas = rt.models.courses.CourseAreas
+    PriceRule = rt.models.products.PriceRule
 
     # yield skills_objects()
 
-    presence = ProductCat(**dd.str2kw('name', _("Fees")))
-    yield presence
+    yield babeld(LifeMode, _("Single"))
+    yield babeld(LifeMode, _("Living together"))
+    yield babeld(LifeMode, _("Married couple"))
+    yield babeld(LifeMode, _("Family with children"))
+    yield babeld(LifeMode, _("Three-generation household"))
+    yield babeld(LifeMode, _("Single with children"))
 
-    yield Product(**dd.str2kw('name', _("Ironing of a shirt"), delivery_unit=DeliveryUnits.piece))
-    yield Product(**dd.str2kw('name', _("Ironing of a pair of trousers"), delivery_unit=DeliveryUnits.piece))
-    yield Product(**dd.str2kw('name', _("Ironing of a skirt"), delivery_unit=DeliveryUnits.piece))
-    yield Product(**dd.str2kw('name', _("Washing per Kg"), delivery_unit=DeliveryUnits.kg))
+    t1 = babeld(Tariff, _("By presence"), number_of_events=1)
+    yield t1
 
+    t10 = babeld(Tariff, _("Maximum 10"), number_of_events=1, max_asset=10)
+    yield t10
 
     obj = Company(
         name="Home Helpers",
@@ -79,14 +83,28 @@ def objects():
 
     indacc = named(
         Account, _("Sales on services"),
-        sheet_item=CommonItems.sales.get_object(), ref="7010")
+        # sheet_item=CommonItems.sales.get_object(),
+        ref="7010")
     yield indacc
 
-    t1 = babeld(Tariff, _("By presence"), number_of_events=1)
-    yield t1
+    presence = ProductCat(**dd.str2kw('name', _("Fees")))
+    yield presence
 
-    t10 = babeld(Tariff, _("Maximum 10"), number_of_events=1, max_asset=10)
-    yield t10
+    def product(pt, name, unit, **kwargs):
+        return Product(**dd.str2kw('name', name,
+                       delivery_unit=DeliveryUnits.get_by_name(unit),
+                       product_type=ProductTypes.get_by_name(pt), **kwargs))
+
+    yield product('default', _("Ironing of a shirt"), 'piece')
+    yield product('default', _("Ironing of a pair of trousers"), 'piece')
+    yield product('default', _("Ironing of a skirt"), 'piece')
+    yield product('default', _("Washing per Kg"), 'kg')
+
+    # yield Product(**dd.str2kw('name', _("Ironing of a shirt"), delivery_unit=DeliveryUnits.piece))
+    # yield Product(**dd.str2kw('name', _("Ironing of a pair of trousers"), delivery_unit=DeliveryUnits.piece))
+    # yield Product(**dd.str2kw('name', _("Ironing of a skirt"), delivery_unit=DeliveryUnits.piece))
+    # yield Product(**dd.str2kw('name', _("Washing per Kg"), delivery_unit=DeliveryUnits.kg))
+
 
     garden_prod = named(
         Product, _("Garden works"), sales_account=indacc,
@@ -124,26 +142,17 @@ def objects():
         **dd.str2kw('name', _("Home help")))
     yield home_et
 
-    yield create_user("ahmed", UserTypes.worker,
-                      event_type=garden_et, partner=ahmed)
-    yield create_user("maria", UserTypes.worker, event_type=home_et, partner=maria)
+    # yield create_user("ahmed", UserTypes.worker,
+    #                   event_type=garden_et, partner=ahmed)
+    # yield create_user("maria", UserTypes.worker, event_type=home_et, partner=maria)
     yield create_user("margarete", UserTypes.secretary)
+
+    yield Worker(first_name="Ahmed", gender=dd.Genders.male)
+    yield Worker(first_name="Maria", gender=dd.Genders.female)
 
     yield PriceRule(seqno=1, event_type=garden_et, fee=garden_prod)
     yield PriceRule(seqno=2, event_type=home_et, fee=home_prod)
 
-    for a in CourseAreas.get_list_items():
-        kw = dict(
-            name=a.text, course_area=a, guest_role=worker)
-        # kw.update(fees_cat=presence)
-        # kw.update(guest_role=attendee)
-        # if a.name in('therapies', 'life_groups'):
-        #     kw.update(fee=ind_therapy, event_type=ind_et)
-        # else:
-        #     kw.update(fee=group_therapy, event_type=group_et)
-        a.line_obj = Line(**kw)
-        yield a.line_obj  # temporary cache used below
-        
     invoice_recipient = None
     for n, p in enumerate(Partner.objects.all()):
         if n % 10 == 0:
@@ -154,42 +163,6 @@ def objects():
         else:
             invoice_recipient = p
 
-    # LINES = Cycler(Line.objects.all())
-    USERS = Cycler(rt.models.users.User.objects.all())
-    PLACES = Cycler(rt.models.cal.Room.objects.all())
-    TEACHERS = Cycler(Teacher.objects.all())
-    SLOTS = Cycler(rt.models.courses.Slot.objects.all())
-    TARIFFS = Cycler(rt.models.invoicing.Tariff.objects.all())
-
-    date = settings.SITE.demo_date(-200)
-    qs = Worker.objects.all()
-    if qs.count() == 0:
-        raise Exception("Oops, no Partner!")
-    PUPILS = Cycler(qs)
-    kw = dict(state='active', line=CourseAreas.garden.line_obj)
-    for i, obj in enumerate(qs):
-        if i % 6:
-            kw.update(
-                user=USERS.pop(),
-                # client=obj,
-                partner=obj,
-                teacher=TEACHERS.pop(),
-                # line=LINES.pop(),
-                room=PLACES.pop(),
-                start_date=date,
-                every=2,
-                max_events=10,
-                every_unit=DurationUnits.weeks,
-                slot=SLOTS.pop())
-            kw.update(tariff=TARIFFS.pop())
-            c = Course(**kw)
-            yield c
-            yield Enrolment(pupil=obj, course=c, state='confirmed')
-            c.save()  # fill presences
-            ar = rt.login(c.user.username)
-            c.update_reminders(ar)
-            date += ONE_DAY
-            
     qs = rt.models.cal.Event.objects.filter(
         start_date__lt=dd.today(-10))
     for e in qs:

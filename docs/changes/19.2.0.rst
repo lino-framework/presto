@@ -1,0 +1,90 @@
+.. _presto.19.2.0:
+
+==============
+Presto 19.2.0
+==============
+
+Notizen zum Lastenheft
+======================
+
+4. Datenübernahme : bis auf weiteres tu ich nichts. Falls wir
+Datenimport wollen, brauche ich csv-Dateien mit einer Struktur, die sich
+nicht mehr (unangefragt) ändert.
+
+5. Benutzer : ich schätze, dass die momentanen Benutzerarten das ist,
+was wir brauchen.
+
+7. Geschäftsprozesse : das steht in Lino unter "Konfigurierung -->
+Dienstleistungen".
+
+7.1 Kontakte
+
+Jeder Partner kann eine oder mehrere Rollen spielen in einem oder
+mehreren Aufträgen.
+Gewünschte Rollenbezeichnungen
+
+Der **Anspruchsnehmer** einer Dienstleistung ist
+derjenige, der die Dienstleistung empfängt (und bestätigt).
+
+Der **Abgerechnete** einer Dienstleistung  ist derjenige, auf den die Rechnung
+ausgestellt wird und dessen Preisfaktoren die Tarife beeinflussen.
+
+Der **Rechnungsempfänger** eines Auftrags ist der Partner, an den die Rechnungen
+auszustellen sind. das kann auch ein Haushalt oder eine Organisation sein.
+
+Mitarbeiter
+Begleiter
+Benutzer
+
+Familienbeziehungen
+
+- Mutter, Vater, Sohn, Tochter, Ehepartner = humanlinks
+
+- Verwalter des Vermögens, Verwalter der Person, Delegierter Kontakt
+würde ich als client contacts machen
+
+- Mitbewohner, Wohngemeinschaft, würde ich als "Haushalte" machen.
+
+Diverse weitere Kontaktangaben:
+
+- VIPO und Krankenkasse werden in Lino über :mod:`lino.xl.healtcare` gehandhabt.
+- :mod:`lino.modlib.uploads`
+
+- Ihr habt anders als alle bisherigen ein eigenes Feld für Sterbedatum und
+  einen "zweiten Namen" (ist das der Mädchenname?).
+
+7.3 Kernprozess :
+
+a) Dienstleistungserfassung nach der Verrichtung : einfach direkt
+Rechnung schreiben.
+b) Dienstleistungserfassung vor der Verrichtung: "Auftrag" schreiben
+("Geplante DL")
+c) Haushaltshilfe sind Aufträge mit regelmäßigen Terminen
+
+Fahrtkosten pro Km : Feld pro cal.Event?
+
+*Statt "courses" mach ich ein neues Plugin "orders" *: aus "Enrolments"
+werden "Workers", und man kann auch Produkte eingeben, die dann bei
+jedem "event" fakturiert werden. Pro Auftrag gibt es Lieferadresse und
+Rechnungsempfänger
+
+*7.7 Lagerverwaltung*
+
+Neu für Lino. stocks.Item, stocks.Movement
+
+7.8 Kalender
+
+Die verschiedenen Ansichten sind prinzipiell da, aber hier stecken
+wahrscheinlich Teufel im Detail.
+
+Wieso ein Gantt chart? Gibt es denn Dependencies?
+
+*Verfügbarkeiten* kennt Lino noch nicht. Eine Serie von Regeln, zu
+welchen Uhrzeiten und Wochentagen überhaupt Termine stattfinden können
+für einen bestimmten Arbeiter.
+
+7.9 Gemeindeabrechnungen :
+
+Das wird wie die Sammelrechnungen an die Krankenkasse. Achtung, es gibt
+DL, die dem Kunden nicht fakturiert werden, wohl aber der Gemeinde.
+
