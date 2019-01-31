@@ -6,7 +6,6 @@ from lino.projects.std.settings import *
 
 
 class Site(Site):
-
     verbose_name = "Lino Presto"
     url = "http://presto.lino-framework.org"
 

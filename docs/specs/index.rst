@@ -7,6 +7,6 @@ Technical specs
 
     overview
     contacts
-    courses
+    orders
 
 

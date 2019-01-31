@@ -5,15 +5,10 @@
 """
 The main plugin for Lino Presto.
 
-See :doc:`/specs/presto/presto`.
-
 .. autosummary::
    :toctree:
 
-    migrate
     user_types
-    layouts
-    choicelists
 
 """
 

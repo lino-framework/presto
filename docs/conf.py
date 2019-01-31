@@ -8,6 +8,8 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+from lino_presto import SETUP_INFO
+
 extensions = []
 
 from lino.sphinxcontrib import configure
@@ -30,14 +32,14 @@ for n in 'atelier lino_book'.split():
 
 # General information about the project.
 project = settings.SITE.title
-copyright = '2014-2018 Rumma & Ko Ltd'
+copyright = '2018-2019 Rumma & Ko Ltd'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The full version, including alpha/beta/rc tags.
-release = settings.SITE.version
+release = SETUP_INFO['version']
 
 # The short X.Y version.
 version = '.'.join(release.split('.')[:2])

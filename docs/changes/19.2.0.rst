@@ -41,7 +41,7 @@ Familienbeziehungen
 - Mutter, Vater, Sohn, Tochter, Ehepartner = humanlinks
 
 - Verwalter des Vermögens, Verwalter der Person, Delegierter Kontakt
-würde ich als client contacts machen
+  würde ich als client contacts machen
 
 - Mitbewohner, Wohngemeinschaft, würde ich als "Haushalte" machen.
 
@@ -56,17 +56,17 @@ Diverse weitere Kontaktangaben:
 7.3 Kernprozess :
 
 a) Dienstleistungserfassung nach der Verrichtung : einfach direkt
-Rechnung schreiben.
+   Rechnung schreiben.
 b) Dienstleistungserfassung vor der Verrichtung: "Auftrag" schreiben
-("Geplante DL")
+   ("Geplante DL")
 c) Haushaltshilfe sind Aufträge mit regelmäßigen Terminen
 
 Fahrtkosten pro Km : Feld pro cal.Event?
 
-*Statt "courses" mach ich ein neues Plugin "orders" *: aus "Enrolments"
+Statt "courses" mach ich ein neues Plugin "orders" : aus "Enrolments"
 werden "Workers", und man kann auch Produkte eingeben, die dann bei
 jedem "event" fakturiert werden. Pro Auftrag gibt es Lieferadresse und
-Rechnungsempfänger
+Rechnungsempfänger.
 
 *7.7 Lagerverwaltung*
 
