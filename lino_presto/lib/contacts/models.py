@@ -1,12 +1,15 @@
 # -*- coding: UTF-8 -*-
 # Copyright 2013-2018 Rumma & Ko Ltd
+# License: BSD (see file COPYING for details)
 
 from __future__ import unicode_literals
 
 from lino.api import dd, rt, _
 
 from lino_xl.lib.contacts.models import *
-from lino_xl.lib.courses.mixins import Enrollable
+# from lino_xl.lib.courses.mixins import Enrollable
+from lino_xl.lib.beid.mixins import SSIN
+
 
 
 class Partner(Partner, mixins.CreatedModified):
@@ -42,7 +45,7 @@ class PartnerDetail(PartnerDetail):
 
     general = dd.Panel("""
     overview:20 general2:20 general3:40
-    # notes.NotesByPartner
+    # notes.NotesByPartner orders.OrdersByPartner
     """, label=_("General"))
 
     general2 = """
@@ -81,7 +84,7 @@ class PartnerDetail(PartnerDetail):
     """, label=_("Miscellaneous"))
 
 
-class Person(Partner, Person, Enrollable):
+class Person(Partner, Person):
     """
     Represents a physical person.
     """
@@ -207,12 +210,12 @@ class CompanyDetail(CompanyDetail):
     """, label=_("Miscellaneous"))
 
 
-class Companies(Companies):
-    detail_layout = CompanyDetail()
+# class Companies(Companies):
+#     detail_layout = CompanyDetail()
 
 
-Partners.set_detail_layout(PartnerDetail())
-Companies.set_detail_layout(CompanyDetail())
+# Partners.set_detail_layout(PartnerDetail())
+# Companies.set_detail_layout(CompanyDetail())
 
 # @dd.receiver(dd.post_analyze)
 # def my_details(sender, **kw):
@@ -222,7 +225,7 @@ Companies.set_detail_layout(CompanyDetail())
 #     contacts.Companies.set_detail_layout(contacts.CompanyDetail())
 
 
-class Worker(Person, Enrollable):
+class Worker(Person, SSIN):
     class Meta:
         app_label = 'contacts'
         verbose_name = _("Worker")

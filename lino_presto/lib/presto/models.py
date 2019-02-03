@@ -15,6 +15,7 @@ from etgen.html import E
 from lino.core.fields import IncompleteDateField
 from lino.mixins import CreatedModified, BabelDesignated
 # from lino_xl.lib.beid.mixins import BeIdCardHolder
+from lino_xl.lib.beid.mixins import SSIN
 from lino.modlib.comments.mixins import Commentable
 from lino.modlib.users.mixins import UserAuthored, My
 # from lino.modlib.system.mixins import Lockable
@@ -34,6 +35,7 @@ from lino.mixins.periods import ObservedDateRange
 
 from lino_xl.lib.clients.choicelists import ClientStates
 from lino_xl.lib.contacts.choicelists import CivilStates
+from lino_xl.lib.products.choicelists import PriceFactors
 
 from lino_xl.lib.contacts.roles import ContactsUser, ContactsStaff
 from lino.core.roles import Explorer
@@ -47,6 +49,20 @@ add('10', _("Newcomer"), 'newcomer')
 add('20', _("Aktiv"), 'active')
 add('30', _("Former"), 'former')
 
+
+class IncomeCategories(dd.ChoiceList):
+    verbose_name = _("Income category")
+    verbose_name_plural = _("Income categories")
+
+add = IncomeCategories.add_item
+add("10", "A")
+add("20", "B")
+add("30", "C")
+add("40", "D")
+
+PriceFactors.clear()
+add = PriceFactors.add_item
+add("10", IncomeCategories, "income")
 
 
 
@@ -80,7 +96,7 @@ class LifeModes(dd.Table):
 
 
 @dd.python_2_unicode_compatible
-class Client(Person,  # BeIdCardHolder,
+class Client(Person,  SSIN,
              UserAuthored,
              # HealthcareClient,
              # Referrable,
@@ -98,14 +114,6 @@ class Client(Person,  # BeIdCardHolder,
 
     manager_roles_required = dd.login_required(ContactsStaff)
     validate_national_id = True
-    # workflow_state_field = 'client_state'
-
-    # person = dd.ForeignKey("contacts.Person")
-
-    nationality = dd.ForeignKey('countries.Country',
-                                blank=True, null=True,
-                                related_name='by_nationality',
-                                verbose_name=_("Nationality"))
 
     life_mode = dd.ForeignKey('presto.LifeMode', blank=True, null=True)
     civil_state = CivilStates.field(blank=True)
@@ -213,7 +221,7 @@ from lino_presto.lib.contacts.models import PersonDetail
 
 
 class ClientDetail(PersonDetail):
-    main = "general address client invoicing more "
+    main = "general #address client invoicing #more "
 
     # general = dd.Panel("""
     # overview:30 general2:20 #courses.EnrolmentsByPupil:30
@@ -226,19 +234,18 @@ class ClientDetail(PersonDetail):
     # """, label=_("General"))
 
     client = dd.Panel("""
-    user nationality:15 professional_state civil_state life_mode
-    #courses.EnrolmentsByPupil:30
+    national_id nationality:15 civil_state life_mode
+    #courses.EnrolmentsByPupil:30 
     clients.ContactsByClient    
     """, label=_("Client"))
 
     invoicing = dd.Panel("""
-    invoicing_left:30 courses.ActivitiesByPartner:50
+    invoicing_left:30 orders.OrdersByPartner:50
     sales.InvoicesByPartner
     """, label=_("Invoicing"))
 
     invoicing_left = """
-    pf_residence 
-    pf_composition pf_income
+    pf_income
     # salesrule__invoice_recipient 
     payment_term salesrule__paper_type
     """
@@ -249,7 +256,7 @@ class ClientDetail(PersonDetail):
     # """, label=_("Address"))
 
     # more = dd.Panel("""
-    # obsoletes  #client_state
+    # #obsoletes  client_state
     # # households.MembersByPerson:30 households.SiblingsByPerson
     # checkdata.ProblemsByOwner ledger.MovementsByPartner
     # #excerpts.ExcerptsByProject
@@ -295,7 +302,7 @@ class Clients(contacts.Persons):
         # client_state=ClientStates.field(blank=True, default='')
     )
     params_layout = """
-    #aged_from #aged_to #gender nationality client_state enrolment_state course
+    #aged_from #aged_to #gender nationality client_state 
     user start_date end_date observed_event 
     """
 
