@@ -71,7 +71,6 @@ lino_presto
 lino_presto.lib
 lino_presto.lib.contacts
 lino_presto.lib.contacts.fixtures
-lino_presto.lib.courses
 lino_presto.lib.presto
 lino_presto.lib.presto.fixtures
 lino_presto.lib.products
