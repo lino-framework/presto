@@ -63,6 +63,7 @@ language = 'en'
 exclude_patterns = [
     '.build/*', 
     'include/*',
+    'shared/*',
 ]
 
 # The reST default role (used for this markup: `text`) to use for all documents.

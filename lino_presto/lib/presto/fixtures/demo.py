@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2017-2018 Rumma & Ko Ltd
+# Copyright 2018-2019 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 """Demo data for Lino Presto.
 
@@ -16,6 +16,7 @@ from lino.utils.mti import mtichild
 from lino.utils.ssin import generate_ssin
 from lino.api import dd, rt, _
 from lino.utils import Cycler
+from lino.utils import mti
 from lino.utils.mldbc import babel_named as named, babeld
 from lino.modlib.users.utils import create_user
 from lino_xl.lib.cal.choicelists import EntryStates, GuestStates
@@ -33,27 +34,27 @@ from lino_xl.lib.products.choicelists import DeliveryUnits
 
 def objects():
     Partner = rt.models.contacts.Partner
+    Person = rt.models.contacts.Person
     Worker = rt.models.contacts.Worker
     LifeMode = rt.models.presto.LifeMode
-    # Pupil = dd.plugins.courses.pupil_model
-    # Teacher = dd.plugins.courses.teacher_model
-    # Line = rt.models.courses.Line
     EventType = rt.models.cal.EventType
+    Room = rt.models.cal.Room
     GuestRole = rt.models.cal.GuestRole
-    # Course = rt.models.courses.Course
     Enrolment = rt.models.orders.Enrolment
     DurationUnits = rt.models.cal.DurationUnits
     SalesRule = rt.models.invoicing.SalesRule
     UserTypes = rt.models.users.UserTypes
     Company = rt.models.contacts.Company
+    Client = rt.models.presto.Client
+    ClientStates = rt.models.presto.ClientStates
     Product = rt.models.products.Product
     Tariff = rt.models.invoicing.Tariff
     ProductTypes = rt.models.products.ProductTypes
     ProductCat = rt.models.products.ProductCat
     Account = rt.models.ledger.Account
-    # CommonItems = rt.models.sheets.CommonItems
-    # CourseAreas = rt.models.courses.CourseAreas
+    Journal = rt.models.ledger.Journal
     PriceRule = rt.models.products.PriceRule
+    User = rt.models.users.User
 
     # yield skills_objects()
 
@@ -76,9 +77,9 @@ def objects():
     yield obj
     settings.SITE.site_config.update(site_company=obj)
 
-    ahmed= Worker(first_name="Ahmed")
+    ahmed= Worker(first_name="Ahmed", gender=dd.Genders.male)
     yield ahmed
-    maria= Worker(first_name="Maria")
+    maria= Worker(first_name="Maria", gender=dd.Genders.female)
     yield maria
 
     indacc = named(
@@ -89,6 +90,10 @@ def objects():
 
     presence = ProductCat(**dd.str2kw('name', _("Fees")))
     yield presence
+
+    yield Room(**dd.str2kw('name', _("Garden works")))
+    yield Room(**dd.str2kw('name', _("House works")))
+    yield Room(**dd.str2kw('name', _("Office")))
 
     def product(pt, name, unit, **kwargs):
         return Product(**dd.str2kw('name', name,
@@ -126,11 +131,11 @@ def objects():
    
     yield named(Product, _("Other"), sales_price=35)
 
-    worker = GuestRole(**dd.str2kw('name', _("Worker")))
-    yield worker
-
-    student = GuestRole(**dd.str2kw('name', _("Student")))
-    yield student
+    # worker = GuestRole(**dd.str2kw('name', _("Worker")))
+    # yield worker
+    #
+    # student = GuestRole(**dd.str2kw('name', _("Student")))
+    # yield student
 
     garden_et = EventType(
         force_guest_states=True,
@@ -146,9 +151,6 @@ def objects():
     #                   event_type=garden_et, partner=ahmed)
     # yield create_user("maria", UserTypes.worker, event_type=home_et, partner=maria)
     yield create_user("margarete", UserTypes.secretary)
-
-    yield Worker(first_name="Ahmed", gender=dd.Genders.male)
-    yield Worker(first_name="Maria", gender=dd.Genders.female)
 
     yield PriceRule(seqno=1, event_type=garden_et, fee=garden_prod)
     yield PriceRule(seqno=2, event_type=home_et, fee=home_prod)
@@ -171,4 +173,69 @@ def objects():
         else:
             e.state = EntryStates.missed
         yield e
+
+
+    def person2client(p, **kw):
+        c = mti.insert_child(p, Client)
+        for k, v in kw.items():
+            setattr(c, k, v)
+        c.client_state = ClientStates.active
+        c.save()
+        return Client.objects.get(pk=p.pk)
+
+    count = 0
+    for person in Person.objects.exclude(gender=''):
+        if not person.birth_date:  # not those from humanlinks
+            if User.objects.filter(partner=person).count() == 0:
+                if rt.models.contacts.Role.objects.filter(person=person).count() == 0:
+                    birth_date = settings.SITE.demo_date(-170 * count - 16 * 365)
+                    national_id = generate_ssin(birth_date, person.gender)
+
+                    client = person2client(person,
+                                           national_id=national_id,
+                                           birth_date=birth_date)
+                    # youngest client is 16; 170 days between each client
+
+                    count += 1
+                    if count % 2:
+                        client.client_state = ClientStates.active
+                    elif count % 5:
+                        client.client_state = ClientStates.newcomer
+                    else:
+                        client.client_state = ClientStates.former
+
+                    # Dorothée is three times in our database
+                    if client.first_name == "Dorothée":
+                        client.national_id = None
+                        client.birth_date = ''
+
+                    client.full_clean()
+                    client.save()
+
+    # CLIENTS = Cycler(
+    #     Client.objects.filter(client_state=ClientStates.coached))
+
+
+    JournalGroups = rt.models.ledger.JournalGroups
+    Company = rt.models.contacts.Company
+    from lino_xl.lib.ledger.utils import DEBIT, CREDIT
+
+    # JOURNALS
+
+    kw = dict(journal_group=JournalGroups.orders)
+    MODEL = rt.models.orders.OrdersByJournal
+
+    kw.update(ref="G", dc=CREDIT, trade_type="sales")
+    kw.update(printed_name=_("Mission"))
+    kw.update(dd.str2kw('name', _("Garden works")))
+    yield MODEL.create_journal(**kw)
+
+    kw.update(ref="GH")
+    kw.update(dd.str2kw('name', _("Garden and hedges")))
+    yield MODEL.create_journal(**kw)
+
+    kw.update(ref="R")
+    kw.update(dd.str2kw('name', _("Renovation works")))
+    yield MODEL.create_journal(**kw)
+
 

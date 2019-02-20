@@ -42,6 +42,9 @@ from lino.core.roles import Explorer
 
 contacts = dd.resolve_app('contacts')
 
+# from lino_xl.lib.orders.choicelists import OrderAreas
+
+
 
 ClientStates.clear()
 add = ClientStates.add_item
@@ -240,7 +243,7 @@ class ClientDetail(PersonDetail):
     """, label=_("Client"))
 
     invoicing = dd.Panel("""
-    invoicing_left:30 orders.OrdersByPartner:50
+    invoicing_left:30 orders.OrdersByProject:50
     sales.InvoicesByPartner
     """, label=_("Invoicing"))
 
@@ -386,10 +389,9 @@ class Clients(contacts.Persons):
 
     @classmethod
     def get_row_classes(cls, obj, ar):
-        # if obj.client_state == ClientStates.newcomer:
-        #     yield 'green'
-        if obj.client_state in (
-                ClientStates.abandoned, ClientStates.closed):
+        if obj.client_state == ClientStates.newcomer:
+            yield 'green'
+        if obj.client_state == ClientStates.former:
             yield 'yellow'
         # ~ if not obj.has_valid_card_data():
         # ~ return 'red'
@@ -489,3 +491,4 @@ def my_details(sender, **kw):
     default_build_method
     max_auto_events default_event_type site_calendar
     """)
+

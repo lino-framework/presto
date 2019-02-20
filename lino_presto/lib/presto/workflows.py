@@ -47,3 +47,9 @@ EntryStates.missed.guest_state = GuestStates.missing
 
 # print("20181107b", EntryStates.draft.button_text)
 
+
+from lino_xl.lib.ledger.choicelists import JournalGroups
+# JournalGroups.clear()
+add = JournalGroups.add_item
+add("05", _("Orders"), 'orders', menu_group=dd.plugins.orders)
+# add("10", _("Sales"), 'sales', menu_group=dd.plugins.sales)

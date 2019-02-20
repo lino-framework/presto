@@ -71,9 +71,14 @@ lino_presto
 lino_presto.lib
 lino_presto.lib.contacts
 lino_presto.lib.contacts.fixtures
+lino_presto.lib.cal
+lino_presto.lib.cal.fixtures
+lino_presto.lib.orders
 lino_presto.lib.presto
 lino_presto.lib.presto.fixtures
 lino_presto.lib.products
+lino_presto.lib.users
+lino_presto.lib.users.fixtures
 lino_presto.projects
 lino_presto.projects.noereth
 lino_presto.projects.noereth.settings

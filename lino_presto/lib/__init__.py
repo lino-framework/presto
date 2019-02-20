@@ -7,9 +7,12 @@
 .. autosummary::
    :toctree:
 
+    cal
     contacts
-    products
+    orders
     presto
+    products
+    users
 
 
 """

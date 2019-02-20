@@ -108,7 +108,7 @@ dd.update_field(Person, 'first_name', blank=False)
 
 class PersonDetail(PersonDetail):
 
-    main = "general contact #tickets misc"
+    main = "general contact humanlinks misc"
 
     general = dd.Panel("""
     overview:20 general2:40 general3:40
@@ -128,6 +128,11 @@ class PersonDetail(PersonDetail):
     gsm
     fax
     """
+
+    humanlinks = dd.Panel("""
+    humanlinks.LinksByHuman:30 
+    households.MembersByPerson:20 households.SiblingsByPerson:50
+    """, label=_("Human Links"))
 
     contact = dd.Panel("""
     # lists.MembersByPartner

@@ -11,7 +11,7 @@ class Site(Site):
 
     # demo_fixtures = 'std demo minimal_ledger euvatrates demo_bookings payments demo2'.split()
     # demo_fixtures = 'std demo minimal_ledger demo_bookings payments demo2'.split()
-    demo_fixtures = 'std demo demo2'.split()
+    demo_fixtures = 'std minimal_ledger demo demo2'.split()
 
     languages = 'en de fr'
 
@@ -26,18 +26,18 @@ class Site(Site):
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()
         yield 'lino.modlib.gfks'
-        yield 'lino_xl.lib.orders'
-        yield 'lino.modlib.users'
+        yield 'lino_presto.lib.contacts'
+        yield 'lino_presto.lib.cal'
+        yield 'lino_presto.lib.orders'
+        yield 'lino_presto.lib.users'
         yield 'lino.modlib.dashboard'
         yield 'lino_xl.lib.countries'
         # yield 'lino_xl.lib.properties'
-        yield 'lino_presto.lib.contacts'
         yield 'lino_xl.lib.clients'
         yield 'lino_xl.lib.households'
         #yield 'lino_xl.lib.lists'
         yield 'lino_xl.lib.addresses'
         yield 'lino_xl.lib.humanlinks',
-        yield 'lino_xl.lib.cal'
         yield 'lino_xl.lib.topics'
         # yield 'lino_xl.lib.extensible'
         yield 'lino_xl.lib.healthcare'
@@ -68,6 +68,7 @@ class Site(Site):
         super(Site, self).setup_plugins()
         self.plugins.countries.configure(country_code='BE')
         self.plugins.clients.configure(client_model='presto.Client')
+        self.plugins.orders.configure(worker_model='contacts.Worker')
         # self.plugins.comments.configure(
         #     commentable_model='tickets.Ticket')
 

@@ -1,0 +1,4 @@
+/media/dell1tb/work/presto/dedocs/changes/19.2.0.rst:1: WARNING: Problems with "include" directive path:
+InputError: [Errno 2] No such file or directory: '../shared/include/defs.rst'.
+/media/dell1tb/work/presto/dedocs/contacts/index.rst:1: WARNING: Problems with "include" directive path:
+InputError: [Errno 2] No such file or directory: '../shared/include/defs.rst'.
