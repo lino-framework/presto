@@ -48,7 +48,7 @@ class Site(Site):
 
         yield 'lino_xl.lib.sepa'
         # yield 'lino_xl.lib.finan'
-        yield 'lino_xl.lib.bevats'
+        # yield 'lino_xl.lib.bevats'
         # yield 'lino_xl.lib.ana'
         # yield 'lino_xl.lib.sheets'
 

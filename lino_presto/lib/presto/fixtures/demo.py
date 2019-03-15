@@ -222,9 +222,12 @@ def objects():
 
     # JOURNALS
 
-    kw = dict(journal_group=JournalGroups.orders)
-    MODEL = rt.models.orders.OrdersByJournal
+    rt.models.ledger.Journal.objects.get(ref="SLS").delete()
+    rt.models.ledger.Journal.objects.get(ref="SLC").delete()
 
+    kw = dict(journal_group=JournalGroups.sales)
+    MODEL = rt.models.sales.InvoicesByJournal
+    # MODEL = rt.models.vat.InvoicesByJournal
     kw.update(ref="G", dc=CREDIT, trade_type="sales")
     kw.update(printed_name=_("Mission"))
     kw.update(dd.str2kw('name', _("Garden works")))
@@ -236,6 +239,16 @@ def objects():
 
     kw.update(ref="R")
     kw.update(dd.str2kw('name', _("Renovation works")))
+    yield MODEL.create_journal(**kw)
+
+    # ORDERS
+
+    kw = dict(journal_group=JournalGroups.orders)
+    MODEL = rt.models.orders.OrdersByJournal
+
+    kw.update(ref="HH", dc=CREDIT, trade_type="sales")
+    kw.update(printed_name=_("Mission"))
+    kw.update(dd.str2kw('name', _("Home help")))
     yield MODEL.create_journal(**kw)
 
 
