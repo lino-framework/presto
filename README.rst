@@ -15,6 +15,8 @@ purchases, general ledger, VAT declarations).
 
 - The central project homepage is http://presto.lino-framework.org
 
+- German documentation is at http://de.presto.lino-framework.org/
+
 - For *introductions* and *commercial information* about Lino Presto
   see http://www.saffre-rumma.net
   

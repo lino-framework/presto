@@ -9,6 +9,7 @@ from builtins import str
 import six
 
 from django.utils.translation import ugettext_lazy as _
+from lino.core.gfks import gfk2lookup
 
 from lino_xl.lib.cal.models import *
 
@@ -59,10 +60,18 @@ class Event(Event, InvoiceGenerator):
     # invoiceable_date_field = 'start_date'
     invoiceable_partner_field = 'project'
 
+    def get_invoiceable_partner(self):
+        ord = self.owner
+        if isinstance(ord, rt.models.orders.Order):
+            return ord.invoice_recipient or ord.project
+
     def get_invoiceable_product(self, max_date=None):
-        if self.project_id is None:
+        par = self.get_invoiceable_partner()
+        # par = self.project
+        # if self.project_id is None:
+        if par is None:
             return None
-        return rt.models.products.Product.get_rule_fee(self.project, self.event_type)
+        return rt.models.products.Product.get_rule_fee(par, self.event_type)
 
     def get_invoiceable_qty(self):
         return self.get_duration()
@@ -73,6 +82,37 @@ class Event(Event, InvoiceGenerator):
             return self.summary
         else:
             return str(self.owner)
+
+    @classmethod
+    def get_generators_for_plan(cls, plan, partner=None):
+        # pre-select all Event objects that potentially will generate
+        # an invoice.
+
+        qs = cls.objects.all()
+        qs = qs.filter(state=EntryStates.took_place)
+
+        if plan.order is not None:
+            qs = qs.filter(**gfk2lookup(cls.owner, plan.order))
+
+        # dd.logger.info("20181113 c %s", qs)
+
+        if partner is None:
+            partner = plan.partner
+
+        if partner is None:
+            # only courses with a partner (because only these get invoiced
+            # per course).
+            qs = qs.filter(project__isnull=False)
+        else:
+            q1 = models.Q(
+                project__salesrule__invoice_recipient__isnull=True,
+                project=partner)
+            q2 = models.Q(
+                project__salesrule__invoice_recipient=partner)
+            qs = qs.filter(models.Q(q1 | q2))
+
+        # dd.logger.info("20190328 %s (%d rows)", qs.query, qs.count())
+        return qs.order_by('id')
 
     # def __str__(self):
     #     if self.owner is None:
@@ -85,22 +125,24 @@ class Event(Event, InvoiceGenerator):
     #     owner = self.owner._meta.verbose_name + " #" + str(self.owner.pk)
     #     return "%s %s" % (owner, self.summary)
 
-    def suggest_guests(self):
-        # print "20130722 suggest_guests"
-        for g in super(Event, self).suggest_guests():
-            yield g
-        order = self.owner
-        if not isinstance(order, rt.models.orders.Order):
-            # e.g. None or RecorrentEvent
-            return
-        Guest = settings.SITE.models.cal.Guest
-        for obj in order.enrolments_by_order.all():
-            if obj.worker:
-                yield Guest(event=self,
-                            partner=obj.worker,
-                            role=obj.guest_role)
+    # def suggest_guests(self):
+    #     # print "20130722 suggest_guests"
+    #     for g in super(Event, self).suggest_guests():
+    #         print("20190328 suggesting super {}".format(g))
+    #         yield g
+    #     order = self.owner
+    #     if not isinstance(order, rt.models.orders.Order):
+    #         # e.g. None or RecorrentEvent
+    #         return
+    #     Guest = settings.SITE.models.cal.Guest
+    #     for obj in order.enrolments_by_order.all():
+    #         if obj.worker:
+    #             print("20190328 suggesting worker {}".format(obj.worker))
+    #             yield Guest(event=self,
+    #                         partner=obj.worker,
+    #                         role=obj.guest_role)
 
-    def get_invoice_items(self, info, invoice, ar):
+    def unused_get_invoice_items(self, info, invoice, ar):
         # TODO : adapt to presto
         # dd.logger.info("20181116a %s", self)
         if info.used_events is None:
@@ -133,13 +175,13 @@ class EventDetail(EventDetail):
     event_type summary user
     start end
     room priority access_class transparent #rset
-    owner:30 workflow_buttons:30
-    description
+    owner:30 project workflow_buttons:30
+    cal.GuestsByEvent description 
     """, _("General"))
 
     more = dd.Panel("""
     id created:20 modified:20  state
-    #outbox.MailsByController cal.GuestsByEvent notes.NotesByOwner
+    #outbox.MailsByController  notes.NotesByOwner
     """, _("More"))
 
 
@@ -147,3 +189,6 @@ class MyEntries(MyEntries):
     column_names = 'when_text summary room owner workflow_buttons *'
 
 
+
+class GuestsByEvent(GuestsByEvent):
+    column_names = 'partner role #workflow_buttons remark *'

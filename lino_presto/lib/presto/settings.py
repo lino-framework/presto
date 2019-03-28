@@ -44,7 +44,7 @@ class Site(Site):
         yield 'lino_presto.lib.products'
         yield 'lino_xl.lib.sales'
         # yield 'lino_xl.lib.vat'
-        yield 'lino_xl.lib.invoicing'
+        yield 'lino_presto.lib.invoicing'
 
         yield 'lino_xl.lib.sepa'
         # yield 'lino_xl.lib.finan'

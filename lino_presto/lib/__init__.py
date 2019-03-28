@@ -7,11 +7,12 @@
 .. autosummary::
    :toctree:
 
+    presto
     cal
     contacts
     orders
-    presto
     products
+    invoicing
     users
 
 

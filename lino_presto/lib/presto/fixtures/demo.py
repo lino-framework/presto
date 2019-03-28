@@ -91,8 +91,18 @@ def objects():
     presence = ProductCat(**dd.str2kw('name', _("Fees")))
     yield presence
 
-    yield Room(**dd.str2kw('name', _("Garden works")))
-    yield Room(**dd.str2kw('name', _("House works")))
+    garden_et = EventType(
+        force_guest_states=True,
+        **dd.str2kw('name', _("Garden works")))
+    yield garden_et
+
+    home_et = EventType(
+        force_guest_states=True,
+        **dd.str2kw('name', _("Home help")))
+    yield home_et
+
+    yield Room(**dd.str2kw('name', _("Garden works"), event_type=garden_et))
+    yield Room(**dd.str2kw('name', _("House works"), event_type=home_et))
     yield Room(**dd.str2kw('name', _("Office")))
 
     def product(pt, name, unit, **kwargs):
@@ -136,16 +146,6 @@ def objects():
     #
     # student = GuestRole(**dd.str2kw('name', _("Student")))
     # yield student
-
-    garden_et = EventType(
-        force_guest_states=True,
-        **dd.str2kw('name', _("Garden works")))
-    yield garden_et
-
-    home_et = EventType(
-        force_guest_states=True,
-        **dd.str2kw('name', _("Home help")))
-    yield home_et
 
     # yield create_user("ahmed", UserTypes.worker,
     #                   event_type=garden_et, partner=ahmed)
@@ -222,33 +222,33 @@ def objects():
 
     # JOURNALS
 
-    rt.models.ledger.Journal.objects.get(ref="SLS").delete()
-    rt.models.ledger.Journal.objects.get(ref="SLC").delete()
+    # rt.models.ledger.Journal.objects.get(ref="SLS").delete()
+    # rt.models.ledger.Journal.objects.get(ref="SLC").delete()
 
     kw = dict(journal_group=JournalGroups.sales)
     MODEL = rt.models.sales.InvoicesByJournal
     # MODEL = rt.models.vat.InvoicesByJournal
-    kw.update(ref="G", dc=CREDIT, trade_type="sales")
-    kw.update(printed_name=_("Mission"))
-    kw.update(dd.str2kw('name', _("Garden works")))
+    kw.update(ref="MAN", dc=CREDIT, trade_type="sales")
+    # kw.update(printed_name=_("Mission"))
+    kw.update(dd.str2kw('name', _("Manual invoices")))
     yield MODEL.create_journal(**kw)
 
-    kw.update(ref="GH")
-    kw.update(dd.str2kw('name', _("Garden and hedges")))
-    yield MODEL.create_journal(**kw)
-
-    kw.update(ref="R")
-    kw.update(dd.str2kw('name', _("Renovation works")))
-    yield MODEL.create_journal(**kw)
+    # kw.update(ref="GH")
+    # kw.update(dd.str2kw('name', _("Garden and hedges")))
+    # yield MODEL.create_journal(**kw)
+    #
+    # kw.update(ref="R")
+    # kw.update(dd.str2kw('name', _("Renovation works")))
+    # yield MODEL.create_journal(**kw)
 
     # ORDERS
 
     kw = dict(journal_group=JournalGroups.orders)
     MODEL = rt.models.orders.OrdersByJournal
 
-    kw.update(ref="HH", dc=CREDIT, trade_type="sales")
-    kw.update(printed_name=_("Mission"))
-    kw.update(dd.str2kw('name', _("Home help")))
+    kw.update(ref="ORD", dc=CREDIT, trade_type="sales")
+    kw.update(printed_name=_("Orders"))
+    kw.update(dd.str2kw('name', _("Orders")))
     yield MODEL.create_journal(**kw)
 
 

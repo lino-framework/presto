@@ -57,6 +57,8 @@ purchases, general ledger, VAT declarations).
 
 - The central project homepage is http://presto.lino-framework.org
 
+- German documentation is at http://de.presto.lino-framework.org/
+
 - For *introductions* and *commercial information* about Lino Presto
   see http://www.saffre-rumma.net
   
@@ -73,6 +75,8 @@ lino_presto.lib.contacts
 lino_presto.lib.contacts.fixtures
 lino_presto.lib.cal
 lino_presto.lib.cal.fixtures
+lino_presto.lib.invoicing
+lino_presto.lib.invoicing.fixtures
 lino_presto.lib.orders
 lino_presto.lib.presto
 lino_presto.lib.presto.fixtures
