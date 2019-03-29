@@ -142,30 +142,17 @@ class Event(Event, InvoiceGenerator):
     #                         partner=obj.worker,
     #                         role=obj.guest_role)
 
-    def unused_get_invoice_items(self, info, invoice, ar):
-        # TODO : adapt to presto
+    def get_invoice_items(self, info, invoice, ar):
+        for i in super(Event, self).get_invoice_items(info, invoice, ar):
+            yield i
         # dd.logger.info("20181116a %s", self)
-        if info.used_events is None:
-            dd.logger.debug("20181126 no used_events for %s", self)
-            return
-        Product = rt.models.products.Product
-        collector = OrderedDict()
-        product = Product.get_rule_fee(self.project, self.event_type)
-        if product is None:
-            raise Exception("20181128 no price rule for {}".format(self))
-
-        fmt = self.get_invoiceable_event_formatter()
-
-        # tariff = self.get_invoiceable_tariff(product)
-        title = _("{product} on {date}").format(
-            product=product, date=fmt(self, None))
-        kwargs = dict(
-            invoiceable=self,
-            product=product,
-            title=title)
-        kwargs.update(qty=self.get_duration())
-        yield invoice.add_voucher_item(**kwargs)
-        # yield model(**kwargs)
+        for vi in self.owner.items.all():
+            kwargs = dict(
+                invoiceable=self,
+                product=vi.product,
+                qty=vi.qty,
+                title=vi.title)
+            yield invoice.add_voucher_item(**kwargs)
 
 dd.update_field(Event, 'description',format="plain")
 
@@ -182,6 +169,7 @@ class EventDetail(EventDetail):
     more = dd.Panel("""
     id created:20 modified:20  state
     #outbox.MailsByController  notes.NotesByOwner
+    invoicing.InvoicingsByGenerator
     """, _("More"))
 
 
