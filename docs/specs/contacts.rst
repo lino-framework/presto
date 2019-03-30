@@ -1,4 +1,4 @@
-.. include:: /../../book/docs/shared/include/tested.rst
+.. include:: /../docs/shared/include/tested.rst
 
 .. _presto.specs.contacts:
 
@@ -6,7 +6,7 @@
 Contacts
 ========
 
-.. include:: /include/tested.rst
+.. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
 >>> startup('lino_presto.projects.noereth.settings.doctests')

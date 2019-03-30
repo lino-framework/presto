@@ -1,5 +1,5 @@
 .. doctest docs/specs/overview.rst
-.. include:: /../../book/docs/shared/include/defs.rst
+.. include:: /../docs/shared/include/defs.rst
 
 .. _lino.tested.presto:
 .. _presto.specs.overview:
@@ -8,7 +8,7 @@
 Overview
 ========
 
-.. include:: /../../book/docs/shared/include/tested.rst
+.. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
 >>> startup('lino_presto.projects.noereth.settings.doctests')
