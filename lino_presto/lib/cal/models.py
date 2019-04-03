@@ -74,7 +74,12 @@ class Event(Event, InvoiceGenerator):
         return rt.models.products.Product.get_rule_fee(par, self.event_type)
 
     def get_invoiceable_qty(self):
-        return self.get_duration()
+        qty = self.get_duration()
+        if qty is not None:
+            return qty
+        if self.event_type_id:
+            return self.event_type.default_duration or self.default_invoiceable_qty
+        return self.default_invoiceable_qty
 
     def get_event_summary(self, ar):
         # Overrides lino_xl.lib.cal.Event.get_event_summary

@@ -82,23 +82,23 @@ def objects():
     maria= Worker(first_name="Maria", gender=dd.Genders.female)
     yield maria
 
-    indacc = named(
+    sales_on_services = named(
         Account, _("Sales on services"),
         # sheet_item=CommonItems.sales.get_object(),
         ref="7010")
-    yield indacc
+    yield sales_on_services
 
     presence = ProductCat(**dd.str2kw('name', _("Fees")))
     yield presence
 
+    et_defaults =dict(force_guest_states=True, default_duration="0:15")
+
     garden_et = EventType(
-        force_guest_states=True,
-        **dd.str2kw('name', _("Garden works")))
+        **dd.str2kw('name', _("Garden works"), **et_defaults))
     yield garden_et
 
     home_et = EventType(
-        force_guest_states=True,
-        **dd.str2kw('name', _("Home help")))
+        **dd.str2kw('name', _("Home help"), **et_defaults))
     yield home_et
 
     yield Room(**dd.str2kw('name', _("Garden works"), event_type=garden_et))
@@ -122,7 +122,7 @@ def objects():
 
 
     garden_prod = named(
-        Product, _("Garden works"), sales_account=indacc,
+        Product, _("Garden works"), sales_account=sales_on_services,
         # tariff=t1,
         sales_price=30, cat=presence,
         product_type=ProductTypes.default)
@@ -132,12 +132,18 @@ def objects():
     
     home_prod = named(
         Product, _("Home help"),
-        # tariff=t1,
-        sales_price=60, sales_account=indacc, cat=presence,
+        sales_price=60, sales_account=sales_on_services, cat=presence,
         product_type=ProductTypes.default)
     yield home_prod
     # ind_therapy.tariff.number_of_events = 1
     # yield ind_therapy.tariff
+
+    km_prod = named(
+        Product, _("Travel per Km"),
+        sales_price=0.50, sales_account=sales_on_services, cat=presence,
+        product_type=ProductTypes.default)
+    yield km_prod
+
    
     yield named(Product, _("Other"), sales_price=35)
 
