@@ -25,11 +25,11 @@ class Site(Site):
 
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()
-        yield 'lino.modlib.gfks'
+        # yield 'lino.modlib.gfks'
+        yield 'lino_presto.lib.users'
         yield 'lino_presto.lib.contacts'
         yield 'lino_presto.lib.cal'
         yield 'lino_presto.lib.orders'
-        yield 'lino_presto.lib.users'
         yield 'lino.modlib.dashboard'
         yield 'lino_xl.lib.countries'
         # yield 'lino_xl.lib.properties'
