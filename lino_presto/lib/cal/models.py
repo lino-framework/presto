@@ -37,11 +37,12 @@ class Room(Room):
         verbose_name_plural = _("Teams")
 
     event_type = dd.ForeignKey('cal.EventType',blank=True, null=True)
+    guest_role = dd.ForeignKey("cal.GuestRole", blank=True, null=True)
 
 
 class RoomDetail(dd.DetailLayout):
     main = """
-    id name event_type
+    id name event_type guest_role
     company contact_person contact_role
     cal.EntriesByRoom
     """
@@ -76,7 +77,7 @@ class Event(Event, InvoiceGenerator):
     def get_invoiceable_qty(self):
         qty = self.get_duration()
         if qty is not None:
-            return qty
+            return Duration(qty)
         if self.event_type_id:
             return self.event_type.default_duration or self.default_invoiceable_qty
         return self.default_invoiceable_qty
@@ -149,14 +150,14 @@ class Event(Event, InvoiceGenerator):
 
     def get_invoice_items(self, info, invoice, ar):
         for i in super(Event, self).get_invoice_items(info, invoice, ar):
+            print(i.qty)
             yield i
         # dd.logger.info("20181116a %s", self)
-        for vi in self.owner.items.all():
+        for oi in self.owner.items.all():
             kwargs = dict(
                 invoiceable=self,
-                product=vi.product,
-                qty=vi.qty,
-                title=vi.title)
+                product=oi.product,
+                qty=oi.qty)
             yield invoice.add_voucher_item(**kwargs)
 
 dd.update_field(Event, 'description',format="plain")

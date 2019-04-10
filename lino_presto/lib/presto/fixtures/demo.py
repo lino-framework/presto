@@ -101,8 +101,17 @@ def objects():
         **dd.str2kw('name', _("Home help"), **et_defaults))
     yield home_et
 
-    yield Room(**dd.str2kw('name', _("Garden works"), event_type=garden_et))
-    yield Room(**dd.str2kw('name', _("House works"), event_type=home_et))
+    worker = GuestRole(**dd.str2kw('name', _("Worker")))
+    yield worker
+    yield GuestRole(**dd.str2kw('name', _("Guest")))
+    # worker = GuestRole(**dd.str2kw('name', _("Worker")))
+    # yield worker
+    #
+    # student = GuestRole(**dd.str2kw('name', _("Student")))
+    # yield student
+
+    yield Room(**dd.str2kw('name', _("Garden works"), event_type=garden_et, guest_role=worker))
+    yield Room(**dd.str2kw('name', _("House works"), event_type=home_et, guest_role=worker))
     yield Room(**dd.str2kw('name', _("Office")))
 
     def product(pt, name, unit, **kwargs):
@@ -146,12 +155,6 @@ def objects():
 
    
     yield named(Product, _("Other"), sales_price=35)
-
-    # worker = GuestRole(**dd.str2kw('name', _("Worker")))
-    # yield worker
-    #
-    # student = GuestRole(**dd.str2kw('name', _("Student")))
-    # yield student
 
     # yield create_user("ahmed", UserTypes.worker,
     #                   event_type=garden_et, partner=ahmed)

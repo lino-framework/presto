@@ -21,7 +21,7 @@ class Site(Site):
     workflows_module = 'lino_presto.lib.presto.workflows'
     user_types_module = 'lino_presto.lib.presto.user_types'
     auto_configure_logger_names = "atelier django lino lino_xl lino_presto"
-    default_build_method = 'appypdf'
+    default_build_method = 'weasy2pdf'
 
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()

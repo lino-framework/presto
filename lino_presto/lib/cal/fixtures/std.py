@@ -13,11 +13,6 @@ def objects():
 
     yield lib_objects()
 
-    GuestRole = rt.models.cal.GuestRole
-
-    yield GuestRole(**dd.str2kw('name', _("Worker")))
-    yield GuestRole(**dd.str2kw('name', _("Guest")))
-
     EventType = rt.models.cal.EventType
     RecurrentEvent = rt.models.cal.RecurrentEvent
     Recurrencies = rt.models.cal.Recurrencies

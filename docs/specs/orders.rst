@@ -1,7 +1,7 @@
 .. doctest docs/specs/orders.rst
 .. include:: /../docs/shared/include/defs.rst
 
-.. _presto.specs.courses:
+.. _presto.specs.orders:
 
 =========
 Orders
