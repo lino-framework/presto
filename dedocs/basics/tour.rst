@@ -2,9 +2,9 @@
 
 .. _presto.de.tour:
 
-=======================
-Erste Besichtigungstour
-=======================
+=================
+Besichtigungstour
+=================
 
 Lino unterscheidet zwischen Personen und Organisationen. Beides sind Partner.
 
@@ -35,7 +35,7 @@ händisch ausgefüllten Rechnung:
 
   - NB Das Layout des Detail-Fensters (welche Reiter, und welche Elemente wo
     angezeigt werden) ist ein schnell hingeworfener Vorschlag, weil das leicht
-    anpassbar ist und der AG dabei mitreden sollte, und weil das am
+    anpassbar ist, weil der Kunde dabei mitreden sollte, und weil das am
     einfachsten direkt auf den Daten im Prototypen geht.
 
 - Auftrag erstellen:
@@ -55,7 +55,12 @@ händisch ausgefüllten Rechnung:
 
   - ggf. Rechnungsempfänger angeben
   - Arbeiter erfassen
-  - Fahrtkosten eintragen in "Kosten pro Einsatz"
+
+  - Fahrtkosten eintragen in "Kosten pro Einsatz". Hier können ausser
+    Fahrtkosten auch z.B. Verbrauchsprodukte angegeben werden.  Die hier
+    angegebenen Kosten werden für jeden stattgefundenen Termin wird zusätzlich zur
+    Arbeitszeit fakturiert.
+
   - Beschreibung der Arbeiten
 
 - Auftrag ausdrucken
@@ -69,7 +74,15 @@ händisch ausgefüllten Rechnung:
     "Geplant", und man muss auf :guilabel:`☑` klicken, damit er in den Zustand
     "Stattgefunden" wechselt. Ansonsten erstellt Lino keine Rechnung.
 
+- :kbd:`Escape` um auf den Auftrag zurück zu springen.
+
 - Auf "Fakturieren" klicken.
+
+  NB: Lino fakturiert immer alle Termine eines Auftrags.
+
+- Im Fakturierungsplan auf
+
+
 
 
 Terminvorschläge generieren

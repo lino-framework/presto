@@ -45,6 +45,7 @@ class StartInvoicingForOrder(StartInvoicing):
     """
     show_in_bbar = True
     select_rows = True
+    update_after_start = True
 
     def get_options(self, ar):
         order = ar.selected_rows[0]

@@ -149,16 +149,16 @@ class Event(Event, InvoiceGenerator):
     #                         role=obj.guest_role)
 
     def get_invoice_items(self, info, invoice, ar):
-        for i in super(Event, self).get_invoice_items(info, invoice, ar):
-            print(i.qty)
-            yield i
         # dd.logger.info("20181116a %s", self)
-        for oi in self.owner.items.all():
-            kwargs = dict(
-                invoiceable=self,
-                product=oi.product,
-                qty=oi.qty)
-            yield invoice.add_voucher_item(**kwargs)
+        for i in super(Event, self).get_invoice_items(info, invoice, ar):
+            # print(i.qty)
+            yield i
+            for oi in self.owner.items.all():
+                kwargs = dict(
+                    invoiceable=self,
+                    product=oi.product,
+                    qty=oi.qty)
+                yield invoice.add_voucher_item(**kwargs)
 
 dd.update_field(Event, 'description',format="plain")
 
@@ -173,8 +173,8 @@ class EventDetail(EventDetail):
     """, _("General"))
 
     more = dd.Panel("""
-    id created:20 modified:20  state
-    #outbox.MailsByController  notes.NotesByOwner
+    id created:20 modified:20 state
+    # outbox.MailsByController  notes.NotesByOwner
     invoicing.InvoicingsByGenerator
     """, _("More"))
 
