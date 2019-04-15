@@ -1,8 +1,18 @@
 .. _presto.changes: 
 
-========================
-Releases notes
-========================
+=========================
+Changes in  :ref:`presto`
+=========================
+
+API changes in the :mod:`lino_presto` package.
+
+.. toctree::
+   :maxdepth: 1
+
+   2019
+
+Releases notes for :ref:`presto`
+================================
 
 .. toctree::
    :maxdepth: 1
