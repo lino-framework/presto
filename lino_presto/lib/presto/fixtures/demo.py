@@ -255,9 +255,13 @@ def objects():
     kw = dict(journal_group=JournalGroups.orders)
     MODEL = rt.models.orders.OrdersByJournal
 
-    kw.update(ref="ORD", dc=CREDIT, trade_type="sales")
-    kw.update(printed_name=_("Orders"))
-    kw.update(dd.str2kw('name', _("Orders")))
-    yield MODEL.create_journal(**kw)
+    kw.update(dc=CREDIT, trade_type="sales")
+    kw.update(printed_name=_("Order"))
+    for room in rt.models.cal.Room.objects.all():
+        # kw.update(dd.str2kw('name', _("Orders")))
+        kw.update(room=room)
+        kw.update(ref=room.name)
+        kw.update(name=room.name)
+        yield MODEL.create_journal(**kw)
 
 

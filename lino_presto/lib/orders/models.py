@@ -16,7 +16,7 @@ class Enrolment(Enrolment):
     #     unique_together = ('order', 'worker')
 
     def get_guest_role(self):
-        return self.guest_role or self.order.room.guest_role
+        return self.guest_role or self.order.journal.room.guest_role
 
 
 class Missions(Orders):

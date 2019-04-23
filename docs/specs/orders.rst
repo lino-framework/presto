@@ -20,3 +20,17 @@ plugin.
 Orders
 
 >>> #rt.show(orders.Orders)
+
+
+>>> rt.show('ledger.JournalGroups')
+======= =========== ===========
+ value   name        text
+------- ----------- -----------
+ 05      orders      Orders
+ 10      sales       Sales
+ 20      purchases   Purchases
+ 30      wages       Wages
+ 40      financial   Financial
+ 50      vat         VAT
+======= =========== ===========
+<BLANKLINE>
