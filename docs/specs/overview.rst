@@ -15,7 +15,6 @@ Overview
 >>> from lino.api.doctest import *
 
 
-
 Some vocabulary
 ===============
 

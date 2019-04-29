@@ -18,9 +18,6 @@ nicht mehr (unangefragt) ändert.
 5. Benutzer : ich schätze, dass die momentanen Benutzerarten das ist,
 was wir brauchen.  Siehe Auswahlliste im Feld `Benutzerart` eines Benutzers.
 
-7. Geschäftsprozesse : das steht in Lino unter "Konfigurierung -->
-Dienstleistungen".
-
 7.1 Kontakte
 
 Jeder Partner kann eine oder mehrere Rollen spielen in einem oder
@@ -51,11 +48,15 @@ Familienbeziehungen
 
 Diverse weitere Kontaktangaben:
 
-- VIPO und Krankenkasse werden in Lino über :mod:`lino.xl.healtcare` gehandhabt.
+- VIPO und Krankenkasse werden in Lino über :mod:`lino.xl.healthcare` gehandhabt.
 - :mod:`lino.modlib.uploads`
 
-- Ihr habt anders als alle bisherigen ein eigenes Feld für Sterbedatum und
-  einen "zweiten Namen" (ist das der Mädchenname?).
+- Ihr habt anders als alle bisherigen ein eigenes Feld für einen "zweiten
+  Namen" (ist das der Mädchenname?).
+
+- Statt nur zwischen "Aktiviert" und "Archiviert" zu unterscheiden, schlage ich
+  ein Feld "Zustand" vor.
+
 
 7.3 Kernprozess :
 

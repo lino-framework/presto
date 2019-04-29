@@ -9,5 +9,6 @@ Technical specs
     contacts
     orders
     cal
+    menu
 
 

@@ -24,10 +24,11 @@ from lino.modlib.office.roles import OfficeStaff, OfficeUser
 from lino_xl.lib.cal.roles import GuestOperator
 from lino_xl.lib.ledger.roles import LedgerStaff
 from lino_xl.lib.sepa.roles import SepaUser, SepaStaff
+from lino_xl.lib.topics.roles import TopicsUser
 
 
 class Secretary(SiteStaff, ContactsUser, OfficeUser,
-                GuestOperator,
+                GuestOperator, TopicsUser,
                 LedgerStaff, SepaUser, OrdersUser, ExcerptsUser,
                 ProductsStaff):
     pass
@@ -42,7 +43,7 @@ class Worker(SiteUser, ContactsUser, OfficeUser,
 
 class SiteAdmin(SiteAdmin, ContactsStaff, OfficeStaff,
                 GuestOperator, LedgerStaff, SepaStaff, OrdersStaff,
-                ExcerptsStaff, ProductsStaff):
+                ExcerptsStaff, ProductsStaff, TopicsUser):
     pass
 
 UserTypes.clear()

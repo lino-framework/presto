@@ -1,4 +1,3 @@
-go noereth
 .. include:: /../docs/shared/include/defs.rst
 
 .. _presto.de.tour:
@@ -7,26 +6,60 @@ go noereth
 Besichtigungstour
 =================
 
-Wortschatz
-==========
+Kontakte
+========
 
-Lino unterscheidet zwischen Personen und Organisationen. Beides sind Partner.
+Als **Partner** bezeichnen wir allgemein jede Einzelperson oder Gruppe, die als
+**Rechnungsempfänger** oder sonstiger Gesprächspartner fungieren kann.
+Jeder Partner kann unterschiedliche Rollen oder gar parallele Rollen je
+nach Auftragstyp oder Finalität einer Dienstleistung haben.
 
-Ein Klient ist eine Person, über die wir mehr wissen als über eine normale
-Person.
+Lino unterscheidet fünf Partnerarten: **Personen**, **Klienten**, **Arbeiter**,
+**Haushalte** und **Organisationen**. Klienten und Arbeiter sind Personen, über
+die wir mehr wissen als über eine normale Person.  Ein Klient oder Arbeiter ist
+immer auch eine Person.
 
-Ein Auftrag ist, wenn man für einen bestimmten Kunden eine Serie von Terminen
-plant, bei denen ein bestimmter Arbeiter arbeitet.  Die Serie von Terminen kann
-sich auf einen einzigen Einsatz beschränken.  Der Auftrag gilt als Grundlage
-für die Fakturierung.  Ohne Auftrag keine Rechnung.  Im Auftrag kann auch
+Damit die Suche und die familiäre Einschätzung einfacher ersichtlich wird,
+können für jede Person auch deren Familienzusammensetzungen (generell
+Mitgliedschaft in Haushalten) und familiäere Beziehungen erfasst werden.
+
+Pro Partner können mehrere Adressen hinterlegt werden. Mögliche Adressenarten
+können definiert werden (z.B. "Referenzadresse" oder "Wohnsitz")
+
+Pro Klient kann ein oder mehrerere Grund der Anfrage (mehrfach Auswahl)
+
+Aufträge
+========
+
+Ein **Auftrag** ist, wenn man für einen bestimmten Klienten eine Serie von
+Terminen plant, bei denen ein bestimmter Arbeiter arbeitet.  Die Serie von
+Terminen kann sich auf einen einzigen Einsatz beschränken. Aufträge sind in
+*Journale** gruppiert. Der Auftrag gilt als Grundlage für die Fakturierung.
+Ohne Auftrag keine Rechnung.  Im Auftrag können neben den vorgesehenen
+Arbeitern auch Fahrtkosten und sonstige planbare Nebenkosten erfasst werden,
+die pro Einsatz fakturiert werden.
+
+Ein Auftrag muss immer einem Klienten zugewiesen sein und kann optional einen
+anderen Partner als Rechnungsempänger haben.
+
+Kalender
+========
 
 Ein **Termin** ist, wenn an einem bestimmten Tag und Uhrzeit ein bestimmter
-Arbeiter (oder mehrere) zu einem bestimmten Klienten gehen.
+Arbeiter (oder mehrere) zu einem bestimmten Klienten gehen. Ein Termin muss
+einem Auftrag zugewiesen sein, um **fakturierbar** zu sein. Man kann in Lino
+auch **unfakturierbare Termine** verwalten (z.B. interne Besprechungen,
+Urlaubstage, sonstige Termine der Mitarbeiter, ...)
 
-Ein Termin muss einem Auftrag zugewiesen sein, um **fakturierbar** zu sein.
+Teams
+=====
 
-Man kann in Lino auch **unfakturierbare Termine** verwalten (z.B. interne
-Besprechungen, Urlaubstage, sonstige Termine der Mitarbeiter, ...)
+Für die verschiedenen Tätigkeitsbereiche eines Betriebs zu differenzieren, kann
+der Systemverwalter **Teams** konfigurieren.
+Jeder Auftrag muss einem Team zugewiesen sein.
+Pro Auftragsjournal kann man definieren, welches Team für Aufträge in diesem Journal zuständig ist.
+Eventuell können mehrere Auftragsjournale pro Team angelegt werden.
+
 
 Beispiel 1
 ==========

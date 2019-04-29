@@ -29,6 +29,7 @@ class Site(Site):
         yield 'lino_presto.lib.users'
         yield 'lino_presto.lib.contacts'
         yield 'lino_presto.lib.cal'
+        yield 'lino_xl.lib.ledger'
         yield 'lino_presto.lib.orders'
         yield 'lino.modlib.dashboard'
         yield 'lino_xl.lib.countries'

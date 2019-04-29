@@ -52,11 +52,16 @@ def objects():
     ProductTypes = rt.models.products.ProductTypes
     ProductCat = rt.models.products.ProductCat
     Account = rt.models.ledger.Account
+    Topic = rt.models.topics.Topic
     Journal = rt.models.ledger.Journal
     PriceRule = rt.models.products.PriceRule
     User = rt.models.users.User
 
     # yield skills_objects()
+
+    yield named(Topic, _("Health problems"))
+    yield named(Topic, _("Handicap"))
+    yield named(Topic, _("Messie"))
 
     yield babeld(LifeMode, _("Single"))
     yield babeld(LifeMode, _("Living together"))

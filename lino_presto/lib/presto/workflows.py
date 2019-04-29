@@ -53,3 +53,4 @@ from lino_xl.lib.ledger.choicelists import JournalGroups
 add = JournalGroups.add_item
 add("05", _("Orders"), 'orders', menu_group=dd.plugins.orders)
 # add("10", _("Sales"), 'sales', menu_group=dd.plugins.sales)
+JournalGroups.sort()
