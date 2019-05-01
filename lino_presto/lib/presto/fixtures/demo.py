@@ -19,43 +19,43 @@ from lino.utils import Cycler
 from lino.utils import mti
 from lino.utils.mldbc import babel_named as named, babeld
 from lino.modlib.users.utils import create_user
-from lino_xl.lib.cal.choicelists import EntryStates, GuestStates
-
-# from django.conf import settings
-
-# courses = dd.resolve_app('courses')
-# cal = dd.resolve_app('cal')
-# users = dd.resolve_app('users')
 
 AMOUNTS = Cycler("5.00", None, None, "15.00", "20.00", None, None)
 
+from lino.utils.quantities import Duration
+from lino.core.requests import BaseRequest
 from lino_xl.lib.products.choicelists import DeliveryUnits
+from lino_xl.lib.ledger.utils import DEBIT, CREDIT
+from lino_xl.lib.ledger.choicelists import VoucherStates, JournalGroups
+from lino_xl.lib.cal.choicelists import Recurrencies, Weekdays, EntryStates, PlannerColumns
+
+Partner = rt.models.contacts.Partner
+Person = rt.models.contacts.Person
+Worker = rt.models.contacts.Worker
+LifeMode = rt.models.presto.LifeMode
+EventType = rt.models.cal.EventType
+Room = rt.models.cal.Room
+GuestRole = rt.models.cal.GuestRole
+Enrolment = rt.models.orders.Enrolment
+OrderItem = rt.models.orders.OrderItem
+SalesRule = rt.models.invoicing.SalesRule
+User = rt.models.users.User
+UserTypes = rt.models.users.UserTypes
+Company = rt.models.contacts.Company
+Client = rt.models.presto.Client
+ClientStates = rt.models.presto.ClientStates
+Product = rt.models.products.Product
+Tariff = rt.models.invoicing.Tariff
+ProductTypes = rt.models.products.ProductTypes
+ProductCat = rt.models.products.ProductCat
+Account = rt.models.ledger.Account
+Topic = rt.models.topics.Topic
+Journal = rt.models.ledger.Journal
+PriceRule = rt.models.products.PriceRule
+Area = rt.models.invoicing.Area
 
 
 def objects():
-    Partner = rt.models.contacts.Partner
-    Person = rt.models.contacts.Person
-    Worker = rt.models.contacts.Worker
-    LifeMode = rt.models.presto.LifeMode
-    EventType = rt.models.cal.EventType
-    Room = rt.models.cal.Room
-    GuestRole = rt.models.cal.GuestRole
-    Enrolment = rt.models.orders.Enrolment
-    DurationUnits = rt.models.cal.DurationUnits
-    SalesRule = rt.models.invoicing.SalesRule
-    UserTypes = rt.models.users.UserTypes
-    Company = rt.models.contacts.Company
-    Client = rt.models.presto.Client
-    ClientStates = rt.models.presto.ClientStates
-    Product = rt.models.products.Product
-    Tariff = rt.models.invoicing.Tariff
-    ProductTypes = rt.models.products.ProductTypes
-    ProductCat = rt.models.products.ProductCat
-    Account = rt.models.ledger.Account
-    Topic = rt.models.topics.Topic
-    Journal = rt.models.ledger.Journal
-    PriceRule = rt.models.products.PriceRule
-    User = rt.models.users.User
 
     # yield skills_objects()
 
@@ -93,31 +93,56 @@ def objects():
         ref="7010")
     yield sales_on_services
 
-    presence = ProductCat(**dd.str2kw('name', _("Fees")))
+    presence = named(ProductCat, _("Fees"))
     yield presence
 
-    et_defaults =dict(force_guest_states=True, default_duration="0:15")
+    consuming = named(ProductCat, _("Consuming items"))
+    yield consuming
 
-    garden_et = EventType(
-        **dd.str2kw('name', _("Garden works"), **et_defaults))
+
+    et_defaults =dict(force_guest_states=True, default_duration="0:15",
+                      planner_column=PlannerColumns.external)
+
+    garden_et = named(EventType, _("Outside work"), **et_defaults)
     yield garden_et
 
-    home_et = EventType(
-        **dd.str2kw('name', _("Home help"), **et_defaults))
+    home_et = named(EventType, _("Inside work"), **et_defaults)
     yield home_et
 
-    worker = GuestRole(**dd.str2kw('name', _("Worker")))
-    yield worker
-    yield GuestRole(**dd.str2kw('name', _("Guest")))
-    # worker = GuestRole(**dd.str2kw('name', _("Worker")))
-    # yield worker
-    #
-    # student = GuestRole(**dd.str2kw('name', _("Student")))
-    # yield student
+    et_defaults.update(planner_column=PlannerColumns.internal)
+    office_et = named(EventType, _("Office work"), **et_defaults)
+    yield office_et
 
-    yield Room(**dd.str2kw('name', _("Garden works"), event_type=garden_et, guest_role=worker))
-    yield Room(**dd.str2kw('name', _("House works"), event_type=home_et, guest_role=worker))
-    yield Room(**dd.str2kw('name', _("Office")))
+    worker = named(GuestRole, _("Worker"))
+    yield worker
+    yield named(GuestRole, _("Guest"))
+
+    AREAS = Cycler(Area.objects.all())
+
+    order_stories = []
+
+    def team(name, et, gr, **order_options):
+        kwargs = {}
+        kwargs.setdefault('invoicing_area', AREAS.pop())
+        kwargs.setdefault('event_type', et)
+        kwargs.setdefault('guest_role', gr)
+        obj = Room(**dd.str2kw('name', name, **kwargs))
+        order_stories.append([obj, order_options])
+        return obj
+
+    order_options = {}
+    order_options.update(max_events=3)
+    yield team(_("Garden"), garden_et, worker, **order_options)
+    order_options.update(max_events=1)
+    yield team(_("Moves"), garden_et, worker, **order_options)
+    order_options.update(max_events=2)
+    yield team(_("Renovation"), home_et, worker, **order_options)
+    order_options.update(max_events=10)
+    yield team(_("Home help"), home_et, worker, **order_options)
+    order_options.update(max_events=50)
+    yield team(_("Home care"), home_et, worker, **order_options)
+    order_options.update(max_events=1)
+    yield team(_("Office"), office_et, worker, **order_options)
 
     def product(pt, name, unit, **kwargs):
         return Product(**dd.str2kw('name', name,
@@ -128,12 +153,6 @@ def objects():
     yield product('default', _("Ironing of a pair of trousers"), 'piece')
     yield product('default', _("Ironing of a skirt"), 'piece')
     yield product('default', _("Washing per Kg"), 'kg')
-
-    # yield Product(**dd.str2kw('name', _("Ironing of a shirt"), delivery_unit=DeliveryUnits.piece))
-    # yield Product(**dd.str2kw('name', _("Ironing of a pair of trousers"), delivery_unit=DeliveryUnits.piece))
-    # yield Product(**dd.str2kw('name', _("Ironing of a skirt"), delivery_unit=DeliveryUnits.piece))
-    # yield Product(**dd.str2kw('name', _("Washing per Kg"), delivery_unit=DeliveryUnits.kg))
-
 
     garden_prod = named(
         Product, _("Garden works"), sales_account=sales_on_services,
@@ -152,13 +171,15 @@ def objects():
     # ind_therapy.tariff.number_of_events = 1
     # yield ind_therapy.tariff
 
-    km_prod = named(
+    yield named(
         Product, _("Travel per Km"),
-        sales_price=0.50, sales_account=sales_on_services, cat=presence,
+        sales_price=0.50, sales_account=sales_on_services, cat=consuming,
         product_type=ProductTypes.default)
-    yield km_prod
+    yield named(
+        Product, _("Other consuming items"),
+        sales_price=1.50, sales_account=sales_on_services, cat=consuming,
+        product_type=ProductTypes.default)
 
-   
     yield named(Product, _("Other"), sales_price=35)
 
     # yield create_user("ahmed", UserTypes.worker,
@@ -178,16 +199,6 @@ def objects():
             # yield p
         else:
             invoice_recipient = p
-
-    qs = rt.models.cal.Event.objects.filter(
-        start_date__lt=dd.today(-10))
-    for e in qs:
-        if e.id % 5:
-            e.state = EntryStates.took_place
-        else:
-            e.state = EntryStates.missed
-        yield e
-
 
     def person2client(p, **kw):
         c = mti.insert_child(p, Client)
@@ -226,14 +237,6 @@ def objects():
                     client.full_clean()
                     client.save()
 
-    # CLIENTS = Cycler(
-    #     Client.objects.filter(client_state=ClientStates.coached))
-
-
-    JournalGroups = rt.models.ledger.JournalGroups
-    Company = rt.models.contacts.Company
-    from lino_xl.lib.ledger.utils import DEBIT, CREDIT
-
     # JOURNALS
 
     # rt.models.ledger.Journal.objects.get(ref="SLS").delete()
@@ -247,26 +250,81 @@ def objects():
     kw.update(dd.str2kw('name', _("Manual invoices")))
     yield MODEL.create_journal(**kw)
 
-    # kw.update(ref="GH")
-    # kw.update(dd.str2kw('name', _("Garden and hedges")))
-    # yield MODEL.create_journal(**kw)
-    #
-    # kw.update(ref="R")
-    # kw.update(dd.str2kw('name', _("Renovation works")))
-    # yield MODEL.create_journal(**kw)
-
-    # ORDERS
+    # create one orders journal for every team
 
     kw = dict(journal_group=JournalGroups.orders)
     MODEL = rt.models.orders.OrdersByJournal
 
     kw.update(dc=CREDIT, trade_type="sales")
     kw.update(printed_name=_("Order"))
-    for room in rt.models.cal.Room.objects.all():
+    # for room in rt.models.cal.Room.objects.all():
+    for story in order_stories:
+        room = story[0]
         # kw.update(dd.str2kw('name', _("Orders")))
         kw.update(room=room)
         kw.update(ref=room.name)
         kw.update(name=room.name)
-        yield MODEL.create_journal(**kw)
+        obj = MODEL.create_journal(**kw)
+        story.append(obj)
+        yield obj
 
 
+    CLIENTS = Cycler(Client.objects.all())
+    # Client.objects.filter(client_state=ClientStates.coached))
+    OFFSETS = Cycler(1, 0, 0, 1, 1, 1, 1, 2)
+    START_TIMES = Cycler("8:00", "9:00", "11:00", "13:00", "14:00")
+    DURATIONS = Cycler([Duration(x) for x in ("1:00", "0:30", "2:00", "3:00", "4:00")])
+    WORKERS = Cycler(Worker.objects.all())
+    ITEM_PRODUCTS = Cycler(Product.objects.filter(cat=consuming))
+    USERS = Cycler(User.objects.exclude(user_type=""))
+    EVERY_UNITS = Cycler([Recurrencies.get_by_value(x) for x in "ODWM"])
+
+    num = 0
+    # entry_date = datetime.date(dd.plugins.ledger.start_year, 1, 1)
+    entry_date = dd.today(-70)
+    for i in range(2):
+        for story in order_stories:
+            room, order_options, journal = story
+            num += 1
+            entry_date += ONE_DAY
+
+            user = USERS.pop()
+            st = START_TIMES.pop()
+            et = str(st + DURATIONS.pop())
+            # A Duration is not a valid type for a TimeField (Django says
+            # "expected string or bytes-like object")
+            # print(20190501, st, et)
+            order_options.update(entry_date=entry_date)
+            order_options.update(start_date=entry_date+datetime.timedelta(days=OFFSETS.pop()))
+            order_options.update(start_time=st)
+            order_options.update(end_time=et)
+            order_options.update(project=CLIENTS.pop())
+            order_options.update(every_unit=EVERY_UNITS.pop())
+            order_options.update(user=user)
+            # order_options.update(max_events=MAX_EVENTS.pop())
+            obj = journal.create_voucher(**order_options)
+            # if obj.every_unit = Recurrencies.D:
+            #     obj.monday = True
+            yield obj  # save a first time because we want to create related objects
+            yield Enrolment(order=obj, worker=WORKERS.pop())
+            if num % 5 == 0:
+                yield Enrolment(order=obj, worker=WORKERS.pop())
+            yield OrderItem(voucher=obj, product=ITEM_PRODUCTS.pop(), qty="20")
+            # ar = rt.login(user)
+            ar = BaseRequest(user=user)
+            obj.register(ar)
+            obj.update_auto_events(ar)
+            # obj.full_clean()
+            # obj.save()
+            # print(20190501, obj.every_unit)
+            yield obj  # save a second time after registering
+
+
+    qs = rt.models.cal.Event.objects.filter(
+        start_date__lt=dd.today(-10))
+    for e in qs:
+        if e.id % 5:
+            e.state = EntryStates.took_place
+        else:
+            e.state = EntryStates.missed
+        yield e

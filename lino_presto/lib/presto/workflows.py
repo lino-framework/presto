@@ -3,10 +3,7 @@
 # License: BSD (see file COPYING for details)
 """
 The default :attr:`workflows_module
-<lino.core.site.Site.workflows_module>` for :ref:`tera` applications.
-
-This workflow requires that both :mod:`lino_xl.lib.cal` and
-:mod:`lino_xl.lib.courses` are installed.
+<lino.core.site.Site.workflows_module>` for the :ref:`presto` applications.
 
 """
 from __future__ import unicode_literals
@@ -48,9 +45,3 @@ EntryStates.missed.guest_state = GuestStates.missing
 # print("20181107b", EntryStates.draft.button_text)
 
 
-from lino_xl.lib.ledger.choicelists import JournalGroups
-# JournalGroups.clear()
-add = JournalGroups.add_item
-add("05", _("Orders"), 'orders', menu_group=dd.plugins.orders)
-# add("10", _("Sales"), 'sales', menu_group=dd.plugins.sales)
-JournalGroups.sort()

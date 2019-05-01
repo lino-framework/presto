@@ -250,7 +250,7 @@ class ClientDetail(PersonDetail):
 
     invoicing_left = """
     pf_income
-    # salesrule__invoice_recipient 
+    salesrule__invoice_recipient 
     payment_term salesrule__paper_type
     """
 

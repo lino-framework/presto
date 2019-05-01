@@ -11,7 +11,8 @@ class Site(Site):
 
     # demo_fixtures = 'std demo minimal_ledger euvatrates demo_bookings payments demo2'.split()
     # demo_fixtures = 'std demo minimal_ledger demo_bookings payments demo2'.split()
-    demo_fixtures = 'std minimal_ledger demo demo2'.split()
+    # demo_fixtures = 'std minimal_ledger demo demo2'.split()
+    demo_fixtures = 'std minimal_ledger demo demo_bookings demo2 checkdata'
 
     languages = 'en de fr'
 
@@ -29,7 +30,7 @@ class Site(Site):
         yield 'lino_presto.lib.users'
         yield 'lino_presto.lib.contacts'
         yield 'lino_presto.lib.cal'
-        yield 'lino_xl.lib.ledger'
+        yield 'lino_presto.lib.ledger'
         yield 'lino_presto.lib.orders'
         yield 'lino.modlib.dashboard'
         yield 'lino_xl.lib.countries'
@@ -70,6 +71,7 @@ class Site(Site):
         self.plugins.countries.configure(country_code='BE')
         self.plugins.clients.configure(client_model='presto.Client')
         self.plugins.orders.configure(worker_model='contacts.Worker')
+        self.plugins.ledger.configure(purchase_stories=False, sales_stories=False)
         # self.plugins.comments.configure(
         #     commentable_model='tickets.Ticket')
 

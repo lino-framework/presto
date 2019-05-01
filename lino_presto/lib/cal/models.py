@@ -38,11 +38,12 @@ class Room(Room):
 
     event_type = dd.ForeignKey('cal.EventType',blank=True, null=True)
     guest_role = dd.ForeignKey("cal.GuestRole", blank=True, null=True)
+    invoicing_area = dd.ForeignKey('invoicing.Area', blank=True, null=True)
 
 
 class RoomDetail(dd.DetailLayout):
     main = """
-    id name event_type guest_role
+    id invoicing_area name event_type guest_role
     company contact_person contact_role
     cal.EntriesByRoom
     """
@@ -96,6 +97,8 @@ class Event(Event, InvoiceGenerator):
 
         qs = cls.objects.all()
         qs = qs.filter(state=EntryStates.took_place)
+        if plan.area_id:
+            qs = qs.filter(room__invoicing_area=plan.area)
 
         if plan.order is not None:
             qs = qs.filter(**gfk2lookup(cls.owner, plan.order))

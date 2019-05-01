@@ -19,12 +19,12 @@ class Enrolment(Enrolment):
         return self.guest_role or self.order.journal.room.guest_role
 
 
-class Missions(Orders):
-    label = _("Missions")
-
-
-class Contracts(Orders):
-    label = _("Contracts")
+# class Missions(Orders):
+#     label = _("Missions")
+#
+#
+# class Contracts(Orders):
+#     label = _("Contracts")
 
 
 # OrderAreas.clear()

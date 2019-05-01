@@ -26,7 +26,7 @@ class Plan(Plan):
     order = dd.ForeignKey('orders.Order', blank=True, null=True)
 
 
-Plans.detail_layout = """user journal today max_date
+Plans.detail_layout = """user area today max_date
     partner order
     invoicing.ItemsByPlan
     """
@@ -50,7 +50,7 @@ class StartInvoicingForOrder(StartInvoicing):
     def get_options(self, ar):
         order = ar.selected_rows[0]
         assert isinstance(order, rt.models.orders.Order)
-        return dict(order=order, partner=None)
+        return dict(order=order, partner=None, area=order.journal.room.invoicing_area)
 
 
 @dd.receiver(dd.pre_analyze)
