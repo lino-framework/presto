@@ -267,4 +267,8 @@ Datum nicht fakturieren"
 Aufträge drucken
 ================
 
-Die Vorlage dazu ist noch nicht gemacht.
+Auf den Button `printer` klicken.  Lino öffnet dann das druckbare PDF-Dokument
+in einem neuen Browserfenster. Beim ersten Mal muss der Browser gesagt
+bekommen, dass Lino neue enster öffnen darf.
+
+Inhalt und Layout des gedruckten Dokuments sind noch zu besprechen.
