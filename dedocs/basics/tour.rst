@@ -6,6 +6,10 @@
 Besichtigungstour
 =================
 
+.. contents::
+  :local:
+
+
 Kontakte
 ========
 
@@ -46,19 +50,56 @@ Kalender
 ========
 
 Ein **Termin** ist, wenn an einem bestimmten Tag und Uhrzeit ein bestimmter
-Arbeiter (oder mehrere) zu einem bestimmten Klienten gehen. Ein Termin muss
-einem Auftrag zugewiesen sein, um **fakturierbar** zu sein. Man kann in Lino
-auch **unfakturierbare Termine** verwalten (z.B. interne Besprechungen,
-Urlaubstage, sonstige Termine der Mitarbeiter, ...)
+Arbeiter (oder mehrere) zu einem bestimmten Klienten gehen.
+
+Fakturierbare Termine sind mit einem Auftrag **verknüpft**. Man kann in Lino
+auch **unfakturierte Termine** verwalten (z.B. interne Besprechungen,
+Urlaubstage, sonstige Termine der Mitarbeiter, ...).
+
+Die Termine eines bestimmten Auftrags kann man im Detail des Auftrags (Reiter
+"Kalender") sehen.
+
+Alle Termine eines bestimmten Klienten (für alle Aufträge dieses Klienten,
+sowie unfakturierte Termine) kann man im Detail des Klienten (Reiter
+"Kalendereinträge") sehen.
+
+Die Termine eines bestimmten Arbeiters kann man im Detail des Arbeiters
+(Reiter "Anwesenheiten") sehen.
+
+Über :menuselection:`Kalender --> Kalenderansicht` kann man alle Kalendereinträge
+global einsehen (pro Tag, Woche oder Monat).
+
+Im Menü :menuselection:`Kalender` gibt es diverse Tabellen von Terminlisten
+(manche davon können vielleicht raus, und manche fehlen vielleicht).  Zum
+Beispiel "Überfällig Termine" sind Termine, die älter als eine Woche sind und
+bei denen man noch nicht bestätigt hat, ob sie stattgefunden haben oder nicht.
+
+Der **Autor** eines Kalendereintrags ist der administrative Mitarbeiter, der
+den Termin erstellt hat (manuell oder automatisch).
+
+Die **Arbeiter** eines Kalendereintrags stehen im Panel "Anwesenheiten".
+
+Ob ein fakturierbarer Termin bereits fakturiert ist, kann man im Detail dieses
+Termins (Reiter "Mehr") sehen. Dort stehen sowohl Dienstleistungen als auch
+Nebenkosten,
+
 
 Teams
 =====
 
-Für die verschiedenen Tätigkeitsbereiche eines Betriebs zu differenzieren, kann
-der Systemverwalter **Teams** konfigurieren.
-Jeder Auftrag muss einem Team zugewiesen sein.
+Um die verschiedenen Tätigkeitsbereiche eines Betriebs zu differenzieren, kann
+der Systemverwalter **Teams** und entsprechende **Auftragsjournale** konfigurieren.
 Pro Auftragsjournal kann man definieren, welches Team für Aufträge in diesem Journal zuständig ist.
 Eventuell können mehrere Auftragsjournale pro Team angelegt werden.
+
+Fakturierungsbereiche
+=====================
+
+Jedes Team unterliegt einem **Fakturierungsbereich**.
+à priori gibt es deren zwei:
+
+- handwerkliche Arbeiten
+- regelmässige Dienstleistungen
 
 
 Beispiel 1
@@ -109,17 +150,59 @@ ausgefüllten Rechnung:
   - einzelne Termine mit |insert| im Panel "Termine" im Reiter "Kalender"
   - `Terminvorschläge generieren`_
 
-  - Workflow : jeder Termin steht zunächst im Status "Vorschlag" bzw.
+  - Bachte das Feld **Workflow** : jeder Termin steht zunächst im Status "Vorschlag" bzw.
     "Geplant", und man muss auf :guilabel:`☑` klicken, damit er in den Zustand
     "Stattgefunden" wechselt. Ansonsten erstellt Lino keine Rechnung.
 
 - :kbd:`Escape` um auf den Auftrag zurück zu springen.
 
-- Auf "Fakturieren" klicken.
+- Auf |basket| klicken um einen **Fakturierungsplan** für diesen Auftrag zu
+  starten.
+  Ein Fakturierungsplan ist, wenn ein Benutzer plant, eine Serie von Rechnungen erstellen zu lassen.
+  Lino zeigt hier normalerweise einen Vorschlag an.
 
-  NB: Lino fakturiert immer alle Termine eines Auftrags.
+- Vergleiche den von Lino vorgeschlagenen Betrag der Rechnung mit der händisch
+  erstellten Rechnung.  Falls ein Unterschied ist: entweder :kbd:`Escape` und den
+  Auftrag überprüfen oder Rechnung trotzdem erstellen lassen und dann manuell
+  bearbeiten.
 
-- Im Fakturierungsplan auf
+- Im Fakturierungsplan auf |money| klicken, um die vorgeschlagenen
+  Rechnungen zu generieren.
+
+- Wenn eine Rechnung generiert wurde, steht im betreffenden Vorschlag nicht
+  mehr ein |money|, sondern die anklickbare Nummer der erstellten Rechnung.  Auf
+  diese Nummer kann man klicken, um die Rechnung im Detail anzuzeigen.
+
+Rechnung manuell bearbeiten
+===========================
+
+Man kann eine erstellte Rechnung jederzeit manuell bearbeiten:
+
+- Die Rechnung im Detail anzeigen (z.B. über den Fakturierungsplan, oder über
+  :menuselection:`Verkauf --> (Journal)` und dann Doppelklick auf der
+  gewünschten Rechnung).
+
+- Im Feld :guilabel:`Workflow` auf "Entwurf" klicken falls die Rechnung auf
+  "Registriert" steht.
+
+- Inhalt bearbeiten
+
+- Im Feld :guilabel:`Workflow` auf "Registriert" klicken, um sie wieder zu
+  registrieren.
+
+Automatikfakturierung
+=====================
+
+Lino fakturiert immer alle stattgefundenen Termine eines Auftrags (die noch
+nicht fakturiert sind).
+
+Falls ein Termin nicht fakturiert werden soll:
+
+- Den Termin löschen
+- Status auf "Abgesagt" (⚕) oder "Verpasst" (☉) setzen
+
+Falls nötig könnten wir einen globalen Parameter definieren "Termine vor diesem
+Datum nicht fakturieren"
 
 
 Terminvorschläge generieren

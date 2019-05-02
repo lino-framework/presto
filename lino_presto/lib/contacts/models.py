@@ -108,7 +108,7 @@ dd.update_field(Person, 'first_name', blank=False)
 
 class PersonDetail(PersonDetail):
 
-    main = "general contact humanlinks misc"
+    main = "general contact humanlinks misc cal.GuestsByPartner"
 
     general = dd.Panel("""
     overview:20 general2:40 general3:40
@@ -151,7 +151,7 @@ class PersonDetail(PersonDetail):
     misc = dd.Panel("""
     url
     created modified
-    # notes.NotesByPartner
+    # notes.NotesByPartner    
     """, label=_("Miscellaneous"))
 
 

@@ -224,7 +224,7 @@ from lino_presto.lib.contacts.models import PersonDetail
 
 
 class ClientDetail(PersonDetail):
-    main = "general humanlinks #address client invoicing #more "
+    main = "general humanlinks #address client invoicing #more cal.EntriesByProject"
 
     # general = dd.Panel("""
     # overview:30 general2:20 #courses.EnrolmentsByPupil:30

@@ -77,6 +77,8 @@ lino_presto.lib.cal
 lino_presto.lib.cal.fixtures
 lino_presto.lib.invoicing
 lino_presto.lib.invoicing.fixtures
+lino_presto.lib.ledger
+lino_presto.lib.ledger.fixtures
 lino_presto.lib.orders
 lino_presto.lib.presto
 lino_presto.lib.presto.fixtures
