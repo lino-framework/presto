@@ -33,7 +33,7 @@ können definiert werden (z.B. "Referenzadresse" oder "Wohnsitz")
 Pro Klient kann ein **Grund der Anfrage** (oder mehrere) angegeben werden im
 Panel **Interessen** (Reiter "Klient").  Die **Themen**, für die sich ein
 Klient "interessieren" kann, sind konfigurierbar unter
-:menuselction:`Konfigurierung --> Themen --> Themen`.
+:menuselection:`Konfigurierung --> Themen --> Themen`.
 Eventuell kann Wortschatz und Einordnung leicht geändert werden.
 
 Aufträge
