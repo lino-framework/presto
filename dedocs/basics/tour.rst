@@ -30,7 +30,11 @@ Mitgliedschaft in Haushalten) und familiäere Beziehungen erfasst werden.
 Pro Partner können mehrere Adressen hinterlegt werden. Mögliche Adressenarten
 können definiert werden (z.B. "Referenzadresse" oder "Wohnsitz")
 
-Pro Klient kann ein oder mehrerere Grund der Anfrage (mehrfach Auswahl)
+Pro Klient kann ein **Grund der Anfrage** (oder mehrere) angegeben werden im
+Panel **Interessen** (Reiter "Klient").  Die **Themen**, für die sich ein
+Klient "interessieren" kann, sind konfigurierbar unter
+:menuselction:`Konfigurierung --> Themen --> Themen`.
+Eventuell kann Wortschatz und Einordnung leicht geändert werden.
 
 Aufträge
 ========
@@ -46,15 +50,34 @@ die pro Einsatz fakturiert werden.
 Ein Auftrag muss immer einem Klienten zugewiesen sein und kann optional einen
 anderen Partner als Rechnungsempänger haben.
 
-Kalender
+Termine
 ========
 
 Ein **Termin** ist, wenn an einem bestimmten Tag und Uhrzeit ein bestimmter
 Arbeiter (oder mehrere) zu einem bestimmten Klienten gehen.
 
-Fakturierbare Termine sind mit einem Auftrag **verknüpft**. Man kann in Lino
+Ein Termin wird manchmal auch allgemeiner als **Kalendereintrag** bezeichnet.
+Der Unterschied ist, dass z.B. ein Urlaubstag oder ein Feiertag ein
+Kalendereintrag sein kann, obwohl es kein Termin ist.
+
+**Fakturierbare Termine** sind mit einem Auftrag **verknüpft**. Man kann in Lino
 auch **unfakturierte Termine** verwalten (z.B. interne Besprechungen,
 Urlaubstage, sonstige Termine der Mitarbeiter, ...).
+
+Der **Autor** eines Kalendereintrags ist der administrative Mitarbeiter, der
+den Termin erstellt hat (manuell oder automatisch).
+
+Die **Arbeiter** eines Kalendereintrags stehen im Panel "Anwesenheiten".
+
+Ob ein fakturierbarer Termin bereits fakturiert ist, kann man im Detail dieses
+Termins (Reiter "Mehr") sehen. Dort stehen sowohl Dienstleistungen als auch
+Nebenkosten,
+
+Kalenderansichten
+=================
+
+Über :menuselection:`Kalender --> Kalenderansicht` kann man alle Kalendereinträge
+global einsehen (pro Tag, Woche oder pro Monat).
 
 Die Termine eines bestimmten Auftrags kann man im Detail des Auftrags (Reiter
 "Kalender") sehen.
@@ -66,22 +89,14 @@ sowie unfakturierte Termine) kann man im Detail des Klienten (Reiter
 Die Termine eines bestimmten Arbeiters kann man im Detail des Arbeiters
 (Reiter "Anwesenheiten") sehen.
 
-Über :menuselection:`Kalender --> Kalenderansicht` kann man alle Kalendereinträge
-global einsehen (pro Tag, Woche oder Monat).
+Die Termine eines bestimmten Teams kann man im Detail des Teams
+(Panel "Kalendereinträge") sehen.
 
-Im Menü :menuselection:`Kalender` gibt es diverse Tabellen von Terminlisten
-(manche davon können vielleicht raus, und manche fehlen vielleicht).  Zum
+Im Menü :menuselection:`Kalender` gibt es noch weitere Kalenderansichten. Zum
 Beispiel "Überfällig Termine" sind Termine, die älter als eine Woche sind und
 bei denen man noch nicht bestätigt hat, ob sie stattgefunden haben oder nicht.
-
-Der **Autor** eines Kalendereintrags ist der administrative Mitarbeiter, der
-den Termin erstellt hat (manuell oder automatisch).
-
-Die **Arbeiter** eines Kalendereintrags stehen im Panel "Anwesenheiten".
-
-Ob ein fakturierbarer Termin bereits fakturiert ist, kann man im Detail dieses
-Termins (Reiter "Mehr") sehen. Dort stehen sowohl Dienstleistungen als auch
-Nebenkosten,
+Manche dieser Ansichten können vielleicht raus, und manche fehlen vielleicht
+noch.
 
 
 Teams
@@ -96,14 +111,19 @@ Fakturierungsbereiche
 =====================
 
 Jedes Team unterliegt einem **Fakturierungsbereich**.
-à priori gibt es deren zwei:
+Diese können konfiguriert werden
+Laut Lastenheft gibt es deren zwei:
 
-- handwerkliche Arbeiten
-- regelmässige Dienstleistungen
+- **handwerkliche Arbeiten** werden nach jedem Einsatz ausgehend von der händisch
+  bereits ausgefüllten und dem Kunden bereits ausgehändigten Rechnung erfasst.
+
+- Für **regelmäßige Dienstleistungen** (sh. `Auftrag mit regelmäßigen Terminen`_)
+  werden die Rechnungen für alle Aufträge auf einmal erstellt mit
+  :menuselection:`Verkauf --> Rechnungen erstellen`
 
 
-Beispiel 1
-==========
+Beispiel 1 : Einfachen Einsatz nachträglich erfassen
+====================================================
 
 Erfassung eines einfachen einmaligen Einsatzes ausgehend von der händisch
 ausgefüllten Rechnung:
@@ -148,9 +168,14 @@ ausgefüllten Rechnung:
 - Termin(e) erfassen:
 
   - einzelne Termine mit |insert| im Panel "Termine" im Reiter "Kalender"
-  - `Terminvorschläge generieren`_
+  - Siehe auch `Auftrag mit regelmäßigen Terminen`_
 
-  - Bachte das Feld **Workflow** : jeder Termin steht zunächst im Status "Vorschlag" bzw.
+  - Beachte, dass die Arbeiter des Auftrags automatisch in den **Anwesenheiten**
+    des Termins stehen.
+    Jeder einzelne Termin hat eine Liste der
+    anwesenden Arbeiter, die unter Umständen von Einsatz zu Einsatz ändern kann.
+
+  - Beachte das Feld **Workflow** : jeder Termin steht zunächst im Status "Vorschlag" bzw.
     "Geplant", und man muss auf :guilabel:`☑` klicken, damit er in den Zustand
     "Stattgefunden" wechselt. Ansonsten erstellt Lino keine Rechnung.
 
@@ -190,6 +215,40 @@ Man kann eine erstellte Rechnung jederzeit manuell bearbeiten:
 - Im Feld :guilabel:`Workflow` auf "Registriert" klicken, um sie wieder zu
   registrieren.
 
+Auftrag mit regelmäßigen Terminen
+=================================
+
+Lino kann Terminvorschläge automatisch generieren lasen.
+
+- Gehe auf den Auftrag und aktiviere den Reiter "Kalender"
+
+- Fülle die Felder aus, die die Kriterien definieren zum Erstellen der Terminserie:
+
+  - "Beginnt am", "Beginnt um" und "Endet um" : wann der erste Einsatz stattfinden soll
+  - Achtung: "Enddatum" sollte immer frei sein ausser bei Terminen, die mehrere Tage dauern
+  - "Wiederholung" und "... alle"
+
+  - "Anzahl Termine" und "Termine generieren bis" : normalerweise wird nur
+    eines dieser beiden Felder ausgefüllt.  Lino hört auf, wenn die erste der
+    beiden Grenzen erreicht ist. Falls beide Felder leer sind, wird ein
+    konfigurierbarer Höchstwert angenommen
+    (:menuselection:`Konfigurierung --> System --> Site-Parameter`).
+
+  - Wenn **kein** Wochentag angekreuzt ist, gilt der Wochentag nicht als Kriterium
+
+- Klicke auf |lightning| und beobachte das Panel Kalendereinträge
+
+Den Button |lightning| kannst du so oft betätigen wie du willst (und nach jeder
+Änderung in den Kriterien musst du dies selber tun). Lino verändert nur
+Terminvorschläge, die noch nicht manuell bearbeitet wurden.
+
+Der Button :guilabel:`☷` dient dazu, die Anwesenheitslisten der erstellten
+Terminvorschläge zu aktualisieren. Also wenn du
+einen Arbeiter im Auftrag auswechselst, nachdem du schon auf |lightning|
+geklickt hattest, möchtest du wahrscheinlich auch auf :guilabel:`☷` klicken.
+Auch hier werden natürlich nur Termine aktualisiert, die noch nicht
+stattgefunden haben
+
 Automatikfakturierung
 =====================
 
@@ -205,9 +264,7 @@ Falls nötig könnten wir einen globalen Parameter definieren "Termine vor diese
 Datum nicht fakturieren"
 
 
-Terminvorschläge generieren
-===========================
+Aufträge drucken
+================
 
-- Gehe auf den Auftrag und aktiviere den Reiter Kalender
-- Fülle die Felder aus
-- Klicke auf |flash|
+Die Vorlage dazu ist noch nicht gemacht.
