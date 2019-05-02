@@ -34,7 +34,7 @@ Pro Klient kann ein **Grund der Anfrage** (oder mehrere) angegeben werden im
 Panel **Interessen** (Reiter "Klient").  Die **Themen**, für die sich ein
 Klient "interessieren" kann, sind konfigurierbar unter
 :menuselection:`Konfigurierung --> Themen --> Themen`.
-Eventuell kann Wortschatz und Einordnung leicht geändert werden.
+Falls nötig Wortschatz und/oder Einordnung geändert werden.
 
 Aufträge
 ========
