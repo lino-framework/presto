@@ -68,8 +68,10 @@ class Site(Site):
 
     def setup_plugins(self):
         super(Site, self).setup_plugins()
+        self.plugins.healthcare.configure(client_model='presto.Client')
+        self.plugins.topics.configure(menu_group='contacts')
         self.plugins.countries.configure(country_code='BE')
-        self.plugins.clients.configure(client_model='presto.Client')
+        self.plugins.clients.configure(client_model='presto.Client', menu_group='contacts')
         self.plugins.orders.configure(worker_model='contacts.Worker')
         self.plugins.ledger.configure(purchase_stories=False, sales_stories=False)
         # self.plugins.comments.configure(

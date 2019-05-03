@@ -7,9 +7,7 @@ Grundkurs
 
    tour
    intro
-   workflow
    settings
-   schema
    suchen
 
 

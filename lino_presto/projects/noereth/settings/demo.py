@@ -1,6 +1,7 @@
 import datetime
 from ..settings import *
 class Site(Site):
+    languages = "de fr en"
     is_demo_site = True
     the_demo_date = datetime.date(2017, 3, 12)
     # def setup_plugins(self):

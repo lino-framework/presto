@@ -7,10 +7,6 @@ Lino Presto Benutzerhandbuch
 
    about
    basics/index
-   contacts/index
-   orders/index
-   invoicing/index
-   system/index
+   ref
    Releasenotizen <changes/index>
-
 

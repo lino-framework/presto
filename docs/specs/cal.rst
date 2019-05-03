@@ -38,16 +38,17 @@ Lino Presto injects a field :attr:`lino_xl.lib.ledger.Journal.room`.
 >>> print(rt.models.cal.Room._meta.verbose_name)
 Team
 
->>> rt.show(cal.Rooms)
-============= ================== ================== =====================
- Designation   Designation (de)   Designation (fr)   Calendar entry type
-------------- ------------------ ------------------ ---------------------
- Garden        Garten             Garden             Outside work
- Moves         Umzüge             Moves              Outside work
- Renovation    Renovierung        Renovation         Inside work
- Home help     Haushaltshilfe     Home help          Inside work
- Home care     Heimpflege         Home care          Inside work
- Office        Büro               Bureau             Office work
-============= ================== ================== =====================
+>>> rt.show(cal.Rooms, language="en")
+================ ================== ================== =====================
+ Designation      Designation (fr)   Designation (en)   Calendar entry type
+---------------- ------------------ ------------------ ---------------------
+ Garten           Garten             Garden             Outside work
+ Umzüge           Umzüge             Moves              Outside work
+ Renovierung      Renovierung        Renovation         Inside work
+ Haushaltshilfe   Haushaltshilfe     Home help          Inside work
+ Heimpflege       Heimpflege         Home care          Inside work
+ Büro             Bureau             Office             Office work
+================ ================== ================== =====================
 <BLANKLINE>
+
 

@@ -29,6 +29,9 @@ from lino_xl.lib.ledger.utils import DEBIT, CREDIT
 from lino_xl.lib.ledger.choicelists import VoucherStates, JournalGroups
 from lino_xl.lib.cal.choicelists import Recurrencies, Weekdays, EntryStates, PlannerColumns
 
+Place = rt.models.countries.Place
+Country = rt.models.countries.Country
+Role = rt.models.contacts.Role
 Partner = rt.models.contacts.Partner
 Person = rt.models.contacts.Person
 Worker = rt.models.contacts.Worker
@@ -53,7 +56,7 @@ Topic = rt.models.topics.Topic
 Journal = rt.models.ledger.Journal
 PriceRule = rt.models.products.PriceRule
 Area = rt.models.invoicing.Area
-
+ClientContactType = rt.models.clients.ClientContactType
 
 def objects():
 
@@ -86,6 +89,29 @@ def objects():
     yield ahmed
     maria= Worker(first_name="Maria", gender=dd.Genders.female)
     yield maria
+
+    eupen = Place.objects.get(name__exact='Eupen')
+    kettenis = Place.objects.get(name__exact='Kettenis')
+    belgium = Country.objects.get(isocode__exact='BE')
+
+    kw = dd.str2kw('name', _("Employment office"))  # Arbeitsvermittler
+    cct = ClientContactType(**kw)
+    yield cct
+    kw = dict(client_contact_type=cct, country=belgium, city=eupen)
+    adg = Company(name=u"Arbeitsamt der D.G.", **kw)
+    adg.save()
+    yield adg
+    bernard = Person.objects.get(name__exact="Bodard Bernard")
+    adg_dir = Role(company=adg, person=bernard, type_id=1)
+    yield adg_dir
+
+    def cctype(name, **kw):
+        return ClientContactType(**dd.str2kw('name', name, **kw))
+
+    yield cctype(_("Landlord"))  # Vermieter
+    yield cctype(_("Wealth manager"))  # Verwalter des persönlichen Vermögens
+    yield cctype(_("Personal manager"))  # Verwalter des persönlichen Vermögens
+    yield cctype(_("Delegated contact"))  # Delegierter Kontakt
 
     sales_on_services = named(
         Account, _("Sales on services"),

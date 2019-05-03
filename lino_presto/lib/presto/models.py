@@ -29,7 +29,7 @@ from lino_presto.lib.contacts.models import Person
 # from lino_xl.lib.cv.mixins import BiographyOwner
 # from lino.utils.mldbc.fields import BabelVirtualField
 # from lino_xl.lib.courses.mixins import Enrollable
-from lino_xl.lib.healthcare.mixins import HealthcareClient
+# from lino_xl.lib.healthcare.mixins import HealthcareClient
 
 from lino.mixins.periods import ObservedDateRange
 
@@ -101,13 +101,8 @@ class LifeModes(dd.Table):
 @dd.python_2_unicode_compatible
 class Client(Person,  SSIN,
              UserAuthored,
-             # HealthcareClient,
-             # Referrable,
              CreatedModified,
-             ClientBase,
-             # Lockable,
-             # Notable,
-             HealthcareClient):
+             ClientBase):
     class Meta:
         app_label = 'presto'
         verbose_name = _("Client")
@@ -240,7 +235,7 @@ class ClientDetail(PersonDetail):
     national_id nationality:15 civil_state life_mode
     client_state death_date
     #courses.EnrolmentsByPupil:30 
-    clients.ContactsByClient topics.InterestsByPartner    
+    topics.InterestsByPartner healthcare.SituationsByClient clients.ContactsByClient      
     """, label=_("Client"))
 
     invoicing = dd.Panel("""

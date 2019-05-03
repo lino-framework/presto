@@ -15,20 +15,7 @@ The menu
 
 
 >>> rt.login('robin').show_menu()
-... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF +SKIP
-Not yet tested because menu items for calendar entries aren't ready
+... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF -SKIP
 
 
->>> rt.show(ledger.JournalGroups)
-======= =========== ===========
- value   name        text
-------- ----------- -----------
- 05      orders      Orders
- 10      sales       Sales
- 20      purchases   Purchases
- 30      wages       Wages
- 40      financial   Financial
- 50      vat         VAT
-======= =========== ===========
-<BLANKLINE>
 

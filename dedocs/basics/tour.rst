@@ -39,30 +39,51 @@ Falls nötig Wortschatz und/oder Einordnung geändert werden.
 Aufträge
 ========
 
-Ein **Auftrag** ist, wenn man für einen bestimmten Klienten eine Serie von
-Terminen plant, bei denen ein bestimmter Arbeiter arbeitet.  Die Serie von
-Terminen kann sich auf einen einzigen Einsatz beschränken. Aufträge sind in
-*Journale** gruppiert. Der Auftrag gilt als Grundlage für die Fakturierung.
-Ohne Auftrag keine Rechnung.  Im Auftrag können neben den vorgesehenen
-Arbeitern auch Fahrtkosten und sonstige planbare Nebenkosten erfasst werden,
-die pro Einsatz fakturiert werden.
+Ein **Auftrag** ist, wenn man eine Serie von
+*Einsätzen* plant, bei denen eine Serie von *Arbeitern* eine bestimmte Aufgabe
+für einen bestimmten *Klienten* verrichtet.
+Die Serie von Einsätzen kann sich auf einen einzigen Einsatz beschränken.
+Die Serie von Arbeitern kann sich auf einen einzigen Arbeiter beschränken.
 
-Ein Auftrag muss immer einem Klienten zugewiesen sein und kann optional einen
-anderen Partner als Rechnungsempänger haben.
+Ein Auftrag muss immer einem *Klienten* zugewiesen sein und kann optional einen
+anderen *Partner* als Rechnungsempänger haben.
+
+Jeder einzelne Einsatz hat eine Liste der anwesenden Arbeiter, die prinzipiell
+immer die Gleiche ist, sich unter Umständen jedoch von Mal zu Mal ändern kann.
+
+Der Auftrag gilt als Grundlage für die Fakturierung. Ohne Auftrag keine
+Rechnung.  Im Auftrag können neben den vorgesehenen Arbeitern auch Fahrtkosten
+und sonstige planbare Nebenkosten erfasst werden, die pro Einsatz fakturiert
+werden.
+
+Aufträge sind in **Journale** gruppiert. Ein Journal ist eine Serie von
+chronologisch geordneten und durchlaufend nummerierten Dokumenten.
+
+Um die verschiedenen **Tätigkeitsbereiche** des Betriebs zu differenzieren, kann
+der Systemverwalter **Teams** konfigurieren.
+
+Pro Journal kann man definieren, welches Team für die Aufträge in diesem
+Journal zuständig ist. Eventuell können mehrere Journale pro Team angelegt
+werden.
+
 
 Termine
 ========
 
 Ein **Termin** ist, wenn an einem bestimmten Tag und Uhrzeit ein bestimmter
-Arbeiter (oder mehrere) zu einem bestimmten Klienten gehen.
+Arbeiter (oder mehrere) sich an einem bestimmten Ort mit einem bestimmten
+Klienten verabredet hat.
 
 Ein Termin wird manchmal auch allgemeiner als **Kalendereintrag** bezeichnet.
 Der Unterschied ist, dass z.B. ein Urlaubstag oder ein Feiertag ein
 Kalendereintrag sein kann, obwohl es kein Termin ist.
 
-**Fakturierbare Termine** sind mit einem Auftrag **verknüpft**. Man kann in Lino
-auch **unfakturierte Termine** verwalten (z.B. interne Besprechungen,
-Urlaubstage, sonstige Termine der Mitarbeiter, ...).
+Ein **Einsatz** ist ein Termin im Rahmen eines Auftrags, d.h. ein
+Kalendereintrag, der mit einem Auftrag **verknüpft** ist.
+
+Man kann in Lino auch **unfakturierte Termine** verwalten, d.h. die nicht mit
+einem Auftrag verknüpft sind (z.B. interne Besprechungen, Urlaubstage, sonstige
+Termine der Mitarbeiter, ...).
 
 Der **Autor** eines Kalendereintrags ist der administrative Mitarbeiter, der
 den Termin erstellt hat (manuell oder automatisch).
@@ -99,31 +120,40 @@ Manche dieser Ansichten können vielleicht raus, und manche fehlen vielleicht
 noch.
 
 
-Teams
-=====
-
-Um die verschiedenen Tätigkeitsbereiche eines Betriebs zu differenzieren, kann
-der Systemverwalter **Teams** und entsprechende **Auftragsjournale** konfigurieren.
-Pro Auftragsjournal kann man definieren, welches Team für Aufträge in diesem Journal zuständig ist.
-Eventuell können mehrere Auftragsjournale pro Team angelegt werden.
-
 Fakturierungsbereiche
 =====================
 
 Jedes Team unterliegt einem **Fakturierungsbereich**.
-Diese können konfiguriert werden
-Laut Lastenheft gibt es deren zwei:
+Diese können konfiguriert werden und bis auf weiteres gibt es deren zwei:
 
-- **handwerkliche Arbeiten** werden nach jedem Einsatz ausgehend von der händisch
-  bereits ausgefüllten und dem Kunden bereits ausgehändigten Rechnung erfasst.
+- Für **punktuelle Arbeiten** füllt
+  der Arbeiter oder die Mannschaft nach jedem Einsatz
+  eine **handgeschriebene Rechnung** aus
+  und gibt sie dem Kunden.
+
+  Die Durchschläge der Rechnungen (= Arbeitsberichte) werden im Büro
+  gesammelt.
+  Jeder Einsatz wird ausgehend von dieser Rechnung erfasst.
+  Diese Einsätze müssen nicht unbedingt in Lino geplant werden.
+  Dies betrifft die meisten Arbeitsbereiche (Garten, Umzug, ....)
+
+  In der Praxis können auch die bisher punktuellen Einsätze schon in Lino
+  geplant werden.  In diesem Fall muss nach dem Einsatz lediglich die Rechnung
+  vom Auftrag aus erstellt werden.
 
 - Für **regelmäßige Dienstleistungen** (sh. `Auftrag mit regelmäßigen Terminen`_)
-  werden die Rechnungen für alle Aufträge auf einmal erstellt mit
-  :menuselection:`Verkauf --> Rechnungen erstellen`
+  wird die Terminplanung in Lino gemacht, und auch
+  Rechnungen werden von Lino automatisch erstellt (siehe
+  :doc:`/invoicing/index`).
+  Dies betrifft momentan die Arbeiten im Bereich
+  *Haushaltshilfe*.
+
+Reine Lagerbesichtungen werden als **Null-Rechnungen** erfasst, damit Lino
+"weiß", dass die Zeit ans ÖSHZ fakturiert werden soll.
 
 
-Beispiel 1 : Einfachen Einsatz nachträglich erfassen
-====================================================
+Einfachen Einsatz nachträglich erfassen
+=======================================
 
 Erfassung eines einfachen einmaligen Einsatzes ausgehend von der händisch
 ausgefüllten Rechnung:
@@ -165,15 +195,14 @@ ausgefüllten Rechnung:
 
 - Auftrag ausdrucken (noch nicht programmiert)
 
-- Termin(e) erfassen:
+- Termin erfassen:
 
   - einzelne Termine mit |insert| im Panel "Termine" im Reiter "Kalender"
+
   - Siehe auch `Auftrag mit regelmäßigen Terminen`_
 
-  - Beachte, dass die Arbeiter des Auftrags automatisch in den **Anwesenheiten**
-    des Termins stehen.
-    Jeder einzelne Termin hat eine Liste der
-    anwesenden Arbeiter, die unter Umständen von Einsatz zu Einsatz ändern kann.
+  - Beachte, dass der oder die im Auftrag erfassten Arbeiter automatisch in den
+    **Anwesenheiten** des Termins stehen.
 
   - Beachte das Feld **Workflow** : jeder Termin steht zunächst im Status "Vorschlag" bzw.
     "Geplant", und man muss auf :guilabel:`☑` klicken, damit er in den Zustand
@@ -182,9 +211,10 @@ ausgefüllten Rechnung:
 - :kbd:`Escape` um auf den Auftrag zurück zu springen.
 
 - Auf |basket| klicken um einen **Fakturierungsplan** für diesen Auftrag zu
-  starten.
-  Ein Fakturierungsplan ist, wenn ein Benutzer plant, eine Serie von Rechnungen erstellen zu lassen.
-  Lino zeigt hier normalerweise einen Vorschlag an.
+  starten. Ein Fakturierungsplan ist, wenn ein Benutzer plant, eine Serie
+  on Rechnungen erstellen zu lassen.
+
+  Lino zeigt nun genau einen Vorschlag an, weil es nur einen Termin gibt.
 
 - Vergleiche den von Lino vorgeschlagenen Betrag der Rechnung mit der händisch
   erstellten Rechnung.  Falls ein Unterschied ist: entweder :kbd:`Escape` und den
@@ -218,14 +248,18 @@ Man kann eine erstellte Rechnung jederzeit manuell bearbeiten:
 Auftrag mit regelmäßigen Terminen
 =================================
 
-Lino kann Terminvorschläge automatisch generieren lasen.
+Lino kann Terminvorschläge automatisch generieren.
+Dabei wird pro Klient ein Auftrag erstellt, in dem die gewünschten Wochentage
+und Uhrzeiten festgehalten werden.  Lino generiert daraufhin Terminvorschläge.
+Jeder einzelne Termin kann manuell verändert werden.  Die Terminvorschläge
+müssen in Lino bestätigt werden, wenn sie stattgefunden haben.
 
 - Gehe auf den Auftrag und aktiviere den Reiter "Kalender"
 
 - Fülle die Felder aus, die die Kriterien definieren zum Erstellen der Terminserie:
 
   - "Beginnt am", "Beginnt um" und "Endet um" : wann der erste Einsatz stattfinden soll
-  - Achtung: "Enddatum" sollte immer frei sein ausser bei Terminen, die mehrere Tage dauern
+  - "Enddatum" sollte immer frei sein ausser bei Terminen, die mehrere Tage dauern
   - "Wiederholung" und "... alle"
 
   - "Anzahl Termine" und "Termine generieren bis" : normalerweise wird nur
@@ -249,20 +283,6 @@ geklickt hattest, möchtest du wahrscheinlich auch auf :guilabel:`☷` klicken.
 Auch hier werden natürlich nur Termine aktualisiert, die noch nicht
 stattgefunden haben
 
-Automatikfakturierung
-=====================
-
-Lino fakturiert immer alle stattgefundenen Termine eines Auftrags (die noch
-nicht fakturiert sind).
-
-Falls ein Termin nicht fakturiert werden soll:
-
-- Den Termin löschen
-- Status auf "Abgesagt" (⚕) oder "Verpasst" (☉) setzen
-
-Falls nötig könnten wir einen globalen Parameter definieren "Termine vor diesem
-Datum nicht fakturieren"
-
 
 Aufträge drucken
 ================
@@ -272,3 +292,13 @@ in einem neuen Browserfenster. Beim ersten Mal muss der Browser gesagt
 bekommen, dass Lino neue enster öffnen darf.
 
 Inhalt und Layout des gedruckten Dokuments sind noch zu besprechen.
+
+
+Rechnungen an die ÖSHZ
+======================
+
+Rechnungen an die ÖSHZ werden auf Basis der an den Kunden fakturierten
+Dienstleistungen erstellt.  Eigentlich sind das in Lino eher zusammenfassende
+Aktivitätsberichte, sie werden erst beim Erfassen in der Buchhaltung zu
+Rechnungen.
+

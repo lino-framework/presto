@@ -8,6 +8,14 @@
 Dies ist der erste Prototyp, der auf Basis des von Thierry erstellten
 Lastenhefts angefertigt wurde.
 
+Theoretisch gehen wir einfach nur das :doc:`/basics/tour` durch.  Dieses wird
+sich nach dem Release noch weiter verändern.
+
+Zu klären: Zwei Zweiertermine (Luc + Thierry und dann Thierry + Christophe)
+oder ein Dreiertermin (L+C+T)?
+
+
+
 Notizen zum Lastenheft
 ======================
 
@@ -22,40 +30,36 @@ was wir brauchen.  Siehe Auswahlliste im Feld `Benutzerart` eines Benutzers.
 
 Jeder Partner kann eine oder mehrere Rollen spielen in einem oder
 mehreren Aufträgen.
-Gewünschte Rollenbezeichnungen
 
-Der **Anspruchsnehmer** einer Dienstleistung ist
-derjenige, der die Dienstleistung empfängt (und bestätigt).
-
-Der **Abgerechnete** einer Dienstleistung  ist derjenige, auf den die Rechnung
+Der **Abgerechnete** oder Klient einer Dienstleistung  ist derjenige, auf den die Rechnung
 ausgestellt wird und dessen Preisfaktoren die Tarife beeinflussen.
 
 Der **Rechnungsempfänger** eines Auftrags ist der Partner, an den die Rechnungen
 auszustellen sind. das kann auch ein Haushalt oder eine Organisation sein.
 
-Mitarbeiter
-Begleiter
-Benutzer
+Der **Anspruchsnehmer** einer Dienstleistung ist
+derjenige, der die Dienstleistung empfängt und bestätigt.
 
-Familienbeziehungen
+Familienbeziehungen:
 
-- Mutter, Vater, Sohn, Tochter, Ehepartner = humanlinks
+- Mutter, Vater, Sohn, Tochter, Ehepartner --> Reiter "Beziehungen"
 
-- Verwalter des Vermögens, Verwalter der Person, Delegierter Kontakt
-  würde ich als client contacts machen
+- Verwalter des Vermögens, Verwalter der Person, Delegierter Kontakt --> Klientenkontakte
 
 - Mitbewohner, Wohngemeinschaft, würde ich als "Haushalte" machen.
 
 Diverse weitere Kontaktangaben:
 
 - VIPO und Krankenkasse werden in Lino über :mod:`lino.xl.healthcare` gehandhabt.
+
 - :mod:`lino.modlib.uploads`
 
 - Ihr habt anders als alle bisherigen ein eigenes Feld für einen "zweiten
-  Namen" (ist das der Mädchenname?).
+  Namen" --> ist das der Mädchenname?
+  Lino sucht auch innerhalb des Gesamtnamens, insofern ist dieses Feld weniger wichtig.
 
-- Statt nur zwischen "Aktiviert" und "Archiviert" zu unterscheiden, schlage ich
-  ein Feld "Zustand" vor.
+- Statt nur zwischen "Aktiviert" und "Archiviert" eines Kontakts zu unterscheiden, schlage ich
+  ein Feld "Zustand" eines Klienten vor.
 
 
 7.3 Kernprozess :
