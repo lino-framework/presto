@@ -68,7 +68,6 @@ add = PriceFactors.add_item
 add("10", IncomeCategories, "income")
 
 
-
 class LifeMode(BabelDesignated):
     # 02 allein ohne Kinder
     # 03 allein mit Kindern

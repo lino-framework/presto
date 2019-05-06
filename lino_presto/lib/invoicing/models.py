@@ -26,7 +26,7 @@ class Plan(Plan):
     order = dd.ForeignKey('orders.Order', blank=True, null=True)
 
 
-Plans.detail_layout = """user area today max_date
+Plans.detail_layout = """user area today min_date max_date
     partner order
     invoicing.ItemsByPlan
     """

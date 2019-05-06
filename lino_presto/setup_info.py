@@ -83,6 +83,8 @@ lino_presto.lib.orders
 lino_presto.lib.presto
 lino_presto.lib.presto.fixtures
 lino_presto.lib.products
+lino_presto.lib.sales
+lino_presto.lib.sales.fixtures
 lino_presto.lib.users
 lino_presto.lib.users.fixtures
 lino_presto.projects

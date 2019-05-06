@@ -79,7 +79,7 @@ Rechnungsempfänger.
 
 *7.7 Lagerverwaltung*
 
-Neu für Lino. stocks.Item, stocks.Movement
+Kenn Lino noch nicht. stocks.Item, stocks.Movement
 
 7.8 Kalender
 
@@ -94,6 +94,13 @@ für einen bestimmten Arbeiter.
 
 7.9 Gemeindeabrechnungen :
 
-Das wird wie die Sammelrechnungen an die Krankenkasse. Achtung, es gibt
-DL, die dem Kunden nicht fakturiert werden, wohl aber der Gemeinde.
+- "Pro Quartal werden pro Gemeinde auf Basis der geleisteten Arbeitszeiten pro
+  Kunde, Dienstleistung und Mitarbeiter Sammelrechnungen pro Gemeinde erstellt
+  Eine Sammelrechnung mit Anzahl Stunden, Betrag pro Stunde und Gesamtbetrag"
+
+Die eigentliche Rechnung könnte wie die Sammelrechnungen an die Krankenkasse
+von Lino generiert werden. Achtung, es gibt DL, die dem Kunden nicht fakturiert
+werden, wohl aber der Gemeinde.  Am pragmatischsten scheint mir aber einfach
+ein Ausdruck der Terminliste mit den Zwischensummen. Pro Gemeinde.  Also
+einfach nur |printer| auf dem Ort klicken (und eine Vorlage countries/Place/default.weasy.html)
 

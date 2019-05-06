@@ -35,6 +35,7 @@ Orders
 
 
 >>> rt.show(orders.Orders, language="en")
+... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF -SKIP
 ============ ============================= ======== ================
  Start date   Client                        Remark   Workflow
 ------------ ----------------------------- -------- ----------------
@@ -48,8 +49,8 @@ Orders
  07/01/2017   ARENS Annette (113)                    **Registered**
  06/01/2017   ARENS Andreas (112)                    **Registered**
  04/01/2017   ALTENBERG Hans (114)                   **Registered**
- 03/01/2017   Maria (238)                            **Registered**
- 03/01/2017   Ahmed (237)                            **Registered**
+ 03/01/2017   Maria (242)                            **Registered**
+ 03/01/2017   Ahmed (241)                            **Registered**
 ============ ============================= ======== ================
 <BLANKLINE>
 

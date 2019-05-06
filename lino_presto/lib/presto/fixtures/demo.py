@@ -49,6 +49,7 @@ Client = rt.models.presto.Client
 ClientStates = rt.models.presto.ClientStates
 Product = rt.models.products.Product
 Tariff = rt.models.invoicing.Tariff
+PaperType = rt.models.sales.PaperType
 ProductTypes = rt.models.products.ProductTypes
 ProductCat = rt.models.products.ProductCat
 Account = rt.models.ledger.Account
@@ -61,6 +62,11 @@ ClientContactType = rt.models.clients.ClientContactType
 def objects():
 
     # yield skills_objects()
+
+    eupen = Place.objects.get(name__exact='Eupen')
+    stvith = Place.objects.get(name__exact='Sankt Vith')
+    # kettenis = Place.objects.get(name__exact='Kettenis')
+    belgium = Country.objects.get(isocode__exact='BE')
 
     yield named(Topic, _("Health problems"))
     yield named(Topic, _("Handicap"))
@@ -81,18 +87,22 @@ def objects():
 
     obj = Company(
         name="Home Helpers",
-        country_id="BE", vat_id="BE12 3456 7890")
+        country_id="BE", city=eupen, vat_id="BE12 3456 7890")
     yield obj
     settings.SITE.site_config.update(site_company=obj)
 
-    ahmed= Worker(first_name="Ahmed", gender=dd.Genders.male)
-    yield ahmed
-    maria= Worker(first_name="Maria", gender=dd.Genders.female)
-    yield maria
+    pt = named(PaperType, _("Service report"), template="service_report.weasy.html")
+    yield pt
 
-    eupen = Place.objects.get(name__exact='Eupen')
-    kettenis = Place.objects.get(name__exact='Kettenis')
-    belgium = Country.objects.get(isocode__exact='BE')
+    for city in (eupen, stvith):
+        partner = Company(name="Gemeindeverwaltung {}".format(city), city=city)
+        yield partner
+        yield SalesRule(partner=partner, paper_type=pt)
+
+    ahmed= Worker(first_name="Ahmed", gender=dd.Genders.male, city=eupen)
+    yield ahmed
+    maria= Worker(first_name="Maria", gender=dd.Genders.female, city=eupen)
+    yield maria
 
     kw = dd.str2kw('name', _("Employment office"))  # Arbeitsvermittler
     cct = ClientContactType(**kw)
@@ -219,10 +229,9 @@ def objects():
     invoice_recipient = None
     for n, p in enumerate(Partner.objects.all()):
         if n % 10 == 0:
-            yield SalesRule(
-                partner=p, invoice_recipient=invoice_recipient)
-            # p.salesrule.invoice_recipient = invoice_recipient
-            # yield p
+            if not hasattr(p, 'salesrule'):
+                yield SalesRule(
+                    partner=p, invoice_recipient=invoice_recipient)
         else:
             invoice_recipient = p
 
