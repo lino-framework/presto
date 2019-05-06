@@ -102,5 +102,5 @@ Die eigentliche Rechnung könnte wie die Sammelrechnungen an die Krankenkasse
 von Lino generiert werden. Achtung, es gibt DL, die dem Kunden nicht fakturiert
 werden, wohl aber der Gemeinde.  Am pragmatischsten scheint mir aber einfach
 ein Ausdruck der Terminliste mit den Zwischensummen. Pro Gemeinde.  Also
-einfach nur |printer| auf dem Ort klicken (und eine Vorlage countries/Place/default.weasy.html)
+einfach nur `|printer|` auf dem Ort klicken (und eine Vorlage countries/Place/default.weasy.html)
 
