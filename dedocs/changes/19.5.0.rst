@@ -1,0 +1,97 @@
+.. include:: /../docs/shared/include/defs.rst
+.. _presto.19.5.0:
+
+=======================
+19.5.0 (in Bearbeitung)
+=======================
+
+Dies ist der erste Prototyp, der auf Basis des von Thierry erstellten
+Lastenhefts angefertigt wurde.
+
+Zur Besichtigung gehen wir das Dokument :doc:`/basics/tour` durch.
+Dieses Dokument wird sich nach dem Release noch weiter verändern.
+
+
+Notizen zum Lastenheft
+======================
+
+4. Datenübernahme : bis auf weiteres tu ich nichts. Falls wir
+Datenimport wollen, brauche ich csv-Dateien mit einer Struktur, die sich
+nicht mehr (unangefragt) ändert.
+
+5. Benutzer : ich schätze, dass die momentanen Benutzerarten das ist,
+was wir brauchen.  Siehe Auswahlliste im Feld `Benutzerart` eines Benutzers.
+
+7.1 Kontakte
+
+Jeder Partner kann eine oder mehrere Rollen spielen in einem oder
+mehreren Aufträgen.
+
+Der **Abgerechnete** oder Klient einer Dienstleistung  ist derjenige, auf den die Rechnung
+ausgestellt wird und dessen Preisfaktoren die Tarife beeinflussen.
+
+Der **Rechnungsempfänger** eines Auftrags ist der Partner, an den die Rechnungen
+auszustellen sind. das kann auch ein Haushalt oder eine Organisation sein.
+
+Der **Anspruchsnehmer** einer Dienstleistung ist
+derjenige, der die Dienstleistung empfängt und bestätigt.
+
+Familienbeziehungen:
+
+- Mutter, Vater, Sohn, Tochter, Ehepartner --> Reiter "Beziehungen"
+
+- Verwalter des Vermögens, Verwalter der Person, Delegierter Kontakt --> Klientenkontakte
+
+- Mitbewohner, Wohngemeinschaft, würde ich als "Haushalte" machen.
+
+Diverse weitere Kontaktangaben:
+
+- VIPO und Krankenkasse werden in Lino über :mod:`lino.xl.healthcare` gehandhabt.
+
+- :mod:`lino.modlib.uploads`
+
+- Ihr habt anders als alle bisherigen ein eigenes Feld für einen "zweiten
+  Namen" --> ist das der Mädchenname?
+  Lino sucht auch innerhalb des Gesamtnamens, insofern ist dieses Feld weniger wichtig.
+
+- Statt nur zwischen "Aktiviert" und "Archiviert" eines Kontakts zu unterscheiden, schlage ich
+  ein Feld "Zustand" eines Klienten vor.
+
+
+7.3 Kernprozess :
+
+a) Dienstleistungserfassung nach der Verrichtung : einfach direkt
+   Rechnung schreiben.
+b) Dienstleistungserfassung vor der Verrichtung: "Auftrag" schreiben
+   ("Geplante DL")
+c) Haushaltshilfe sind Aufträge mit regelmäßigen Terminen
+
+Fahrtkosten pro Km : Feld pro cal.Event?
+
+Statt "courses" mach ich ein neues Plugin "orders" : aus "Enrolments"
+werden "Workers", und man kann auch Produkte eingeben, die dann bei
+jedem "event" fakturiert werden. Pro Auftrag gibt es Lieferadresse und
+Rechnungsempfänger.
+
+*7.7 Lagerverwaltung*
+
+Kenn Lino noch nicht. stocks.Item, stocks.Movement
+
+7.8 Kalender
+
+Die verschiedenen Ansichten sind prinzipiell da, aber hier stecken
+wahrscheinlich Teufel im Detail.
+
+Wieso ein Gantt chart? Gibt es denn Dependencies?
+
+Um **Verfügbarkeiten** zu verwalten, bräuchten wir ine Serie von Regeln, zu
+welchen Uhrzeiten und Wochentagen überhaupt Termine stattfinden können für
+einen bestimmten Arbeiter.
+
+
+7.9 Gemeindeabrechnungen :
+
+- "Pro Quartal werden pro Gemeinde auf Basis der geleisteten Arbeitszeiten pro
+  Kunde, Dienstleistung und Mitarbeiter Sammelrechnungen pro Gemeinde erstellt
+  Eine Sammelrechnung mit Anzahl Stunden, Betrag pro Stunde und Gesamtbetrag"
+

@@ -148,7 +148,15 @@ Diese können konfiguriert werden und bis auf weiteres gibt es deren zwei:
   Dies betrifft momentan die Arbeiten im Bereich
   *Haushaltshilfe*.
 
-Reine Lagerbesichtungen werden als **Null-Rechnungen** erfasst, damit Lino
+
+
+
+Dienstleistungen, die nicht an den Kunden fakturiert werden, wohl aber ans
+ÖSHZ.
+
+Zum Beispiel reine Lagerbesichtungen
+
+Hierfür muss ein Auftrag erstellt und der *Termine* erfasst werden, damit Lino
 "weiß", dass die Zeit ans ÖSHZ fakturiert werden soll.
 
 
@@ -297,8 +305,34 @@ Inhalt und Layout des gedruckten Dokuments sind noch zu besprechen.
 Rechnungen an die ÖSHZ
 ======================
 
-Rechnungen an die ÖSHZ werden auf Basis der an den Kunden fakturierten
-Dienstleistungen erstellt.  Eigentlich sind das in Lino eher zusammenfassende
-Aktivitätsberichte, sie werden erst beim Erfassen in der Buchhaltung zu
-Rechnungen.
+Rechnungen an die ÖSHZ werden auf Basis der erfassten Termine erstellt,
+unabhängig der tatsächlich an den Kunden fakturierten Dienstleistungen.
+Nullrechnungen sind also nicht nötig. Wohl aber ist ein Auftrag nötig, denn
+sonst hat Lino ja keine Ahnung, wer der Klient ist.
+
+Der Rechnungsinhalt könnte automatisch von Lino generiert werden.
+
+Momentan gilt die pragmatischse Vorgehensweise, dass man pro Gemeinde pro
+Quartal folgendes macht:
+
+- In das Journal gehen (z.B. :menuselection:`Buchhaltung -->
+  Gemeinderechnungen`)
+
+- |insert| um eine neue Rechnung zu erstellen. Als Partner die
+  Gemeindeverwaltung (das ÖSHZ) auswählen.
+
+- Papierart muss sein "Dienstleistungsbericht" (das kann man schon in den
+  Stammdaten der Gemeinde eintragen).
+
+- **Fakturierbare von / bis** aufüllen
+
+- Leere Rechnung ausdrucken (auf den Button `printer` klicken).
+
+  Der Dienstleistungsbericht zeigt automatisch alle Klienten, die im gleichen
+  Ort wie die Verwaltung oder einem untergeordneten Ort wohnen. Siehe
+  :menuselection:`Konfigurierung --> Orte --> Orte`, Kolonne "Teil von".
+
+- Eventuell die tatsächlich fakturierten Zahlen manuell eingeben.
+
+
 

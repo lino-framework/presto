@@ -41,7 +41,7 @@ class Partner(Partner, mixins.CreatedModified):
 
 class PartnerDetail(PartnerDetail):
 
-    main = "general contact #tickets ledger misc "
+    main = "general contact #tickets invoicing misc "
 
     general = dd.Panel("""
     overview:20 general2:20 general3:40
@@ -79,6 +79,22 @@ class PartnerDetail(PartnerDetail):
     ledger.MovementsByPartner
     """, label=dd.plugins.ledger.verbose_name)
 
+    invoicing = dd.Panel("""
+    invoicing_left:30 #orders.OrdersByProject:50
+    sales.InvoicesByPartner
+    """, label=_("Invoicing"))
+
+    invoicing_left = """
+    pf_income
+    salesrule__invoice_recipient 
+    payment_term salesrule__paper_type
+    """
+
+    purchases = dd.Panel("""
+    purchase_account vat_regime vat_id
+    ana.InvoicesByPartner
+    """, label=_("Purchases"))
+
     misc = dd.Panel("""
     created modified
     """, label=_("Miscellaneous"))
@@ -106,7 +122,8 @@ class Person(Partner, Person):
 dd.update_field(Person, 'first_name', blank=False)
 # dd.update_field(Person, 'last_name', blank=False)
 
-class PersonDetail(PersonDetail):
+# class PersonDetail(PersonDetail, PartnerDetail):
+class PersonDetail(PartnerDetail):
 
     main = "general contact humanlinks misc cal.GuestsByPartner"
 
@@ -172,9 +189,14 @@ class Company(Partner, Company):
     # vat_id = models.CharField(_("VAT id"), max_length=200, blank=True)
 
 
-class CompanyDetail(CompanyDetail):
+class CompanyDetail(PartnerDetail):
 
-    main = "general contact #tickets misc"
+    main = "general contact invoicing misc"
+
+    ledger = dd.Panel("""
+    vat.VouchersByPartner
+    ledger.MovementsByPartner
+    """, label=dd.plugins.ledger.verbose_name)
 
     general = dd.Panel("""
     overview:20 general2:40 general3:40
