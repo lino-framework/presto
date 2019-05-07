@@ -56,7 +56,7 @@ Diverse weitere Kontaktangaben:
 - Statt nur zwischen "Aktiviert" und "Archiviert" eines Kontakts zu unterscheiden, schlage ich
   ein Feld "Zustand" eines Klienten vor.
 
-    
+
 7.3 Kernprozess :
 
 a) Dienstleistungserfassung nach der Verrichtung : einfach direkt

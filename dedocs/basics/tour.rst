@@ -9,32 +9,57 @@ Besichtigungstour
 .. contents::
   :local:
 
+Hauptbildschirm
+===============
+
+Im Hauptbildschirm haben wir das **Hauptmenü**, eventuelle
+Willkommensnachrichten und dann das **Dashboard**, d.h. eine Serie von Tabellen
+mit diversen Daten. Das Dashboard ist konfigurierbar pro Benutzer.  Wir schauen
+es uns später genauer an.
 
 Kontakte
 ========
 
 Als **Partner** bezeichnen wir allgemein jede Einzelperson oder Gruppe, die als
-**Rechnungsempfänger** oder sonstiger Gesprächspartner fungieren kann.
-Jeder Partner kann unterschiedliche Rollen oder gar parallele Rollen je
-nach Auftragstyp oder Finalität einer Dienstleistung haben.
+Geschäftspartner, Rechnungsempfänger oder sonstiger Kontakt fungieren kann.
+Jeder Partner kann unterschiedliche Rollen oder gar parallele Rollen je nach
+Auftragstyp oder Finalität einer Dienstleistung haben.
 
-Lino unterscheidet fünf Partnerarten: **Personen**, **Klienten**, **Arbeiter**,
-**Haushalte** und **Organisationen**. Klienten und Arbeiter sind Personen, über
-die wir mehr wissen als über eine normale Person.  Ein Klient oder Arbeiter ist
-immer auch eine Person.
+Die Datenbankstruktur unterscheidet fünf Partnerarten: **Personen**,
+Klienten**, **Arbeiter**, **Haushalte** und **Organisationen**. Klienten und
+Arbeiter sind eigentlch eine Unterart von Personen. Ein Klient oder Arbeiter
+ist immer auch eine Person.  Eine gleiche physische Person kann theoretisch
+zugleich Kontaktperson einer Firma, Arbeiter und auch Klient sein.
 
-Damit die Suche und die familiäre Einschätzung einfacher ersichtlich wird,
-können für jede Person auch deren Familienzusammensetzungen (generell
-Mitgliedschaft in Haushalten) und familiäere Beziehungen erfasst werden.
+Der Unterschied zwischen Person, Arbeiter und Klient ist also lediglich
+**Ansichtssache** und man kann von einer Ansicht zur anderen wechseln ("Ansicht
+als Person, Arbeiter [❌], Klient [❌]").
 
-Pro Partner können mehrere Adressen hinterlegt werden. Mögliche Adressenarten
-können definiert werden (z.B. "Referenzadresse" oder "Wohnsitz")
+Jede Person kann **Kontaktperson** für eine oder mehrere Organisationen sein
+und kann dort jeweils eine **Funktion** ausüben.
+
+Pro Partner können mehrere **Adressen** hinterlegt werden. Eine davon sollte
+als **primär** markiert sein (nur diese Adresse wird tatsächlich benutzt).
+Mögliche Adressenarten können definiert werden (z.B. "Referenzadresse" oder
+"Wohnsitz"). Auf "Adressen verwalten" klicken, um diese Adressen zu bearbeiten.
 
 Pro Klient kann ein **Grund der Anfrage** (oder mehrere) angegeben werden im
-Panel **Interessen** (Reiter "Klient").  Die **Themen**, für die sich ein
-Klient "interessieren" kann, sind konfigurierbar unter
-:menuselection:`Konfigurierung --> Themen --> Themen`.
-Falls nötig Wortschatz und/oder Einordnung geändert werden.
+Panel **Interessen** (im Reiter "Klient").  Die **Themen**, für die sich ein
+Klient interessieren kann, sind konfigurierbar unter
+:menuselection:`Konfigurierung --> Themen --> Themen`. Falls nötig können diese
+Bezeichnungen und/oder ihre Einordnung geändert werden.
+
+Damit die Suche und die familiäre Einschätzung einfacher ersichtlich wird,
+können für jeden Klienten auch deren Haushaltszusammensetzungen und familiäre
+Beziehungen erfasst werden.
+
+Ein **Haushalt** ist eine informale Gruppe von Personen, die zusammen wohnen.
+Eine Person kann im Laufe der Zeit mehreren Haushalten als **Mitglied** angehören.
+Ein Haushalt sollte als **primär** markiert sein.  Die
+**Haushaltszusammensetzung** zeigt alle Mitglieder des primären Haushalts.
+
+Familiäre **Beziehungen** sind Beziehungen von Person zu Person, die unabhängig
+von der Wohnung existieren.
 
 Aufträge
 ========

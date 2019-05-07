@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: lino_presto 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-06 14:13+0300\n"
-"PO-Revision-Date: 2019-05-06 15:01+0300\n"
+"PO-Revision-Date: 2019-05-07 09:41+0300\n"
 "Last-Translator: Luc Saffre <luc.saffre@gmail.com>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
@@ -245,23 +245,23 @@ msgstr ""
 
 #: lino_presto/lib/presto/fixtures/demo.py:97
 msgid "Employment office"
-msgstr ""
+msgstr "Arbeitsamt"
 
 #: lino_presto/lib/presto/fixtures/demo.py:111
 msgid "Landlord"
-msgstr ""
+msgstr "Vermieter"
 
 #: lino_presto/lib/presto/fixtures/demo.py:112
 msgid "Wealth manager"
-msgstr ""
+msgstr "Vermögensverwalter"
 
 #: lino_presto/lib/presto/fixtures/demo.py:113
 msgid "Personal manager"
-msgstr ""
+msgstr "Verwalter der Person"
 
 #: lino_presto/lib/presto/fixtures/demo.py:114
 msgid "Delegated contact"
-msgstr ""
+msgstr "Delegierter Kontakt"
 
 #: lino_presto/lib/presto/fixtures/demo.py:117
 msgid "Sales on services"

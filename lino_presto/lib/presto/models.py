@@ -305,6 +305,12 @@ class Clients(contacts.Persons):
     """
 
     @classmethod
+    def param_defaults(cls, ar, **kw):
+        kw = super(Clients, cls).param_defaults(ar, **kw)
+        kw.update(client_state='')
+        return kw
+
+    @classmethod
     def get_request_queryset(self, ar):
         """This converts the values of the different parameter panel fields to
         the query filter.
@@ -312,46 +318,7 @@ class Clients(contacts.Persons):
 
         """
         qs = super(Clients, self).get_request_queryset(ar)
-
         pv = ar.param_values
-        # period = [pv.start_date, pv.end_date]
-        # if period[0] is None:
-        #     period[0] = period[1] or dd.today()
-        # if period[1] is None:
-        #     period[1] = period[0]
-
-        # ce = pv.observed_event
-        # if ce:
-        #     qs = ce.add_filter(qs, pv)
-
-        # if ce is None:
-        #     pass
-        # elif ce == ClientEvents.active:
-        #     pass
-        # elif ce == ClientEvents.isip:
-        #     flt = has_contracts_filter('isip_contract_set_by_client', period)
-        #     qs = qs.filter(flt).distinct()
-        # elif ce == ClientEvents.jobs:
-        #     flt = has_contracts_filter('jobs_contract_set_by_client', period)
-        #     qs = qs.filter(flt).distinct()
-        # elif dd.is_installed('immersion') and ce == ClientEvents.immersion:
-        #     flt = has_contracts_filter(
-        #         'immersion_contract_set_by_client', period)
-        #     qs = qs.filter(flt).distinct()
-
-        # elif ce == ClientEvents.available:
-        #     # Build a condition "has some ISIP or some jobs.Contract
-        #     # or some immersion.Contract" and then `exclude` it.
-        #     flt = has_contracts_filter('isip_contract_set_by_client', period)
-        #     flt |= has_contracts_filter('jobs_contract_set_by_client', period)
-        #     if dd.is_installed('immersion'):
-        #         flt |= has_contracts_filter(
-        #             'immersion_contract_set_by_client', period)
-        #     qs = qs.exclude(flt).distinct()
-
-        # if pv.client_state:
-        #     qs = qs.filter(client_state=pv.client_state)
-
         if pv.nationality:
             qs = qs.filter(nationality__exact=pv.nationality)
 
