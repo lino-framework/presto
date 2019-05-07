@@ -31,6 +31,8 @@ from lino.modlib.office.roles import OfficeUser
 
 class Room(Room, Referrable):
 
+    ref_max_length = 5
+
     class Meta(Room.Meta):
         abstract = dd.is_abstract_model(__name__, 'Room')
         verbose_name = _("Team")
@@ -78,12 +80,13 @@ class Event(Event, InvoiceGenerator):
         #     t.append(str(self.user))
         if not pv.project and self.project:
             t.append(str(self.project))
+            t.append(self.project.city.name)
         # if not pv.event_type and self.event_type:
         #     t.append(str(self.event_type))
-        if not pv.room and self.room:
-            t.append(str(self.room))
-        # if self.summary:
-        #     t.append(self.summary)
+        if not pv.room and self.room and self.room.ref:
+            t.append(self.room.ref)
+        if self.summary:
+            t.append(self.summary)
         return " ".join(t)
         # return "{} {}".format(t, u)
 
