@@ -61,6 +61,42 @@ Ein Haushalt sollte als **primär** markiert sein.  Die
 Familiäre **Beziehungen** sind Beziehungen von Person zu Person, die unabhängig
 von der Wohnung existieren.
 
+Die **Einkommenskategorie** eines Klienten bestimmt den Tarif, der für Arbeiten
+fakturiert wird.  Siehe :menuselection:`Konfigurierung --> Produkte -->
+Preisregeln`.
+
+Termine
+========
+
+Ein **Kalendereintrag** ist, wenn zu einem bestimmten Zeipunkt (Datum und
+Uhrzeit Beginn und Ende) etwas stattfindet, das in unserem Kalender erwähnt
+werden soll.
+
+Der **Autor** eines Kalendereintrags ist der administrative Mitarbeiter, der
+den Termin erstellt hat (manuell oder automatisch).
+
+Ein **Termin** ist ein Kalendereintrag, den ein bestimmter Mitarbeiter mit
+einem bestimmten Klienten verabredet hat.
+
+Zum Beispiel sind Urlaubstage oder Feiertage zwar Kalendereinträge, aber keine
+Termine.
+
+Ein **Einsatz** ist ein Termin im Rahmen eines Auftrags, d.h. ein
+Kalendereintrag, der mit einem Auftrag **verknüpft** ist und bei dem ein oder
+mehrere **Arbeiter anwesend** sind. Die Arbeiter eines Einsatzes stehen im
+Panel "Anwesenheiten" und werden dort automatisch auf Basis des Auftrags
+eingetragen.
+
+Man kann in Lino auch **unfakturierte Termine** verwalten, d.h. die nicht mit
+einem Auftrag verknüpft sind (z.B. interne Besprechungen, Urlaubstage, sonstige
+Termine der Mitarbeiter, ...). Generell könnte man für jeden Kalendereintrag
+Gäste bzw. deren Anwesenheiten erfassen (Gruppenkalender, Versammlungen oder
+Veranstaltungen planen...).
+
+Ob ein fakturierbarer Termin bereits fakturiert ist, kann man im Detail dieses
+Termins (Reiter "Mehr") sehen. Dort stehen sowohl Dienstleistungen als auch
+Nebenkosten,
+
 Aufträge
 ========
 
@@ -91,33 +127,6 @@ Pro Journal kann man definieren, welches Team für die Aufträge in diesem
 Journal zuständig ist. Eventuell können mehrere Journale pro Team angelegt
 werden.
 
-
-Termine
-========
-
-Ein **Termin** ist, wenn an einem bestimmten Tag und Uhrzeit ein bestimmter
-Arbeiter (oder mehrere) sich an einem bestimmten Ort mit einem bestimmten
-Klienten verabredet hat.
-
-Ein Termin wird manchmal auch allgemeiner als **Kalendereintrag** bezeichnet.
-Der Unterschied ist, dass z.B. ein Urlaubstag oder ein Feiertag ein
-Kalendereintrag sein kann, obwohl es kein Termin ist.
-
-Ein **Einsatz** ist ein Termin im Rahmen eines Auftrags, d.h. ein
-Kalendereintrag, der mit einem Auftrag **verknüpft** ist.
-
-Man kann in Lino auch **unfakturierte Termine** verwalten, d.h. die nicht mit
-einem Auftrag verknüpft sind (z.B. interne Besprechungen, Urlaubstage, sonstige
-Termine der Mitarbeiter, ...).
-
-Der **Autor** eines Kalendereintrags ist der administrative Mitarbeiter, der
-den Termin erstellt hat (manuell oder automatisch).
-
-Die **Arbeiter** eines Kalendereintrags stehen im Panel "Anwesenheiten".
-
-Ob ein fakturierbarer Termin bereits fakturiert ist, kann man im Detail dieses
-Termins (Reiter "Mehr") sehen. Dort stehen sowohl Dienstleistungen als auch
-Nebenkosten,
 
 Kalenderansichten
 =================
