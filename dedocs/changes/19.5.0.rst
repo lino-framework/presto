@@ -9,7 +9,6 @@ Dies ist der erste Prototyp, der auf Basis des von Thierry erstellten
 Lastenhefts angefertigt wurde.
 
 Zur Besichtigung gehen wir das Dokument :doc:`/basics/tour` durch.
-Dieses Dokument wird sich nach dem Release noch weiter verändern.
 
 
 Notizen zum Lastenheft
@@ -57,7 +56,7 @@ Diverse weitere Kontaktangaben:
 - Statt nur zwischen "Aktiviert" und "Archiviert" eines Kontakts zu unterscheiden, schlage ich
   ein Feld "Zustand" eines Klienten vor.
 
-
+    
 7.3 Kernprozess :
 
 a) Dienstleistungserfassung nach der Verrichtung : einfach direkt
@@ -75,7 +74,8 @@ Rechnungsempfänger.
 
 *7.7 Lagerverwaltung*
 
-Kenn Lino noch nicht. stocks.Item, stocks.Movement
+Der Prototyp macht da noch nichts.
+stocks.Item, stocks.Movement
 
 7.8 Kalender
 
@@ -91,7 +91,7 @@ einen bestimmten Arbeiter.
 
 7.9 Gemeindeabrechnungen :
 
-- "Pro Quartal werden pro Gemeinde auf Basis der geleisteten Arbeitszeiten pro
-  Kunde, Dienstleistung und Mitarbeiter Sammelrechnungen pro Gemeinde erstellt
-  Eine Sammelrechnung mit Anzahl Stunden, Betrag pro Stunde und Gesamtbetrag"
+"Pro Quartal werden pro Gemeinde auf Basis der geleisteten Arbeitszeiten pro
+Kunde, Dienstleistung und Mitarbeiter Sammelrechnungen pro Gemeinde erstellt
+Eine Sammelrechnung mit Anzahl Stunden, Betrag pro Stunde und Gesamtbetrag"
 
