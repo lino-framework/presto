@@ -29,7 +29,7 @@ from lino_xl.lib.invoicing.mixins import InvoiceGenerator
 from lino.modlib.office.roles import OfficeUser
 
 
-class Room(Room):
+class Room(Room, Referrable):
 
     class Meta(Room.Meta):
         abstract = dd.is_abstract_model(__name__, 'Room')
@@ -43,8 +43,9 @@ class Room(Room):
 
 class RoomDetail(dd.DetailLayout):
     main = """
-    id invoicing_area name event_type guest_role
-    company contact_person contact_role
+    ref name invoicing_area id
+    event_type guest_role 
+    company contact_person contact_role 
     cal.EntriesByRoom
     """
 
@@ -61,6 +62,31 @@ class Event(Event, InvoiceGenerator):
         
     # invoiceable_date_field = 'start_date'
     invoiceable_partner_field = 'project'
+
+
+    def calendar_fmt(self, pv):
+        # if pv.user:
+        # if pv.assigned_to:
+        # if settings.SITE.project_model is not None and pv.project:
+        # if pv.event_type:
+        t = []
+        if self.start_time:
+            t.append(str(self.start_time)[:5])
+        # elif not pv.start_date:
+            # t.append(str(self.start_date))
+        # if not pv.user and self.user:
+        #     t.append(str(self.user))
+        if not pv.project and self.project:
+            t.append(str(self.project))
+        # if not pv.event_type and self.event_type:
+        #     t.append(str(self.event_type))
+        if not pv.room and self.room:
+            t.append(str(self.room))
+        # if self.summary:
+        #     t.append(self.summary)
+        return " ".join(t)
+        # return "{} {}".format(t, u)
+
 
     def get_invoiceable_partner(self):
         ord = self.owner
