@@ -9,13 +9,15 @@ Besichtigungstour
 .. contents::
   :local:
 
+Wir melden uns an als Rolf. Der ist Systemverwalter und darf deshalb alles. Wer
+es lieber in Französisch hat, wählt Romain.
+
 Hauptbildschirm
 ===============
 
 Im Hauptbildschirm haben wir das **Hauptmenü**, eventuelle
 Willkommensnachrichten und dann das **Dashboard**, d.h. eine Serie von Tabellen
-mit diversen Daten. Das Dashboard ist konfigurierbar pro Benutzer.  Wir schauen
-es uns später genauer an.
+mit diversen Daten. Das Dashboard ist konfigurierbar pro Benutzer.
 
 Die Menüs "Buchhaltung" und "Berichte" kommen wahrscheinlich noch raus, weil
 Presto voraussichtlich nur VKR generiert und diese dann in einer externe
