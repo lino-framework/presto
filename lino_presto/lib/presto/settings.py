@@ -39,6 +39,7 @@ class Site(Site):
         yield 'lino_xl.lib.households'
         #yield 'lino_xl.lib.lists'
         yield 'lino_xl.lib.addresses'
+        yield 'lino_xl.lib.phones'
         yield 'lino_xl.lib.humanlinks',
         yield 'lino_xl.lib.topics'
         # yield 'lino_xl.lib.extensible'

@@ -17,6 +17,12 @@ Willkommensnachrichten und dann das **Dashboard**, d.h. eine Serie von Tabellen
 mit diversen Daten. Das Dashboard ist konfigurierbar pro Benutzer.  Wir schauen
 es uns später genauer an.
 
+Die Menüs "Buchhaltung" und "Berichte" kommen wahrscheinlich noch raus, weil
+Presto voraussichtlich nur VKR generiert und diese dann in einer externe
+Buchhaltung verarbeitet werden.  Es wäre kein technischer Aufwand, die
+Buchhaltung mal kurz auszuprobieren (dazu müsste ich lediglich noch
+:mod:`lino_xl.lib.finan` und :mod:`lino_xl.lib.bevats`  aktivieren)
+
 Kontakte
 ========
 
@@ -30,7 +36,6 @@ Klienten**, **Arbeiter**, **Haushalte** und **Organisationen**. Klienten und
 Arbeiter sind eigentlch eine Unterart von Personen. Ein Klient oder Arbeiter
 ist immer auch eine Person.  Eine gleiche physische Person kann theoretisch
 zugleich Kontaktperson einer Firma, Arbeiter und auch Klient sein.
-
 Der Unterschied zwischen Person, Arbeiter und Klient ist also lediglich
 **Ansichtssache** und man kann von einer Ansicht zur anderen wechseln ("Ansicht
 als Person, Arbeiter [❌], Klient [❌]").
@@ -42,6 +47,8 @@ Pro Partner können mehrere **Adressen** hinterlegt werden. Eine davon sollte
 als **primär** markiert sein (nur diese Adresse wird tatsächlich benutzt).
 Mögliche Adressenarten können definiert werden (z.B. "Referenzadresse" oder
 "Wohnsitz"). Auf "Adressen verwalten" klicken, um diese Adressen zu bearbeiten.
+
+Idem für **Kontaktangaben** (Telefon, GSM und E-Mail).
 
 Pro Klient kann ein **Grund der Anfrage** (oder mehrere) angegeben werden im
 Panel **Interessen** (im Reiter "Klient").  Die **Themen**, für die sich ein
@@ -107,7 +114,7 @@ Die Serie von Einsätzen kann sich auf einen einzigen Einsatz beschränken.
 Die Serie von Arbeitern kann sich auf einen einzigen Arbeiter beschränken.
 
 Ein Auftrag muss immer einem *Klienten* zugewiesen sein und kann optional einen
-anderen *Partner* als Rechnungsempänger haben.
+anderen *Partner* als Rechnungsempfänger haben.
 
 Jeder einzelne Einsatz hat eine Liste der anwesenden Arbeiter, die prinzipiell
 immer die Gleiche ist, sich unter Umständen jedoch von Mal zu Mal ändern kann.

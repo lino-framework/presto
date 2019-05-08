@@ -2,14 +2,16 @@
 .. _presto.19.5.0:
 
 =======================
-19.5.0 (in Bearbeitung)
+19.5.0 ()
 =======================
 
 Dies ist der erste Prototyp, der auf Basis des von Thierry erstellten
 Lastenhefts angefertigt wurde.
 
-Zur Besichtigung gehen wir das Dokument :doc:`/basics/tour` durch.
+Besichtiung geplant am Dienstag  14. Mai um 11 Uhr.
 
+Für die Besichtigung habe ich auch Slides vorbereitet. Inhaltlich gehen wir das
+Dokument :doc:`/basics/tour` durch.
 
 Notizen zum Lastenheft
 ======================
@@ -23,17 +25,19 @@ was wir brauchen.  Siehe Auswahlliste im Feld `Benutzerart` eines Benutzers.
 
 7.1 Kontakte
 
-Jeder Partner kann eine oder mehrere Rollen spielen in einem oder
-mehreren Aufträgen.
+Ihr habt in eigenes Feld für einen **zweiten Namen** angefragt. Ist das der
+Mädchenname? Lino sucht auch in der Mitte des Namens, insofern ist dieses Feld
+weniger wichtig. Mädchenname kann mit Bindestrich im Familienname stehen.
 
-Der **Abgerechnete** oder Klient einer Dienstleistung  ist derjenige, auf den die Rechnung
-ausgestellt wird und dessen Preisfaktoren die Tarife beeinflussen.
+Der **Abgerechnete** einer Dienstleistung  ist derjenige, auf den die Rechnung
+ausgestellt wird und dessen Preisfaktoren die Tarife beeinflussen. --> Klient
 
 Der **Rechnungsempfänger** eines Auftrags ist der Partner, an den die Rechnungen
 auszustellen sind. das kann auch ein Haushalt oder eine Organisation sein.
 
-Der **Anspruchsnehmer** einer Dienstleistung ist
-derjenige, der die Dienstleistung empfängt und bestätigt.
+Der **Anspruchsnehmer** einer Dienstleistung ist derjenige, der die
+Dienstleistung empfängt und bestätigt.  --> Falls nötig tun wir noch ein
+weiteres Feld dafür rein.
 
 Familienbeziehungen:
 
@@ -41,46 +45,27 @@ Familienbeziehungen:
 
 - Verwalter des Vermögens, Verwalter der Person, Delegierter Kontakt --> Klientenkontakte
 
-- Mitbewohner, Wohngemeinschaft, würde ich als "Haushalte" machen.
+- Mitbewohner, Wohngemeinschaft, würde ich als Mitglieder des gleichen "Haushalts" erfassen.
 
 Diverse weitere Kontaktangaben:
 
 - VIPO und Krankenkasse werden in Lino über :mod:`lino.xl.healthcare` gehandhabt.
 
-- :mod:`lino.modlib.uploads`
+- :mod:`lino.modlib.uploads` (Uploadarten müssen wir noch konfigurieren)
 
-- Ihr habt anders als alle bisherigen ein eigenes Feld für einen "zweiten
-  Namen" --> ist das der Mädchenname?
-  Lino sucht auch innerhalb des Gesamtnamens, insofern ist dieses Feld weniger wichtig.
+- Statt nur zwischen "Aktiviert" und "Archiviert" eines Kontakts zu
+  unterscheiden, schlage ich ein Feld "Zustand" eines Klienten vor.
+  Bezeichnungen der Zustände noch zu klären.
 
-- Statt nur zwischen "Aktiviert" und "Archiviert" eines Kontakts zu unterscheiden, schlage ich
-  ein Feld "Zustand" eines Klienten vor.
-
-
-7.3 Kernprozess :
-
-a) Dienstleistungserfassung nach der Verrichtung : einfach direkt
-   Rechnung schreiben.
-b) Dienstleistungserfassung vor der Verrichtung: "Auftrag" schreiben
-   ("Geplante DL")
-c) Haushaltshilfe sind Aufträge mit regelmäßigen Terminen
-
-Fahrtkosten pro Km : Feld pro cal.Event?
-
-Statt "courses" mach ich ein neues Plugin "orders" : aus "Enrolments"
-werden "Workers", und man kann auch Produkte eingeben, die dann bei
-jedem "event" fakturiert werden. Pro Auftrag gibt es Lieferadresse und
-Rechnungsempfänger.
+Fahrtkosten pro Km werden im Auftrag unter **Verbrauch pro Einsatz** erfasst.
 
 *7.7 Lagerverwaltung*
 
-Der Prototyp macht da noch nichts.
-stocks.Item, stocks.Movement
+Der Prototyp macht da noch nichts. (geplant: stocks.Item, stocks.Movement)
 
 7.8 Kalender
 
-Die verschiedenen Ansichten sind prinzipiell da, aber hier stecken
-wahrscheinlich Teufel im Detail.
+Zu klären, was noch fehlt.
 
 Wieso ein Gantt chart? Gibt es denn Dependencies?
 
@@ -88,10 +73,9 @@ Um **Verfügbarkeiten** zu verwalten, bräuchten wir ine Serie von Regeln, zu
 welchen Uhrzeiten und Wochentagen überhaupt Termine stattfinden können für
 einen bestimmten Arbeiter.
 
-
-7.9 Gemeindeabrechnungen :
-
-"Pro Quartal werden pro Gemeinde auf Basis der geleisteten Arbeitszeiten pro
-Kunde, Dienstleistung und Mitarbeiter Sammelrechnungen pro Gemeinde erstellt
-Eine Sammelrechnung mit Anzahl Stunden, Betrag pro Stunde und Gesamtbetrag"
+7.9 Gemeindeabrechnungen : "Pro Quartal werden pro Gemeinde auf Basis der
+geleisteten Arbeitszeiten pro Kunde, Dienstleistung und Mitarbeiter
+Sammelrechnungen pro Gemeinde erstellt Eine Sammelrechnung mit Anzahl Stunden,
+Betrag pro Stunde und Gesamtbetrag" Ich habe die einfachste Lösung gemacht, die
+mir einfiel. Es gibt durchaus Raum für Verbesserungen.
 

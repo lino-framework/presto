@@ -38,7 +38,7 @@ The menu
   - Orte : Länder, Orte
 - Explorer :
   - System : Vollmachten, Benutzerarten, Benutzerrollen, All dashboard widgets, Datenbankmodelle, Datentests, Datenprobleme
-  - Kontakte : Kontaktpersonen, Partner, Klientenkontakte, Standard-Klientenkontaktarten, Haushaltsmitgliedsrollen, Mitglieder, Adressenarten, Adressen, Verwandtschaftsbeziehungen, Verwandschaftsarten, Interessen, Krankenkassen-Tarife, Krankenkassen-Situationen, Klienten
+  - Kontakte : Kontaktpersonen, Partner, Klientenkontakte, Standard-Klientenkontaktarten, Haushaltsmitgliedsrollen, Mitglieder, Adressenarten, Adressen, Kontaktangabenarten, Kontaktangaben, Verwandtschaftsbeziehungen, Verwandschaftsarten, Interessen, Krankenkassen-Tarife, Krankenkassen-Situationen, Klienten
   - Kalender : Kalendereinträge, Aufgaben, Anwesenheiten, Abonnements, Termin-Zustände, Gast-Zustände, Aufgaben-Zustände
   - Buchhaltung : Gemeinkonten, Begleichungsregeln, Belege, Belegarten, Bewegungen, Handelsarten, Journalgruppen
   - Aufträge : Aufträge, Einschreibungen

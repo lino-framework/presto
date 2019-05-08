@@ -128,7 +128,7 @@ class PersonDetail(PartnerDetail):
     main = "general contact humanlinks misc cal.GuestsByPartner"
 
     general = dd.Panel("""
-    overview:20 general2:40 general3:40
+    overview:20 general2:40 #general3:40
     contacts.RolesByPerson:20
     """, label=_("General"))
 
