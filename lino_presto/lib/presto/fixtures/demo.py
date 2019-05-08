@@ -9,7 +9,9 @@
 from __future__ import unicode_literals
 
 import datetime
+from decimal import Decimal
 from django.conf import settings
+from django.utils.text import format_lazy
 
 from lino.utils import ONE_DAY
 from lino.utils.mti import mtichild
@@ -139,6 +141,8 @@ def objects():
     et_defaults =dict(force_guest_states=True, default_duration="0:15",
                       planner_column=PlannerColumns.external)
 
+    et_defaults.update(**dd.str2kw('event_label', _("Deployment")))
+
     garden_et = named(EventType, _("Outside work"), **et_defaults)
     yield garden_et
 
@@ -190,22 +194,16 @@ def objects():
     yield product('default', _("Ironing of a skirt"), 'piece')
     yield product('default', _("Washing per Kg"), 'kg')
 
-    garden_prod = named(
-        Product, _("Garden works"), sales_account=sales_on_services,
-        # tariff=t1,
-        sales_price=30, cat=presence,
-        product_type=ProductTypes.default)
-    yield garden_prod
-    # group_therapy.tariff.number_of_events = 1
-    # yield group_therapy.tariff
-    
-    home_prod = named(
-        Product, _("Home help"),
-        sales_price=60, sales_account=sales_on_services, cat=presence,
-        product_type=ProductTypes.default)
-    yield home_prod
-    # ind_therapy.tariff.number_of_events = 1
-    # yield ind_therapy.tariff
+    for i, ic in enumerate(rt.models.presto.IncomeCategories.get_list_items()):
+        work = named(
+            Product, format_lazy("{} {}", _("Work by hour"), ic),
+            sales_account=sales_on_services,
+            sales_price=Decimal("3.75") * (i+1), cat=presence,
+            product_type=ProductTypes.default)
+        yield work
+        yield PriceRule(event_type=garden_et, fee=work, pf_income=ic)
+        yield PriceRule(event_type=home_et, fee=work, pf_income=ic)
+
 
     yield named(
         Product, _("Travel per Km"),
@@ -221,10 +219,8 @@ def objects():
     # yield create_user("ahmed", UserTypes.worker,
     #                   event_type=garden_et, partner=ahmed)
     # yield create_user("maria", UserTypes.worker, event_type=home_et, partner=maria)
-    yield create_user("margarete", UserTypes.secretary)
+    yield create_user("martha", UserTypes.secretary)
 
-    yield PriceRule(seqno=1, event_type=garden_et, fee=garden_prod)
-    yield PriceRule(seqno=2, event_type=home_et, fee=home_prod)
 
     invoice_recipient = None
     for n, p in enumerate(Partner.objects.all()):
@@ -242,6 +238,7 @@ def objects():
         c.client_state = ClientStates.active
         c.save()
         return Client.objects.get(pk=p.pk)
+
 
     count = 0
     for person in Person.objects.exclude(gender=''):
@@ -271,6 +268,11 @@ def objects():
 
                     client.full_clean()
                     client.save()
+
+    INCOMES = Cycler(rt.models.presto.IncomeCategories.get_list_items())
+    for obj  in Client.objects.all():
+        obj.pf_income = INCOMES.pop()
+        yield obj
 
     # JOURNALS
 

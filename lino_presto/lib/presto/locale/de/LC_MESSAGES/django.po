@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lino_presto 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-06 14:13+0300\n"
-"PO-Revision-Date: 2019-05-07 09:41+0300\n"
+"POT-Creation-Date: 2019-05-09 00:28+0300\n"
+"PO-Revision-Date: 2019-05-09 00:28+0300\n"
 "Last-Translator: Luc Saffre <luc.saffre@gmail.com>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
@@ -20,23 +20,23 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: lino_presto/lib/cal/models.py:36
+#: lino_presto/lib/cal/models.py:38
 #: lino_presto/lib/presto/config/sales/VatProductInvoice/service_report.weasy.html:20
 msgid "Team"
 msgstr ""
 
-#: lino_presto/lib/cal/models.py:37
+#: lino_presto/lib/cal/models.py:39
 msgid "Teams"
 msgstr ""
 
-#: lino_presto/lib/cal/models.py:176 lino_presto/lib/contacts/models.py:49
-#: lino_presto/lib/contacts/models.py:116
-#: lino_presto/lib/contacts/models.py:182 lino_presto/lib/sales/models.py:28
+#: lino_presto/lib/cal/models.py:205 lino_presto/lib/contacts/models.py:49
+#: lino_presto/lib/contacts/models.py:133
+#: lino_presto/lib/contacts/models.py:204 lino_presto/lib/sales/models.py:28
 #: lino_presto/lib/users/desktop.py:16
 msgid "General"
 msgstr ""
 
-#: lino_presto/lib/cal/models.py:182 lino_presto/lib/sales/models.py:33
+#: lino_presto/lib/cal/models.py:211 lino_presto/lib/sales/models.py:33
 msgid "More"
 msgstr ""
 
@@ -52,27 +52,36 @@ msgstr ""
 msgid "isikukood"
 msgstr ""
 
-#: lino_presto/lib/contacts/models.py:68 lino_presto/lib/contacts/models.py:140
-#: lino_presto/lib/contacts/models.py:200
+#: lino_presto/lib/contacts/models.py:68 lino_presto/lib/contacts/models.py:157
+#: lino_presto/lib/contacts/models.py:222
 msgid "Contact"
 msgstr ""
 
-#: lino_presto/lib/contacts/models.py:84 lino_presto/lib/contacts/models.py:155
-#: lino_presto/lib/contacts/models.py:215
+#: lino_presto/lib/contacts/models.py:85 lino_presto/lib/presto/models.py:243
+msgid "Invoicing"
+msgstr ""
+
+#: lino_presto/lib/contacts/models.py:96
+msgid "Purchases"
+msgstr ""
+
+#: lino_presto/lib/contacts/models.py:100
+#: lino_presto/lib/contacts/models.py:172
+#: lino_presto/lib/contacts/models.py:237
 msgid "Miscellaneous"
 msgstr "Sonstiges"
 
-#: lino_presto/lib/contacts/models.py:135
+#: lino_presto/lib/contacts/models.py:152
 msgid "Human Links"
 msgstr ""
 
-#: lino_presto/lib/contacts/models.py:236
-#: lino_presto/lib/presto/fixtures/demo.py:142
+#: lino_presto/lib/contacts/models.py:258
+#: lino_presto/lib/presto/fixtures/demo.py:156
 #: lino_presto/lib/presto/user_types.py:55
 msgid "Worker"
 msgstr ""
 
-#: lino_presto/lib/contacts/models.py:237
+#: lino_presto/lib/contacts/models.py:259
 msgid "Workers"
 msgstr ""
 
@@ -130,7 +139,6 @@ msgstr "Lebensweise"
 msgid "Life modes"
 msgstr "Lebensweisen"
 
-#: lino_presto/lib/presto/config/sales/VatProductInvoice/service_report.weasy.html:16
 #: lino_presto/lib/presto/models.py:107 lino_presto/lib/presto/models.py:238
 msgid "Client"
 msgstr "Klient"
@@ -149,10 +157,6 @@ msgstr ""
 
 #: lino_presto/lib/presto/models.py:212
 msgid "Primary coach"
-msgstr ""
-
-#: lino_presto/lib/presto/models.py:243
-msgid "Invoicing"
 msgstr ""
 
 #: lino_presto/lib/presto/models.py:298
@@ -188,6 +192,7 @@ msgid "Scheduled"
 msgstr "Geplant"
 
 #: lino_presto/lib/presto/config/sales/VatProductInvoice/service_report.weasy.html:8
+#: lino_presto/lib/presto/fixtures/demo.py:96
 msgid "Service report"
 msgstr "Dienstleistungsbericht"
 
@@ -199,160 +204,163 @@ msgstr ""
 msgid "Duration"
 msgstr ""
 
-#: lino_presto/lib/presto/fixtures/demo.py:65
+#: lino_presto/lib/presto/fixtures/demo.py:73
 msgid "Health problems"
 msgstr "Gesundheitsprobleme"
 
-#: lino_presto/lib/presto/fixtures/demo.py:66
+#: lino_presto/lib/presto/fixtures/demo.py:74
 msgid "Handicap"
 msgstr "Behinderung"
 
-#: lino_presto/lib/presto/fixtures/demo.py:67
+#: lino_presto/lib/presto/fixtures/demo.py:75
 msgid "Messie"
 msgstr ""
 
-#: lino_presto/lib/presto/fixtures/demo.py:69
+#: lino_presto/lib/presto/fixtures/demo.py:77
 msgid "Single"
 msgstr ""
 
-#: lino_presto/lib/presto/fixtures/demo.py:70
+#: lino_presto/lib/presto/fixtures/demo.py:78
 msgid "Living together"
 msgstr "Zusammen lebend"
 
-#: lino_presto/lib/presto/fixtures/demo.py:71
+#: lino_presto/lib/presto/fixtures/demo.py:79
 msgid "Married couple"
 msgstr ""
 
-#: lino_presto/lib/presto/fixtures/demo.py:72
+#: lino_presto/lib/presto/fixtures/demo.py:80
 msgid "Family with children"
 msgstr "Familie mit Kindern"
 
-#: lino_presto/lib/presto/fixtures/demo.py:73
+#: lino_presto/lib/presto/fixtures/demo.py:81
 msgid "Three-generation household"
 msgstr "Dreigenerationenhaushalt"
 
-#: lino_presto/lib/presto/fixtures/demo.py:74
+#: lino_presto/lib/presto/fixtures/demo.py:82
 msgid "Single with children"
 msgstr "Alleinlebend mit Kindern"
 
-#: lino_presto/lib/presto/fixtures/demo.py:76
+#: lino_presto/lib/presto/fixtures/demo.py:84
 msgid "By presence"
 msgstr ""
 
-#: lino_presto/lib/presto/fixtures/demo.py:79
+#: lino_presto/lib/presto/fixtures/demo.py:87
 msgid "Maximum 10"
 msgstr ""
 
-#: lino_presto/lib/presto/fixtures/demo.py:97
+#: lino_presto/lib/presto/fixtures/demo.py:109
 msgid "Employment office"
 msgstr "Arbeitsamt"
 
-#: lino_presto/lib/presto/fixtures/demo.py:111
+#: lino_presto/lib/presto/fixtures/demo.py:123
 msgid "Landlord"
 msgstr "Vermieter"
 
-#: lino_presto/lib/presto/fixtures/demo.py:112
+#: lino_presto/lib/presto/fixtures/demo.py:124
 msgid "Wealth manager"
 msgstr "Vermögensverwalter"
 
-#: lino_presto/lib/presto/fixtures/demo.py:113
+#: lino_presto/lib/presto/fixtures/demo.py:125
 msgid "Personal manager"
 msgstr "Verwalter der Person"
 
-#: lino_presto/lib/presto/fixtures/demo.py:114
+#: lino_presto/lib/presto/fixtures/demo.py:126
 msgid "Delegated contact"
 msgstr "Delegierter Kontakt"
 
-#: lino_presto/lib/presto/fixtures/demo.py:117
+#: lino_presto/lib/presto/fixtures/demo.py:129
 msgid "Sales on services"
 msgstr ""
 
-#: lino_presto/lib/presto/fixtures/demo.py:122
+#: lino_presto/lib/presto/fixtures/demo.py:134
 msgid "Fees"
 msgstr ""
 
-#: lino_presto/lib/presto/fixtures/demo.py:125
+#: lino_presto/lib/presto/fixtures/demo.py:137
 msgid "Consuming items"
 msgstr "Verbrauchsartikel"
 
-#: lino_presto/lib/presto/fixtures/demo.py:132
+#: lino_presto/lib/presto/fixtures/demo.py:144
+msgid "Deployment"
+msgstr "Einsatz"
+
+#: lino_presto/lib/presto/fixtures/demo.py:146
 msgid "Outside work"
 msgstr "Außenarbeiten"
 
-#: lino_presto/lib/presto/fixtures/demo.py:135
+#: lino_presto/lib/presto/fixtures/demo.py:149
 msgid "Inside work"
 msgstr "Innenarbeiten"
 
-#: lino_presto/lib/presto/fixtures/demo.py:139
+#: lino_presto/lib/presto/fixtures/demo.py:153
 msgid "Office work"
 msgstr "Büroarbeiten"
 
-#: lino_presto/lib/presto/fixtures/demo.py:144
+#: lino_presto/lib/presto/fixtures/demo.py:158
 msgid "Guest"
 msgstr ""
 
-#: lino_presto/lib/presto/fixtures/demo.py:161
+#: lino_presto/lib/presto/fixtures/demo.py:175
 msgid "Garden"
 msgstr "Garten"
 
-#: lino_presto/lib/presto/fixtures/demo.py:163
+#: lino_presto/lib/presto/fixtures/demo.py:177
 msgid "Moves"
 msgstr "Umzüge"
 
-#: lino_presto/lib/presto/fixtures/demo.py:165
+#: lino_presto/lib/presto/fixtures/demo.py:179
 msgid "Renovation"
 msgstr "Renovierung"
 
-#: lino_presto/lib/presto/fixtures/demo.py:167
-#: lino_presto/lib/presto/fixtures/demo.py:193
+#: lino_presto/lib/presto/fixtures/demo.py:181
 msgid "Home help"
 msgstr "Haushaltshilfe"
 
-#: lino_presto/lib/presto/fixtures/demo.py:169
+#: lino_presto/lib/presto/fixtures/demo.py:183
 msgid "Home care"
 msgstr "Heimpflege"
 
-#: lino_presto/lib/presto/fixtures/demo.py:171
+#: lino_presto/lib/presto/fixtures/demo.py:185
 msgid "Office"
 msgstr ""
 
-#: lino_presto/lib/presto/fixtures/demo.py:178
+#: lino_presto/lib/presto/fixtures/demo.py:192
 msgid "Ironing of a shirt"
 msgstr "Hemd bügeln"
 
-#: lino_presto/lib/presto/fixtures/demo.py:179
+#: lino_presto/lib/presto/fixtures/demo.py:193
 msgid "Ironing of a pair of trousers"
 msgstr "Hose bügeln"
 
-#: lino_presto/lib/presto/fixtures/demo.py:180
+#: lino_presto/lib/presto/fixtures/demo.py:194
 msgid "Ironing of a skirt"
 msgstr "Rock bügeln"
 
-#: lino_presto/lib/presto/fixtures/demo.py:181
+#: lino_presto/lib/presto/fixtures/demo.py:195
 msgid "Washing per Kg"
 msgstr "Waschen pro Kg"
 
-#: lino_presto/lib/presto/fixtures/demo.py:184
-msgid "Garden works"
-msgstr "Gartenarbeiten"
+#: lino_presto/lib/presto/fixtures/demo.py:199
+msgid "Work by hour"
+msgstr "Arbeit pro Stunde"
 
-#: lino_presto/lib/presto/fixtures/demo.py:201
+#: lino_presto/lib/presto/fixtures/demo.py:209
 msgid "Travel per Km"
 msgstr "Fahrtkosten pro Km"
 
-#: lino_presto/lib/presto/fixtures/demo.py:205
+#: lino_presto/lib/presto/fixtures/demo.py:213
 msgid "Other consuming items"
 msgstr "Sonstige Verbrauchsartikel"
 
-#: lino_presto/lib/presto/fixtures/demo.py:209
+#: lino_presto/lib/presto/fixtures/demo.py:217
 msgid "Other"
 msgstr ""
 
-#: lino_presto/lib/presto/fixtures/demo.py:276
+#: lino_presto/lib/presto/fixtures/demo.py:287
 msgid "Manual invoices"
 msgstr "Händische Rechnungen"
 
-#: lino_presto/lib/presto/fixtures/demo.py:285
+#: lino_presto/lib/presto/fixtures/demo.py:296
 msgid "Order"
 msgstr "Auftrag"
 
@@ -382,3 +390,6 @@ msgstr "Gesamtbetrag"
 
 #~ msgid "{} deployments"
 #~ msgstr "{} Einsätze"
+
+#~ msgid "Garden works"
+#~ msgstr "Gartenarbeiten"

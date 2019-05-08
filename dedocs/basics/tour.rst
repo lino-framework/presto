@@ -70,9 +70,15 @@ Ein Haushalt sollte als **primär** markiert sein.  Die
 Familiäre **Beziehungen** sind Beziehungen von Person zu Person, die unabhängig
 von der Wohnung existieren.
 
+- Beispiel : :menuselection:`Kontakte --> Personen` und nach *Hubert Frisch*
+  suchen.  Dennis Frisch Beziehungen anschauen und Mitgliedschaften korrigieren:
+  Dennis ist *Pflegekind* (nicht Kind) in zwei Haushalten.
+
 Die **Einkommenskategorie** eines Klienten bestimmt den Tarif, der für Arbeiten
-fakturiert wird.  Siehe :menuselection:`Konfigurierung --> Produkte -->
-Preisregeln`.
+fakturiert wird.
+
+- Siehe :menuselection:`Konfigurierung --> Produkte -->
+  Preisregeln`.
 
 Termine
 ========

@@ -20,6 +20,7 @@ class Site(Site):
     obj2text_template = "**{0}**"
     project_model = 'presto.Client'
     workflows_module = 'lino_presto.lib.presto.workflows'
+    layouts_module = 'lino_presto.lib.presto.layouts'
     user_types_module = 'lino_presto.lib.presto.user_types'
     auto_configure_logger_names = "atelier django lino lino_xl lino_presto"
     default_build_method = 'weasy2pdf'
