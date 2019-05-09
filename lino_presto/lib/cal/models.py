@@ -12,6 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from lino.core.gfks import gfk2lookup
 
 from lino_xl.lib.cal.models import *
+from etgen.html import E
 
 from lino.modlib.users.choicelists import UserTypes
 
@@ -46,7 +47,7 @@ class Room(Room, Referrable):
 class RoomDetail(dd.DetailLayout):
     main = """
     ref name invoicing_area id
-    event_type guest_role 
+    event_type guest_role display_color
     company contact_person contact_role 
     cal.EntriesByRoom
     """
@@ -87,7 +88,10 @@ class Event(Event, InvoiceGenerator):
             t.append(self.room.ref)
         if self.summary:
             t.append(self.summary)
-        return " ".join(t)
+        ele = E.span(" ".join(t))
+        if self.room:
+            ele.attrib['style'] = "color: white;background-color: {};".format(self.room.display_color)
+        return ele
         # return "{} {}".format(t, u)
 
 
