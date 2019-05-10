@@ -61,7 +61,7 @@ class Event(Event, InvoiceGenerator):
 
     class Meta(Event.Meta):
         abstract = dd.is_abstract_model(__name__, 'Event')
-        
+
     # invoiceable_date_field = 'start_date'
     invoiceable_partner_field = 'project'
 
