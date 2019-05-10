@@ -89,7 +89,7 @@ class Event(Event, InvoiceGenerator):
         return " ".join(t)
 
     def calendar_fmt(self, pv):
-        ele = E.span(" ".join(self.long_fmt(pv)))
+        ele = E.span(self.long_fmt(pv))
         if self.room:
             data_color = self.room.get_diplay_color()
         if self.room:
