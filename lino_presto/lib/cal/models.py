@@ -65,6 +65,9 @@ class Event(Event, InvoiceGenerator):
     # invoiceable_date_field = 'start_date'
     invoiceable_partner_field = 'project'
 
+    def obj2href(self, ar, txt, *args, **kwargs):
+        kwargs.setdefault('title', txt)
+        return super(Event, self).obj2href(ar, txt, *args, **kwargs)
 
     def calendar_fmt(self, pv):
         # if pv.user:

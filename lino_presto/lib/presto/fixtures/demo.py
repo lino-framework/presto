@@ -39,6 +39,7 @@ Person = rt.models.contacts.Person
 Worker = rt.models.contacts.Worker
 LifeMode = rt.models.presto.LifeMode
 EventType = rt.models.cal.EventType
+DisplayColors = rt.models.cal.DisplayColors
 Room = rt.models.cal.Room
 GuestRole = rt.models.cal.GuestRole
 Enrolment = rt.models.orders.Enrolment
@@ -158,6 +159,7 @@ def objects():
     yield named(GuestRole, _("Guest"))
 
     AREAS = Cycler(Area.objects.all())
+    COLORS = Cycler(DisplayColors.get_list_items())
 
     order_stories = []
 
@@ -166,6 +168,7 @@ def objects():
         kwargs.setdefault('invoicing_area', AREAS.pop())
         kwargs.setdefault('event_type', et)
         kwargs.setdefault('guest_role', gr)
+        kwargs.setdefault('display_color', COLORS.pop())
         obj = Room(**dd.str2kw('name', name, **kwargs))
         order_stories.append([obj, order_options])
         return obj
