@@ -88,11 +88,16 @@ class Event(Event, InvoiceGenerator):
             t.append(self.room.ref)
         if self.summary:
             t.append(self.summary)
+        if self.room:
+            data_color = self.room.get_diplay_color()
         ele = E.span(" ".join(t))
         if self.room:
-            ele.attrib['style'] = "color: white;background-color: {};".format(self.room.display_color)
-        return ele
-        # return "{} {}".format(t, u)
+            dot  = E.span(u"\u00A0",CLASS="dot")
+            # ele.attrib['style'] = "color: white;background-color: {};".format(data_color)
+            dot.attrib['style'] = "background-color: {};".format(data_color)
+            return E.div(*[dot,ele])
+        else:
+            return E.div(*[ele])
 
 
     def get_invoiceable_partner(self):
