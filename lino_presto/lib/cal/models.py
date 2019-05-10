@@ -66,31 +66,32 @@ class Event(Event, InvoiceGenerator):
     # invoiceable_date_field = 'start_date'
     invoiceable_partner_field = 'project'
 
-
-    def calendar_fmt(self, pv):
-        # if pv.user:
-        # if pv.assigned_to:
-        # if settings.SITE.project_model is not None and pv.project:
-        # if pv.event_type:
+    def long_fmt(self, pv):
         t = []
         if self.start_time:
             t.append(str(self.start_time)[:5])
-        # elif not pv.start_date:
-            # t.append(str(self.start_date))
-        # if not pv.user and self.user:
-        #     t.append(str(self.user))
         if not pv.project and self.project:
             t.append(str(self.project))
             t.append(self.project.city.name)
-        # if not pv.event_type and self.event_type:
-        #     t.append(str(self.event_type))
         if not pv.room and self.room and self.room.ref:
             t.append(self.room.ref)
         if self.summary:
             t.append(self.summary)
+        return " ".join(t)
+
+
+    def short_fmt(self, pv):
+        t = []
+        if self.start_time:
+            t.append(str(self.start_time)[:5])
+        if not pv.room and self.room and self.room.ref:
+            t.append(self.room.ref)
+        return " ".join(t)
+
+    def calendar_fmt(self, pv):
+        ele = E.span(" ".join(self.long_fmt(pv)))
         if self.room:
             data_color = self.room.get_diplay_color()
-        ele = E.span(" ".join(t))
         if self.room:
             dot  = E.span(u"\u00A0",CLASS="dot")
             # ele.attrib['style'] = "color: white;background-color: {};".format(data_color)
