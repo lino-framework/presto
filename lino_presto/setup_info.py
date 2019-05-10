@@ -15,7 +15,7 @@ from __future__ import unicode_literals
 
 SETUP_INFO = dict(
     name='lino_presto',
-    version='19.5.0',
+    version='19.5.1',
     install_requires=['lino_xl'],
     tests_require=[],
 
