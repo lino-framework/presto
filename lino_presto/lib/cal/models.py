@@ -8,6 +8,9 @@ from __future__ import unicode_literals
 from builtins import str
 import six
 
+from etgen.html import E
+from etgen.html2rst import html2rst
+
 from django.utils.translation import ugettext_lazy as _
 from lino.core.gfks import gfk2lookup
 
@@ -68,7 +71,10 @@ class Event(Event, InvoiceGenerator):
     def obj2href(self, ar, txt=None, *args, **kwargs):
         if txt is None:
             txt = str(self)
-        kwargs.setdefault('title', txt)
+        if E.iselement(txt):
+            kwargs.setdefault('title', html2rst(txt))
+        else:
+            kwargs.setdefault('title', txt)
         return super(Event, self).obj2href(ar, txt, *args, **kwargs)
 
     def calendar_fmt(self, pv):
