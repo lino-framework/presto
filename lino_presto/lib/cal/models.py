@@ -49,7 +49,7 @@ class Room(Room, Referrable):
 class RoomDetail(dd.DetailLayout):
     main = """
     ref name invoicing_area id
-    event_type guest_role 
+    event_type guest_role display_color
     company contact_person contact_role 
     cal.EntriesByRoom
     """
