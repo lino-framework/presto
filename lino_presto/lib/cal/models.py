@@ -65,7 +65,9 @@ class Event(Event, InvoiceGenerator):
     # invoiceable_date_field = 'start_date'
     invoiceable_partner_field = 'project'
 
-    def obj2href(self, ar, txt, *args, **kwargs):
+    def obj2href(self, ar, txt=None, *args, **kwargs):
+        if txt is None:
+            txt = str(self)
         kwargs.setdefault('title', txt)
         return super(Event, self).obj2href(ar, txt, *args, **kwargs)
 
