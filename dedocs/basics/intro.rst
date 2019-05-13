@@ -42,6 +42,13 @@ Nach längerem Arbeiten in Lino sind manchmal eine ganze Reihe Fenster geöffnet
 Um alle Fenster mit einem Klick zu schließen und auf die Startseite
 zurückzukehren, klicke auf *Startseite* im Hauptmenü.
 
+Tabellenansicht
+===============
+
+- Kolonnen hinzufügen/verstecken, Anordnung, Sortierreihenfolge, Filter
+- F2 zum eine Zelle zu bearbeiten
+- Parameter-Panel
+
 :kbd:`Shift+Ctrl+R`
 ====================
 

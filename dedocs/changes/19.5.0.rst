@@ -2,16 +2,16 @@
 .. _presto.19.5.0:
 
 =======================
-19.5.0 ()
+19.5.0 (2019-05-14)
 =======================
 
 Dies ist der erste Prototyp, der auf Basis des von Thierry erstellten
 Lastenhefts angefertigt wurde.
 
 Besichtiung geplant am Dienstag  14. Mai um 11 Uhr.
+Für die Besichtigung habe ich auch Slides vorbereitet.
 
-Für die Besichtigung habe ich auch Slides vorbereitet. Inhaltlich gehen wir das
-Dokument :doc:`/basics/tour` durch.
+Eventuell gehen wir die :doc:`/basics/tour` durch.
 
 Notizen zum Lastenheft
 ======================
