@@ -21,7 +21,7 @@ Datenimport wollen, brauche ich csv-Dateien mit einer Struktur, die sich
 nicht mehr (unangefragt) ändert.
 
 5. Benutzer : ich schätze, dass die momentanen Benutzerarten das ist,
-was wir brauchen.  Siehe Auswahlliste im Feld `Benutzerart` eines Benutzers.
+was wir brauchen.  Siehe Auswahlliste im Feld `Benutzerart` eines Benutzers.  Ein
 
 7.1 Kontakte
 
