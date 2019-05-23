@@ -91,7 +91,8 @@ class Event(Event, InvoiceGenerator):
         #     t.append(str(self.user))
         if not pv.project and self.project:
             t.append(str(self.project))
-            t.append(self.project.city.name)
+            if self.project.city:
+                t.append(self.project.city.name)
         # if not pv.event_type and self.event_type:
         #     t.append(str(self.event_type))
         if not pv.room and self.room and self.room.ref:
@@ -111,6 +112,8 @@ class Event(Event, InvoiceGenerator):
         par = self.get_invoiceable_partner()
         # par = self.project
         # if self.project_id is None:
+
+        
         if par is None:
             return None
         return rt.models.products.Product.get_rule_fee(par, self.event_type)
