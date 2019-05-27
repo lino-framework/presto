@@ -32,9 +32,9 @@ The menu
   - Kontakte : Organisationsarten, Funktionen, Klientenkontaktarten, Haushaltsarten, Themen, Krankenkassen, Krankenkassen-Regeln, Lebensweisen
   - Kalender : Kalenderliste, Teams, Regelmäßige Ereignisse, Gastrollen, Kalendereintragsarten, Wiederholungsregeln, Externe Kalender, Tagesplanerzeilen
   - Buchhaltung : Konten, Journale, Geschäftsjahre, Buchungsperioden, Zahlungsbedingungen
-  - Produkte : Dienstleistungen, Möbel, Produktkategorien, Price rules
+  - Produkte : Dienstleistungen, Möbel, Produktkategorien, Preisregeln
   - Verkauf : Papierarten, Pauschalen, Fakturationsbereiche
-  - Büro : Notizarten, Ereignisarten, Auszugsarten, Meine Einfügetexte, Dateibibliotheken, Upload-Arten
+  - Büro : Notizarten, Ereignisarten, Auszugsarten, Dateibibliotheken, Upload-Arten
   - Orte : Länder, Orte
 - Explorer :
   - System : Vollmachten, Benutzerarten, Benutzerrollen, All dashboard widgets, Datenbankmodelle, Datentests, Datenprobleme
@@ -45,7 +45,7 @@ The menu
   - Produkte : Price factors
   - Verkauf : Verkaufsrechnungen, Sales invoice items, Fakturationspläne, Verkaufsregeln
   - SEPA : Bankkonten
-  - Büro : Auszüge, Einfügetexte, Uploads, Upload-Bereiche
+  - Büro : Auszüge, Uploads, Upload-Bereiche
   - MwSt. : VAT areas, MwSt.-Regimes, VAT classes, VAT columns, Rechnungen, MwSt-Regeln
 - Site : Info
 
