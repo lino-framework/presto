@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2013-2018 Rumma & Ko Ltd
+# Copyright 2013-2019 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
 from __future__ import unicode_literals
@@ -9,6 +9,30 @@ from lino.api import dd, rt, _
 from lino_xl.lib.contacts.models import *
 # from lino_xl.lib.courses.mixins import Enrollable
 from lino_xl.lib.beid.mixins import SSIN
+from lino.modlib.printing.actions import DirectPrintAction
+from lino.mixins.periods import Monthly
+
+
+class PrintDeploymentPlan(DirectPrintAction):
+    # combo_group = "creacert"
+    label = _("Deployment plan")
+    tplname = "deployment_plan"
+    build_method = "weasy2pdf"
+    icon_name = None
+    # show_in_bbar = False
+    parameters = Monthly(
+        show_remarks=models.BooleanField(
+            _("Show remarks"), default=False),
+        show_states=models.BooleanField(
+            _("Show states"), default=True))
+    params_layout = """
+    start_date
+    end_date
+    show_remarks
+    show_states
+    """
+    keep_user_values = True
+
 
 
 
@@ -20,9 +44,9 @@ class Partner(Partner, mixins.CreatedModified):
         # verbose_name_plural = _("Partners")
         abstract = dd.is_abstract_model(__name__, 'Partner')
 
-    isikukood = models.CharField(
-        _("isikukood"), max_length=20, blank=True)
-
+    # isikukood = models.CharField(
+    #     _("isikukood"), max_length=20, blank=True)
+    #
     hidden_columns = 'created modified'
 
     faculty = None
@@ -112,6 +136,19 @@ class Person(Partner, Person):
         #~ ordering = ['last_name','first_name']
         abstract = dd.is_abstract_model(__name__, 'Person')
 
+    print_deployment_plan = PrintDeploymentPlan()
+
+    @dd.displayfield(_("Print"))
+    def print_actions(self, ar):
+        if ar is None:
+            return ''
+        elems = [
+            ar.instance_action_button(
+                self.print_deployment_plan)]
+        return E.p(*join_elems(elems, sep=", "))
+
+
+
     def get_queryset(self, ar):
         return self.model.objects.select_related('country', 'city')
 
@@ -119,13 +156,21 @@ class Person(Partner, Person):
         "Used by DirectPrintAction"
         return self.language
 
+    def cal_entries_by_guest(self):
+        return rt.models.cal.Event.objects.filter(guest__partner=self)
+
 dd.update_field(Person, 'first_name', blank=False)
 # dd.update_field(Person, 'last_name', blank=False)
 
 # class PersonDetail(PersonDetail, PartnerDetail):
 class PersonDetail(PartnerDetail):
 
-    main = "general contact humanlinks misc cal.GuestsByPartner"
+    main = "general contact humanlinks misc cal_tab"
+
+    cal_tab = dd.Panel("""
+    print_actions
+    cal.GuestsByPartner
+    """, label=_("Calendar"))
 
     general = dd.Panel("""
     overview:20 general2:40 #general3:40
@@ -252,6 +297,16 @@ class CompanyDetail(PartnerDetail):
 #     contacts.Companies.set_detail_layout(contacts.CompanyDetail())
 
 
+class WorkerDetail(PersonDetail):
+
+    general2 = """
+    title first_name:15 middle_name:15
+    last_name
+    gender:10 birth_date age:10
+    id language national_id
+    """
+
+
 class Worker(Person, SSIN):
     class Meta:
         app_label = 'contacts'
@@ -259,5 +314,8 @@ class Worker(Person, SSIN):
         verbose_name_plural = _("Workers")
         abstract = dd.is_abstract_model(__name__, 'Worker')
 
+
 class Workers(Persons):
     model = 'contacts.Worker'
+    # detail_layout = WorkerDetail()
+    detail_layout = 'contacts.WorkerDetail'

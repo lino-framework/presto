@@ -63,7 +63,7 @@ class Site(Site):
         yield 'lino_xl.lib.appypod'
         yield 'lino.modlib.export_excel'
         yield 'lino.modlib.checkdata'
-        yield 'lino.modlib.tinymce'
+        # yield 'lino.modlib.tinymce'
         yield 'lino.modlib.weasyprint'
 
         yield 'lino_presto.lib.presto'
