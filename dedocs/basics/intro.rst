@@ -49,8 +49,11 @@ Tabellenansicht
 - F2 zum eine Zelle zu bearbeiten
 - Parameter-Panel
 
-:kbd:`Shift+Ctrl+R`
-====================
+
+.. _browser_neu_laden:
+
+Browserfenster neu laden (:kbd:`Shift+Ctrl+R`)
+==============================================
 
 Gewöhne Dir an, wenn Du morgens zum ersten Mal in Lino reingehst, die
 Tastenkombination :kbd:`Shift+Ctrl+R` zu drücken. Dadurch sagst du dem
