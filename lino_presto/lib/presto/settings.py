@@ -68,14 +68,14 @@ class Site(Site):
 
         yield 'lino_presto.lib.presto'
 
-    def setup_plugins(self):
-        super(Site, self).setup_plugins()
-        self.plugins.healthcare.configure(client_model='presto.Client')
-        self.plugins.topics.configure(menu_group='contacts')
-        self.plugins.countries.configure(country_code='BE')
-        self.plugins.clients.configure(client_model='presto.Client', menu_group='contacts')
-        self.plugins.orders.configure(worker_model='contacts.Worker')
-        self.plugins.ledger.configure(purchase_stories=False, sales_stories=False)
-        # self.plugins.comments.configure(
-        #     commentable_model='tickets.Ticket')
+    def get_plugin_configs(self):
+        yield super(Site, self).get_plugin_configs()
+        yield ('healthcare', 'client_model', 'presto.Client')
+        yield ('topics', 'menu_group', 'contacts')
+        yield ('countries', 'country_code', 'BE')
+        yield ('clients', 'client_model', 'presto.Client')
+        yield ('clients', 'menu_group', 'contacts')
+        yield ('orders', 'worker_model', 'contacts.Worker')
+        yield ('ledger', 'purchase_stories', False)
+        yield ('ledger', 'sales_stories', False)
 
