@@ -9,4 +9,5 @@ help_texts = {
 given order."""),
     'lino_presto.lib.invoicing.StartInvoicingForOrder' : _("""Start an invoicing plan for this order."""),
     'lino_presto.lib.presto.Plugin' : _("""See lino.core.plugin.Plugin."""),
+    'lino_presto.lib.contacts.Worker' : _("""The Django model which represents a worker."""),
 }
