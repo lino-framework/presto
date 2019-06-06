@@ -11,4 +11,4 @@ mit Margarete.
 - Erste Entwürfe für Einsatzpläne. Pro Arbeiter oder pro Team. Mit Übersicht
   oder ohne.
 
-- insert_layout für Klienten und Personen
+- Tel und GSM in insert_layout für Klienten, Arbeiter und Personen
