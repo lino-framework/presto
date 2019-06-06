@@ -5,7 +5,10 @@
 19.6.0 (2019-06-06)
 =======================
 
-Erstes Update nach Beginn der gemeinsamen Entwicklungsphase mit Margarete.
+Erstes (dokumentiertes) Release nach Beginn der gemeinsamen Entwicklungsphase
+mit Margarete.
 
-- Erste Entwürfe für Einsatzpläne (Button pro Arbeiter und pro Team)
+- Erste Entwürfe für Einsatzpläne. Pro Arbeiter oder pro Team. Mit Übersicht
+  oder ohne.
+
 - insert_layout für Klienten und Personen
