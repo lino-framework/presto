@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lino_presto 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-27 20:37+0300\n"
-"PO-Revision-Date: 2019-05-27 20:37+0300\n"
+"POT-Creation-Date: 2019-06-06 12:18+0300\n"
+"PO-Revision-Date: 2019-06-06 12:20+0300\n"
 "Last-Translator: Luc Saffre <luc.saffre@gmail.com>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
@@ -20,24 +20,74 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: lino_presto/lib/cal/models.py:41
+#: lino_presto/lib/cal/models.py:43
 #: lino_presto/lib/presto/config/sales/VatProductInvoice/service_report.weasy.html:20
 msgid "Team"
 msgstr ""
 
-#: lino_presto/lib/cal/models.py:42
+#: lino_presto/lib/cal/models.py:44
 msgid "Teams"
 msgstr ""
 
-#: lino_presto/lib/cal/models.py:219 lino_presto/lib/contacts/models.py:73
-#: lino_presto/lib/contacts/models.py:178
-#: lino_presto/lib/contacts/models.py:249 lino_presto/lib/sales/models.py:28
+#: lino_presto/lib/cal/models.py:52 lino_presto/lib/contacts/models.py:142
+msgid "Print"
+msgstr ""
+
+#: lino_presto/lib/cal/models.py:233 lino_presto/lib/contacts/models.py:74
+#: lino_presto/lib/contacts/models.py:177
+#: lino_presto/lib/contacts/models.py:248 lino_presto/lib/sales/models.py:28
 #: lino_presto/lib/users/desktop.py:16
 msgid "General"
 msgstr ""
 
-#: lino_presto/lib/cal/models.py:225 lino_presto/lib/sales/models.py:33
+#: lino_presto/lib/cal/models.py:239 lino_presto/lib/sales/models.py:33
 msgid "More"
+msgstr ""
+
+#: lino_presto/lib/cal/config/cal/Room/roster.weasy.html:8
+#: lino_presto/lib/contacts/config/contacts/Person/roster.weasy.html:8
+#: lino_presto/lib/contacts/models.py:19
+msgid "Roster"
+msgstr "Einsatzplan"
+
+#: lino_presto/lib/cal/config/cal/Room/roster.weasy.html:23
+#: lino_presto/lib/contacts/config/contacts/Person/roster.weasy.html:23
+#: lino_presto/lib/presto/fixtures/demo.py:299
+msgid "Order"
+msgstr "Auftrag"
+
+#: lino_presto/lib/cal/config/cal/Room/roster.weasy.html:51
+#: lino_presto/lib/contacts/config/contacts/Person/roster.weasy.html:48
+msgid "Time"
+msgstr ""
+
+#: lino_presto/lib/cal/config/cal/Room/roster.weasy.html:52
+#: lino_presto/lib/cal/config/cal/Room/roster.weasy.html:55
+#: lino_presto/lib/contacts/config/contacts/Person/roster.weasy.html:49
+#: lino_presto/lib/contacts/config/contacts/Person/roster.weasy.html:52
+#: lino_presto/lib/presto/config/sales/VatProductInvoice/service_report.weasy.html:21
+msgid "Duration"
+msgstr ""
+
+#: lino_presto/lib/cal/config/cal/Room/roster.weasy.html:53
+#: lino_presto/lib/contacts/config/contacts/Person/roster.weasy.html:50
+msgid "Address"
+msgstr ""
+
+#: lino_presto/lib/cal/config/cal/Room/roster.weasy.html:54
+#: lino_presto/lib/contacts/config/contacts/Person/roster.weasy.html:51
+#: lino_presto/lib/presto/models.py:107 lino_presto/lib/presto/models.py:238
+msgid "Client"
+msgstr "Klient"
+
+#: lino_presto/lib/cal/config/cal/Room/roster.weasy.html:56
+#: lino_presto/lib/contacts/config/contacts/Person/roster.weasy.html:53
+msgid "Signature"
+msgstr "Unterschrift"
+
+#: lino_presto/lib/cal/config/cal/Room/roster.weasy.html:58
+#: lino_presto/lib/contacts/config/contacts/Person/roster.weasy.html:55
+msgid "Remark"
 msgstr ""
 
 #: lino_presto/lib/cal/fixtures/std.py:22
@@ -48,89 +98,53 @@ msgstr ""
 msgid "Summer holidays"
 msgstr ""
 
-#: lino_presto/lib/contacts/config/contacts/Person/deployment_plan.weasy.html:4
-#: lino_presto/lib/contacts/models.py:18
-msgid "Deployment plan"
-msgstr "Einsatzplan"
+#: lino_presto/lib/contacts/models.py:17
+msgid "Print a roster of calendar events"
+msgstr "Einsatzplan mit Kalendereinträgen drucken"
 
-#: lino_presto/lib/contacts/models.py:25
+#: lino_presto/lib/contacts/models.py:26
 msgid "Show remarks"
 msgstr ""
 
-#: lino_presto/lib/contacts/models.py:27
-msgid "Show states"
-msgstr ""
+#: lino_presto/lib/contacts/models.py:28
+msgid "Overview"
+msgstr "Übersicht"
 
-#: lino_presto/lib/contacts/models.py:92 lino_presto/lib/contacts/models.py:202
-#: lino_presto/lib/contacts/models.py:267
+#: lino_presto/lib/contacts/models.py:93 lino_presto/lib/contacts/models.py:201
+#: lino_presto/lib/contacts/models.py:266
 msgid "Contact"
 msgstr ""
 
-#: lino_presto/lib/contacts/models.py:109 lino_presto/lib/presto/models.py:243
+#: lino_presto/lib/contacts/models.py:110 lino_presto/lib/presto/models.py:243
 msgid "Invoicing"
 msgstr ""
 
-#: lino_presto/lib/contacts/models.py:120
+#: lino_presto/lib/contacts/models.py:121
 msgid "Purchases"
 msgstr ""
 
-#: lino_presto/lib/contacts/models.py:124
-#: lino_presto/lib/contacts/models.py:217
-#: lino_presto/lib/contacts/models.py:282
+#: lino_presto/lib/contacts/models.py:125
+#: lino_presto/lib/contacts/models.py:216
+#: lino_presto/lib/contacts/models.py:281
 msgid "Miscellaneous"
 msgstr "Sonstiges"
 
-#: lino_presto/lib/contacts/models.py:141
-msgid "Print"
-msgstr ""
-
-#: lino_presto/lib/contacts/models.py:173
+#: lino_presto/lib/contacts/models.py:172
 msgid "Calendar"
 msgstr ""
 
-#: lino_presto/lib/contacts/models.py:197
+#: lino_presto/lib/contacts/models.py:196
 msgid "Human Links"
 msgstr ""
 
-#: lino_presto/lib/contacts/models.py:313
+#: lino_presto/lib/contacts/models.py:312
 #: lino_presto/lib/presto/fixtures/demo.py:157
 #: lino_presto/lib/presto/user_types.py:55
 msgid "Worker"
 msgstr ""
 
-#: lino_presto/lib/contacts/models.py:314
+#: lino_presto/lib/contacts/models.py:313
 msgid "Workers"
-msgstr ""
-
-#: lino_presto/lib/contacts/config/contacts/Person/deployment_plan.weasy.html:21
-msgid "Address"
-msgstr ""
-
-#: lino_presto/lib/contacts/config/contacts/Person/deployment_plan.weasy.html:22
-#: lino_presto/lib/presto/models.py:107 lino_presto/lib/presto/models.py:238
-msgid "Client"
-msgstr "Klient"
-
-#: lino_presto/lib/contacts/config/contacts/Person/deployment_plan.weasy.html:23
-#: lino_presto/lib/presto/config/sales/VatProductInvoice/service_report.weasy.html:19
-msgid "Date"
-msgstr ""
-
-#: lino_presto/lib/contacts/config/contacts/Person/deployment_plan.weasy.html:24
-msgid "Time"
-msgstr ""
-
-#: lino_presto/lib/contacts/config/contacts/Person/deployment_plan.weasy.html:25
-#: lino_presto/lib/presto/config/sales/VatProductInvoice/service_report.weasy.html:21
-msgid "Duration"
-msgstr ""
-
-#: lino_presto/lib/contacts/config/contacts/Person/deployment_plan.weasy.html:26
-msgid "Signature"
-msgstr ""
-
-#: lino_presto/lib/contacts/config/contacts/Person/deployment_plan.weasy.html:28
-msgid "Remark"
 msgstr ""
 
 #: lino_presto/lib/ledger/models.py:22
@@ -157,6 +171,10 @@ msgstr ""
 
 #: lino_presto/lib/presto/help_texts.py:11
 msgid "See lino.core.plugin.Plugin."
+msgstr ""
+
+#: lino_presto/lib/presto/help_texts.py:12
+msgid "The Django model which represents a worker."
 msgstr ""
 
 #: lino_presto/lib/presto/models.py:51
@@ -239,6 +257,10 @@ msgstr "Geplant"
 #: lino_presto/lib/presto/fixtures/demo.py:97
 msgid "Service report"
 msgstr "Dienstleistungsbericht"
+
+#: lino_presto/lib/presto/config/sales/VatProductInvoice/service_report.weasy.html:19
+msgid "Date"
+msgstr ""
 
 #: lino_presto/lib/presto/fixtures/demo.py:74
 msgid "Health problems"
@@ -396,10 +418,6 @@ msgstr ""
 msgid "Manual invoices"
 msgstr "Händische Rechnungen"
 
-#: lino_presto/lib/presto/fixtures/demo.py:299
-msgid "Order"
-msgstr "Auftrag"
-
 #: lino_presto/lib/products/models.py:12
 msgid "Services"
 msgstr "Dienstleistungen"
@@ -429,3 +447,6 @@ msgstr "Gesamtbetrag"
 
 #~ msgid "Garden works"
 #~ msgstr "Gartenarbeiten"
+
+#~ msgid "Deployment plan"
+#~ msgstr "Einsatzplan"

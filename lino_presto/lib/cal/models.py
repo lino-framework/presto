@@ -29,10 +29,12 @@ from lino_xl.lib.invoicing.mixins import InvoiceGenerator
 # from lino_xl.lib.cal.workflows import voga
 
 
-from lino.modlib.office.roles import OfficeUser
+# from lino.modlib.office.roles import OfficeUser
+from lino_presto.lib.contacts.models import PrintRoster
+from lino.modlib.printing.mixins import Printable
 
 
-class Room(Room, Referrable):
+class Room(Room, Referrable, Printable):
 
     ref_max_length = 5
 
@@ -45,11 +47,23 @@ class Room(Room, Referrable):
     guest_role = dd.ForeignKey("cal.GuestRole", blank=True, null=True)
     invoicing_area = dd.ForeignKey('invoicing.Area', blank=True, null=True)
 
+    print_roster = PrintRoster()
+
+    @dd.displayfield(_("Print"))
+    def print_actions(self, ar):
+        if ar is None:
+            return ''
+        elems = [
+            ar.instance_action_button(
+                self.print_roster)]
+        return E.p(*join_elems(elems, sep=", "))
+
+
 
 class RoomDetail(dd.DetailLayout):
     main = """
-    ref name invoicing_area id
-    event_type guest_role display_color
+    ref name id print_actions
+    invoicing_area event_type guest_role display_color
     company contact_person contact_role 
     cal.EntriesByRoom
     """

@@ -1,0 +1,11 @@
+.. include:: /../docs/shared/include/defs.rst
+.. _presto.19.6.0:
+
+=======================
+19.6.0 (2019-06-06)
+=======================
+
+Erstes Update nach Beginn der gemeinsamen Entwicklungsphase mit Margarete.
+
+- Erste Entwürfe für Einsatzpläne (Button pro Arbeiter und pro Team)
+- insert_layout für Klienten und Personen

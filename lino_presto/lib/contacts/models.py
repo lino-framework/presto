@@ -13,23 +13,24 @@ from lino.modlib.printing.actions import DirectPrintAction
 from lino.mixins.periods import Monthly
 
 
-class PrintDeploymentPlan(DirectPrintAction):
+class PrintRoster(DirectPrintAction):
+    help_text = _("Print a roster of calendar events")
     # combo_group = "creacert"
-    label = _("Deployment plan")
-    tplname = "deployment_plan"
+    label = _("Roster")
+    tplname = "roster"
     build_method = "weasy2pdf"
     icon_name = None
-    # show_in_bbar = False
+    show_in_bbar = False
     parameters = Monthly(
         show_remarks=models.BooleanField(
             _("Show remarks"), default=False),
-        show_states=models.BooleanField(
-            _("Show states"), default=True))
+        overview=models.BooleanField(
+            _("Overview"), default=True))
     params_layout = """
     start_date
     end_date
+    overview
     show_remarks
-    show_states
     """
     keep_user_values = True
 
@@ -136,7 +137,7 @@ class Person(Partner, Person):
         #~ ordering = ['last_name','first_name']
         abstract = dd.is_abstract_model(__name__, 'Person')
 
-    print_deployment_plan = PrintDeploymentPlan()
+    print_roster = PrintRoster()
 
     @dd.displayfield(_("Print"))
     def print_actions(self, ar):
@@ -144,10 +145,8 @@ class Person(Partner, Person):
             return ''
         elems = [
             ar.instance_action_button(
-                self.print_deployment_plan)]
+                self.print_roster)]
         return E.p(*join_elems(elems, sep=", "))
-
-
 
     def get_queryset(self, ar):
         return self.model.objects.select_related('country', 'city')
@@ -217,6 +216,12 @@ class PersonDetail(PartnerDetail):
     """, label=_("Miscellaneous"))
 
 
+Persons.insert_layout = """
+first_name last_name
+phone gsm 
+gender email
+"""
+
 class Persons(Persons):
 
     detail_layout = PersonDetail()
@@ -280,6 +285,14 @@ class CompanyDetail(PartnerDetail):
     created modified
     # notes.NotesByPartner
     """, label=_("Miscellaneous"))
+
+
+Companies.insert_layout = """
+name
+phone gsm
+#language:20 email:40
+type #id
+"""
 
 
 # class Companies(Companies):

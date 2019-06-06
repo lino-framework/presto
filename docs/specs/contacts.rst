@@ -34,3 +34,21 @@ Contacts
 >>> ba.get_view_permission(ut)
 True
 
+
+Print templates
+===============
+
+A roster lists planned calendar entries for a given period.
+
+.. xfile:: contacts/Person/roster.weasy.html
+
+    A printed roster for a given *person* (usually a worker).
+
+    Based on :xfile:`weasyprint/base.weasy.html`
+
+.. xfile:: cal/Room/roster.weasy.html
+
+    A printed roster for a given *team*.
+
+    Based on :xfile:`weasyprint/base.weasy.html`
+

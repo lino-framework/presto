@@ -7,6 +7,7 @@ Releasenotizen
 .. toctree::
    :maxdepth: 1
 
+   19.6.0
    19.5.0
 
 .. toctree::
