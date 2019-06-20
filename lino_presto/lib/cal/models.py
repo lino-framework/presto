@@ -220,7 +220,17 @@ class Event(Event, InvoiceGenerator):
                     qty=oi.qty)
                 yield invoice.add_voucher_item(**kwargs)
 
+
+    @classmethod
+    def setup_parameters(cls, params):
+        params = super(Event, cls).setup_parameters(params)
+        params['presence_guest'].verbose_name = _("Worker")
+        return params
+
+
 dd.update_field(Event, 'description',format="plain")
+dd.update_field(EventType, 'all_rooms',verbos_name=_("Locks all teams"))
+
 
 class EventDetail(EventDetail):
     main = "general more"
