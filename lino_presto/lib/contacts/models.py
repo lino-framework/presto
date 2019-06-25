@@ -168,7 +168,7 @@ class PersonDetail(PartnerDetail):
 
     cal_tab = dd.Panel("""
     print_actions
-    cal.GuestsByPartner
+    #cal.GuestsByPartner cal.EntriesByGuest
     """, label=_("Calendar"))
 
     general = dd.Panel("""
