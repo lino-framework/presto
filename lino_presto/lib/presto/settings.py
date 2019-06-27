@@ -24,6 +24,7 @@ class Site(Site):
     user_types_module = 'lino_presto.lib.presto.user_types'
     auto_configure_logger_names = "atelier django lino lino_xl lino_presto"
     default_build_method = 'weasy2pdf'
+    textfield_bleached = True
 
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()
@@ -63,7 +64,7 @@ class Site(Site):
         yield 'lino_xl.lib.appypod'
         yield 'lino.modlib.export_excel'
         yield 'lino.modlib.checkdata'
-        # yield 'lino.modlib.tinymce'
+        yield 'lino.modlib.tinymce'
         yield 'lino.modlib.weasyprint'
 
         yield 'lino_presto.lib.presto'

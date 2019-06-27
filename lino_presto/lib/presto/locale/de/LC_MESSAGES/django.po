@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: lino_presto 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-06 12:18+0300\n"
-"PO-Revision-Date: 2019-06-06 12:20+0300\n"
+"PO-Revision-Date: 2019-06-26 15:54+0300\n"
 "Last-Translator: Luc Saffre <luc.saffre@gmail.com>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
@@ -167,7 +167,7 @@ msgstr ""
 
 #: lino_presto/lib/presto/help_texts.py:10
 msgid "Start an invoicing plan for this order."
-msgstr ""
+msgstr "Automatikfakturierung starten für diesen Auftrag."
 
 #: lino_presto/lib/presto/help_texts.py:11
 msgid "See lino.core.plugin.Plugin."

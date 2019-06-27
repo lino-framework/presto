@@ -166,15 +166,31 @@ class PersonDetail(PartnerDetail):
 
     main = "general contact humanlinks misc cal_tab"
 
-    cal_tab = dd.Panel("""
-    print_actions
-    #cal.GuestsByPartner cal.EntriesByGuest
-    """, label=_("Calendar"))
-
     general = dd.Panel("""
     overview:20 general2:40 #general3:40
     contacts.RolesByPerson:20
     """, label=_("General"))
+
+    contact = dd.Panel("""
+    # lists.MembersByPartner
+    remarks:30 sepa.AccountsByPartner
+    """, label=_("Contact"))
+
+    humanlinks = dd.Panel("""
+    humanlinks.LinksByHuman:30 
+    households.MembersByPerson:20 households.SiblingsByPerson:50
+    """, label=_("Human Links"))
+
+    misc = dd.Panel("""
+    url
+    created modified
+    # notes.NotesByPartner    
+    """, label=_("Miscellaneous"))
+
+    cal_tab = dd.Panel("""
+    print_actions
+    #cal.GuestsByPartner cal.EntriesByGuest
+    """, label=_("Calendar"))
 
     general2 = """
     title first_name:15 middle_name:15
@@ -190,30 +206,12 @@ class PersonDetail(PartnerDetail):
     fax
     """
 
-    humanlinks = dd.Panel("""
-    humanlinks.LinksByHuman:30 
-    households.MembersByPerson:20 households.SiblingsByPerson:50
-    """, label=_("Human Links"))
-
-    contact = dd.Panel("""
-    # lists.MembersByPartner
-    remarks:30 sepa.AccountsByPartner
-    """, label=_("Contact"))
-
     address_box = """
     country region city zip_code:10
     addr1
     street_prefix street:25 street_no street_box
     addr2
     """
-
-    # tickets = "tickets.SponsorshipsByPartner"
-
-    misc = dd.Panel("""
-    url
-    created modified
-    # notes.NotesByPartner    
-    """, label=_("Miscellaneous"))
 
 
 Persons.insert_layout = """
@@ -225,6 +223,31 @@ gender email
 class Persons(Persons):
 
     detail_layout = PersonDetail()
+
+
+class Worker(Person, SSIN):
+    class Meta:
+        app_label = 'contacts'
+        verbose_name = _("Worker")
+        verbose_name_plural = _("Workers")
+        abstract = dd.is_abstract_model(__name__, 'Worker')
+
+
+class WorkerDetail(PersonDetail):
+    main = "general worker_tab contact humanlinks cal_tab "
+
+    worker_tab = dd.Panel("""
+    national_id created modified
+    orders.EnrolmentsByWorker
+    """, label=_("Worker"))
+
+
+class Workers(Persons):
+    model = 'contacts.Worker'
+    # detail_layout = WorkerDetail()
+    detail_layout = 'contacts.WorkerDetail'
+
+
 
 
 class Company(Partner, Company):
@@ -295,40 +318,3 @@ type #id
 """
 
 
-# class Companies(Companies):
-#     detail_layout = CompanyDetail()
-
-
-# Partners.set_detail_layout(PartnerDetail())
-# Companies.set_detail_layout(CompanyDetail())
-
-# @dd.receiver(dd.post_analyze)
-# def my_details(sender, **kw):
-#     contacts = sender.modules.contacts
-
-#     contacts.Partners.set_detail_layout(contacts.PartnerDetail())
-#     contacts.Companies.set_detail_layout(contacts.CompanyDetail())
-
-
-class WorkerDetail(PersonDetail):
-
-    general2 = """
-    title first_name:15 middle_name:15
-    last_name
-    gender:10 birth_date age:10
-    id language national_id
-    """
-
-
-class Worker(Person, SSIN):
-    class Meta:
-        app_label = 'contacts'
-        verbose_name = _("Worker")
-        verbose_name_plural = _("Workers")
-        abstract = dd.is_abstract_model(__name__, 'Worker')
-
-
-class Workers(Persons):
-    model = 'contacts.Worker'
-    # detail_layout = WorkerDetail()
-    detail_layout = 'contacts.WorkerDetail'

@@ -256,3 +256,7 @@ class MyEntries(MyEntries):
 
 class GuestsByEvent(GuestsByEvent):
     column_names = 'partner role #workflow_buttons remark *'
+
+
+class EntriesByProject(EntriesByProject):
+    column_names = 'when_text owner summary workflow_buttons *'

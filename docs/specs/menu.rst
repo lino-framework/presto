@@ -34,7 +34,7 @@ The menu
   - Buchhaltung : Konten, Journale, Geschäftsjahre, Buchungsperioden, Zahlungsbedingungen
   - Produkte : Dienstleistungen, Möbel, Produktkategorien, Preisregeln
   - Verkauf : Papierarten, Pauschalen, Fakturationsbereiche
-  - Büro : Notizarten, Ereignisarten, Auszugsarten, Dateibibliotheken, Upload-Arten
+  - Büro : Notizarten, Ereignisarten, Auszugsarten, Meine Einfügetexte, Dateibibliotheken, Upload-Arten
   - Orte : Länder, Orte
 - Explorer :
   - System : Vollmachten, Benutzerarten, Benutzerrollen, All dashboard widgets, Datenbankmodelle, Datentests, Datenprobleme
@@ -45,7 +45,7 @@ The menu
   - Produkte : Price factors
   - Verkauf : Verkaufsrechnungen, Sales invoice items, Fakturationspläne, Verkaufsregeln
   - SEPA : Bankkonten
-  - Büro : Auszüge, Uploads, Upload-Bereiche
+  - Büro : Auszüge, Einfügetexte, Uploads, Upload-Bereiche
   - MwSt. : VAT areas, MwSt.-Regimes, VAT classes, VAT columns, Rechnungen, MwSt-Regeln
 - Site : Info
 
