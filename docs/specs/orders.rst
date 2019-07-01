@@ -21,17 +21,18 @@ plugin.
 Orders
 
 >>> rt.show(ledger.JournalGroups, language="en")
-======= =========== ===========
+... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF -SKIP
+======= =========== ============================
  value   name        text
-------- ----------- -----------
+------- ----------- ----------------------------
  05      orders      Orders
  10      sales       Sales
  20      purchases   Purchases
  30      wages       Wages
  40      financial   Financial
  50      vat         VAT
-======= =========== ===========
-<BLANKLINE>
+ 60      misc        Miscellaneous transactions
+======= =========== ============================
 
 
 >>> rt.show(orders.Orders, language="en")
