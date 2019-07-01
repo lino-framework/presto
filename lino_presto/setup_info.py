@@ -20,7 +20,7 @@ SETUP_INFO = dict(
     tests_require=['bleach'],
 
     description="A Lino application for managing services",
-    license='BSD License',
+    license='BSD-2-Clause',
     include_package_data=True,
     zip_safe=False,
     author='Luc Saffre',
