@@ -39,7 +39,7 @@ The menu
 - Explorer :
   - System : Vollmachten, Benutzerarten, Benutzerrollen, All dashboard widgets, Datenbankmodelle, Datentests, Datenprobleme
   - Kontakte : Kontaktpersonen, Partner, Klientenkontakte, Standard-Klientenkontaktarten, Haushaltsmitgliedsrollen, Mitglieder, Adressenarten, Adressen, Kontaktangabenarten, Kontaktangaben, Verwandtschaftsbeziehungen, Verwandschaftsarten, Interessen, Krankenkassen-Tarife, Krankenkassen-Situationen, Klienten
-  - Kalender : Kalendereinträge, Aufgaben, Anwesenheiten, Abonnements, Termin-Zustände, Gast-Zustände, Aufgaben-Zustände
+  - Kalender : Kalendereinträge, Aufgaben, Anwesenheiten, Abonnements, Kalendereintrag-Zustände, Anwesenheits-Zustände, Aufgaben-Zustände
   - Buchhaltung : Gemeinkonten, Begleichungsregeln, Belege, Belegarten, Bewegungen, Handelsarten, Journalgruppen
   - Aufträge : Aufträge, Einschreibungen
   - Produkte : Price factors
@@ -48,6 +48,3 @@ The menu
   - Büro : Auszüge, Einfügetexte, Uploads, Upload-Bereiche
   - MwSt. : VAT areas, MwSt.-Regimes, VAT classes, VAT columns, Rechnungen, MwSt-Regeln
 - Site : Info
-
-
-
