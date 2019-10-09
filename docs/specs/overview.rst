@@ -40,6 +40,20 @@ Delivery note    Lieferschein
 - Managed as delivery notes  : Bicycle, Transport, Small repair, Moving, Furniture store, Renovation
 
 
+Complexity factors
+==================
+
+>>> print(analyzer.show_complexity_factors())
+... #doctest: +NORMALIZE_WHITESPACE +REPORT_UDIFF
+- 42 plugins
+- 79 models
+- 17 user roles
+- 4 user types
+- 290 views
+- 23 dialog actions
+<BLANKLINE>
+
+
 
 
 Don't read me
@@ -53,6 +67,3 @@ Test whether the bootstrap3 user interface works:
 >>> res = test_client.get(url, REMOTE_USER='robin')
 >>> print(res.status_code)
 200
-
-
-

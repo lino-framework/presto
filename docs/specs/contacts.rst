@@ -1,6 +1,5 @@
 .. doctest docs/specs/contacts.rst
-.. include:: /../docs/shared/include/tested.rst
-
+.. include:: /../docs/shared/include/defs.rst
 .. _presto.specs.contacts:
 
 ========
@@ -51,4 +50,3 @@ A roster lists planned calendar entries for a given period.
     A printed roster for a given *team*.
 
     Based on :xfile:`weasyprint/base.weasy.html`
-
