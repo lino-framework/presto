@@ -148,8 +148,10 @@ class Person(Partner, Person):
                 self.print_roster)]
         return E.p(*join_elems(elems, sep=", "))
 
-    def get_queryset(self, ar):
-        return self.model.objects.select_related('country', 'city')
+    @classmethod
+    def get_queryset(cls, user):
+        qs = super(Person, cls).get_queryset(user)
+        return qs.select_related('country', 'city')
 
     def get_print_language(self):
         "Used by DirectPrintAction"
