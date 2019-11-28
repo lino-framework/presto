@@ -64,7 +64,7 @@ class RoomDetail(dd.DetailLayout):
     main = """
     ref name id print_actions
     invoicing_area event_type guest_role display_color
-    company contact_person contact_role 
+    company contact_person contact_role
     cal.EntriesByRoom
     """
 
@@ -73,7 +73,7 @@ class Rooms(Rooms):
     column_names = "name event_type *"
 
 
-# @dd.python_2_unicode_compatible
+#
 class Event(Event, InvoiceGenerator):
 
     class Meta(Event.Meta):
@@ -127,7 +127,7 @@ class Event(Event, InvoiceGenerator):
         # par = self.project
         # if self.project_id is None:
 
-        
+
         if par is None:
             return None
         return rt.models.products.Product.get_rule_fee(par, self.event_type)
@@ -187,7 +187,6 @@ class Event(Event, InvoiceGenerator):
     #         else:
     #             return super(Event, self).__str__()
     #         # a simple super() fails because of
-    #         # python_2_unicode_compatible
     #     owner = self.owner._meta.verbose_name + " #" + str(self.owner.pk)
     #     return "%s %s" % (owner, self.summary)
 
@@ -239,7 +238,7 @@ class EventDetail(EventDetail):
     start end
     room priority access_class transparent #rset
     owner:30 project workflow_buttons:30
-    cal.GuestsByEvent description 
+    cal.GuestsByEvent description
     """, _("General"))
 
     more = dd.Panel("""

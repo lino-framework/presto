@@ -97,7 +97,7 @@ class LifeModes(dd.Table):
     model = "presto.LifeMode"
 
 
-@dd.python_2_unicode_compatible
+
 class Client(Person,  SSIN,
              UserAuthored,
              CreatedModified,
