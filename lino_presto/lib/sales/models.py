@@ -11,15 +11,15 @@ class InvoiceDetail(InvoiceDetail):
 
     right_panel = dd.Panel("""
     #total_base #total_vat
-    
+
     printed
     workflow_buttons
     """)
 
     invoice_header = dd.Panel("""
     entry_date partner invoicing_min_date invoicing_max_date
-    subject your_ref paper_type 
-    payment_term due_date:20 total_incl 
+    subject your_ref paper_type
+    payment_term due_date:20 total_incl
     """, label=_("Header"))  # sales_remark
 
     general = dd.Panel("""
@@ -33,8 +33,8 @@ class InvoiceDetail(InvoiceDetail):
     """, label=_("More"))
 
     ledger = dd.Panel("""
-    vat_regime #voucher_date journal accounting_period number match 
-    ledger.MovementsByVoucher
+    vat_regime #voucher_date journal accounting_period number match
+    vat.MovementsByVoucher
     """, label=_("Ledger"))
 
 
@@ -67,5 +67,3 @@ dd.update_field(
     VatProductInvoice, 'total_incl', verbose_name=_("Total amount"))
 dd.update_field(
     InvoiceItem, 'total_incl', verbose_name=_("Total amount"))
-
-
