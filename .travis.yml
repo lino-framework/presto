@@ -1,0 +1,15 @@
+language: python
+python:
+  - "3.7"
+
+# before_install:
+#   - sudo apt-get install tidy
+#   - sudo apt-get install -y libreoffice python3-uno
+#   - libreoffice '--accept=socket,host=127.0.0.1,port=8100;urp;' &
+
+install:
+  - pip install -U setuptools
+  - pip install -e .
+
+script:
+  - inv prep test bd
