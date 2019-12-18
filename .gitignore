@@ -20,3 +20,4 @@ docs/api/lino_presto.*
 .coverage
 .coverage.*
 .eggs
+.idea
