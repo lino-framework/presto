@@ -17,22 +17,18 @@ configure(globals(), 'lino_presto.projects.noereth.settings.doctests')
 
 extensions += ['lino.sphinxcontrib.logo']
 
-from django.conf import settings
-settings.SITE.title = "Lino Presto Reference Manual"
-
 intersphinx_mapping = {}
-from importlib import import_module
-for n in 'atelier lino_book'.split():
-    m = import_module(n)
-    n = n.replace('_', "")
-    intersphinx_mapping[n] = (m.intersphinx_urls['docs'], None)
+from atelier.sphinxconf import interproject
+interproject.configure(
+    globals(), 'atelier etgen lino_book')
+intersphinx_mapping['cg'] = ('http://community.lino-framework.org/', None)
 
 # General configuration
 # ---------------------
 
 # General information about the project.
-project = settings.SITE.title
-copyright = '2018-2019 Rumma & Ko Ltd'
+project = "Lino Presto"
+copyright = '2018-2020 Rumma & Ko Ltd'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -144,6 +140,3 @@ extensions += ['lino.sphinxcontrib.help_texts_extractor']
 help_texts_builder_targets = {
     'lino_presto.': 'lino_presto.lib.presto'
 }
-
-
-
