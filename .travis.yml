@@ -12,6 +12,7 @@ python:
 
 install:
   - pip install -U setuptools
+  - pip install lino-book  # just for intersphinx
   - pip install -e .
 
 script:
