@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2018-2019 Rumma & Ko Ltd
+# Copyright 2018-2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
 from lino.projects.std.settings import *
@@ -32,6 +32,7 @@ class Site(Site):
         yield 'lino_presto.lib.users'
         yield 'lino_presto.lib.contacts'
         yield 'lino_presto.lib.cal'
+        yield 'lino_xl.lib.calview'
         yield 'lino_presto.lib.ledger'
         yield 'lino_presto.lib.orders'
         yield 'lino.modlib.dashboard'
@@ -79,4 +80,3 @@ class Site(Site):
         yield ('orders', 'worker_model', 'contacts.Worker')
         yield ('ledger', 'purchase_stories', False)
         yield ('ledger', 'sales_stories', False)
-

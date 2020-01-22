@@ -22,7 +22,7 @@ The menu
 - Verkauf : Verkaufsrechnungen (SLS), Gutschriften Verkauf (SLC), Händische Rechnungen (MAN), Rechnungen erstellen
 - Buchhaltung :
   - Einkauf : Einkaufsrechnungen (PRC)
-- Büro : Meine Uploads, Meine Auszüge
+- Büro : Meine Upload-Dateien, Meine Auszüge
 - Berichte :
   - Buchhaltung : Schuldner, Gläubiger
   - Verkauf : Offene Rechnungen, Journal für Verkaufsrechnungen
@@ -45,6 +45,6 @@ The menu
   - Produkte : Price factors
   - Verkauf : Verkaufsrechnungen, Sales invoice items, Fakturationspläne, Verkaufsregeln
   - SEPA : Bankkonten
-  - Büro : Einfügetexte, Uploads, Upload-Bereiche, Auszüge
-  - MwSt. : VAT areas, MwSt.-Regimes, VAT classes, VAT columns, Rechnungen, MwSt-Regeln
+  - Büro : Einfügetexte, Upload-Dateien, Upload-Bereiche, Auszüge
+  - MwSt. : MWSt-Zonen, MwSt.-Regimes, MwSt.-Klassen, MWSt-Kolonnen, Rechnungen, MwSt-Regeln
 - Site : Info
