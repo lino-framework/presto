@@ -1,14 +1,17 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2013-2019 Rumma & Ko Ltd
+# Copyright 2013-2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
-from __future__ import unicode_literals
 
 from lino.api import dd, rt, _
 
 from lino_xl.lib.contacts.models import *
 # from lino_xl.lib.courses.mixins import Enrollable
 from lino_xl.lib.beid.mixins import SSIN
+from lino_xl.lib.calview.ui import WeeklyColumns
+# from lino_xl.lib.calview.ui import WeeklyView
+# from lino_xl.lib.calview.ui import WeeklyPlanner
+from lino_xl.lib.calview.mixins import Plannable
 from lino.modlib.printing.actions import DirectPrintAction
 from lino.mixins.periods import Monthly
 
@@ -111,7 +114,7 @@ class PartnerDetail(PartnerDetail):
 
     invoicing_left = """
     pf_income
-    salesrule__invoice_recipient 
+    salesrule__invoice_recipient
     payment_term salesrule__paper_type
     """
 
@@ -179,14 +182,14 @@ class PersonDetail(PartnerDetail):
     """, label=_("Contact"))
 
     humanlinks = dd.Panel("""
-    humanlinks.LinksByHuman:30 
+    humanlinks.LinksByHuman:30
     households.MembersByPerson:20 households.SiblingsByPerson:50
     """, label=_("Human Links"))
 
     misc = dd.Panel("""
     url
     created modified
-    # notes.NotesByPartner    
+    # notes.NotesByPartner
     """, label=_("Miscellaneous"))
 
     cal_tab = dd.Panel("""
@@ -218,30 +221,58 @@ class PersonDetail(PartnerDetail):
 
 Persons.insert_layout = """
 first_name last_name
-phone gsm 
+phone gsm
 gender email
 """
 
-class Persons(Persons):
+# class Persons(Persons):
+#
+#     detail_layout = PersonDetail()
 
-    detail_layout = PersonDetail()
 
-
-class Worker(Person, SSIN):
+class Worker(Person, SSIN, Plannable):
     class Meta:
         app_label = 'contacts'
         verbose_name = _("Worker")
         verbose_name_plural = _("Workers")
         abstract = dd.is_abstract_model(__name__, 'Worker')
 
+    def get_weekly_chunks(self, ar, qs, current_week_day):
+        qs = qs.filter(guest__partner=self).distinct()
+        # if obj.start_time:
+        #     qs = qs.filter(start_time__gte=obj.start_time,
+        #                    start_time__isnull=False)
+        # if obj.end_time:
+        #     qs = qs.filter(start_time__lt=obj.end_time,
+        #                    start_time__isnull=False)
+        # if not obj.start_time and not obj.end_time:
+        #     qs = qs.filter(start_time__isnull=True)
+        #     link = str(current_week_day.day) \
+        #         if current_week_day != dd.today() \
+        #         else E.b(str(current_week_day.day))
+        #
+        #     link = E.p(*gen_insert_button(
+        #         cls, [link], Event, ar, current_week_day),
+        #            align="center")
+        # else:
+        #     link = ''
+        return [e.obj2href(ar, e.colored_calendar_fmt(ar.param_values)) for e in qs]
 
 class WorkerDetail(PersonDetail):
-    main = "general worker_tab contact humanlinks cal_tab "
 
-    worker_tab = dd.Panel("""
-    national_id created modified
+    main = "general contact"
+
+    general = dd.Panel("""
+    overview:20 cal_panel:40
     orders.EnrolmentsByWorker
-    """, label=_("Worker"))
+    """, label=_("General"))
+
+    cal_panel = """
+    national_id  print_actions
+    cal.EntriesByGuest
+    """
+
+
 
 
 class Workers(Persons):
@@ -249,6 +280,23 @@ class Workers(Persons):
     # detail_layout = WorkerDetail()
     detail_layout = 'contacts.WorkerDetail'
 
+
+class WorkersByWeek(Workers, WeeklyColumns):
+# class WorkersByWeek(WeeklyPlanner, Workers):
+    column_names_template = "name_column:20 {vcolumns}"
+    details_of_master_template = _("%(details)s in %(master)s")
+    hide_top_toolbar = False
+
+# class WorkersWeeklyDetail(dd.DetailLayout):
+#     # navigation panel is nice, but switches to normal calendar view and makes
+#     # no sense because this table exists only weekly, not daily or monthly
+#     # main = "body"
+#     # body = "navigation_panel:15 contacts.WorkersByWeek:85"
+#     main = "contacts.WorkersByWeek:85"
+#
+# class WorkersWeekly(WeeklyView):
+#     label = _("Workers weekly")
+#     detail_layout = 'contacts.WorkersWeeklyDetail'
 
 
 
@@ -318,5 +366,3 @@ phone gsm
 #language:20 email:40
 type #id
 """
-
-

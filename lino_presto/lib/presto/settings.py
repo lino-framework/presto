@@ -3,7 +3,7 @@
 # License: BSD (see file COPYING for details)
 
 from lino.projects.std.settings import *
-
+from lino.api import _
 
 class Site(Site):
     verbose_name = "Lino Presto"
@@ -80,3 +80,14 @@ class Site(Site):
         yield ('orders', 'worker_model', 'contacts.Worker')
         yield ('ledger', 'purchase_stories', False)
         yield ('ledger', 'sales_stories', False)
+
+    def setup_quicklinks(self, user, tb):
+        super(Site, self).setup_quicklinks(user, tb)
+        tb.add_action(self.models.contacts.Workers)
+        tb.add_action(self.models.presto.Clients)
+        # tb.add_action(
+        #     self.models.courses.Pupils.insert_action,
+        #     label=_("New {}").format(
+        #         self.models.courses.Pupil._meta.verbose_name))
+        a = self.models.calview.MonthlyView
+        tb.add_instance_action(a.get_row_by_pk(None, "0"), action=a.default_action, label=_("Calendar"))
