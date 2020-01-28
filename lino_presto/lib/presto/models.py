@@ -1,9 +1,6 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2017-2019 Rumma & Ko Ltd
+# Copyright 2017-2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
-
-from __future__ import unicode_literals
-from builtins import str
 
 from lino.api import dd, rt, _
 from django.db import models
@@ -118,69 +115,15 @@ class Client(Person,  SSIN,
     death_date = IncompleteDateField(
         blank=True, verbose_name=_("Date of death"))
 
-    # translator_notes = dd.RichTextField(
-    #     _("Translator"), blank=True, format='plain')
-    # translator = dd.ForeignKey(
-    #     "avanti.Translator",
-    #     blank=True, null=True)
-
-    # unemployed_since = models.DateField(
-    #     _("Unemployed since"), blank=True, null=True,
-    #     help_text=_("Since when the client has not been employed "
-    #                 "in any regular job."))
-    # seeking_since = models.DateField(
-    #     _("Seeking work since"), blank=True, null=True,
-    #     help_text=_("Since when the client is seeking for a job."))
-    # work_permit_suspended_until = models.DateField(
-    #     blank=True, null=True, verbose_name=_("suspended until"))
-
-    # declared_name = models.BooleanField(_("Declared name"), default=False)
-
-    # is_seeking = models.BooleanField(_("is seeking work"), default=False)
-    # removed in chatelet, maybe soon also in Eupen (replaced by seeking_since)
-
-    # unavailable_until = models.DateField(
-    #     blank=True, null=True, verbose_name=_("Unavailable until"))
-    # unavailable_why = models.CharField(
-    #     _("reason"), max_length=100,
-    #     blank=True)
-
-    # family_notes = models.TextField(
-    #     _("Family situation"), blank=True, null=True)
-
-    # residence_notes = models.TextField(
-    #     _("Residential situation"), blank=True, null=True)
-
-    # health_notes = models.TextField(
-    #     _("Health situation"), blank=True, null=True)
-
-    # financial_notes = models.TextField(
-    #     _("Financial situation"), blank=True, null=True)
-
-    # integration_notes = models.TextField(
-    #     _("Integration notes"), blank=True, null=True)
-
-    # availability = models.TextField(
-    #     _("Availability"), blank=True, null=True)
-
-    # needed_course = dd.ForeignKey(
-    #     'courses.Line', verbose_name=_("Needed activity"),
-    #     blank=True, null=True)
-
-    # obstacles = models.TextField(
-    #     _("Other obstacles"), blank=True, null=True)
-    # skills = models.TextField(
-    #     _("Other skills"), blank=True, null=True)
-
-    # client_state = ClientStates.field(
-    #     default=ClientStates.newcomer.as_callable)
-
-    # language_notes = dd.RichTextField(
-    #     _("Language notes"), blank=True, format='plain')
-
     def __str__(self):
         return "%s %s (%s)" % (
             self.last_name.upper(), self.first_name, self.pk)
+
+    def get_partner(self):
+        return self
+
+    def get_wanted_movements(self):
+        return []
 
     @dd.displayfield(_("Name"))
     def name_column(self, ar):
@@ -233,8 +176,8 @@ class ClientDetail(PersonDetail):
     client = dd.Panel("""
     national_id nationality:15 civil_state life_mode
     client_state death_date
-    #courses.EnrolmentsByPupil:30 
-    topics.InterestsByPartner healthcare.SituationsByClient clients.ContactsByClient      
+    #courses.EnrolmentsByPupil:30
+    topics.InterestsByPartner healthcare.SituationsByClient clients.ContactsByClient
     """, label=_("Client"))
 
     invoicing = dd.Panel("""
@@ -244,7 +187,7 @@ class ClientDetail(PersonDetail):
 
     invoicing_left = """
     pf_income
-    salesrule__invoice_recipient 
+    salesrule__invoice_recipient
     payment_term salesrule__paper_type
     """
 
@@ -300,8 +243,8 @@ class Clients(contacts.Persons):
         # client_state=ClientStates.field(blank=True, default='')
     )
     params_layout = """
-    #aged_from #aged_to #gender nationality client_state 
-    user start_date end_date observed_event 
+    #aged_from #aged_to #gender nationality client_state
+    user start_date end_date observed_event
     """
 
     @classmethod

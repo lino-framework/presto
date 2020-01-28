@@ -49,7 +49,7 @@ Complexity factors
 - 79 models
 - 17 user roles
 - 4 user types
-- 294 views
+- 293 views
 - 23 dialog actions
 <BLANKLINE>
 
@@ -95,9 +95,10 @@ Don't read me
  ledger.JournalGroups            26                Journalgruppen                     Groupes de journaux                Journal groups
  ledger.PeriodStates             14                Zustände                           États                              States
  ledger.TradeTypes               18                Handelsarten                       Types de commerce                  Trade types
- ledger.VoucherStates            14                Zustände Beleg                     États Beleg                        Voucher states
+ ledger.VoucherStates            14                Belegzustände                      Belegzustände                      Voucher states
  ledger.VoucherTypes             42                Belegarten                         Types de pièce                     Voucher types
  notes.SpecialTypes              4                 Sondernotizarten                   Sondernotizarten                   Special note types
+ orders.OrderStates              14                Belegzustände                      Belegzustände                      Voucher states
  phones.ContactDetailTypes       8                 Kontaktangabenarten                Kontaktangabenarten                Contact detail types
  presto.IncomeCategories         4                 Einkommenskategorien               Einkommenskategorien               Income categories
  printing.BuildMethods           20                None                               None                               None
