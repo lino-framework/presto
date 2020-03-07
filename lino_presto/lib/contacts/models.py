@@ -14,13 +14,13 @@ from lino_xl.lib.contacts.models import *
 # from lino_xl.lib.courses.mixins import Enrollable
 from lino_xl.lib.beid.mixins import SSIN
 # from lino_xl.lib.calview.ui import WeeklyView
-# from lino_xl.lib.calview.ui import WeeklyPlanner
+# from lino_xl.lib.calview.ui import WeeklySlave
 from lino_xl.lib.calview.mixins import Plannable
 from lino.modlib.printing.actions import DirectPrintAction
 from lino.mixins.periods import Monthly
 
-from lino_xl.lib.calview.models import WeeklyPlannerBase, DailyPlannerBase
-from lino_xl.lib.calview.models import Navigators, CalendarView, InsertEvent
+from lino_xl.lib.calview.models import WeeklySlaveBase, DailySlaveBase
+from lino_xl.lib.calview.models import Planners, CalendarView, InsertEvent
 
 
 class PrintRoster(DirectPrintAction):
@@ -426,12 +426,12 @@ class WorkersParameters(dd.Actor):
             yield e.obj2href(ar, ar.actor.get_calview_div(e, ar))
 
 
-class WeeklyPlanner(WorkersParameters, WeeklyPlannerBase, Workers):
+class WeeklySlave(WorkersParameters, WeeklySlaveBase, Workers):
     column_names_template = "name_column:20 {vcolumns}"
     hide_top_toolbar = False
 
 
-class DailyPlanner(WorkersParameters, DailyPlannerBase, Workers):
+class DailySlave(WorkersParameters, DailySlaveBase, Workers):
     column_names_template = "name_column:20 {vcolumns}"
     # display_mode = "html"
     navigation_mode = 'day'
@@ -452,13 +452,13 @@ class DailyView(WorkersParameters, CalendarView):
 
 class WeekDetail(dd.DetailLayout):
     main = "body"
-    body = "navigation_panel:15 contacts.WeeklyPlanner:85"
+    body = "navigation_panel:15 contacts.WeeklySlave:85"
 
 class DayDetail(dd.DetailLayout):
     main = "body"
-    body = "navigation_panel:15 contacts.DailyPlanner:85"
+    body = "navigation_panel:15 contacts.DailySlave:85"
 
 
 
-add = Navigators.add_item
-add("contacts", _("Workers calendar"), "contacts.DailyView", "contacts.WeeklyView", "")
+add = Planners.add_item
+add("contacts", _("Workers planner"), "contacts.DailyView", "contacts.WeeklyView", "")

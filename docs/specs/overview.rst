@@ -79,7 +79,7 @@ Don't read me
  cal.TaskStates                  9                 Aufgaben-Zustände                  Aufgaben-Zustände                  Task states
  cal.Weekdays                    10                None                               None                               None
  cal.YearMonths                  9                 None                               None                               None
- calview.Navigators              27                None                               None                               None
+ calview.Planners                17                None                               None                               None
  checkdata.Checkers              54                Datentests                         Tests de données                   Data checkers
  clients.ClientEvents            10                Beobachtungskriterien              Évènements observés                Observed events
  clients.ClientStates            9                 Bearbeitungszustände Klienten      Etats bénéficiaires                Client states
