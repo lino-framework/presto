@@ -3,17 +3,24 @@
 # License: BSD (see file COPYING for details)
 
 
+from django.db.models import Q
+from django.conf import settings
+
 from lino.api import dd, rt, _
+from lino.utils.quantities import ZERO_DURATION
+from lino.utils import SumCollector
 
 from lino_xl.lib.contacts.models import *
 # from lino_xl.lib.courses.mixins import Enrollable
 from lino_xl.lib.beid.mixins import SSIN
-from lino_xl.lib.calview.ui import WeeklyColumns
 # from lino_xl.lib.calview.ui import WeeklyView
 # from lino_xl.lib.calview.ui import WeeklyPlanner
 from lino_xl.lib.calview.mixins import Plannable
 from lino.modlib.printing.actions import DirectPrintAction
 from lino.mixins.periods import Monthly
+
+from lino_xl.lib.calview.models import WeeklyPlannerBase, DailyPlannerBase
+from lino_xl.lib.calview.models import Navigators, CalendarView, InsertEvent
 
 
 class PrintRoster(DirectPrintAction):
@@ -237,26 +244,46 @@ class Worker(Person, SSIN, Plannable):
         verbose_name_plural = _("Workers")
         abstract = dd.is_abstract_model(__name__, 'Worker')
 
-    def get_weekly_chunks(self, ar, qs, current_week_day):
-        qs = qs.filter(guest__partner=self).distinct()
-        # if obj.start_time:
-        #     qs = qs.filter(start_time__gte=obj.start_time,
-        #                    start_time__isnull=False)
-        # if obj.end_time:
-        #     qs = qs.filter(start_time__lt=obj.end_time,
-        #                    start_time__isnull=False)
-        # if not obj.start_time and not obj.end_time:
-        #     qs = qs.filter(start_time__isnull=True)
-        #     link = str(current_week_day.day) \
-        #         if current_week_day != dd.today() \
-        #         else E.b(str(current_week_day.day))
-        #
-        #     link = E.p(*gen_insert_button(
-        #         cls, [link], Event, ar, current_week_day),
-        #            align="center")
-        # else:
-        #     link = ''
-        return [e.obj2href(ar, e.colored_calendar_fmt(ar.param_values)) for e in qs]
+    plannable_header_row_label = _("All workers")
+
+    def get_weekly_chunks(self, ar, entries, today):
+        sums = SumCollector()
+        for e in entries:  # .filter(guest__partner=self).distinct():
+            yield e.obj2href(ar, ar.actor.get_calview_div(e, ar))
+            sums.collect(e.event_type, e.get_duration())
+        for k, v in sums.items():
+            yield _("{} : {}").format(k, str(v))
+            # need to explicitly call str(v) because otherwise __format__() is
+            # used, which would render it like a Decimal
+
+    @classmethod
+    def get_plannable_entries(cls, obj, ar):
+
+        # The header row in a workers calendar view shows entries that
+        # are for everybody, e.g. holidays.  This is when
+        # cal.EventType.locks_user is True.
+        # print("20200303 get_plannable_entries", cls, obj, ar)
+        Event = rt.models.cal.Event
+        if obj is None:
+            return Event.objects.none()
+        User = rt.models.users.User
+        qs = Event.objects.all()
+        if obj is cls.HEADER_ROW:
+            qs = qs.filter(event_type__locks_user=False)
+        else:
+            # entries where the worker is either a guest or the author
+            # qs = qs.filter(event_type__locks_user=True)
+            try:
+                u = User.objects.get(partner=obj)
+                # print(u)
+                qs = qs.filter(Q(user=u) | Q(guest__partner=obj)).distinct()
+            except Exception:
+                qs = qs.filter(guest__partner=obj).distinct()
+        return qs
+        # return Event.calendar_param_filter(qs, ar.param_values)
+
+
+
 
 class WorkerDetail(PersonDetail):
 
@@ -273,31 +300,10 @@ class WorkerDetail(PersonDetail):
     """
 
 
-
-
 class Workers(Persons):
     model = 'contacts.Worker'
     # detail_layout = WorkerDetail()
     detail_layout = 'contacts.WorkerDetail'
-
-
-class WorkersByWeek(Workers, WeeklyColumns):
-# class WorkersByWeek(WeeklyPlanner, Workers):
-    column_names_template = "name_column:20 {vcolumns}"
-    details_of_master_template = _("%(details)s in %(master)s")
-    hide_top_toolbar = False
-
-# class WorkersWeeklyDetail(dd.DetailLayout):
-#     # navigation panel is nice, but switches to normal calendar view and makes
-#     # no sense because this table exists only weekly, not daily or monthly
-#     # main = "body"
-#     # body = "navigation_panel:15 contacts.WorkersByWeek:85"
-#     main = "contacts.WorkersByWeek:85"
-#
-# class WorkersWeekly(WeeklyView):
-#     label = _("Workers weekly")
-#     detail_layout = 'contacts.WorkersWeeklyDetail'
-
 
 
 class Company(Partner, Company):
@@ -366,3 +372,93 @@ phone gsm
 #language:20 email:40
 type #id
 """
+
+class WorkersParameters(dd.Actor):
+
+    abstract = True
+
+    @classmethod
+    def class_init(cls):
+        cls.params_layout = rt.models.contacts.Workers.params_layout
+        super(WorkersParameters, cls).class_init()
+
+    @classmethod
+    def setup_parameters(cls, params):
+        super(WorkersParameters, cls).setup_parameters(params)
+        rt.models.contacts.Worker.setup_parameters(params)
+
+    @classmethod
+    def get_calview_chunks(cls, obj, ar):
+        pv = ar.param_values
+        # if pv.user:
+        # if pv.assigned_to:
+        # if settings.SITE.project_model is not None and pv.project:
+        # if pv.event_type:
+        if obj.start_time:
+            yield str(obj.start_time)[:5] + " "
+        # elif not pv.start_date:
+            # t.append(str(self.start_date))
+        # if not pv.user and self.user:
+        #     t.append(str(self.user))
+        if obj.project:
+            yield str(obj.project) + " "
+            if obj.project.city:
+                yield obj.project.city.name + " "
+        # if not pv.event_type and self.event_type:
+        #     t.append(str(self.event_type))
+        if obj.room and obj.room.ref:
+            yield obj.room.ref + " "
+        if obj.summary:
+            yield obj.summary + " "
+
+    def get_header_chunks(obj, ar, entries, today):
+
+        # unlike the library version, this does not have an insert button and
+        # does not show only whole-day events.
+
+        # entries = entries.filter(start_time__isnull=True)
+        txt = str(today.day)
+        if today == dd.today():
+            txt = E.b(txt)
+
+        yield E.p(txt, align="center")
+        for e in entries:
+            yield e.obj2href(ar, ar.actor.get_calview_div(e, ar))
+
+
+class WeeklyPlanner(WorkersParameters, WeeklyPlannerBase, Workers):
+    column_names_template = "name_column:20 {vcolumns}"
+    hide_top_toolbar = False
+
+
+class DailyPlanner(WorkersParameters, DailyPlannerBase, Workers):
+    column_names_template = "name_column:20 {vcolumns}"
+    # display_mode = "html"
+    navigation_mode = 'day'
+
+
+class WeeklyView(WorkersParameters, CalendarView):
+    label = _("Weekly view")
+    detail_layout = 'contacts.WeekDetail'
+    navigation_mode = "week"
+    # params_layout = ""
+
+class DailyView(WorkersParameters, CalendarView):
+    label = _("Daily view")
+    detail_layout = 'contacts.DayDetail'
+    navigation_mode = "day"
+    insert_event = InsertEvent()
+
+
+class WeekDetail(dd.DetailLayout):
+    main = "body"
+    body = "navigation_panel:15 contacts.WeeklyPlanner:85"
+
+class DayDetail(dd.DetailLayout):
+    main = "body"
+    body = "navigation_panel:15 contacts.DailyPlanner:85"
+
+
+
+add = Navigators.add_item
+add("contacts", _("Workers calendar"), "contacts.DailyView", "contacts.WeeklyView", "")

@@ -85,32 +85,6 @@ class Event(Event, InvoiceGenerator):
             kwargs.setdefault('title', txt)
         return super(Event, self).obj2href(ar, txt, *args, **kwargs)
 
-    def calendar_fmt(self, pv):
-        # if pv.user:
-        # if pv.assigned_to:
-        # if settings.SITE.project_model is not None and pv.project:
-        # if pv.event_type:
-        t = []
-        if self.start_time:
-            t.append(str(self.start_time)[:5])
-        # elif not pv.start_date:
-            # t.append(str(self.start_date))
-        # if not pv.user and self.user:
-        #     t.append(str(self.user))
-        if not pv.project and self.project:
-            t.append(str(self.project))
-            if self.project.city:
-                t.append(self.project.city.name)
-        # if not pv.event_type and self.event_type:
-        #     t.append(str(self.event_type))
-        if not pv.room and self.room and self.room.ref:
-            t.append(self.room.ref)
-        if self.summary:
-            t.append(self.summary)
-        return " ".join(t)
-        # return "{} {}".format(t, u)
-
-
     def get_invoiceable_partner(self):
         ord = self.owner
         if isinstance(ord, rt.models.orders.Order):

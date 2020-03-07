@@ -1,9 +1,19 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2019 Rumma & Ko Ltd
+# Copyright 2019-2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
 from lino_xl.lib.orders.models import *
 from lino.api import _
+
+
+class TraOrderDetail(OrderDetail):
+    pass
+
+class TraOrdersByJournal(OrdersByJournal):
+    detail_layout = "orders.TraOrderDetail"
+
+VoucherTypes.add_item_lazy(TraOrdersByJournal)
+
 
 
 class Enrolment(Enrolment):
@@ -31,5 +41,3 @@ class Enrolment(Enrolment):
 # add = OrderAreas.add_item
 # add('100', _("Missions"), 'default', 'orders.Missions')
 # add('200', _("Contracts"), 'contracts', 'orders.Contracts')
-
-

@@ -11,10 +11,11 @@ site_calendar default_event_type
 max_auto_events hide_events_before
 """
 
-if False:
-    rt.models.calview.WeeklyDetail.main = "body workers"
-    rt.models.calview.WeeklyDetail.workers = dd.Panel("""
-    navigation_panel:15 contacts.WorkersByWeek:85
-    """, label=_("Workers"))
-else:
-    rt.models.calview.WeeklyDetail.main = "body contacts.WorkersByWeek"
+# if False:
+#     rt.models.calview.WeekDetail.main = "body workers"
+#     rt.models.calview.WeekDetail.workers = dd.Panel("""
+#     navigation_panel:15 contacts.WorkersByWeek:85
+#     """, label=_("Workers"))
+# else:
+#     # rt.models.calview.WeekDetail.main = "body contacts.WorkersByWeek"
+#     rt.models.calview.WeekDetail.body = "navigation_panel:15 contacts.WorkersByWeek:85"

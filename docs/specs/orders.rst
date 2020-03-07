@@ -37,33 +37,48 @@ Orders
 
 >>> rt.show(orders.Orders, language="en")
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF -SKIP
-============ ============================= ======== ============
+============ ============================= ======== ==========
  Start date   Client                        Remark   Workflow
------------- ----------------------------- -------- ------------
- 14/01/2017   DEMEULENAERE Dorothée (121)            **Active**
- 12/01/2017   COLLARD Charlotte (117)                **Active**
- 11/01/2017   CHARLIER Ulrike (118)                  **Active**
- 11/01/2017   CHANTRAINE Marc (119)                  **Active**
- 11/01/2017   BRECHT Bernd (176)                     **Active**
- 09/01/2017   BASTIAENSEN Laurent (116)              **Active**
- 08/01/2017   AUSDEMWALD Alfons (115)                **Active**
- 07/01/2017   ARENS Annette (113)                    **Active**
- 06/01/2017   ARENS Andreas (112)                    **Active**
- 04/01/2017   ALTENBERG Hans (114)                   **Active**
- 03/01/2017   Maria (242)                            **Active**
- 03/01/2017   Ahmed (241)                            **Active**
-============ ============================= ======== ============
+------------ ----------------------------- -------- ----------
+ 14/01/2017   DEMEULENAERE Dorothée (121)            **Done**
+ 12/01/2017   COLLARD Charlotte (117)                **Done**
+ 11/01/2017   CHARLIER Ulrike (118)                  **Done**
+ 11/01/2017   CHANTRAINE Marc (119)                  **Done**
+ 11/01/2017   BRECHT Bernd (176)                     **Done**
+ 09/01/2017   BASTIAENSEN Laurent (116)              **Done**
+ 08/01/2017   AUSDEMWALD Alfons (115)                **Done**
+ 07/01/2017   ARENS Annette (113)                    **Done**
+ 06/01/2017   ARENS Andreas (112)                    **Done**
+ 04/01/2017   ALTENBERG Hans (114)                   **Done**
+ 03/01/2017   Maria (242)                            **Done**
+ 03/01/2017   Ahmed (241)                            **Done**
+============ ============================= ======== ==========
 <BLANKLINE>
 
 
 >>> rt.show(orders.OrderStates, language="en")
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF -SKIP
-======= ============ =========== =============
- value   name         text        Button text
-------- ------------ ----------- -------------
- 10      draft        Waiting
- 20      registered   Active
- 30      signed       Done
- 40      cancelled    Cancelled
-======= ============ =========== =============
+======= ============ =========== ==========
+ value   name         text        Editable
+------- ------------ ----------- ----------
+ 10      draft        Waiting     Yes
+ 20      active       Active      Yes
+ 30      urgent       Urgent      Yes
+ 40      registered   Done        No
+ 50      cancelled    Cancelled   No
+======= ============ =========== ==========
 <BLANKLINE>
+
+>>> rt.show(ledger.VoucherTypes, language="en")
+... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF -SKIP
+=========================== ====== ========================================= ======================================================
+ value                       name   text                                      Model
+--------------------------- ------ ----------------------------------------- ------------------------------------------------------
+ orders.OrdersByJournal             Order (orders.OrdersByJournal)            <class 'lino_xl.lib.orders.models.Order'>
+ orders.TraOrdersByJournal          Order (orders.TraOrdersByJournal)         <class 'lino_xl.lib.orders.models.Order'>
+ sales.InvoicesByJournal            Sales invoice (sales.InvoicesByJournal)   <class 'lino_xl.lib.sales.models.VatProductInvoice'>
+ vat.InvoicesByJournal              Invoice (vat.InvoicesByJournal)           <class 'lino_xl.lib.vat.models.VatAccountInvoice'>
+=========================== ====== ========================================= ======================================================
+<BLANKLINE>
+
+>>> ledger.VoucherTypes.get_for_model(orders.Order)

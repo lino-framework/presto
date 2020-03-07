@@ -32,10 +32,10 @@ class Site(Site):
         yield 'lino_presto.lib.users'
         yield 'lino_presto.lib.contacts'
         yield 'lino_presto.lib.cal'
-        yield 'lino_xl.lib.calview'
         yield 'lino_presto.lib.ledger'
         yield 'lino_presto.lib.orders'
         yield 'lino.modlib.dashboard'
+        yield 'lino_xl.lib.calview'
         yield 'lino_xl.lib.countries'
         # yield 'lino_xl.lib.properties'
         yield 'lino_xl.lib.clients'
@@ -85,9 +85,6 @@ class Site(Site):
         super(Site, self).setup_quicklinks(user, tb)
         tb.add_action(self.models.contacts.Workers)
         tb.add_action(self.models.presto.Clients)
-        # tb.add_action(
-        #     self.models.courses.Pupils.insert_action,
-        #     label=_("New {}").format(
-        #         self.models.courses.Pupil._meta.verbose_name))
-        a = self.models.calview.MonthlyView
-        tb.add_instance_action(a.get_row_by_pk(None, "0"), action=a.default_action, label=_("Calendar"))
+        a = self.models.calview.WeeklyView
+        tb.add_instance_action(
+            a.get_row_by_pk(None, "0"), action=a.default_action, label=_("Weekly view"))
