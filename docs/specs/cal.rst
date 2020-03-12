@@ -19,6 +19,59 @@ Presto extends the standard :mod:`lino_xl.lib.cal` plugin
 >>> startup('lino_presto.projects.noereth.settings.doctests')
 >>> from lino.api.doctest import *
 
+Workflow
+========
+
+>>> rt.show(cal.EntryStates)
+====== ============ =============== ============= ================= ======== =================== =========
+ Wert   name         Text            Button text   Gäste ausfüllen   Stabil   nicht blockierend   No auto
+------ ------------ --------------- ------------- ----------------- -------- ------------------- ---------
+ 10     suggested    Vorschlag       ?             Ja                Nein     Nein                Nein
+ 20     draft        Geplant         ☐             Ja                Nein     Nein                Nein
+ 50     took_place   Stattgefunden   ☑             Nein              Ja       Nein                Nein
+ 60     missed       Missed          ☉             Nein              Ja       Nein                Ja
+ 70     cancelled    Abgesagt        ⚕             Nein              Ja       Ja                  Ja
+====== ============ =============== ============= ================= ======== =================== =========
+<BLANKLINE>
+
+>>> rt.show(cal.GuestStates)
+====== ========= ============== =================== =============
+ Wert   name      Nachträglich   Text                Button text
+------ --------- -------------- ------------------- -------------
+ 20     invited   Ja             Planned             ☑
+ 50     needs     Ja             Needs replacement   ⚕
+ 60     found     Nein           Found replacement   ☉
+====== ========= ============== =================== =============
+<BLANKLINE>
+
+
+Replacement planning
+====================
+
+A worker announces that they need replacement for a deployment in the future.
+You find the calendar entry, and in the :class:`GuestsByEntry` slave table,
+Workflow column, change the presence state from "planned" to "needs replacement"
+
+At any moment you can see the :class:`GuestsNeedingReplacement` table, which
+shows all presences needing replacement.
+
+>>> rt.login("robin").show(cal.GuestsNeedingReplacement)
+============ ============ ============ ================================ =========== ====================================================== ===========
+ Beginnt am   Beginnt um   Person       Kalendereintrag                  Zustand     Workflow                                               Bemerkung
+------------ ------------ ------------ -------------------------------- ----------- ------------------------------------------------------ -----------
+ 11.05.17     08:00:00     Herr Garry   `Heimpflege 2/2017 <Detail>`__   Vorschlag   **⚕ Needs replacement** → [Find replacement] [☑] [☉]
+ 26.08.17     08:00:00     Herr Garry   `Heimpflege 2/2017 <Detail>`__   Vorschlag   **⚕ Needs replacement** → [Find replacement] [☑] [☉]
+ 10.12.17     08:00:00     Herr Garry   `Heimpflege 2/2017 <Detail>`__   Vorschlag   **⚕ Needs replacement** → [Find replacement] [☑] [☉]
+============ ============ ============ ================================ =========== ====================================================== ===========
+<BLANKLINE>
+
+When this table is not empty, it causes a welcome message "You have 3 items in
+Needing replacement".
+
+In the workflow column you can click on "Find replacement" to specify another
+worker who is going to replace the originally planned worker.
+
+
 Teams
 =====
 
@@ -50,5 +103,3 @@ Team
  Büro             Bureau             Office             Office work
 ================ ================== ================== =====================
 <BLANKLINE>
-
-

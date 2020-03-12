@@ -9,8 +9,10 @@ from django.conf import settings
 from lino.api import dd, rt, _
 from lino.utils.quantities import ZERO_DURATION
 from lino.utils import SumCollector
+# from lino.core.utils import comma
 
 from lino_xl.lib.contacts.models import *
+from lino_xl.lib.contacts.roles import ContactsUser
 # from lino_xl.lib.courses.mixins import Enrollable
 from lino_xl.lib.beid.mixins import SSIN
 # from lino_xl.lib.calview.ui import WeeklyView
@@ -232,79 +234,6 @@ phone gsm
 gender email
 """
 
-# class Persons(Persons):
-#
-#     detail_layout = PersonDetail()
-
-
-class Worker(Person, SSIN, Plannable):
-    class Meta:
-        app_label = 'contacts'
-        verbose_name = _("Worker")
-        verbose_name_plural = _("Workers")
-        abstract = dd.is_abstract_model(__name__, 'Worker')
-
-    plannable_header_row_label = _("All workers")
-
-    def get_weekly_chunks(self, ar, entries, today):
-        sums = SumCollector()
-        for e in entries:  # .filter(guest__partner=self).distinct():
-            yield e.obj2href(ar, ar.actor.get_calview_div(e, ar))
-            sums.collect(e.event_type, e.get_duration())
-        for k, v in sums.items():
-            yield _("{} : {}").format(k, str(v))
-            # need to explicitly call str(v) because otherwise __format__() is
-            # used, which would render it like a Decimal
-
-    @classmethod
-    def get_plannable_entries(cls, obj, ar):
-
-        # The header row in a workers calendar view shows entries that
-        # are for everybody, e.g. holidays.  This is when
-        # cal.EventType.locks_user is True.
-        # print("20200303 get_plannable_entries", cls, obj, ar)
-        Event = rt.models.cal.Event
-        if obj is None:
-            return Event.objects.none()
-        User = rt.models.users.User
-        qs = Event.objects.all()
-        if obj is cls.HEADER_ROW:
-            qs = qs.filter(event_type__locks_user=False)
-        else:
-            # entries where the worker is either a guest or the author
-            # qs = qs.filter(event_type__locks_user=True)
-            try:
-                u = User.objects.get(partner=obj)
-                # print(u)
-                qs = qs.filter(Q(user=u) | Q(guest__partner=obj)).distinct()
-            except Exception:
-                qs = qs.filter(guest__partner=obj).distinct()
-        return qs
-        # return Event.calendar_param_filter(qs, ar.param_values)
-
-
-
-
-class WorkerDetail(PersonDetail):
-
-    main = "general contact"
-
-    general = dd.Panel("""
-    overview:20 cal_panel:40
-    orders.EnrolmentsByWorker
-    """, label=_("General"))
-
-    cal_panel = """
-    national_id  print_actions
-    cal.EntriesByGuest
-    """
-
-
-class Workers(Persons):
-    model = 'contacts.Worker'
-    # detail_layout = WorkerDetail()
-    detail_layout = 'contacts.WorkerDetail'
-
 
 class Company(Partner, Company):
     class Meta(Company.Meta):
@@ -372,6 +301,162 @@ phone gsm
 #language:20 email:40
 type #id
 """
+
+class Worker(Person, SSIN, Plannable):
+    class Meta:
+        app_label = 'contacts'
+        verbose_name = _("Worker")
+        verbose_name_plural = _("Workers")
+        abstract = dd.is_abstract_model(__name__, 'Worker')
+
+    plannable_header_row_label = _("All workers")
+
+    @classmethod
+    def setup_parameters(cls, fields):
+        fields.setdefault(
+            'room', dd.ForeignKey('cal.Room',
+                blank=True,
+                help_text=_("Show only workers of this team.")))
+        super(Worker, cls).setup_parameters(fields)
+
+    @classmethod
+    def get_request_queryset(self, ar, **filter):
+        qs = super(Worker, self).get_request_queryset(ar, **filter)
+        pv = ar.param_values
+        if pv.room:
+            qs = qs.filter(team_memberships__room=pv.room)
+        return qs
+
+    @classmethod
+    def get_title_tags(self, ar):
+        for t in super(Worker, self).get_title_tags(ar):
+            yield t
+        pv = ar.param_values
+        if pv.room:
+            yield str(pv.room)
+
+    def get_weekly_chunks(self, ar, entries, today):
+        sums = SumCollector()
+        for e in entries:  # .filter(guest__partner=self).distinct():
+            yield e.obj2href(ar, ar.actor.get_calview_div(e, ar))
+            sums.collect(e.event_type, e.get_duration())
+        for k, v in sums.items():
+            yield _("{} : {}").format(k, str(v))
+            # need to explicitly call str(v) because otherwise __format__() is
+            # used, which would render it like a Decimal
+
+    @classmethod
+    def get_plannable_entries(cls, obj, ar):
+
+        # The header row in a workers calendar view shows entries that
+        # are for everybody, e.g. holidays.  This is when
+        # cal.EventType.locks_user is True.
+        # print("20200303 get_plannable_entries", cls, obj, ar)
+        Event = rt.models.cal.Event
+        if obj is None:
+            return Event.objects.none()
+        User = rt.models.users.User
+        qs = Event.objects.all()
+        if obj is cls.HEADER_ROW:
+            qs = qs.filter(event_type__locks_user=False)
+        else:
+            # entries where the worker is either a guest or the author
+            # qs = qs.filter(event_type__locks_user=True)
+            try:
+                u = User.objects.get(partner=obj)
+                # print(u)
+                qs = qs.filter(Q(user=u) | Q(guest__partner=obj)).distinct()
+            except Exception:
+                qs = qs.filter(guest__partner=obj).distinct()
+        return qs
+        # return Event.calendar_param_filter(qs, ar.param_values)
+
+
+class WorkerDetail(PersonDetail):
+
+    main = "general contact"
+
+    general = dd.Panel("""
+    overview:20 cal_panel:40
+    contacts.MembersByPartner orders.EnrolmentsByWorker
+    """, label=_("General"))
+
+    cal_panel = """
+    national_id  print_actions
+    cal.EntriesByGuest
+    """
+
+
+class Workers(Persons):
+    model = 'contacts.Worker'
+    # detail_layout = WorkerDetail()
+    detail_layout = 'contacts.WorkerDetail'
+    params_layout = 'room gender observed_event start_date end_date'
+
+
+class Member(mixins.Sequenced):
+
+    class Meta:
+        app_label = 'contacts'
+        abstract = dd.is_abstract_model(__name__, 'Member')
+        verbose_name = _("Team membership")
+        verbose_name_plural = _("Team memberships")
+
+    quick_search_fields = "partner__name remark"
+    show_in_site_search = False
+
+    room = dd.ForeignKey('cal.Room', related_name="workers")
+    partner = dd.ForeignKey('contacts.Worker', related_name="team_memberships")
+    remark = models.CharField(_("Remark"), max_length=200, blank=True)
+
+    def __str__(self):
+        return _("{} is member of {}").format(self.partner, self.room)
+
+
+class Members(dd.Table):
+    required_roles = dd.login_required(ContactsUser)
+    model = 'contacts.Member'
+    detail_layout = dd.DetailLayout("""
+    room
+    partner
+    remark
+    """, window_size=(60, 'auto'))
+
+
+class MembersByRoom(Members):
+    label = _("Members")
+    master_key = 'room'
+    order_by = ['seqno']
+    if dd.is_installed("phones"):
+        column_names = "seqno partner remark workflow_buttons partner__address_column partner__contact_details *"
+    else:
+        column_names = "seqno partner remark workflow_buttons partner__address_column partner__email partner__gsm *"
+
+
+class MembersByPartner(Members):
+    master_key = 'partner'
+    column_names = "room remark *"
+    order_by = ['room__name']
+    display_mode = "summary"
+    # summary_sep = comma
+    insert_layout = """
+    room
+    remark
+    """
+
+    @classmethod
+    def summary_row(cls, ar, obj, **kwargs):
+        if ar is None:
+            yield str(obj.room)
+        else:
+            yield ar.obj2html(obj, str(obj.room))
+
+
+
+class AllMembers(Members):
+    required_roles = dd.login_required(ContactsStaff)
+
+
 
 class WorkersParameters(dd.Actor):
 

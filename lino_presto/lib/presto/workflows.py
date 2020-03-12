@@ -6,7 +6,6 @@ The default :attr:`workflows_module
 <lino.core.site.Site.workflows_module>` for the :ref:`presto` applications.
 
 """
-from __future__ import unicode_literals
 
 from lino.api import _
 
@@ -38,10 +37,30 @@ from lino_xl.lib.courses.workflows import *
 EntryStates.missed.add_transition(
     required_states='cancelled suggested draft took_place')
 
-EntryStates.took_place.guest_state = GuestStates.present
-EntryStates.cancelled.guest_state = GuestStates.excused
-EntryStates.missed.guest_state = GuestStates.missing
+# EntryStates.took_place.guest_state = GuestStates.planned
+# EntryStates.cancelled.guest_state = GuestStates.excused
+# EntryStates.missed.guest_state = GuestStates.missing
 
 # print("20181107b", EntryStates.draft.button_text)
 
+GuestStates.clear()
+add = GuestStates.add_item
+# add('10', _("Suggested"), 'suggested', button_text="?")
+# add('10', _("Invited"), 'invited', button_text="☐")
+add('20', _("Planned"), 'invited', afterwards=True, button_text="☑")
+# add('30', _("Done"), 'done', afterwards=True, button_text="☑")
+# add('40', _("Cancelled"), 'cancelled', button_text="C")
+add('50', _("Needs replacement"), 'needs', afterwards=True, button_text="⚕")
+add('60', _("Found replacement"), 'found', button_text="☉")
+# add('10', "☐", 'invited')
+# add('40', "☑", 'present', afterwards=True)
+# add('50', "☉", 'missing', afterwards=True)
+# add('60', "⚕", 'excused')
 
+
+# @dd.receiver(dd.pre_analyze)
+# def my_event_workflows(sender=None, **kw):
+GuestStates.ignore_required_states = True
+GuestStates.invited.add_transition(required_states='needs found')
+GuestStates.needs.add_transition(required_states='invited found')
+GuestStates.found.add_transition(required_states='invited needs')

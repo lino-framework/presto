@@ -16,6 +16,15 @@ VoucherTypes.add_item_lazy(TraOrdersByJournal)
 
 
 
+class Order(Order):
+    def get_worker_choices(self):
+        Worker = dd.resolve_model(dd.plugins.orders.worker_model)
+        if self.journal.room:
+            return Worker.objects.filter(team_memberships__room=self.journal.room)
+        else:
+            return Worker.objects.all(room)
+
+
 class Enrolment(Enrolment):
 
     # class Meta(Enrolment.Meta):

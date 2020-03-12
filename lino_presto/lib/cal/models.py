@@ -9,19 +9,14 @@ from django.utils.translation import ugettext_lazy as _
 from lino.core.gfks import gfk2lookup
 
 from lino_xl.lib.cal.models import *
+from lino_xl.lib.cal.choicelists import EntryStates, GuestStates
 
 from lino.modlib.users.choicelists import UserTypes
 
-from lino_xl.lib.courses.choicelists import EnrolmentStates
+# from lino_xl.lib.courses.choicelists import EnrolmentStates
 from lino_xl.lib.invoicing.mixins import InvoiceGenerator
 
 # courses = dd.resolve_app('courses')
-
-# must import this to activate these workflow definitions:
-# 20160622 this is now done by workflows_module
-# from . import workflows
-# from lino_xl.lib.cal.workflows import voga
-
 
 # from lino.modlib.office.roles import OfficeUser
 from lino_presto.lib.contacts.models import PrintRoster
@@ -59,7 +54,7 @@ class RoomDetail(dd.DetailLayout):
     ref name id print_actions
     invoicing_area event_type guest_role display_color
     company contact_person contact_role
-    cal.EntriesByRoom
+    cal.EntriesByRoom contacts.MembersByRoom
     """
 
 
@@ -222,8 +217,68 @@ class MyEntries(MyEntries):
 
 
 class GuestsByEvent(GuestsByEvent):
-    column_names = 'partner role #workflow_buttons remark *'
+    column_names = 'partner role workflow_buttons remark *'
 
 
 class EntriesByProject(EntriesByProject):
     column_names = 'when_text owner summary workflow_buttons *'
+
+
+class GuestsNeedingReplacement(Guests):
+    label = _("Needing replacement")
+    required_roles = dd.login_required(OfficeUser)
+    welcome_message_when_count = 0
+    order_by = ['event__start_date', 'event__start_time']
+    column_names = ("event__start_date event__start_time partner "
+                    "event_summary event__state #role workflow_buttons remark *")
+
+    @classmethod
+    def param_defaults(self, ar, **kw):
+        kw = super(GuestsNeedingReplacement, self).param_defaults(ar, **kw)
+        # kw.update(user=ar.get_user())
+        # kw.update(event_state=EntryStates.draft)
+        kw.update(guest_state=GuestStates.needs)
+        kw.update(start_date=dd.today())
+        return kw
+
+
+
+class FindReplacement(dd.ChangeStateAction):
+    """Find another worker to replace this one.
+    """
+    label = _("Find replacement")
+    icon_name = None
+    show_in_workflow = True
+    # no_params_window = True
+    parameters = dict(
+        new_partner=dd.ForeignKey(dd.plugins.cal.partner_model),
+        comment=models.CharField(_("Comment"), max_length=200, blank=True))
+
+    params_layout = """
+    new_partner
+    comment
+    """
+
+    required_states = "needs"
+
+    @dd.chooser()
+    def new_partner_choices(self):
+        return rt.models.contacts.Worker.objects.all()
+
+    # def get_action_permission(self, ar, obj, state):
+    #     if state == GuestStates.needs:
+    #         return super(FindReplacement, self).get_action_permission(ar, obj, state)
+    #     return False
+
+    def run_from_ui(self, ar, **kw):
+        obj = ar.selected_rows[0]
+        pv = ar.action_param_values
+        obj.partner = pv.new_partner
+        obj.state = GuestStates.invited
+        obj.remark = pv.comment
+        obj.full_clean()
+        obj.save()
+        ar.success(refresh=True)
+
+
+dd.inject_action('cal.Guest', find_replacement=FindReplacement(GuestStates.invited))

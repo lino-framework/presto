@@ -1,12 +1,11 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2018-2019 Rumma & Ko Ltd
+# Copyright 2018-2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 """Demo data for Lino Presto.
 
 - Create a client MTI child for most persons.
 
 """
-from __future__ import unicode_literals
 
 import datetime
 from decimal import Decimal
@@ -14,11 +13,10 @@ from django.conf import settings
 from django.utils.text import format_lazy
 
 from lino.utils import ONE_DAY
-from lino.utils.mti import mtichild
+from lino.utils import mti
 from lino.utils.ssin import generate_ssin
 from lino.api import dd, rt, _
 from lino.utils import Cycler
-from lino.utils import mti
 from lino.utils.mldbc import babel_named as named, babeld
 from lino.modlib.users.utils import create_user
 
@@ -29,7 +27,7 @@ from lino.core.requests import BaseRequest
 from lino_xl.lib.products.choicelists import DeliveryUnits
 from lino_xl.lib.ledger.utils import DEBIT, CREDIT
 from lino_xl.lib.ledger.choicelists import VoucherStates, JournalGroups
-from lino_xl.lib.cal.choicelists import Recurrencies, Weekdays, EntryStates, PlannerColumns
+from lino_xl.lib.cal.choicelists import Recurrencies, Weekdays, EntryStates, PlannerColumns, GuestStates
 
 Place = rt.models.countries.Place
 Country = rt.models.countries.Country
@@ -102,16 +100,24 @@ def objects():
         yield partner
         yield SalesRule(partner=partner, paper_type=pt)
 
-    ahmed= Worker(first_name="Ahmed", gender=dd.Genders.male, city=eupen)
-    yield ahmed
-    maria= Worker(first_name="Maria", gender=dd.Genders.female, city=eupen)
-    yield maria
+    def worker(first_name, gender, city):
+        return Worker(first_name=first_name, gender=gender, city=city)
+
+    yield worker("Ahmed", dd.Genders.male, eupen)
+    yield worker("Beata", dd.Genders.female, eupen)
+    yield worker("Conrad", dd.Genders.male, eupen)
+    yield worker("Dennis", dd.Genders.male, eupen)
+    yield worker("Evelyne", dd.Genders.female, eupen)
+    yield worker("Fred", dd.Genders.male, eupen)
+    yield worker("Garry", dd.Genders.male, eupen)
+    yield worker("Helen", dd.Genders.female, eupen)
+    yield worker("Maria", dd.Genders.female, eupen)
 
     kw = dd.str2kw('name', _("Employment office"))  # Arbeitsvermittler
     cct = ClientContactType(**kw)
     yield cct
     kw = dict(client_contact_type=cct, country=belgium, city=eupen)
-    adg = Company(name=u"Arbeitsamt der D.G.", **kw)
+    adg = Company(name="Arbeitsamt der D.G.", **kw)
     adg.save()
     yield adg
     bernard = Person.objects.get(name__exact="Bodard Bernard")
@@ -139,7 +145,7 @@ def objects():
     yield consuming
 
 
-    et_defaults =dict(force_guest_states=True, default_duration="0:15",
+    et_defaults =dict(force_guest_states=False, default_duration="0:15",
                       planner_column=PlannerColumns.external)
 
     et_defaults.update(**dd.str2kw('event_label', _("Deployment")))
@@ -161,7 +167,7 @@ def objects():
     AREAS = Cycler(Area.objects.all())
     COLORS = Cycler(DisplayColors.get_list_items())
 
-    order_stories = []
+    order_stories = []  # a list of tuples (team, order_options)
 
     def team(name, et, gr, **order_options):
         kwargs = {}
@@ -242,9 +248,9 @@ def objects():
         c.save()
         return Client.objects.get(pk=p.pk)
 
-
     count = 0
     for person in Person.objects.exclude(gender=''):
+      if mti.get_child(person, Worker) is None:  # not the workers
         if not person.birth_date:  # not those from humanlinks
             if User.objects.filter(partner=person).count() == 0:
                 if rt.models.contacts.Role.objects.filter(person=person).count() == 0:
@@ -277,6 +283,8 @@ def objects():
         obj.pf_income = INCOMES.pop()
         yield obj
 
+    WORKERS = Cycler(Worker.objects.all())
+
     # JOURNALS
 
     # rt.models.ledger.Journal.objects.get(ref="SLS").delete()
@@ -308,13 +316,16 @@ def objects():
         story.append(obj)
         yield obj
 
+        for i in range(5):
+            yield rt.models.contacts.Member(room=room, partner=WORKERS.pop())
+
+
 
     CLIENTS = Cycler(Client.objects.all())
     # Client.objects.filter(client_state=ClientStates.coached))
     OFFSETS = Cycler(1, 0, 0, 1, 1, 1, 1, 2)
     START_TIMES = Cycler("8:00", "9:00", "11:00", "13:00", "14:00")
     DURATIONS = Cycler([Duration(x) for x in ("1:00", "0:30", "2:00", "3:00", "4:00")])
-    WORKERS = Cycler(Worker.objects.all())
     ITEM_PRODUCTS = Cycler(Product.objects.filter(cat=consuming))
     USERS = Cycler(User.objects.exclude(user_type=""))
     EVERY_UNITS = Cycler([Recurrencies.get_by_value(x) for x in "ODWM"])
@@ -360,11 +371,19 @@ def objects():
             yield obj  # save a second time after registering
 
 
-    qs = rt.models.cal.Event.objects.filter(
-        start_date__lt=dd.today(-10))
+    qs = rt.models.cal.Event.objects.filter(start_date__lt=dd.today(-10))
+    print("Reviewing {} calendar entries".format(qs.count()))
     for e in qs:
         if e.id % 5:
             e.state = EntryStates.took_place
         else:
             e.state = EntryStates.missed
         yield e
+
+    qs = rt.models.cal.Guest.objects.all()
+    qs = qs.filter(event__start_date__gt=dd.today(-5))
+    print("Reviewing {} calendar presences".format(qs.count()))
+    for g in qs:
+        if g.id % 15 == 0:
+            g.state = GuestStates.needs
+        yield g

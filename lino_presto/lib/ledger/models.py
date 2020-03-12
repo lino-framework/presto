@@ -5,14 +5,20 @@
 from lino.api import _
 from lino_xl.lib.ledger.models import *
 
+# dd.inject_field(
+#     'ledger.Journal', 'team',
+#     dd.ForeignKey('lists.List', blank=True, null=True))
+
+
+
 class JournalDetail(JournalDetail):
 
     main = """
     name ref:5
     journal_group:15 voucher_type:20 trade_type:20 seqno:5 id:5 room
-    account partner build_method:20 template:20 uploads_volume 
+    account partner build_method:20 template:20 uploads_volume
     dc force_sequence #invert_due_dc yearly_numbering auto_fill_suggestions auto_check_clearings must_declare
-    printed_name 
+    printed_name
     MatchRulesByJournal
     """
 

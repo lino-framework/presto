@@ -40,18 +40,18 @@ Orders
 ============ ============================= ======== ==========
  Start date   Client                        Remark   Workflow
 ------------ ----------------------------- -------- ----------
- 14/01/2017   DEMEULENAERE Dorothée (121)            **Done**
- 12/01/2017   COLLARD Charlotte (117)                **Done**
+ 14/01/2017   DERICUM Daniel (120)                   **Done**
+ 12/01/2017   DENON Denis (179)                      **Done**
+ 11/01/2017   DEMEULENAERE Dorothée (121)            **Done**
+ 11/01/2017   COLLARD Charlotte (117)                **Done**
  11/01/2017   CHARLIER Ulrike (118)                  **Done**
- 11/01/2017   CHANTRAINE Marc (119)                  **Done**
- 11/01/2017   BRECHT Bernd (176)                     **Done**
- 09/01/2017   BASTIAENSEN Laurent (116)              **Done**
- 08/01/2017   AUSDEMWALD Alfons (115)                **Done**
- 07/01/2017   ARENS Annette (113)                    **Done**
- 06/01/2017   ARENS Andreas (112)                    **Done**
- 04/01/2017   ALTENBERG Hans (114)                   **Done**
- 03/01/2017   Maria (242)                            **Done**
- 03/01/2017   Ahmed (241)                            **Done**
+ 09/01/2017   CHANTRAINE Marc (119)                  **Done**
+ 08/01/2017   BRECHT Bernd (176)                     **Done**
+ 07/01/2017   BASTIAENSEN Laurent (116)              **Done**
+ 06/01/2017   AUSDEMWALD Alfons (115)                **Done**
+ 04/01/2017   ARENS Annette (113)                    **Done**
+ 03/01/2017   ARENS Andreas (112)                    **Done**
+ 03/01/2017   ALTENBERG Hans (114)                   **Done**
 ============ ============================= ======== ==========
 <BLANKLINE>
 
@@ -74,8 +74,8 @@ Orders
 =========================== ====== ========================================= ======================================================
  value                       name   text                                      Model
 --------------------------- ------ ----------------------------------------- ------------------------------------------------------
- orders.OrdersByJournal             Order (orders.OrdersByJournal)            <class 'lino_xl.lib.orders.models.Order'>
- orders.TraOrdersByJournal          Order (orders.TraOrdersByJournal)         <class 'lino_xl.lib.orders.models.Order'>
+ orders.OrdersByJournal             Order (orders.OrdersByJournal)            <class 'lino_presto.lib.orders.models.Order'>
+ orders.TraOrdersByJournal          Order (orders.TraOrdersByJournal)         <class 'lino_presto.lib.orders.models.Order'>
  sales.InvoicesByJournal            Sales invoice (sales.InvoicesByJournal)   <class 'lino_xl.lib.sales.models.VatProductInvoice'>
  vat.InvoicesByJournal              Invoice (vat.InvoicesByJournal)           <class 'lino_xl.lib.vat.models.VatAccountInvoice'>
 =========================== ====== ========================================= ======================================================

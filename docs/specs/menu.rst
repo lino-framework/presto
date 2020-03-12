@@ -17,7 +17,7 @@ The menu
 >>> rt.login('rolf').show_menu()
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF -SKIP
 - Kontakte : Arbeiter, Organisationen, Personen, Haushalte, Klienten
-- Kalender : Meine Termine, Überfällige Termine, Meine unbestätigten Termine, Meine Aufgaben, Meine Gäste, Meine Anwesenheiten, Meine überfälligen Termine, Kalender, Mitarbeiterplaner
+- Kalender : Meine Termine, Überfällige Termine, Meine unbestätigten Termine, Meine überfälligen Termine, Meine Aufgaben, Needing replacement, Kalender, Mitarbeiterplaner
 - Aufträge : Garten (Garten), Umzüge (Umzüge), Renovierung (Renovierung), Haushaltshilfe (Haushaltshilfe), Heimpflege (Heimpflege), Büro (Büro), Waiting orders, Active orders, Urgent orders
 - Verkauf : Verkaufsrechnungen (SLS), Gutschriften Verkauf (SLC), Händische Rechnungen (MAN), Rechnungen erstellen
 - Buchhaltung :
