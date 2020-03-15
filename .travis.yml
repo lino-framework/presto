@@ -13,8 +13,8 @@ before_install:
 
 install:
   - pip install -U setuptools
-  - pip install -r requirements.${REQ_VERSION}.txt
-  - pip install lino-book  # just for intersphinx
+  - # pip install -r requirements.${REQ_VERSION}.txt
+  - # pip install lino-book  # just for intersphinx
   - pip install -e .
 
 script:
