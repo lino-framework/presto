@@ -19,7 +19,7 @@ purchases, general ledger, VAT declarations).
 
 - For *introductions* and *commercial information* about Lino Presto
   see http://www.saffre-rumma.net
-  
+
 The name "Presto" originally comes from "prestations de service", the
 French expression for service providements.  It also means "quick" in
 Italian.

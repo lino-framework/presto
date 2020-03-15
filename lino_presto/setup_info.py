@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2015-2019 Rumma & Ko Ltd
+# Copyright 2015-2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
 # Note that this module may not have a docstring because any
@@ -11,14 +11,11 @@
 #
 #   $ python setup.py test -s tests.PackagesTests
 
-from __future__ import unicode_literals
-
 SETUP_INFO = dict(
     name='lino_presto',
     version='19.6.0',
     install_requires=['lino_xl'],
     tests_require=['bleach'],
-
     description="A Lino application for managing services",
     license='BSD-2-Clause',
     include_package_data=True,
@@ -30,7 +27,7 @@ SETUP_INFO = dict(
     test_suite='tests',
     classifiers="""\
   Programming Language :: Python
-  Programming Language :: Python :: 2
+  Programming Language :: Python :: 3
   Development Status :: 4 - Beta
   Environment :: Web Environment
   Framework :: Django
@@ -61,7 +58,7 @@ purchases, general ledger, VAT declarations).
 
 - For *introductions* and *commercial information* about Lino Presto
   see http://www.saffre-rumma.net
-  
+
 The name "Presto" originally comes from "prestations de service", the
 French expression for service providements.  It also means "quick" in
 Italian.
