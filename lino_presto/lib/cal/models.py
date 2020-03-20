@@ -185,9 +185,8 @@ class Event(Event, InvoiceGenerator):
 
     @classmethod
     def setup_parameters(cls, params):
-        params = super(Event, cls).setup_parameters(params)
+        super(Event, cls).setup_parameters(params)
         params['presence_guest'].verbose_name = _("Worker")
-        return params
 
 
 dd.update_field(Event, 'description',format="plain")
@@ -213,7 +212,6 @@ class EventDetail(EventDetail):
 
 class MyEntries(MyEntries):
     column_names = 'when_text summary room owner workflow_buttons *'
-
 
 
 class GuestsByEvent(GuestsByEvent):
