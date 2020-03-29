@@ -78,7 +78,7 @@ class Site(Site):
         yield ('clients', 'client_model', 'presto.Client')
         yield ('clients', 'menu_group', 'contacts')
         yield ('orders', 'worker_model', 'contacts.Worker')
-        yield ('ledger', 'purchase_stories', False)
+        # yield ('ledger', 'purchase_stories', False)
         yield ('ledger', 'sales_stories', False)
 
     def setup_quicklinks(self, user, tb):

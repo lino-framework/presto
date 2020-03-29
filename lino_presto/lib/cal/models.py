@@ -68,6 +68,9 @@ class Event(Event, InvoiceGenerator):
     class Meta(Event.Meta):
         abstract = dd.is_abstract_model(__name__, 'Event')
 
+    summary_show_user = False
+
+
     # invoiceable_date_field = 'start_date'
     invoiceable_partner_field = 'project'
 
@@ -89,8 +92,6 @@ class Event(Event, InvoiceGenerator):
         par = self.get_invoiceable_partner()
         # par = self.project
         # if self.project_id is None:
-
-
         if par is None:
             return None
         return rt.models.products.Product.get_rule_fee(par, self.event_type)
@@ -103,12 +104,12 @@ class Event(Event, InvoiceGenerator):
             return self.event_type.default_duration or self.default_invoiceable_qty
         return self.default_invoiceable_qty
 
-    def get_event_summary(self, ar):
-        # Overrides lino_xl.lib.cal.Event.get_event_summary
-        if self.owner is None:
-            return self.summary
-        else:
-            return str(self.owner)
+    # def get_event_summary(self, ar):
+    #     # Overrides lino_xl.lib.cal.Event.get_event_summary
+    #     if self.owner is None:
+    #         return self.summary
+    #     else:
+    #         return str(self.owner)
 
     @classmethod
     def get_generators_for_plan(cls, plan, partner=None):
@@ -189,8 +190,8 @@ class Event(Event, InvoiceGenerator):
         params['presence_guest'].verbose_name = _("Worker")
 
 
-dd.update_field(Event, 'description',format="plain")
-dd.update_field(EventType, 'all_rooms',verbos_name=_("Locks all teams"))
+dd.update_field(Event, 'description', format="plain")
+dd.update_field(EventType, 'all_rooms', verbose_name=_("Locks all teams"))
 
 
 class EventDetail(EventDetail):
@@ -221,14 +222,16 @@ class GuestsByEvent(GuestsByEvent):
 class EntriesByProject(EntriesByProject):
     column_names = 'when_text owner summary workflow_buttons *'
 
+# dd.update_field(Guests, 'event_summary', verbose_name="Description")
+# doesn't work as i expected
 
 class GuestsNeedingReplacement(Guests):
-    label = _("Needing replacement")
+    label = _("Deployments needing replacement")
     required_roles = dd.login_required(OfficeUser)
     welcome_message_when_count = 0
     order_by = ['event__start_date', 'event__start_time']
     column_names = ("event__start_date event__start_time partner "
-                    "event_summary event__state #role workflow_buttons remark *")
+                    "event_summary #role workflow_buttons remark *")
 
     @classmethod
     def param_defaults(self, ar, **kw):
@@ -238,7 +241,6 @@ class GuestsNeedingReplacement(Guests):
         kw.update(guest_state=GuestStates.needs)
         kw.update(start_date=dd.today())
         return kw
-
 
 
 class FindReplacement(dd.ChangeStateAction):

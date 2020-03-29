@@ -1,5 +1,5 @@
+.. doctest dedocs/basics/tour.rst
 .. include:: /../docs/shared/include/defs.rst
-
 .. _presto.de.tour:
 
 =================
@@ -8,6 +8,8 @@ Besichtigungstour
 
 .. contents::
   :local:
+
+
 
 Wir melden uns an als Rolf. Der ist Systemverwalter und darf deshalb alles. Wer
 es lieber in Französisch hat, wählt Romain.
@@ -29,12 +31,12 @@ Kontakte
 ========
 
 Als **Partner** bezeichnen wir allgemein jede Einzelperson oder Gruppe, die als
-Geschäftspartner, Rechnungsempfänger oder sonstiger Kontakt fungieren kann.
-Jeder Partner kann unterschiedliche Rollen oder gar parallele Rollen je nach
-Auftragstyp oder Finalität einer Dienstleistung haben.
+Geschäftspartner, Rechnungsempfänger, Klient, Arbeiter oder sonstiger Kontakt
+fungieren kann. Jeder Partner kann unterschiedliche Rollen oder gar parallele
+Rollen je nach Auftragstyp oder Finalität einer Dienstleistung haben.
 
 Die Datenbankstruktur unterscheidet fünf Partnerarten: **Personen**,
-Klienten**, **Arbeiter**, **Haushalte** und **Organisationen**. Klienten und
+**Klienten**, **Arbeiter**, **Haushalte** und **Organisationen**. Klienten und
 Arbeiter sind eigentlch eine Unterart von Personen. Ein Klient oder Arbeiter
 ist immer auch eine Person.  Eine gleiche physische Person kann theoretisch
 zugleich Kontaktperson einer Firma, Arbeiter und auch Klient sein.
@@ -52,11 +54,11 @@ Mögliche Adressenarten können definiert werden (z.B. "Referenzadresse" oder
 
 Idem für **Kontaktangaben** (Telefon, GSM und E-Mail).
 
-Pro Klient kann ein **Grund der Anfrage** (oder mehrere) angegeben werden im
-Panel **Interessen** (im Reiter "Klient").  Die **Themen**, für die sich ein
-Klient interessieren kann, sind konfigurierbar unter
-:menuselection:`Konfigurierung --> Themen --> Themen`. Falls nötig können diese
-Bezeichnungen und/oder ihre Einordnung geändert werden.
+Die **Einkommenskategorie** eines Klienten bestimmt den Tarif, der für Arbeiten
+fakturiert wird.  Siehe Fakturierung_.
+
+Haushaltszusammensetzung und familiäre Beziehungen
+==================================================
 
 Damit die Suche und die familiäre Einschätzung einfacher ersichtlich wird,
 können für jeden Klienten auch deren Haushaltszusammensetzungen und familiäre
@@ -67,18 +69,12 @@ Eine Person kann im Laufe der Zeit mehreren Haushalten als **Mitglied** angehör
 Ein Haushalt sollte als **primär** markiert sein.  Die
 **Haushaltszusammensetzung** zeigt alle Mitglieder des primären Haushalts.
 
-Familiäre **Beziehungen** sind Beziehungen von Person zu Person, die unabhängig
+**Familiäre Beziehungen** sind Beziehungen von Person zu Person, die unabhängig
 von der Wohnung existieren.
 
 - Beispiel : :menuselection:`Kontakte --> Personen` und nach *Hubert Frisch*
   suchen.  Dennis Frisch Beziehungen anschauen und Mitgliedschaften korrigieren:
   Dennis ist *Pflegekind* (nicht Kind) in zwei Haushalten.
-
-Die **Einkommenskategorie** eines Klienten bestimmt den Tarif, der für Arbeiten
-fakturiert wird.
-
-- Siehe :menuselection:`Konfigurierung --> Produkte -->
-  Preisregeln`.
 
 Termine
 ========
@@ -87,39 +83,30 @@ Ein **Kalendereintrag** ist, wenn zu einem bestimmten Zeipunkt (Datum und
 Uhrzeit Beginn und Ende) etwas stattfindet, das in unserem Kalender erwähnt
 werden soll.
 
-Der **Autor** eines Kalendereintrags ist der administrative Mitarbeiter, der
-den Termin erstellt hat (manuell oder automatisch).
+Ein **Termin** ist ein Kalendereintrag, den ein bestimmter
+Mitarbeiter mit einem bestimmten Klienten verabredet hat. Zum Beispiel sind
+Urlaubstage oder Feiertage zwar Kalendereinträge, aber keine Termine.
 
-Ein **Termin** ist ein Kalendereintrag, den ein bestimmter Mitarbeiter mit
-einem bestimmten Klienten verabredet hat.
-
-Zum Beispiel sind Urlaubstage oder Feiertage zwar Kalendereinträge, aber keine
-Termine.
-
-Ein **Einsatz** ist ein Termin im Rahmen eines Auftrags, d.h. ein
-Kalendereintrag, der mit einem Auftrag **verknüpft** ist und bei dem ein oder
-mehrere **Arbeiter anwesend** sind. Die Arbeiter eines Einsatzes stehen im
-Panel "Anwesenheiten" und werden dort automatisch auf Basis des Auftrags
-eingetragen.
-
-Man kann in Lino auch **unfakturierte Termine** verwalten, d.h. die nicht mit
+Ein **Einsatz** ist ein Termin im Rahmen eines Auftrags (siehe Einsätze_).
+Man kann in Lino auch Termine verwalten, die keine Einsätze sind, also nicht mit
 einem Auftrag verknüpft sind (z.B. interne Besprechungen, Urlaubstage, sonstige
-Termine der Mitarbeiter, ...). Generell könnte man für jeden Kalendereintrag
-Gäste bzw. deren Anwesenheiten erfassen (Gruppenkalender, Versammlungen oder
-Veranstaltungen planen...).
+Termine der Mitarbeiter, ...).
 
-Ob ein fakturierbarer Termin bereits fakturiert ist, kann man im Detail dieses
-Termins (Reiter "Mehr") sehen. Dort stehen sowohl Dienstleistungen als auch
-Nebenkosten,
+Der **Autor** eines Kalendereintrags ist der administrative Mitarbeiter, der den
+Kalendereintrag erstellt hat (manuell oder automatisch). Generell kann man für
+jeden Kalendereintrag **Anwesenheiten** erfassen (Gruppenkalender, Versammlungen
+oder Veranstaltungen planen...).
+
+
 
 Aufträge
 ========
 
-Ein **Auftrag** ist, wenn man eine Serie von
-*Einsätzen* plant, bei denen eine Serie von *Arbeitern* eine bestimmte Aufgabe
-für einen bestimmten *Klienten* verrichtet.
-Die Serie von Einsätzen kann sich auf einen einzigen Einsatz beschränken.
-Die Serie von Arbeitern kann sich auf einen einzigen Arbeiter beschränken.
+Ein **Auftrag** ist, wenn man eine Serie von *Einsätzen* plant, bei denen eine
+Serie von *Arbeitern* eine bestimmte Aufgabe für einen bestimmten *Klienten*
+verrichtet. Die Serie von Einsätzen kann sich auf einen einzigen Einsatz
+beschränken. Die Serie von Arbeitern kann sich auf einen einzigen Arbeiter
+beschränken.
 
 Ein Auftrag muss immer einem *Klienten* zugewiesen sein und kann optional einen
 anderen *Partner* als Rechnungsempfänger haben.
@@ -127,8 +114,7 @@ anderen *Partner* als Rechnungsempfänger haben.
 Jeder einzelne Einsatz hat eine Liste der anwesenden Arbeiter, die prinzipiell
 immer die Gleiche ist, sich unter Umständen jedoch von Mal zu Mal ändern kann.
 
-Der Auftrag gilt als Grundlage für die Fakturierung. Ohne Auftrag keine
-Rechnung.  Im Auftrag können neben den vorgesehenen Arbeitern auch Fahrtkosten
+Im Auftrag können neben den vorgesehenen Arbeitern auch Fahrtkosten
 und sonstige planbare Nebenkosten erfasst werden, die pro Einsatz fakturiert
 werden.
 
@@ -136,12 +122,39 @@ Aufträge sind in **Journale** gruppiert. Ein Journal ist eine Serie von
 chronologisch geordneten und durchlaufend nummerierten Dokumenten.
 
 Um die verschiedenen **Tätigkeitsbereiche** des Betriebs zu differenzieren, kann
-der Systemverwalter **Teams** konfigurieren.
+der Systemverwalter **Teams** konfigurieren.  Menü
+:menuselection:`Konfigurierung --> Kalender --> Teams`.
 
-Pro Journal kann man definieren, welches Team für die Aufträge in diesem
-Journal zuständig ist. Eventuell können mehrere Journale pro Team angelegt
-werden.
+Pro Journal kann man definieren, welches Team für die Aufträge in diesem Journal
+zuständig ist. Ein Team kann für mehrere Journale zugleich zuständig sein.   Was
+man nicht sagen kann: "für dieses Journal ist mal dieses und mal jenes Team
+zuständig".
 
+
+Einsätze
+========
+
+Ein **Einsatz** ist ein Termin im Rahmen eines Auftrags, d.h. ein
+Kalendereintrag, der mit einem Auftrag verknüpft ist.
+
+Bei einem Einsatz ist normalerweise ein Arbeiter **anwesend**.
+Gegebenenfalls auch mehrere Arbeiter (z.B. Umzüge, Haushaltshilfe).
+Gegebenenfalls auch niemand (z.B. in einem stornierten Einsatz).
+
+Die bei einem Einsatz anwesenden Arbeiter stehen im Panel "Anwesenheiten" und
+werden dort automatisch auf Basis des Auftrags eingetragen.
+
+Der Einsatz gilt als Grundlage für die Fakturierung. Ohne Einsatz keine
+Rechnung. Ob ein Einsatz bereits fakturiert ist, kann man im Detail dieses
+Einsatzes (Reiter "Mehr") sehen. Dort stehen sowohl Dienstleistungen als auch
+Nebenkosten,
+
+Aufgaben
+========
+
+Eine Aufgabe ist eine Notiz über etwas, das erledigt werden muss. Und zwar
+normalerweise von einer bestimmten Person für ein bestimmtes Datum.   Eventuell
+auch einem bestimmten Auftrag zugeordnet
 
 Kalenderansichten
 =================
@@ -169,8 +182,10 @@ Manche dieser Ansichten können vielleicht raus, und manche fehlen vielleicht
 noch.
 
 
-Fakturierungsbereiche
-=====================
+Fakturierung
+============
+
+Siehe :menuselection:`Konfigurierung --> Produkte --> Preisregeln`.
 
 Jedes Team unterliegt einem **Fakturierungsbereich**.
 Diese können konfiguriert werden und bis auf weiteres gibt es deren zwei:
@@ -196,18 +211,6 @@ Diese können konfiguriert werden und bis auf weiteres gibt es deren zwei:
   :doc:`/invoicing/index`).
   Dies betrifft momentan die Arbeiten im Bereich
   *Haushaltshilfe*.
-
-
-
-
-Dienstleistungen, die nicht an den Kunden fakturiert werden, wohl aber ans
-ÖSHZ.
-
-Zum Beispiel reine Lagerbesichtungen
-
-Hierfür muss ein Auftrag erstellt und der *Termine* erfasst werden, damit Lino
-"weiß", dass die Zeit ans ÖSHZ fakturiert werden soll.
-
 
 Einfachen Einsatz nachträglich erfassen
 =======================================
@@ -305,11 +308,12 @@ Man kann eine erstellte Rechnung jederzeit manuell bearbeiten:
 Auftrag mit regelmäßigen Terminen
 =================================
 
-Lino kann Terminvorschläge automatisch generieren.
-Dabei wird pro Klient ein Auftrag erstellt, in dem die gewünschten Wochentage
-und Uhrzeiten festgehalten werden.  Lino generiert daraufhin Terminvorschläge.
-Jeder einzelne Termin kann manuell verändert werden.  Die Terminvorschläge
-müssen in Lino bestätigt werden, wenn sie stattgefunden haben.
+Lino kann Terminvorschläge automatisch generieren. Dabei wird pro Klient ein
+Auftrag erstellt, in dem die Wiederholungsregeln festgehalten werden (gewünschte
+Wochentage und Uhrzeiten, Wiederholungsrate, Anzahl Einsätze und/oder Enddatum,
+...).  Lino generiert daraufhin Terminvorschläge. Jeder einzelne Termin kann
+manuell verändert werden.  Die Terminvorschläge müssen in Lino bestätigt werden,
+wenn sie stattgefunden haben.
 
 - Gehe auf den Auftrag und aktiviere den Reiter "Kalender"
 
@@ -350,6 +354,17 @@ bekommen, dass Lino neue enster öffnen darf.
 
 Inhalt und Layout des gedruckten Dokuments sind noch zu besprechen.
 
+Grund der Anfrage
+=================
+
+Pro Klient kann ein **Grund der Anfrage** (oder mehrere) angegeben werden im
+Panel **Interessen** (im Reiter "Klient").  Die **Themen**, für die sich ein
+Klient interessieren kann, sind konfigurierbar unter
+:menuselection:`Konfigurierung --> Themen --> Themen`. Falls nötig können diese
+Bezeichnungen und/oder ihre Einordnung geändert werden.
+
+Bin nicht sicher, wozu diese Information gebraucht wird.
+
 
 Rechnungen an die ÖSHZ
 ======================
@@ -383,5 +398,56 @@ Quartal folgendes macht:
 
 - Eventuell die tatsächlich fakturierten Zahlen manuell eingeben.
 
+Dienstleistungen ohne Auftrag
+=============================
+
+Zum Beispiel reine Lagerbesichtungen sind  Dienstleistungen, die nicht an den
+Kunden fakturiert werden, wohl aber ans ÖSHZ.
+
+Hierfür muss ein Auftrag erstellt und der *Termin* als *Einsatz* erfasst werden,
+damit Lino "weiß", dass die Zeit ans ÖSHZ fakturiert werden soll.
+
+Ist noch nicht definitiv.
 
 
+Beispiele
+=========
+
+Hier einige Tests auf den Demo-Daten.
+
+>>> from lino import startup
+>>> startup('lino_presto.projects.noereth.settings.doctests')
+>>> from lino.api.doctest import *
+
+Liste der Teams:
+
+>>> show_menu_path(cal.AllRooms)
+Konfigurierung --> Kalender --> Teams
+
+>>> rt.show(cal.AllRooms, column_names="name event_type")
+================ ================== ================== =====================
+ Bezeichnung      Bezeichnung (fr)   Bezeichnung (en)   Kalendereintragsart
+---------------- ------------------ ------------------ ---------------------
+ Garten           Garten             Garden             Außenarbeiten
+ Umzüge           Umzüge             Moves              Außenarbeiten
+ Renovierung      Renovierung        Renovation         Innenarbeiten
+ Haushaltshilfe   Haushaltshilfe     Home help          Innenarbeiten
+ Heimpflege       Heimpflege         Home care          Innenarbeiten
+ Büro             Bureau             Office             Büroarbeiten
+================ ================== ================== =====================
+<BLANKLINE>
+
+>>> rt.show(ledger.Journals, column_names="ref name room voucher_type")
+================ ====================== ====================== ================== ================ ============================================
+ Referenz         Bezeichnung            Bezeichnung (fr)       Bezeichnung (en)   Team             Belegart
+---------------- ---------------------- ---------------------- ------------------ ---------------- --------------------------------------------
+ SLS              Verkaufsrechnungen     Factures vente         Sales invoices                      Verkaufsrechnung (sales.InvoicesByJournal)
+ MAN              Händische Rechnungen   Händische Rechnungen   Manual invoices                     Verkaufsrechnung (sales.InvoicesByJournal)
+ Garten           Garten                                                           Garten           Auftrag (orders.OrdersByJournal)
+ Umzüge           Umzüge                                                           Umzüge           Auftrag (orders.OrdersByJournal)
+ Renovierung      Renovierung                                                      Renovierung      Auftrag (orders.OrdersByJournal)
+ Haushaltshilfe   Haushaltshilfe                                                   Haushaltshilfe   Auftrag (orders.OrdersByJournal)
+ Heimpflege       Heimpflege                                                       Heimpflege       Auftrag (orders.OrdersByJournal)
+ Büro             Büro                                                             Büro             Auftrag (orders.OrdersByJournal)
+================ ====================== ====================== ================== ================ ============================================
+<BLANKLINE>

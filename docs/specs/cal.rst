@@ -56,13 +56,13 @@ At any moment you can see the :class:`GuestsNeedingReplacement` table, which
 shows all presences needing replacement.
 
 >>> rt.login("robin").show(cal.GuestsNeedingReplacement)
-============ ============ ============ ================================ =========== ====================================================== ===========
- Beginnt am   Beginnt um   Person       Kalendereintrag                  Zustand     Workflow                                               Bemerkung
------------- ------------ ------------ -------------------------------- ----------- ------------------------------------------------------ -----------
- 11.05.17     08:00:00     Herr Garry   `Heimpflege 2/2017 <Detail>`__   Vorschlag   **⚕ Needs replacement** → [Find replacement] [☑] [☉]
- 26.08.17     08:00:00     Herr Garry   `Heimpflege 2/2017 <Detail>`__   Vorschlag   **⚕ Needs replacement** → [Find replacement] [☑] [☉]
- 10.12.17     08:00:00     Herr Garry   `Heimpflege 2/2017 <Detail>`__   Vorschlag   **⚕ Needs replacement** → [Find replacement] [☑] [☉]
-============ ============ ============ ================================ =========== ====================================================== ===========
+============ ============ ============ =================================================================== ====================================================== ===========
+ Beginnt am   Beginnt um   Arbeiter     Kalendereintrag                                                     Workflow                                               Bemerkung
+------------ ------------ ------------ ------------------------------------------------------------------- ------------------------------------------------------ -----------
+ 11.05.17     08:00:00     Herr Garry   `? Heimpflege 2/2017 Einsatz 18 für DENON Denis (179) <Detail>`__   **⚕ Needs replacement** → [Find replacement] [☑] [☉]
+ 26.08.17     08:00:00     Herr Garry   `? Heimpflege 2/2017 Einsatz 33 für DENON Denis (179) <Detail>`__   **⚕ Needs replacement** → [Find replacement] [☑] [☉]
+ 10.12.17     08:00:00     Herr Garry   `? Heimpflege 2/2017 Einsatz 48 für DENON Denis (179) <Detail>`__   **⚕ Needs replacement** → [Find replacement] [☑] [☉]
+============ ============ ============ =================================================================== ====================================================== ===========
 <BLANKLINE>
 
 When this table is not empty, it causes a welcome message "You have 3 items in

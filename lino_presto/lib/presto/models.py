@@ -163,10 +163,12 @@ from lino_presto.lib.contacts.models import PersonDetail
 class ClientDetail(PersonDetail):
     main = "general humanlinks #address client invoicing #more cal.EntriesByProject"
 
-    # general = dd.Panel("""
-    # overview:30 general2:20 #courses.EnrolmentsByPupil:30
-    # cal.GuestsByPartner
-    # """, label=_("General"))
+
+    general = dd.Panel("""
+    overview:20 general2:40 #general3:40
+    cal.TasksByProject:20 contacts.RolesByPerson:40 
+    """, label=_("General"))
+
 
     # general = dd.Panel("""
     # overview:40 general_middle:20

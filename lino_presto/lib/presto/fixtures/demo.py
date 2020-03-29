@@ -25,6 +25,7 @@ AMOUNTS = Cycler("5.00", None, None, "15.00", "20.00", None, None)
 from lino.utils.quantities import Duration
 from lino.core.requests import BaseRequest
 from lino_xl.lib.products.choicelists import DeliveryUnits
+from lino_xl.lib.orders.choicelists import OrderStates
 from lino_xl.lib.ledger.utils import DEBIT, CREDIT
 from lino_xl.lib.ledger.choicelists import VoucherStates, JournalGroups
 from lino_xl.lib.cal.choicelists import Recurrencies, Weekdays, EntryStates, PlannerColumns, GuestStates
@@ -329,6 +330,7 @@ def objects():
     ITEM_PRODUCTS = Cycler(Product.objects.filter(cat=consuming))
     USERS = Cycler(User.objects.exclude(user_type=""))
     EVERY_UNITS = Cycler([Recurrencies.get_by_value(x) for x in "ODWM"])
+    STATES = Cycler(OrderStates.get_list_items())
 
     num = 0
     # entry_date = datetime.date(dd.plugins.ledger.start_year, 1, 1)
@@ -362,10 +364,14 @@ def objects():
                 yield Enrolment(order=obj, worker=WORKERS.pop())
             yield OrderItem(voucher=obj, product=ITEM_PRODUCTS.pop(), qty="20")
             # ar = rt.login(user)
+            state = STATES.pop()
             ar = BaseRequest(user=user)
-            obj.register(ar)
+            if state == OrderStates.registered:
+                obj.register(ar)
+            else:
+                obj.state = state
+                obj.full_clean()
             obj.update_auto_events(ar)
-            # obj.full_clean()
             # obj.save()
             # print(20190501, obj.every_unit)
             yield obj  # save a second time after registering
