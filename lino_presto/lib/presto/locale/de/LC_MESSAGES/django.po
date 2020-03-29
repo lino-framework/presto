@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lino_presto 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-28 20:29+0200\n"
-"PO-Revision-Date: 2020-03-28 20:30+0200\n"
+"POT-Creation-Date: 2020-03-29 16:52+0300\n"
+"PO-Revision-Date: 2020-03-29 16:58+0300\n"
 "Last-Translator: Luc Saffre <luc.saffre@gmail.com>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
@@ -33,17 +33,17 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
-#: lino_presto/lib/cal/models.py:191 lino_presto/lib/contacts/models.py:308
+#: lino_presto/lib/cal/models.py:190 lino_presto/lib/contacts/models.py:308
 #: lino_presto/lib/presto/fixtures/demo.py:164
 #: lino_presto/lib/presto/user_types.py:55
 msgid "Worker"
-msgstr ""
+msgstr "Mitarbeiter"
 
-#: lino_presto/lib/cal/models.py:195
+#: lino_presto/lib/cal/models.py:194
 msgid "Locks all teams"
 msgstr ""
 
-#: lino_presto/lib/cal/models.py:206 lino_presto/lib/contacts/models.py:86
+#: lino_presto/lib/cal/models.py:205 lino_presto/lib/contacts/models.py:86
 #: lino_presto/lib/contacts/models.py:186
 #: lino_presto/lib/contacts/models.py:262
 #: lino_presto/lib/contacts/models.py:382 lino_presto/lib/presto/models.py:170
@@ -51,19 +51,19 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: lino_presto/lib/cal/models.py:212 lino_presto/lib/sales/models.py:33
+#: lino_presto/lib/cal/models.py:211 lino_presto/lib/sales/models.py:33
 msgid "More"
 msgstr ""
 
-#: lino_presto/lib/cal/models.py:230
+#: lino_presto/lib/cal/models.py:229
 msgid "Deployments needing replacement"
 msgstr "Einsätze auf Ersatzsuche"
 
-#: lino_presto/lib/cal/models.py:250
+#: lino_presto/lib/cal/models.py:249
 msgid "Find replacement"
-msgstr ""
+msgstr "Ersatz suchen"
 
-#: lino_presto/lib/cal/models.py:256
+#: lino_presto/lib/cal/models.py:255
 msgid "Comment"
 msgstr ""
 
@@ -164,11 +164,11 @@ msgstr ""
 
 #: lino_presto/lib/contacts/models.py:309
 msgid "Workers"
-msgstr ""
+msgstr "Mitarbeiter"
 
 #: lino_presto/lib/contacts/models.py:312
 msgid "All workers"
-msgstr ""
+msgstr "Alle Mitarbeiter"
 
 #: lino_presto/lib/contacts/models.py:319
 msgid "Show only workers of this team."
@@ -318,15 +318,15 @@ msgstr "Geplant"
 
 #: lino_presto/lib/presto/workflows.py:50
 msgid "Planned"
-msgstr ""
+msgstr "Geplant"
 
 #: lino_presto/lib/presto/workflows.py:53
 msgid "Needs replacement"
-msgstr ""
+msgstr "Sucht Ersatz"
 
 #: lino_presto/lib/presto/workflows.py:54
 msgid "Found replacement"
-msgstr ""
+msgstr "Ersatz gefunden"
 
 #: lino_presto/lib/presto/config/sales/VatProductInvoice/service_report.weasy.html:8
 #: lino_presto/lib/presto/fixtures/demo.py:96
