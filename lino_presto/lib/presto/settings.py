@@ -85,6 +85,11 @@ class Site(Site):
         super(Site, self).setup_quicklinks(user, tb)
         tb.add_action(self.models.contacts.Workers)
         tb.add_action(self.models.presto.Clients)
-        a = self.models.calview.WeeklyView
-        tb.add_instance_action(
-            a.get_row_by_pk(None, "0"), action=a.default_action, label=_("Weekly view"))
+        # for a in (self.models.calview.WeeklyView, self.models.contacts.WeeklyView):
+        #     tb.add_instance_action(
+        #         a.get_row_by_pk(None, "0"), action=a.default_action, label=a.label)
+
+        for p in self.models.calview.Planners.get_list_items():
+            a = p.weekly_view
+            tb.add_instance_action(
+                a.get_row_by_pk(None, "0"), action=a.default_action, label=p.text)

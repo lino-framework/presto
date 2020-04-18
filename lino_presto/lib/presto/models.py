@@ -125,10 +125,11 @@ class Client(Person,  SSIN,
     def get_wanted_movements(self):
         return []
 
-    @dd.displayfield(_("Name"))
-    def name_column(self, ar):
-        return str(self)
-
+    # name_column is now defined in core.model.Model
+    # @dd.displayfield(_("Name"))
+    # def name_column(self, ar):
+    #     return str(self)
+    #
     # def get_overview_elems(self, ar):
     #     elems = super(Client, self).get_overview_elems(ar)
     #     # elems.append(E.br())
@@ -166,7 +167,7 @@ class ClientDetail(PersonDetail):
 
     general = dd.Panel("""
     overview:20 general2:40 #general3:40
-    cal.TasksByProject:20 contacts.RolesByPerson:40 
+    cal.TasksByProject:20 contacts.RolesByPerson:40
     """, label=_("General"))
 
 

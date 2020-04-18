@@ -1,9 +1,7 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2018-2019 Rumma & Ko Ltd
+# Copyright 2018-2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
-
-from __future__ import unicode_literals
 
 from lino_xl.lib.invoicing.models import *
 from lino.api import _
@@ -56,5 +54,3 @@ class StartInvoicingForOrder(StartInvoicing):
 @dd.receiver(dd.pre_analyze)
 def install_start_action(sender=None, **kwargs):
     rt.models.orders.Order.start_invoicing = StartInvoicingForOrder()
-    
-

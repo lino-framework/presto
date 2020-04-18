@@ -318,7 +318,7 @@ def objects():
         yield obj
 
         for i in range(5):
-            yield rt.models.contacts.Member(room=room, partner=WORKERS.pop())
+            yield rt.models.contacts.Membership(room=room, partner=WORKERS.pop())
 
 
 

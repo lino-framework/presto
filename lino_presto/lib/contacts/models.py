@@ -2,13 +2,15 @@
 # Copyright 2013-2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
-
+import datetime
 from django.db.models import Q
 from django.conf import settings
+from etgen.html import E
 
 from lino.api import dd, rt, _
 from lino.utils.quantities import ZERO_DURATION
 from lino.utils import SumCollector
+# from lino.utils import ONE_WEEK
 # from lino.core.utils import comma
 
 from lino_xl.lib.contacts.models import *
@@ -19,7 +21,7 @@ from lino_xl.lib.beid.mixins import SSIN
 # from lino_xl.lib.calview.ui import WeeklySlave
 from lino_xl.lib.calview.mixins import Plannable
 from lino.modlib.printing.actions import DirectPrintAction
-from lino.mixins.periods import Monthly
+from lino.mixins.periods import Weekly
 
 from lino_xl.lib.calview.models import WeeklySlaveBase, DailySlaveBase
 from lino_xl.lib.calview.models import Planners, CalendarView, InsertEvent
@@ -33,7 +35,7 @@ class PrintRoster(DirectPrintAction):
     build_method = "weasy2pdf"
     icon_name = None
     show_in_bbar = False
-    parameters = Monthly(
+    parameters = Weekly(
         show_remarks=models.BooleanField(
             _("Show remarks"), default=False),
         overview=models.BooleanField(
@@ -44,7 +46,7 @@ class PrintRoster(DirectPrintAction):
     overview
     show_remarks
     """
-    keep_user_values = True
+    # keep_user_values = True
 
 
 
@@ -186,7 +188,7 @@ class PersonDetail(PartnerDetail):
     """, label=_("General"))
 
     contact = dd.Panel("""
-    # lists.MembersByPartner
+    # lists.MembershipsByPartner
     remarks:30 sepa.AccountsByPartner
     """, label=_("Contact"))
 
@@ -275,7 +277,7 @@ class CompanyDetail(PartnerDetail):
     """
 
     contact = dd.Panel("""
-    # lists.MembersByPartner
+    # lists.MembershipsByPartner
     remarks:30 sepa.AccountsByPartner
     """, label=_("Contact"))
 
@@ -378,7 +380,7 @@ class WorkerDetail(PersonDetail):
 
     general = dd.Panel("""
     overview:20 cal_panel:40
-    contacts.MembersByPartner orders.EnrolmentsByWorker
+    contacts.MembershipsByPartner orders.EnrolmentsByWorker
     """, label=_("General"))
 
     cal_panel = """
@@ -394,11 +396,11 @@ class Workers(Persons):
     params_layout = 'room gender observed_event start_date end_date'
 
 
-class Member(mixins.Sequenced):
+class Membership(mixins.Sequenced):
 
     class Meta:
         app_label = 'contacts'
-        abstract = dd.is_abstract_model(__name__, 'Member')
+        abstract = dd.is_abstract_model(__name__, 'Membership')
         verbose_name = _("Team membership")
         verbose_name_plural = _("Team memberships")
 
@@ -413,9 +415,9 @@ class Member(mixins.Sequenced):
         return _("{} is member of {}").format(self.partner, self.room)
 
 
-class Members(dd.Table):
+class Memberships(dd.Table):
     required_roles = dd.login_required(ContactsUser)
-    model = 'contacts.Member'
+    model = 'contacts.Membership'
     detail_layout = dd.DetailLayout("""
     room
     partner
@@ -423,8 +425,8 @@ class Members(dd.Table):
     """, window_size=(60, 'auto'))
 
 
-class MembersByRoom(Members):
-    label = _("Members")
+class MembershipsByRoom(Memberships):
+    label = _("Memberships")
     master_key = 'room'
     order_by = ['seqno']
     if dd.is_installed("phones"):
@@ -433,7 +435,7 @@ class MembersByRoom(Members):
         column_names = "seqno partner remark workflow_buttons partner__address_column partner__email partner__gsm *"
 
 
-class MembersByPartner(Members):
+class MembershipsByPartner(Memberships):
     master_key = 'partner'
     column_names = "room remark *"
     order_by = ['room__name']
@@ -453,7 +455,7 @@ class MembersByPartner(Members):
 
 
 
-class AllMembers(Members):
+class AllMemberships(Memberships):
     required_roles = dd.login_required(ContactsStaff)
 
 
@@ -473,7 +475,7 @@ class WorkersParameters(dd.Actor):
         rt.models.contacts.Worker.setup_parameters(params)
 
     @classmethod
-    def get_calview_chunks(cls, obj, ar):
+    def unused_get_calview_chunks(cls, obj, ar):
         pv = ar.param_values
         # if pv.user:
         # if pv.assigned_to:
@@ -510,17 +512,30 @@ class WorkersParameters(dd.Actor):
         for e in entries:
             yield e.obj2href(ar, ar.actor.get_calview_div(e, ar))
 
+    @dd.displayfield(_("Worker"))
+    def name_column(cls, obj, ar):
+        # x1 = str([o.obj2href(ar) for o in ar.selected_rows])
+        d = ar.master_instance.date
+        d -= datetime.timedelta(days=d.weekday())  # start at first day of week
+        ba = obj.print_roster
+        if ba is None:
+            return E.p(obj.obj2href(ar))
+
+        pv = dict(start_date=d, end_date=d + datetime.timedelta(days=6))
+        # print("20200417", pv)
+        btn = ar.instance_action_button(ba, "Print",
+            request_kwargs=dict(action_param_values=pv))
+        return E.p(obj.obj2href(ar), " ", btn)
+
 
 class WeeklySlave(WorkersParameters, WeeklySlaveBase, Workers):
     column_names_template = "name_column:20 {vcolumns}"
     hide_top_toolbar = False
 
-
 class DailySlave(WorkersParameters, DailySlaveBase, Workers):
     column_names_template = "name_column:20 {vcolumns}"
     # display_mode = "html"
     navigation_mode = 'day'
-
 
 class WeeklyView(WorkersParameters, CalendarView):
     label = _("Weekly view")
@@ -533,7 +548,6 @@ class DailyView(WorkersParameters, CalendarView):
     detail_layout = 'contacts.DayDetail'
     navigation_mode = "day"
     insert_event = InsertEvent()
-
 
 class WeekDetail(dd.DetailLayout):
     main = "body"

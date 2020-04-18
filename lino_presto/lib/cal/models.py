@@ -54,7 +54,7 @@ class RoomDetail(dd.DetailLayout):
     ref name id print_actions
     invoicing_area event_type guest_role display_color
     company contact_person contact_role
-    cal.EntriesByRoom contacts.MembersByRoom
+    cal.EntriesByRoom contacts.MembershipsByRoom
     """
 
 
@@ -73,6 +73,19 @@ class Event(Event, InvoiceGenerator):
 
     # invoiceable_date_field = 'start_date'
     invoiceable_partner_field = 'project'
+
+    def get_event_summary(self, ar):
+        pv = ar.param_values
+        if self.project:
+            yield str(self.project) + " "
+            if self.project.city:
+                yield self.project.city.name + " "
+        # if not pv.event_type and self.event_type:
+        #     t.append(str(self.event_type))
+        if self.room and self.room.ref:
+            yield self.room.ref + " "
+        if self.summary:
+            yield self.summary + " "
 
     def obj2href(self, ar, txt=None, *args, **kwargs):
         if txt is None:
