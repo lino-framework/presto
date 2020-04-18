@@ -44,18 +44,18 @@ This document describes the database structure.
  clients.ClientContactType   clients.ClientContactTypes   5         5
  contacts.Company            contacts.Companies           30        31
  contacts.CompanyType        contacts.CompanyTypes        7         14
- contacts.Member             contacts.Members             5         30
+ contacts.Membership         contacts.Memberships         5         30
  contacts.Partner            contacts.Partners            28        151
  contacts.Person             contacts.Persons             35        106
- contacts.Role               contacts.Roles               4         1
- contacts.RoleType           contacts.RoleTypes           4         5
+ contacts.Role               contacts.Roles               4         4
+ contacts.RoleType           contacts.RoleTypes           5         5
  contacts.Worker             contacts.Workers             38        9
  contenttypes.ContentType    gfks.ContentTypes            3         80
  countries.Country           countries.Countries          6         8
  countries.Place             countries.Places             9         78
  dashboard.Widget            dashboard.Widgets            5         0
  excerpts.Excerpt            excerpts.Excerpts            12        0
- excerpts.ExcerptType        excerpts.ExcerptTypes        17        4
+ excerpts.ExcerptType        excerpts.ExcerptTypes        17        7
  gfks.HelpText               gfks.HelpTexts               4         2
  healthcare.Plan             healthcare.Plans             4         5
  healthcare.Rule             healthcare.Rules             6         0
@@ -85,7 +85,7 @@ This document describes the database structure.
  orders.Order                orders.Orders                32        12
  orders.OrderItem            orders.OrderItems            6         12
  phones.ContactDetail        phones.ContactDetails        7         15
- presto.Client               presto.Clients               43        67
+ presto.Client               presto.Clients               43        65
  presto.LifeMode             presto.LifeModes             4         6
  products.PriceRule          products.PriceRules          5         8
  products.Product            products.Products            14        11

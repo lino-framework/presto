@@ -35,13 +35,13 @@ Workflow
 <BLANKLINE>
 
 >>> rt.show(cal.GuestStates)
-====== ========= ============== =================== =============
- Wert   name      Nachträglich   Text                Button text
------- --------- -------------- ------------------- -------------
- 20     invited   Ja             Planned             ☑
- 50     needs     Ja             Needs replacement   ⚕
- 60     found     Nein           Found replacement   ☉
-====== ========= ============== =================== =============
+====== ========= ============== ================= =============
+ Wert   name      Nachträglich   Text              Button text
+------ --------- -------------- ----------------- -------------
+ 20     invited   Ja             Geplant           ☑
+ 50     needs     Ja             Sucht Ersatz      ⚕
+ 60     found     Nein           Ersatz gefunden   ☉
+====== ========= ============== ================= =============
 <BLANKLINE>
 
 
@@ -56,13 +56,13 @@ At any moment you can see the :class:`GuestsNeedingReplacement` table, which
 shows all presences needing replacement.
 
 >>> rt.login("robin").show(cal.GuestsNeedingReplacement)
-============ ============ ============ =================================================================== ====================================================== ===========
- Beginnt am   Beginnt um   Arbeiter     Kalendereintrag                                                     Workflow                                               Bemerkung
------------- ------------ ------------ ------------------------------------------------------------------- ------------------------------------------------------ -----------
- 11.05.17     08:00:00     Herr Garry   `? Heimpflege 2/2017 Einsatz 18 für DENON Denis (179) <Detail>`__   **⚕ Needs replacement** → [Find replacement] [☑] [☉]
- 26.08.17     08:00:00     Herr Garry   `? Heimpflege 2/2017 Einsatz 33 für DENON Denis (179) <Detail>`__   **⚕ Needs replacement** → [Find replacement] [☑] [☉]
- 10.12.17     08:00:00     Herr Garry   `? Heimpflege 2/2017 Einsatz 48 für DENON Denis (179) <Detail>`__   **⚕ Needs replacement** → [Find replacement] [☑] [☉]
-============ ============ ============ =================================================================== ====================================================== ===========
+============ ============ ============ ===================================================== ============================================== ===========
+ Beginnt am   Beginnt um   Arbeiter     Kalendereintrag                                       Workflow                                       Bemerkung
+------------ ------------ ------------ ----------------------------------------------------- ---------------------------------------------- -----------
+ 11.05.17     08:00:00     Herr Garry   `DERICUM Daniel (120) Eupen Einsatz 18  <Detail>`__   **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 26.08.17     08:00:00     Herr Garry   `DERICUM Daniel (120) Eupen Einsatz 33  <Detail>`__   **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 10.12.17     08:00:00     Herr Garry   `DERICUM Daniel (120) Eupen Einsatz 48  <Detail>`__   **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+============ ============ ============ ===================================================== ============================================== ===========
 <BLANKLINE>
 
 When this table is not empty, it causes a welcome message "You have 3 items in

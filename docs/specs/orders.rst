@@ -40,16 +40,16 @@ Orders
 ============ ============================= ======== ===============
  Start date   Client                        Remark   Workflow
 ------------ ----------------------------- -------- ---------------
- 14/01/2017   DERICUM Daniel (120)                   **Active**
- 12/01/2017   DENON Denis (179)                      **Waiting**
- 11/01/2017   DEMEULENAERE Dorothée (121)            **Cancelled**
- 11/01/2017   COLLARD Charlotte (117)                **Done**
- 11/01/2017   CHARLIER Ulrike (118)                  **Urgent**
- 09/01/2017   CHANTRAINE Marc (119)                  **Active**
- 08/01/2017   BRECHT Bernd (176)                     **Waiting**
- 07/01/2017   BASTIAENSEN Laurent (116)              **Cancelled**
- 06/01/2017   AUSDEMWALD Alfons (115)                **Done**
- 04/01/2017   ARENS Annette (113)                    **Urgent**
+ 14/01/2017   DOBBELSTEIN Dorothée (123)             **Active**
+ 12/01/2017   DERICUM Daniel (120)                   **Waiting**
+ 11/01/2017   DENON Denis (179)                      **Cancelled**
+ 11/01/2017   DEMEULENAERE Dorothée (121)            **Done**
+ 11/01/2017   COLLARD Charlotte (117)                **Urgent**
+ 09/01/2017   CHARLIER Ulrike (118)                  **Active**
+ 08/01/2017   CHANTRAINE Marc (119)                  **Waiting**
+ 07/01/2017   BRECHT Bernd (176)                     **Cancelled**
+ 06/01/2017   BASTIAENSEN Laurent (116)              **Done**
+ 04/01/2017   AUSDEMWALD Alfons (115)                **Urgent**
  03/01/2017   ARENS Andreas (112)                    **Active**
  03/01/2017   ALTENBERG Hans (114)                   **Waiting**
 ============ ============================= ======== ===============
@@ -86,11 +86,11 @@ Orders
 
 >>> rt.show(orders.WaitingOrders, language="en")
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF -SKIP
-============ ====================== ===================== ============= ================= ============================ =============
- Entry date   Client                 Order                 Workflow      Author            When                         Times
------------- ---------------------- --------------------- ------------- ----------------- ---------------------------- -------------
- 02/01/2017   ALTENBERG Hans (114)   *Garten 1/2017*       **Waiting**   Martha            On Tuesday, 3 January 2017   08:00-09:00
- 07/01/2017   BRECHT Bernd (176)     *Büro 1/2017*         **Waiting**   Romain Raffault   Every day                    08:00-09:00
- 12/01/2017   DENON Denis (179)      *Heimpflege 2/2017*   **Waiting**   Rolf Rompen       Every week                   08:00-09:00
-============ ====================== ===================== ============= ================= ============================ =============
+============ ======================= ===================== ============= ================= ============================ =============
+ Entry date   Client                  Order                 Workflow      Author            When                         Times
+------------ ----------------------- --------------------- ------------- ----------------- ---------------------------- -------------
+ 02/01/2017   ALTENBERG Hans (114)    *Garten 1/2017*       **Waiting**   Martha            On Tuesday, 3 January 2017   08:00-09:00
+ 07/01/2017   CHANTRAINE Marc (119)   *Büro 1/2017*         **Waiting**   Romain Raffault   Every day                    08:00-09:00
+ 12/01/2017   DERICUM Daniel (120)    *Heimpflege 2/2017*   **Waiting**   Rolf Rompen       Every week                   08:00-09:00
+============ ======================= ===================== ============= ================= ============================ =============
 <BLANKLINE>

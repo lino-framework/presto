@@ -72,7 +72,7 @@ Don't read me
  cal.DurationUnits               8                 None                               None                               None
  cal.EntryStates                 13                Kalendereintrag-Zustände           Kalendereintrag-Zustände           Entry states
  cal.EventEvents                 8                 Beobachtungskriterien              Évènements observés                Observed events
- cal.GuestStates                 17                Anwesenheits-Zustände              Anwesenheits-Zustände              Presence states
+ cal.GuestStates                 15                Anwesenheits-Zustände              Anwesenheits-Zustände              Presence states
  cal.PlannerColumns              6                 None                               None                               None
  cal.Recurrencies                20                None                               None                               None
  cal.ReservationStates           4                 Zustände                           États                              States
