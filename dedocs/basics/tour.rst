@@ -31,6 +31,21 @@ Klient erstellen
   Kunde mitreden sollte (was am einfachsten direkt auf den Produktionsdaten
   geht).
 
+Auftragsarten konfigurieren
+===========================
+
+- Wir haben eine Liste der Journale (Auftragsarten) und eine Liste der Teams.
+
+  Siehe :menuselection:`Konfigurierung --> Buchhaltung --> Journale`
+  und :menuselection:`Konfigurierung --> Kalender --> Teams`
+
+  Ein Team kann ggf. für mehrere Auftragsjournale zuständig sein.
+
+- Pro Team haben wir eine Liste der Mitarbeiter, die für Aufträge in Frage kommen.
+  Ein Arbeiter kann ggf. in mehreren Teams sein.
+  Die Mitglieder eines Teams kann man entweder vom Team aus oder vom Arbeiter aus verwalten.
+
+
 Auftrag erfassen
 ================
 
