@@ -31,40 +31,103 @@ Klient erstellen
   Kunde mitreden sollte (was am einfachsten direkt auf den Produktionsdaten
   geht).
 
+Auftrag erfassen
+================
 
-Kalenderansichten
-=================
+- `Klient erstellen`_
 
-Über :menuselection:`Kalender --> Kalenderansicht` kann man alle Kalendereinträge
-global einsehen (pro Tag, Woche oder pro Monat).
+- Auftrag erstellen:
 
-Hier kann man auch Filter setzen: z.B. nur ein bestimmtes Team.
+  - vom Klienten aus:
+
+     - Reiter "Fakturierung", Panel "Aufträge"
+     - Doppelklick auf der letzten leeren Zeile dieser Tabelle
+     - Journal auswählen (Garten, Umzüge, Haushaltshilfe...) und ggf. Erfassungsdatum anpassen
+     - :kbd:`Ctrl-S`
+
+  - vom Hauptmenü aus:
+
+     - :menuselection:`Aufträge --> (Auftragsjournal)`
+     - In der Toolbar auf |insert| klicken
+     - Klient auswählen, Erfassungsdatum, :kbd:`Ctrl-S`
+
+- Weitere `Details eines Auftrags erfassen`_
+
+- ggf. Auftragsbedingungen für den Kunden und Auftragsblatt für die Arbeiter
+  ausdrucken
+
+Details eines Auftrags erfassen
+===============================
+
+- ggf. Rechnungsempfänger angeben
+
+- ggf. Beschreibung der Arbeiten
+
+- Den oder die Arbeiter/innen erfassen. Die hier erfassten Arbeiter kommen bei
+  allen *neu erstellten* Einsätzen in die Anwesenheitsliste, die jedoch pro
+  Einsatz auch verändert werden kann.
+
+- Fahrtkosten eintragen in "Kosten pro Einsatz". Hier können außer
+  Fahrtkosten auch z.B. Verbrauchsprodukte angegeben werden.
+
+  Die hier angegebenen Kosten werden für jeden stattgefundenen Termin zusätzlich
+  zur Arbeitszeit fakturiert. Hier ist bisher nicht geplant, dass man diese
+  Mengen pro Einsatz nochmal anpassen kann.
+
+
+Übersicht Kalenderansichten
+===========================
+
+Es gibt zwei "Kalenderansichten" (in denen man pro Tag, Woche oder pro Monat
+navigieren kann) und daneben kann man die Termine und Einsätze von vielen
+Stellen aus einsehen.
+
+Über :menuselection:`Kalender --> Kalender` kann man eine
+Kalenderansicht mit Schwerpunkt "Tagesplanung" öffnen.
+Über :menuselection:`Kalender --> Mitarbeiterplaner` kann man eine
+Kalenderansicht mit Schwerpunkt "Mitarbeiter" öffnen.
+
+In beiden Ansichten kann man auch Filter setzen: z.B. nur ein bestimmtes Team.
 
 Die Termine eines bestimmten Auftrags kann man im Detail des Auftrags (Reiter
 "Kalender") sehen.
 
-Alle Termine eines bestimmten Klienten (für alle Aufträge dieses Klienten,
+Die Termine eines bestimmten Klienten (für alle Aufträge dieses Klienten,
 sowie unfakturierte Termine) kann man im Detail des Klienten (Reiter
 "Kalendereinträge") sehen.
 
-Die Termine eines bestimmten Arbeiters kann man im Detail des Arbeiters
-(Reiter "Anwesenheiten") sehen.
+Die Termine eines bestimmten Arbeiters kann man im Detail des Arbeiters (Reiter
+"Anwesenheiten") sehen.
 
 Die Termine eines bestimmten Teams kann man im Detail des Teams
 (Panel "Kalendereinträge") sehen.
 
-Im Menü :menuselection:`Kalender` gibt es noch weitere Kalenderansichten. Zum
-Beispiel "Überfällig Termine" sind Termine, die älter als eine Woche sind und
-bei denen man noch nicht bestätigt hat, ob sie stattgefunden haben oder nicht.
-Manche dieser Ansichten können vielleicht raus, und manche fehlen vielleicht
-noch.
+Daneben gibt es noch weitere Kalenderansichten. Zum Beispiel "Überfällig
+Termine" sind Termine, die älter als eine Woche sind und bei denen man noch
+nicht bestätigt hat, ob sie stattgefunden haben oder nicht. Manche dieser
+Ansichten können vielleicht raus, und manche fehlen vielleicht noch.
+
+Der Zustand eines Auftrags
+==========================
+
+Ein Auftrag ist immer in einem der folgenden **Zustände**:
+
+  Wartet / Aktiv / Dringend / Erledigt / Storniert
+
+Im Dashboard können die Aufträge entsprechend ihres Zustands aufgelistet werden.
+
+NB Diese Zustände habe ich dem Lastenheft entnommen. Kann sein, dass noch
+Zustände hinzu kommen oder welche wegfallen.
 
 
 Ersatzsuche
 ===========
 
-Ein Arbeiter sagt an, dass er an einem bestimmten Tag fehlen wird und deshalb
-bei einem geplanten Einsatz ersetzt werden muss.
+Ersatzsuche versteht sich pro Anwesenheit und ist unabhängig vom Zustand des
+Auftrags und des Termins.
+
+Fallbeispiel : Ein Arbeiter sagt an, dass er an einem bestimmten Tag fehlen wird
+und deshalb bei einem geplanten Einsatz ersetzt werden muss.
 
 - Finde den Termin, um den es geht (über den Arbeiter oder über den Auftrag).
 
@@ -79,39 +142,13 @@ bei einem geplanten Einsatz ersetzt werden muss.
   geklickt wurde.
 
 
-Einfachen Einsatz nachträglich erfassen
-=======================================
+Einsatz nachträglich erfassen
+=============================
 
 Erfassung eines einfachen einmaligen Einsatzes ausgehend von der händisch
 ausgefüllten Rechnung:
 
-- `Klient erstellen`_
-
-- Auftrag erstellen:
-
-  - vom Klienten aus:
-
-     - Reiter "Fakturierung", Panel "Aufträge", Doppelklick auf überletzter Zeile
-     - Journal auswählen, Erfassungsdatum bestätigen, :kbd:`Ctrl-S`
-
-  - vom Hauptmenü aus:
-
-     - :menuselection:`Aufträge --> (Auftragsjournal)` und dort |insert|
-     - Klient auswählen, Erfassungsdatum, :kbd:`Ctrl-S`
-
-- Auftrag detaillieren:
-
-  - ggf. Rechnungsempfänger angeben
-  - Arbeiter erfassen
-
-  - Fahrtkosten eintragen in "Kosten pro Einsatz". Hier können ausser
-    Fahrtkosten auch z.B. Verbrauchsprodukte angegeben werden.  Die hier
-    angegebenen Kosten werden für jeden stattgefundenen Termin zusätzlich zur
-    Arbeitszeit fakturiert.
-
-  - ggf. Beschreibung der Arbeiten
-
-- Auftrag ausdrucken (noch nicht programmiert)
+- Auf den Auftrag gehen
 
 - Termin erfassen:
 
@@ -275,4 +312,16 @@ Konfigurierung --> Kalender --> Teams
  Heimpflege       Heimpflege                                                       Heimpflege       Auftrag (orders.OrdersByJournal)
  Büro             Büro                                                             Büro             Auftrag (orders.OrdersByJournal)
 ================ ====================== ====================== ================== ================ ============================================
+<BLANKLINE>
+
+>>> rt.show(orders.OrderStates)
+====== ============ =========== ============
+ Wert   name         Text        Editierbar
+------ ------------ ----------- ------------
+ 10     draft        Wartet      Ja
+ 20     active       Aktiv       Ja
+ 30     urgent       Dringend    Ja
+ 40     registered   Erledigt    Nein
+ 50     cancelled    Storniert   Nein
+====== ============ =========== ============
 <BLANKLINE>

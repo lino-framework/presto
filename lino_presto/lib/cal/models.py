@@ -206,6 +206,8 @@ class Event(Event, InvoiceGenerator):
 dd.update_field(Event, 'description', format="plain")
 dd.update_field(EventType, 'all_rooms', verbose_name=_("Locks all teams"))
 
+# dd.update_field(Guest, 'state', default='present')
+# dd.update_field(Guest, 'state', default=GuestStates.present.as_callable())
 
 class EventDetail(EventDetail):
     main = "general more"

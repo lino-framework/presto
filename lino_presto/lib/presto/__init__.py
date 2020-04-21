@@ -9,6 +9,7 @@ The main plugin for Lino Presto.
    :toctree:
 
     user_types
+    workflows
 
 """
 

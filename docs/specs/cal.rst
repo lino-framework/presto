@@ -22,6 +22,15 @@ Presto extends the standard :mod:`lino_xl.lib.cal` plugin
 Workflow
 ========
 
+Presto uses the :mod:`lino_xl.lib.cal.workflows.voga` workflow, but with some
+customizations:
+
+- Add a calendar entry state "missed" (which means that the
+  *client* missed the appointment).
+- Don't refuse to mark an entry as "took place"
+  when a guest (a worker) is still "invited".
+
+
 >>> rt.show(cal.EntryStates)
 ====== ============ =============== ============= ================= ======== =================== =========
  Wert   name         Text            Button text   Gäste ausfüllen   Stabil   nicht blockierend   No auto
@@ -29,16 +38,23 @@ Workflow
  10     suggested    Vorschlag       ?             Ja                Nein     Nein                Nein
  20     draft        Geplant         ☐             Ja                Nein     Nein                Nein
  50     took_place   Stattgefunden   ☑             Nein              Ja       Nein                Nein
- 60     missed       Missed          ☉             Nein              Ja       Nein                Ja
+ 60     missed       Verpasst        ☉             Nein              Ja       Nein                Ja
  70     cancelled    Abgesagt        ⚕             Nein              Ja       Ja                  Ja
 ====== ============ =============== ============= ================= ======== =================== =========
 <BLANKLINE>
+
+
+Don't refuse to mark an entry as "took place" when a guest (a worker) is still
+"invited". The internal name of the default guest state is "invited", but that's
+only the internal name, the verbose name is "Present".   Saying that a
+deployment took place, in Presto means that you confirm that all invited workers
+were present.
 
 >>> rt.show(cal.GuestStates)
 ====== ========= ============== ================= =============
  Wert   name      Nachträglich   Text              Button text
 ------ --------- -------------- ----------------- -------------
- 20     invited   Ja             Geplant           ☑
+ 10     invited   Nein           Anwesend          ☑
  50     needs     Ja             Sucht Ersatz      ⚕
  60     found     Nein           Ersatz gefunden   ☉
 ====== ========= ============== ================= =============
