@@ -72,14 +72,30 @@ At any moment you can see the :class:`GuestsNeedingReplacement` table, which
 shows all presences needing replacement.
 
 >>> rt.login("robin").show(cal.GuestsNeedingReplacement)
-============ ============ ============ ===================================================== ============================================== ===========
- Beginnt am   Beginnt um   Arbeiter     Kalendereintrag                                       Workflow                                       Bemerkung
------------- ------------ ------------ ----------------------------------------------------- ---------------------------------------------- -----------
- 11.05.17     08:00:00     Herr Garry   `DERICUM Daniel (120) Eupen Einsatz 18  <Detail>`__   **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
- 26.08.17     08:00:00     Herr Garry   `DERICUM Daniel (120) Eupen Einsatz 33  <Detail>`__   **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
- 10.12.17     08:00:00     Herr Garry   `DERICUM Daniel (120) Eupen Einsatz 48  <Detail>`__   **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
-============ ============ ============ ===================================================== ============================================== ===========
+============ ============ ============== ============================================================= ============================================== ===========
+ Beginnt am   Beginnt um   Arbeiter       Kalendereintrag                                               Workflow                                       Bemerkung
+------------ ------------ -------------- ------------------------------------------------------------- ---------------------------------------------- -----------
+ 16.03.17     14:00:00     Frau Helen     `JACOBS Jacqueline (136) Eupen Einsatz 2  <Detail>`__         **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 21.03.17     11:00:00     Frau Maria     `MALMENDIER Marc (145) Eupen Einsatz 4  <Detail>`__           **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 23.03.17     13:00:00     Herr Ahmed     `RADERMECKER Rik (172) Amsterdam Einsatz 4  <Detail>`__       **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 15.04.17     11:00:00     Frau Maria     `LAHM Lisa (175) Aachen Einsatz 6  <Detail>`__                **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 06.05.17     11:00:00     Herr Conrad    `EVERTZ Bernd (125) Eupen Einsatz 11  <Detail>`__             **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 30.05.17     11:00:00     Herr Conrad    `EMONTS-GAST Erna (151) Raeren Einsatz 13  <Detail>`__        **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 26.06.17     11:00:00     Frau Maria     `HILGERS Hildegard (132) Eupen Deployment 5  <Detail>`__      **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 22.07.17     08:00:00     Herr Garry     `DERICUM Daniel (120) Eupen Einsatz 22  <Detail>`__           **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 29.07.17     09:00:00     Frau Evelyne   `MIESSEN Michael (147) Eupen Einsatz 22  <Detail>`__          **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 16.08.17     08:00:00     Herr Garry     `CHANTRAINE Marc (119) Eupen Einsatz 24  <Detail>`__          **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 19.08.17     09:00:00     Frau Evelyne   `LEFFIN Josefine (144) Eupen Einsatz 24  <Detail>`__          **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 23.08.17     14:00:00     Frau Helen     `JOUSTEN Jan (139) Eupen Einsatz 26  <Detail>`__              **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 09.09.17     11:00:00     Frau Maria     `EVERTZ Bernd (125) Eupen Deployment 7  <Detail>`__           **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 09.09.17     14:00:00     Frau Helen     `JACOBS Jacqueline (136) Eupen Einsatz 27  <Detail>`__        **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 26.04.18     08:00:00     Herr Dennis    `EMONTS Daniel (127) Eupen Deployment 15  <Detail>`__         **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 03.06.18     09:00:00     Frau Beata     `RADERMACHER Edgard (156) Raeren Deployment 16  <Detail>`__   **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 06.07.18     08:00:00     Herr Dennis    `DERICUM Daniel (120) Eupen Deployment 17  <Detail>`__        **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+ 13.08.18     09:00:00     Frau Beata     `MIESSEN Michael (147) Eupen Deployment 18  <Detail>`__       **⚕ Sucht Ersatz** → [Ersatz suchen] [☑] [☉]
+============ ============ ============== ============================================================= ============================================== ===========
 <BLANKLINE>
+
 
 When this table is not empty, it causes a welcome message "You have 3 items in
 Needing replacement".

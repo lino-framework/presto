@@ -28,10 +28,10 @@ This document describes the database structure.
 --------------------------- ---------------------------- --------- -------
  addresses.Address           addresses.Addresses          16        145
  cal.Calendar                cal.Calendars                6         1
- cal.Event                   cal.OneEvent                 24        290
+ cal.Event                   cal.OneEvent                 24        1206
  cal.EventPolicy             cal.EventPolicies            20        6
  cal.EventType               cal.EventTypes               23        7
- cal.Guest                   cal.Guests                   6         93
+ cal.Guest                   cal.Guests                   6         1204
  cal.GuestRole               cal.GuestRoles               5         2
  cal.RecurrentEvent          cal.RecurrentEvents          22        16
  cal.RemoteCalendar          cal.RemoteCalendars          7         0
@@ -39,12 +39,12 @@ This document describes the database structure.
  cal.Subscription            cal.Subscriptions            4         0
  cal.Task                    cal.Tasks                    19        0
  calview.DailyPlannerRow     calview.DailyPlannerRows     7         2
- checkdata.Problem           checkdata.Problems           6         4
+ checkdata.Problem           checkdata.Problems           6         329
  clients.ClientContact       clients.ClientContacts       7         0
  clients.ClientContactType   clients.ClientContactTypes   5         5
  contacts.Company            contacts.Companies           30        31
  contacts.CompanyType        contacts.CompanyTypes        7         14
- contacts.Membership         contacts.Memberships         5         30
+ contacts.Membership         contacts.Memberships         4         30
  contacts.Partner            contacts.Partners            28        151
  contacts.Person             contacts.Persons             35        106
  contacts.Role               contacts.Roles               4         4
@@ -70,29 +70,29 @@ This document describes the database structure.
  invoicing.SalesRule         invoicing.SalesRules         3         17
  invoicing.Tariff            invoicing.Tariffs            7         2
  ledger.Account              ledger.Accounts              18        27
- ledger.AccountingPeriod     ledger.AccountingPeriods     7         2
+ ledger.AccountingPeriod     ledger.AccountingPeriods     7         3
  ledger.FiscalYear           ledger.FiscalYears           5         11
  ledger.Journal              ledger.Journals              26        8
  ledger.LedgerInfo           ledger.LedgerInfoTable       2         0
  ledger.MatchRule            ledger.MatchRules            3         0
- ledger.Movement             ledger.Movements             12        18
+ ledger.Movement             ledger.Movements             12        58
  ledger.PaymentTerm          ledger.PaymentTerms          11        8
- ledger.Voucher              ledger.AllVouchers           8         21
+ ledger.Voucher              ledger.AllVouchers           8         143
  notes.EventType             notes.EventTypes             8         1
  notes.Note                  notes.Notes                  17        100
  notes.NoteType              notes.NoteTypes              11        3
- orders.Enrolment            orders.Enrolments            5         14
- orders.Order                orders.Orders                32        12
- orders.OrderItem            orders.OrderItems            6         12
+ orders.Enrolment            orders.Enrolments            5         136
+ orders.Order                orders.Orders                32        114
+ orders.OrderItem            orders.OrderItems            6         114
  phones.ContactDetail        phones.ContactDetails        7         15
  presto.Client               presto.Clients               43        65
  presto.LifeMode             presto.LifeModes             4         6
  products.PriceRule          products.PriceRules          5         8
  products.Product            products.Products            14        11
  products.ProductCat         products.ProductCats         6         2
- sales.InvoiceItem           sales.InvoiceItems           15        46
+ sales.InvoiceItem           sales.InvoiceItems           15        72
  sales.PaperType             sales.PaperTypes             5         3
- sales.VatProductInvoice     sales.Invoices               27        9
+ sales.VatProductInvoice     sales.Invoices               27        29
  sepa.Account                sepa.Accounts                6         17
  sessions.Session            sessions.SessionTable        3         ...
  system.SiteConfig           system.SiteConfigs           10        1

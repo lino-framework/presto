@@ -396,13 +396,14 @@ class Workers(Persons):
     params_layout = 'room gender observed_event start_date end_date'
 
 
-class Membership(mixins.Sequenced):
+class Membership(dd.Model):
 
     class Meta:
         app_label = 'contacts'
         abstract = dd.is_abstract_model(__name__, 'Membership')
         verbose_name = _("Team membership")
         verbose_name_plural = _("Team memberships")
+        unique_together = ['room', 'partner']
 
     quick_search_fields = "partner__name remark"
     show_in_site_search = False
@@ -413,6 +414,16 @@ class Membership(mixins.Sequenced):
 
     def __str__(self):
         return _("{} is member of {}").format(self.partner, self.room)
+
+    @dd.chooser()
+    def room_choices(self, partner):
+        existing = rt.models.contacts.Membership.objects.filter(partner=partner).values('room')
+        return rt.models.cal.Room.objects.exclude(id__in=existing)
+
+    @dd.chooser()
+    def partner_choices(self, room):
+        existing = rt.models.contacts.Membership.objects.filter(room=room).values('partner')
+        return rt.models.contacts.Worker.objects.exclude(id__in=existing)
 
 
 class Memberships(dd.Table):
@@ -426,16 +437,32 @@ class Memberships(dd.Table):
 
 
 class MembershipsByRoom(Memberships):
-    label = _("Memberships")
+    label = _("Members")
     master_key = 'room'
-    order_by = ['seqno']
+    # order_by = ['seqno']
+    order_by = ['partner__name']
     if dd.is_installed("phones"):
-        column_names = "seqno partner remark workflow_buttons partner__address_column partner__contact_details *"
+        column_names = "partner remark partner__address_column partner__contact_details *"
     else:
-        column_names = "seqno partner remark workflow_buttons partner__address_column partner__email partner__gsm *"
+        column_names = "partner remark partner__address_column partner__email partner__gsm *"
+
+    display_mode = "summary"
+    # summary_sep = comma
+    insert_layout = """
+    partner
+    remark
+    """
+
+    @classmethod
+    def summary_row(cls, ar, obj, **kwargs):
+        if ar is None:
+            yield str(obj.partner)
+        else:
+            yield ar.obj2html(obj, str(obj.partner))
 
 
 class MembershipsByPartner(Memberships):
+    label = _("Teams")
     master_key = 'partner'
     column_names = "room remark *"
     order_by = ['room__name']
@@ -523,7 +550,9 @@ class WorkersParameters(dd.Actor):
 
         pv = dict(start_date=d, end_date=d + datetime.timedelta(days=6))
         # print("20200417", pv)
-        btn = ar.instance_action_button(ba, "Print",
+        # lbl = "🖨" # unicode 1f5a8 printer
+        lbl = "🖶" # unicode 1f5b6 printer icon
+        btn = ar.instance_action_button(ba, lbl,
             request_kwargs=dict(action_param_values=pv))
         return E.p(obj.obj2href(ar), " ", btn)
 

@@ -181,13 +181,13 @@ def objects():
         return obj
 
     order_options = {}
-    order_options.update(max_events=3)
+    order_options.update(max_events=9)
     yield team(_("Garden"), garden_et, worker, **order_options)
     order_options.update(max_events=1)
     yield team(_("Moves"), garden_et, worker, **order_options)
     order_options.update(max_events=2)
     yield team(_("Renovation"), home_et, worker, **order_options)
-    order_options.update(max_events=10)
+    order_options.update(max_events=20)
     yield team(_("Home help"), home_et, worker, **order_options)
     order_options.update(max_events=50)
     yield team(_("Home care"), home_et, worker, **order_options)
@@ -334,12 +334,12 @@ def objects():
 
     num = 0
     # entry_date = datetime.date(dd.plugins.ledger.start_year, 1, 1)
-    entry_date = dd.today(-70)
-    for i in range(2):
+    entry_date = dd.today(-20)
+    for i in range(19):
+        entry_date += ONE_DAY
         for story in order_stories:
             room, order_options, journal = story
             num += 1
-            entry_date += ONE_DAY
 
             user = USERS.pop()
             st = START_TIMES.pop()
@@ -378,7 +378,7 @@ def objects():
 
 
     qs = rt.models.cal.Event.objects.filter(start_date__lt=dd.today(-10))
-    print("Reviewing {} calendar entries".format(qs.count()))
+    print("Reviewing {} past calendar entries".format(qs.count()))
     for e in qs:
         if e.id % 5:
             e.state = EntryStates.took_place
@@ -388,8 +388,8 @@ def objects():
 
     qs = rt.models.cal.Guest.objects.all()
     qs = qs.filter(event__start_date__gt=dd.today(-5))
-    print("Reviewing {} calendar presences".format(qs.count()))
+    print("Reviewing {} future calendar presences".format(qs.count()))
     for g in qs:
-        if g.id % 15 == 0:
+        if g.id % 50 == 0:
             g.state = GuestStates.needs
         yield g
