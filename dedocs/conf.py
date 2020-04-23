@@ -15,7 +15,7 @@ configure(globals())
 extensions += ['atelier.sphinxconf.complex_tables']
 extensions += ['lino.sphinxcontrib.logo']
 extensions += ['lino.sphinxcontrib.base']
-# extensions += ['sphinxcontrib.youtube']
+extensions += ['sphinxcontrib.youtube']
 
 from atelier.sphinxconf import interproject
 interproject.configure(
@@ -238,4 +238,3 @@ def _warn_node(self, msg, node, **kwargs):
         self._warnfunc(msg, '%s:%s' % get_source_line(node), **kwargs)
 
 sphinx.environment.BuildEnvironment.warn_node = _warn_node
-

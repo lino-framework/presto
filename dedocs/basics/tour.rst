@@ -9,6 +9,23 @@ Eine Besichtigungstour
 .. contents::
   :local:
 
+Screen casts
+============
+
+Erste Runde
+-----------
+
+In der ersten Runde zeige ich folgende Themen: `Klient erstellen`_,
+`Auftragsarten konfigurieren`_, `Auftrag erfassen`_ (Teil 1)
+
+.. youtube:: brOl8hpUGOQ
+
+.. https://youtu.be/brOl8hpUGOQ
+
+
+
+Anmeldung
+=========
 
 Wir melden uns an als Rolf. Der ist Systemverwalter und darf deshalb alles. Wer
 es lieber in Französisch hat, wählt Romain.
