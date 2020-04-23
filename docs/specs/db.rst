@@ -30,7 +30,7 @@ This document describes the database structure.
  cal.Calendar                cal.Calendars                6         1
  cal.Event                   cal.OneEvent                 24        1206
  cal.EventPolicy             cal.EventPolicies            20        6
- cal.EventType               cal.EventTypes               23        7
+ cal.EventType               cal.EventTypes               23        8
  cal.Guest                   cal.Guests                   6         1204
  cal.GuestRole               cal.GuestRoles               5         2
  cal.RecurrentEvent          cal.RecurrentEvents          22        16
@@ -75,9 +75,9 @@ This document describes the database structure.
  ledger.Journal              ledger.Journals              26        8
  ledger.LedgerInfo           ledger.LedgerInfoTable       2         0
  ledger.MatchRule            ledger.MatchRules            3         0
- ledger.Movement             ledger.Movements             12        58
+ ledger.Movement             ledger.Movements             12        38
  ledger.PaymentTerm          ledger.PaymentTerms          11        8
- ledger.Voucher              ledger.AllVouchers           8         143
+ ledger.Voucher              ledger.AllVouchers           8         133
  notes.EventType             notes.EventTypes             8         1
  notes.Note                  notes.Notes                  17        100
  notes.NoteType              notes.NoteTypes              11        3
@@ -88,11 +88,11 @@ This document describes the database structure.
  presto.Client               presto.Clients               43        65
  presto.LifeMode             presto.LifeModes             4         6
  products.PriceRule          products.PriceRules          5         8
- products.Product            products.Products            14        11
+ products.Product            products.Products            14        8
  products.ProductCat         products.ProductCats         6         2
- sales.InvoiceItem           sales.InvoiceItems           15        72
+ sales.InvoiceItem           sales.InvoiceItems           15        50
  sales.PaperType             sales.PaperTypes             5         3
- sales.VatProductInvoice     sales.Invoices               27        29
+ sales.VatProductInvoice     sales.Invoices               27        19
  sepa.Account                sepa.Accounts                6         17
  sessions.Session            sessions.SessionTable        3         ...
  system.SiteConfig           system.SiteConfigs           10        1

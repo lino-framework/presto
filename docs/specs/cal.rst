@@ -128,10 +128,10 @@ Team
  Designation      Designation (fr)   Designation (en)   Calendar entry type
 ---------------- ------------------ ------------------ ---------------------
  Garten           Garten             Garden             Outside work
- Umzüge           Umzüge             Moves              Outside work
- Renovierung      Renovierung        Renovation         Inside work
- Haushaltshilfe   Haushaltshilfe     Home help          Inside work
- Heimpflege       Heimpflege         Home care          Inside work
+ Umzüge           Umzüge             Moves              Craftsmen
+ Renovierung      Renovierung        Renovation         Craftsmen
+ Haushaltshilfe   Haushaltshilfe     Home help          Home care
+ Heimpflege       Heimpflege         Home care          Home care
  Büro             Bureau             Office             Office work
 ================ ================== ================== =====================
 <BLANKLINE>

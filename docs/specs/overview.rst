@@ -67,13 +67,13 @@ Don't read me
  about.TimeZones                 4                 Zeitzonen                          Zeitzonen                          Time zones
  addresses.AddressTypes          20                Adressenarten                      Types d'adresses                   Address types
  addresses.DataSources           24                Datenquellen                       Sources de données                 Data sources
- cal.AccessClasses               31                None                               None                               None
- cal.DisplayColors               7                 None                               None                               None
+ cal.AccessClasses               31                Zugriffsklassen                    Classes d'accès                    Access classes
+ cal.DisplayColors               7                 Display colors                     Display colors                     Display colors
  cal.DurationUnits               8                 None                               None                               None
  cal.EntryStates                 13                Kalendereintrag-Zustände           Kalendereintrag-Zustände           Entry states
  cal.EventEvents                 8                 Beobachtungskriterien              Évènements observés                Observed events
  cal.GuestStates                 15                Anwesenheits-Zustände              Anwesenheits-Zustände              Presence states
- cal.PlannerColumns              6                 None                               None                               None
+ cal.PlannerColumns              14                Tagesplanerkolonnen                Colonnes planificateur             Planner columns
  cal.Recurrencies                20                None                               None                               None
  cal.ReservationStates           4                 Zustände                           États                              States
  cal.TaskStates                  9                 Aufgaben-Zustände                  Aufgaben-Zustände                  Task states
