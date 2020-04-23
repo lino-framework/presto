@@ -2,7 +2,7 @@
 # Copyright 2013-2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
-from etgen.html import E
+from etgen.html import E, iselement
 from etgen.html2rst import html2rst
 
 from django.utils.translation import ugettext_lazy as _
@@ -90,7 +90,7 @@ class Event(Event, InvoiceGenerator):
     def obj2href(self, ar, txt=None, *args, **kwargs):
         if txt is None:
             txt = str(self)
-        if E.iselement(txt):
+        if iselement(txt):
             kwargs.setdefault('title', html2rst(txt))
         else:
             kwargs.setdefault('title', txt)
@@ -297,3 +297,13 @@ class FindReplacement(dd.ChangeStateAction):
 
 
 dd.inject_action('cal.Guest', find_replacement=FindReplacement(GuestStates.invited))
+
+
+
+PlannerColumns.clear()
+add = PlannerColumns.add_item
+add('10', _('External'), 'external')
+add('20', _('Internal'), 'internal')
+add('30', _('Craftsmen'), 'craftsmen')
+add('40', _('Care staff'), 'care_staff')
+add('50', _('Garden'), 'garden')

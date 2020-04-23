@@ -12,11 +12,9 @@ Eine Besichtigungstour
 Screen casts
 ============
 
-Erste Runde
------------
-
 In der ersten Runde zeige ich folgende Themen: `Klient erstellen`_,
-`Auftragsarten konfigurieren`_, `Auftrag erfassen`_ (Teil 1)
+`Auftragsarten konfigurieren`_, `Auftrag erfassen`_, und teilweise `Details
+eines Auftrags erfassen`_.
 
 .. youtube:: brOl8hpUGOQ
 

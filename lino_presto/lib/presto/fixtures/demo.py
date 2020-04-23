@@ -147,15 +147,20 @@ def objects():
 
 
     et_defaults =dict(force_guest_states=False, default_duration="0:15",
-                      planner_column=PlannerColumns.external)
+                      planner_column=PlannerColumns.garden)
 
     et_defaults.update(**dd.str2kw('event_label', _("Deployment")))
 
     garden_et = named(EventType, _("Outside work"), **et_defaults)
     yield garden_et
 
-    home_et = named(EventType, _("Inside work"), **et_defaults)
+    et_defaults.update(planner_column=PlannerColumns.care_staff)
+    home_et = named(EventType, _("Home care"), **et_defaults)
     yield home_et
+
+    et_defaults.update(planner_column=PlannerColumns.craftsmen)
+    craftsmen_et = named(EventType, _("Craftsmen"), **et_defaults)
+    yield craftsmen_et
 
     et_defaults.update(planner_column=PlannerColumns.internal)
     office_et = named(EventType, _("Office work"), **et_defaults)
@@ -184,9 +189,9 @@ def objects():
     order_options.update(max_events=9)
     yield team(_("Garden"), garden_et, worker, **order_options)
     order_options.update(max_events=1)
-    yield team(_("Moves"), garden_et, worker, **order_options)
+    yield team(_("Moves"), craftsmen_et, worker, **order_options)
     order_options.update(max_events=2)
-    yield team(_("Renovation"), home_et, worker, **order_options)
+    yield team(_("Renovation"), craftsmen_et, worker, **order_options)
     order_options.update(max_events=20)
     yield team(_("Home help"), home_et, worker, **order_options)
     order_options.update(max_events=50)
@@ -199,9 +204,9 @@ def objects():
                        delivery_unit=DeliveryUnits.get_by_name(unit),
                        product_type=ProductTypes.get_by_name(pt), **kwargs))
 
-    yield product('default', _("Ironing of a shirt"), 'piece')
-    yield product('default', _("Ironing of a pair of trousers"), 'piece')
-    yield product('default', _("Ironing of a skirt"), 'piece')
+    # yield product('default', _("Ironing of a shirt"), 'piece')
+    # yield product('default', _("Ironing of a pair of trousers"), 'piece')
+    # yield product('default', _("Ironing of a skirt"), 'piece')
     yield product('default', _("Washing per Kg"), 'kg')
 
     for i, ic in enumerate(rt.models.presto.IncomeCategories.get_list_items()):
