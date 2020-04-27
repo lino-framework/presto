@@ -9,19 +9,6 @@ Eine Besichtigungstour
 .. contents::
   :local:
 
-Screen casts
-============
-
-In der ersten Runde zeige ich folgende Themen: `Klient erstellen`_,
-`Auftragsarten konfigurieren`_, `Auftrag erfassen`_, und teilweise `Details
-eines Auftrags erfassen`_.
-
-.. youtube:: brOl8hpUGOQ
-
-.. https://youtu.be/brOl8hpUGOQ
-
-
-
 Anmeldung
 =========
 
@@ -355,3 +342,7 @@ Konfigurierung --> Kalender --> Teams
  50     cancelled    Storniert   Nein
 ====== ============ =========== ============
 <BLANKLINE>
+
+
+Screencasts
+===========

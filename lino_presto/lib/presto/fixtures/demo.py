@@ -218,6 +218,7 @@ def objects():
         yield work
         yield PriceRule(event_type=garden_et, fee=work, pf_income=ic)
         yield PriceRule(event_type=home_et, fee=work, pf_income=ic)
+        yield PriceRule(event_type=craftsmen_et, fee=work, pf_income=ic)
 
 
     yield named(

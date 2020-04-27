@@ -80,46 +80,32 @@ class Partner(Partner, mixins.CreatedModified):
 
 class PartnerDetail(PartnerDetail):
 
-    main = "general contact #tickets invoicing misc "
+    main = "general #contact invoicing ledger #misc"
 
     general = dd.Panel("""
-    overview:20 general2:20 general3:40
+    overview:20 general2:20
+    remarks:40 sepa.AccountsByPartner
     # notes.NotesByPartner orders.OrdersByPartner
     """, label=_("General"))
 
     general2 = """
-    id language
-    url
+    id
+    language
+    created
+    modified
     """
 
-    # tickets = "tickets.SponsorshipsByPartner"
-
-    general3 = """
-    email:40
-    phone
-    gsm
-    fax
-    """
-
-    contact = dd.Panel("""
-    address_box
-    remarks:30 sepa.AccountsByPartner
-    """, label=_("Contact"))
-
-    address_box = """
-    country region city zip_code:10
-    addr1
-    street_prefix street:25 street_no street_box
-    addr2
-    """
-
+    # contact = dd.Panel("""
+    # sepa.AccountsByPartner
+    # """, label=_("Contact"))
+    #
     ledger = dd.Panel("""
-    vat.VouchersByPartner
-    ledger.MovementsByPartner
+    sales.InvoicesByPartner
+    vat.VouchersByPartner ledger.MovementsByPartner
     """, label=dd.plugins.ledger.verbose_name)
 
     invoicing = dd.Panel("""
-    invoicing_left:30 #orders.OrdersByProject:50
+    invoicing_left:30 invoicing2 #orders.OrdersByProject:50
     sales.InvoicesByPartner
     """, label=_("Invoicing"))
 
@@ -129,15 +115,23 @@ class PartnerDetail(PartnerDetail):
     payment_term salesrule__paper_type
     """
 
-    purchases = dd.Panel("""
-    purchase_account vat_regime vat_id
-    ana.InvoicesByPartner
-    """, label=_("Purchases"))
+    invoicing2 = """
+    vat_regime
+    vat_id
+    purchase_account
+    """
 
-    misc = dd.Panel("""
-    created modified
-    """, label=_("Miscellaneous"))
 
+    # purchases = dd.Panel("""
+    # purchase_account vat_regime vat_id
+    # ana.InvoicesByPartner
+    # """, label=_("Purchases"))
+
+    # misc = dd.Panel("""
+    # created modified
+    # """, label=_("Miscellaneous"))
+
+Partners.detail_layout = 'contacts.PartnerDetail'
 
 class Person(Partner, Person):
     """

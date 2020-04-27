@@ -11,7 +11,6 @@ and a "basket" button to the Order model.
 .. autosummary::
    :toctree:
 
-    models
     fixtures.demo_bookings
 
 
@@ -23,4 +22,3 @@ from lino_xl.lib.invoicing import Plugin, _
 class Plugin(Plugin):
 
     extends_models = ['Plan']
-

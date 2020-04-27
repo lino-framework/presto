@@ -70,9 +70,18 @@ class Event(Event, InvoiceGenerator):
 
     summary_show_user = False
 
-
     # invoiceable_date_field = 'start_date'
     invoiceable_partner_field = 'project'
+
+    @classmethod
+    def calendar_param_filter(cls, qs, pv):
+        qs = super(Event, cls).calendar_param_filter(qs, pv)
+        # if pv.project__municipality:  # fails when the field isn't mentioned in params_layout
+        if pv.get('project__municipality'):
+            places = pv.project__municipality.whole_clan()
+            # print("20200425", places)
+            qs = qs.filter(project__isnull=False, project__city__in=places)
+        return qs
 
     def get_event_summary(self, ar):
         pv = ar.param_values
@@ -202,6 +211,13 @@ class Event(Event, InvoiceGenerator):
         super(Event, cls).setup_parameters(params)
         params['presence_guest'].verbose_name = _("Worker")
 
+    # @classmethod
+    # def get_simple_parameters(cls):
+    #     for p in  super(Event, cls).get_simple_parameters():
+    #         yield p
+    #     yield 'project__municipality'
+
+
 
 dd.update_field(Event, 'description', format="plain")
 dd.update_field(EventType, 'all_rooms', verbose_name=_("Locks all teams"))
@@ -212,15 +228,15 @@ dd.update_field(EventType, 'all_rooms', verbose_name=_("Locks all teams"))
 class EventDetail(EventDetail):
     main = "general more"
     general = dd.Panel("""
-    event_type summary user
+    room event_type summary user
     start end
-    room priority access_class transparent #rset
     owner:30 project workflow_buttons:30
     cal.GuestsByEvent description
     """, _("General"))
 
     more = dd.Panel("""
     id created:20 modified:20 state
+    priority access_class transparent #rset
     # outbox.MailsByController  notes.NotesByOwner
     invoicing.InvoicingsByGenerator
     """, _("More"))
@@ -307,3 +323,8 @@ add('20', _('Internal'), 'internal')
 add('30', _('Craftsmen'), 'craftsmen')
 add('40', _('Care staff'), 'care_staff')
 add('50', _('Garden'), 'garden')
+
+AllEntries.column_names = 'start_date project summary event_type id project__city project__municipality *'
+AllEntries.params_layout = """
+start_date end_date observed_event state project project__municipality event_type room
+"""

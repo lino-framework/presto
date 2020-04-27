@@ -1,10 +1,7 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2013-2018 Rumma & Ko Ltd
-
-from __future__ import unicode_literals
+# Copyright 2013-2020 Rumma & Ko Ltd
 
 from lino.api import _
-
 from lino_xl.lib.products.models import *
 
 ProductTypes.clear()

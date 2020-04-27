@@ -75,9 +75,9 @@ This document describes the database structure.
  ledger.Journal              ledger.Journals              26        8
  ledger.LedgerInfo           ledger.LedgerInfoTable       2         0
  ledger.MatchRule            ledger.MatchRules            3         0
- ledger.Movement             ledger.Movements             12        38
+ ledger.Movement             ledger.Movements             12        58
  ledger.PaymentTerm          ledger.PaymentTerms          11        8
- ledger.Voucher              ledger.AllVouchers           8         133
+ ledger.Voucher              ledger.AllVouchers           8         143
  notes.EventType             notes.EventTypes             8         1
  notes.Note                  notes.Notes                  17        100
  notes.NoteType              notes.NoteTypes              11        3
@@ -87,12 +87,12 @@ This document describes the database structure.
  phones.ContactDetail        phones.ContactDetails        7         15
  presto.Client               presto.Clients               43        65
  presto.LifeMode             presto.LifeModes             4         6
- products.PriceRule          products.PriceRules          5         8
+ products.PriceRule          products.PriceRules          5         12
  products.Product            products.Products            14        8
  products.ProductCat         products.ProductCats         6         2
- sales.InvoiceItem           sales.InvoiceItems           15        50
+ sales.InvoiceItem           sales.InvoiceItems           15        72
  sales.PaperType             sales.PaperTypes             5         3
- sales.VatProductInvoice     sales.Invoices               27        19
+ sales.VatProductInvoice     sales.Invoices               27        29
  sepa.Account                sepa.Accounts                6         17
  sessions.Session            sessions.SessionTable        3         ...
  system.SiteConfig           system.SiteConfigs           10        1
