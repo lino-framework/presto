@@ -17,19 +17,19 @@ Auftragsarten konfiguriert sind und wie man einen Auftrag erfasst
 
 .. https://youtu.be/brOl8hpUGOQ
 
-In der **zweiten Runde** zeige ich euch die Kalenderfunktionen
+In der `zweiten Runde <https://youtu.be/XDkqSBW-4yk>`__ zeige ich die
+Kalenderfunktionen.
 
-.. youtube:: XDkqSBW-4yk
 
-.. https://youtu.be/XDkqSBW-4yk
-
-In der **dritten Tour** zeige ich euch, wie man einen händisch
+In der `dritten Runde <https://youtu.be/13-1Q8TTlpc>`__ zeige ich euch, wie man einen händisch
 ausgefüllten Dienstleistungsbericht in Lino einträgt und dann die Rechnung
 erstellt.
 
-.. youtube:: 13-1Q8TTlpc
+In der `vierten Runde <https://youtu.be/NwpJH349D18>`__ erzähle ich mehr über
+Kalenderplanung und zeige dann spontan noch, wie Lino die Berichte an die ÖSHZ
+erstellt.
 
-.. https://youtu.be/13-1Q8TTlpc
+
 
 ..  Also Du sitzt im Büro und hast eine Serie von "Gelben Zetteln", diesen Belegen,
     dass ein Arbeiter bei einem Kunden war, um gewisse Arbeiten zu machen.
