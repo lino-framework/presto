@@ -7,6 +7,7 @@ from etgen.html2rst import html2rst
 
 from django.utils.translation import ugettext_lazy as _
 from lino.core.gfks import gfk2lookup
+from lino.core.fields import make_remote_field
 
 from lino_xl.lib.cal.models import *
 from lino_xl.lib.cal.choicelists import EntryStates, GuestStates
@@ -74,10 +75,16 @@ class Event(Event, InvoiceGenerator):
     invoiceable_partner_field = 'project'
 
     @classmethod
-    def calendar_param_filter(cls, qs, pv):
-        qs = super(Event, cls).calendar_param_filter(qs, pv)
-        # if pv.project__municipality:  # fails when the field isn't mentioned in params_layout
-        if pv.get('project__municipality'):
+    def get_request_queryset(cls, ar, **filter):
+        qs = super(Event, cls).get_request_queryset(ar, **filter)
+        pv = ar.param_values
+        #
+        #
+        # @classmethod
+        # def calendar_param_filter(cls, qs, pv):
+        # qs = super(Event, cls).calendar_param_filter(qs, pv)
+        if pv.project__municipality:  # failed when the field isn't mentioned in params_layout
+        # if pv.get('project__municipality'):
             places = pv.project__municipality.whole_clan()
             # print("20200425", places)
             qs = qs.filter(project__isnull=False, project__city__in=places)
@@ -210,13 +217,7 @@ class Event(Event, InvoiceGenerator):
     def setup_parameters(cls, params):
         super(Event, cls).setup_parameters(params)
         params['presence_guest'].verbose_name = _("Worker")
-
-    # @classmethod
-    # def get_simple_parameters(cls):
-    #     for p in  super(Event, cls).get_simple_parameters():
-    #         yield p
-    #     yield 'project__municipality'
-
+        params['project__municipality'] = make_remote_field(cls, 'project__municipality')
 
 
 dd.update_field(Event, 'description', format="plain")
@@ -328,3 +329,5 @@ AllEntries.column_names = 'start_date project summary event_type id project__cit
 AllEntries.params_layout = """
 start_date end_date observed_event state project project__municipality event_type room
 """
+# Events.params_layout = 'event_type room project__municipality project presence_guest'
+# Events.params_layout = 'event_type room project presence_guest'

@@ -19,6 +19,7 @@ Presto extends the standard :mod:`lino_xl.lib.cal` plugin
 >>> startup('lino_presto.projects.noereth.settings.doctests')
 >>> from lino.api.doctest import *
 
+
 Workflow
 ========
 

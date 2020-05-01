@@ -23,6 +23,8 @@ from lino_xl.lib.calview.mixins import Plannable
 from lino.modlib.printing.actions import DirectPrintAction
 from lino.mixins.periods import Weekly
 
+# from lino_xl.lib.calview.models import ParameterClone
+from lino_xl.lib.calview.models import EventsParameters
 from lino_xl.lib.calview.models import WeeklySlaveBase, DailySlaveBase
 from lino_xl.lib.calview.models import Planners, CalendarView, InsertEvent
 
@@ -342,17 +344,17 @@ class Worker(Person, SSIN, Plannable):
             # used, which would render it like a Decimal
 
     @classmethod
-    def get_plannable_entries(cls, obj, ar):
+    def get_plannable_entries(cls, obj, qs, ar):
 
         # The header row in a workers calendar view shows entries that
         # are for everybody, e.g. holidays.  This is when
         # cal.EventType.locks_user is True.
         # print("20200303 get_plannable_entries", cls, obj, ar)
-        Event = rt.models.cal.Event
+        # Event = rt.models.cal.Event
         if obj is None:
-            return Event.objects.none()
+            return qs.none()
         User = rt.models.users.User
-        qs = Event.objects.all()
+        # qs = Event.objects.all()
         if obj is cls.HEADER_ROW:
             qs = qs.filter(event_type__locks_user=False)
         else:
@@ -481,19 +483,15 @@ class AllMemberships(Memberships):
 
 
 
-class WorkersParameters(dd.Actor):
+# class WorkersParameters(ParameterClone):
+class WorkersParameters(EventsParameters):
 
     abstract = True
+    # clone_from = "contacts.Workers"
 
     @classmethod
-    def class_init(cls):
-        cls.params_layout = rt.models.contacts.Workers.params_layout
-        super(WorkersParameters, cls).class_init()
-
-    @classmethod
-    def setup_parameters(cls, params):
-        super(WorkersParameters, cls).setup_parameters(params)
-        rt.models.contacts.Worker.setup_parameters(params)
+    def get_dayslave_rows(cls, ar):
+        return rt.models.contacts.Worker.objects.all()
 
     @classmethod
     def unused_get_calview_chunks(cls, obj, ar):
@@ -552,10 +550,13 @@ class WorkersParameters(dd.Actor):
 
 
 class WeeklySlave(WorkersParameters, WeeklySlaveBase, Workers):
+# 20200430 class WeeklySlave(Workers, WeeklySlaveBase):
     column_names_template = "name_column:20 {vcolumns}"
     hide_top_toolbar = False
 
+
 class DailySlave(WorkersParameters, DailySlaveBase, Workers):
+# 20200430 class DailySlave(Workers, DailySlaveBase):
     column_names_template = "name_column:20 {vcolumns}"
     # display_mode = "html"
     navigation_mode = 'day'

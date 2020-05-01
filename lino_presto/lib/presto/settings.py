@@ -81,6 +81,7 @@ class Site(Site):
         # yield ('ledger', 'purchase_stories', False)
         yield ('ledger', 'sales_stories', False)
         # yield ('cal', 'default_guest_state', 'invited')
+        yield ('calview', 'params_layout', "state project project__municipality event_type room")
 
     def setup_quicklinks(self, user, tb):
         super(Site, self).setup_quicklinks(user, tb)
