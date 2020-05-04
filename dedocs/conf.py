@@ -15,7 +15,7 @@ configure(globals())
 extensions += ['atelier.sphinxconf.complex_tables']
 extensions += ['lino.sphinxcontrib.logo']
 extensions += ['lino.sphinxcontrib.base']
-extensions += ['sphinxcontrib.youtube']
+# extensions += ['sphinxcontrib.youtube']
 
 from atelier.sphinxconf import interproject
 interproject.configure(

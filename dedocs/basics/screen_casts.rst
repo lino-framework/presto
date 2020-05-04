@@ -10,16 +10,13 @@ Screen casts
 .. contents::
   :local:
 
-In der **ersten Runde** zeige ich, wie man einen Klienten erstellt, wie die
-Auftragsarten konfiguriert sind und wie man einen Auftrag erfasst
+In der `ersten Runde <https://youtu.be/brOl8hpUGOQ>`__ zeige ich, wie man einen
+Klienten erstellt, wie die Auftragsarten konfiguriert sind und wie man einen
+Auftrag erfasst, ...
 
-.. youtube:: brOl8hpUGOQ
-
-.. https://youtu.be/brOl8hpUGOQ
 
 In der `zweiten Runde <https://youtu.be/XDkqSBW-4yk>`__ zeige ich die
 Kalenderfunktionen.
-
 
 In der `dritten Runde <https://youtu.be/13-1Q8TTlpc>`__ zeige ich euch, wie man einen händisch
 ausgefüllten Dienstleistungsbericht in Lino einträgt und dann die Rechnung
