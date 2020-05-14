@@ -41,5 +41,6 @@ Das Fenster hat drei Reiter:
 Passwort ändern
 ================
 
-Um dein Passwort zu ändern, öffne das Fenster **Meine Einstellungen** und
+Um dein Passwort zu ändern, melde dich mit dem alten Passwort an,
+öffne das Fenster **Meine Einstellungen** und
 klicke dann auf den Button mit dem Asterisk (✱).
