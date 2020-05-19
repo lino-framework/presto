@@ -216,9 +216,9 @@ def objects():
             sales_price=Decimal("3.75") * (i+1), cat=presence,
             product_type=ProductTypes.default)
         yield work
-        yield PriceRule(event_type=garden_et, fee=work, pf_income=ic)
-        yield PriceRule(event_type=home_et, fee=work, pf_income=ic)
-        yield PriceRule(event_type=craftsmen_et, fee=work, pf_income=ic)
+        yield PriceRule(selector=garden_et, fee=work, pf_income=ic)
+        yield PriceRule(selector=home_et, fee=work, pf_income=ic)
+        yield PriceRule(selector=craftsmen_et, fee=work, pf_income=ic)
 
 
     yield named(
