@@ -123,7 +123,7 @@ class Event(Event, InvoiceGenerator):
         # if self.project_id is None:
         if par is None:
             return None
-        return rt.models.products.Product.get_rule_fee(par, self.event_type)
+        return rt.models.products.Product.get_ruled_price(par, self.event_type)
 
     def get_invoiceable_qty(self):
         qty = self.get_duration()
