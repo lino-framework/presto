@@ -31,6 +31,7 @@ class Site(Site):
         # yield 'lino.modlib.gfks'
         yield 'lino_presto.lib.users'
         yield 'lino_presto.lib.contacts'
+        yield 'lino.modlib.uploads'
         yield 'lino_presto.lib.cal'
         yield 'lino_presto.lib.ledger'
         yield 'lino_presto.lib.orders'
@@ -60,7 +61,7 @@ class Site(Site):
 
         yield 'lino_xl.lib.notes'
         # yield 'lino_xl.lib.skills'
-        yield 'lino.modlib.uploads'
+        # yield 'lino.modlib.uploads'
         yield 'lino_xl.lib.excerpts'
         yield 'lino_xl.lib.appypod'
         yield 'lino.modlib.export_excel'
