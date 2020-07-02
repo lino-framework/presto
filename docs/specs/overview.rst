@@ -109,7 +109,7 @@ Don't read me
  system.Genders                  2        8                 None                               None                               None
  system.PeriodEvents             3        9                 Beobachtungskriterien              Évènements observés                Observed events
  system.YesNo                    2        12                Ja oder Nein                       Oui ou non                         Yes or no
- uploads.Shortcuts               1        20                Upload shortcuts                   Upload shortcuts                   Upload shortcuts
+ uploads.Shortcuts               1        26                Upload shortcuts                   Upload shortcuts                   Upload shortcuts
  uploads.UploadAreas             1        7                 Upload-Bereiche                    Domaines de téléchargement         Upload areas
  users.UserTypes                 4        21                Benutzerarten                      Types d'utilisateur                User types
  vat.DeclarationFieldsBase       0        4                 Declaration fields                 Declaration fields                 Declaration fields
