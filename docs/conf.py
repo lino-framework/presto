@@ -13,8 +13,8 @@ from lino_presto import SETUP_INFO
 # intersphinx_mapping = {}
 from atelier.sphinxconf import interproject
 interproject.configure(globals(), 'atelier etgen')
-# intersphinx_mapping['cg'] = ('http://community.lino-framework.org/', None)
-# intersphinx_mapping['book'] = ('http://www.lino-framework.org/', None)
+# intersphinx_mapping['cg'] = ('https://community.lino-framework.org/', None)
+# intersphinx_mapping['book'] = ('https://www.lino-framework.org/', None)
 
 extensions = []
 
