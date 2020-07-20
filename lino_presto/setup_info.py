@@ -13,7 +13,7 @@
 
 SETUP_INFO = dict(
     name='lino_presto',
-    version='20.6.0',
+    version='20.7.0',
     install_requires=['lino_xl'],
     tests_require=['bleach'],
     description="A Lino application for managing services",
