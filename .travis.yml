@@ -12,11 +12,14 @@ before_install:
 #   - libreoffice '--accept=socket,host=127.0.0.1,port=8100;urp;' &
 
 install:
-  - pip install -U setuptools
+  - pip install -U "setuptools<49.2"
   - # pip install -r requirements.${REQ_VERSION}.txt
   - # pip install lino-book  # just for intersphinx
   - pip install -e .
   - inv install  # runs manage.py install in every demo project
+  - pip freeze
 
 script:
-  - inv prep test bd
+  - inv prep
+  - inv test
+  - inv bd
