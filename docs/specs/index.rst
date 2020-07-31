@@ -9,6 +9,6 @@ Technical specs
     contacts
     orders
     cal
+    uploads
     menu
     db
-    

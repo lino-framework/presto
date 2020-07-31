@@ -185,11 +185,11 @@ class ClientDetail(PersonDetail):
 
     invoicing = dd.Panel("""
     invoicing_left:30 orders.OrdersByProject:50
-    sales.InvoicesByPartner
+    uploads.UploadsByProject:30 sales.InvoicesByPartner:50
     """, label=_("Invoicing"))
 
     invoicing_left = """
-    pf_income
+    pf_income:15 income_certificate:25
     salesrule__invoice_recipient
     payment_term salesrule__paper_type
     """

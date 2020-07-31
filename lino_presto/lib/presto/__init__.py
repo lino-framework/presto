@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2019 Rumma & Ko Ltd
+# Copyright 2019-2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
 """
@@ -24,6 +24,15 @@ class Plugin(ad.Plugin):
     verbose_name = _("Master")
 
     needs_plugins = ['lino_xl.lib.countries']
+
+    def before_analyze(self):
+        super(Plugin, self).before_analyze()
+
+        from lino.modlib.uploads.choicelists import add_shortcut as add
+        add('presto.Client', 'income_certificate', _("Income certificate"),
+            target='uploads.UploadsByProject')
+
+
 
     def setup_main_menu(self, site, user_type, m):
         mg = site.plugins.contacts

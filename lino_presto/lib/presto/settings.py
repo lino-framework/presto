@@ -31,7 +31,7 @@ class Site(Site):
         # yield 'lino.modlib.gfks'
         yield 'lino_presto.lib.users'
         yield 'lino_presto.lib.contacts'
-        yield 'lino.modlib.uploads'
+        yield 'lino_xl.lib.uploads'
         yield 'lino_presto.lib.cal'
         yield 'lino_presto.lib.ledger'
         yield 'lino_presto.lib.orders'
@@ -83,6 +83,7 @@ class Site(Site):
         yield ('ledger', 'sales_stories', False)
         # yield ('cal', 'default_guest_state', 'invited')
         yield ('calview', 'params_layout', "state project project__municipality event_type room")
+        yield ('clients', 'demo_coach', 'martha')
 
     def setup_quicklinks(self, user, tb):
         super(Site, self).setup_quicklinks(user, tb)
