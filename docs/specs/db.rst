@@ -37,7 +37,7 @@ This document describes the database structure.
  cal.RemoteCalendar          cal.RemoteCalendars          7         0
  cal.Room                    cal.AllRooms                 13        6
  cal.Subscription            cal.Subscriptions            4         0
- cal.Task                    cal.Tasks                    19        0
+ cal.Task                    cal.Tasks                    19        6
  calview.DailyPlannerRow     calview.DailyPlannerRows     7         2
  checkdata.Problem           checkdata.Problems           6         329
  clients.ClientContact       clients.ClientContacts       7         0
@@ -99,8 +99,8 @@ This document describes the database structure.
  tinymce.TextFieldTemplate   tinymce.TextFieldTemplates   5         2
  topics.Interest             topics.Interests             6         0
  topics.Topic                topics.Topics                8         3
- uploads.Upload              uploads.Uploads              11        0
- uploads.UploadType          uploads.UploadTypes          8         1
+ uploads.Upload              uploads.Uploads              19        10
+ uploads.UploadType          uploads.UploadTypes          10        11
  uploads.Volume              uploads.Volumes              5         0
  users.Authority             users.Authorities            3         0
  users.User                  users.AllUsers               18        4

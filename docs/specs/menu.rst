@@ -17,7 +17,7 @@ The menu
 >>> rt.login('rolf').show_menu()
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF -SKIP
 - Kontakte : Arbeiter, Organisationen, Personen, Haushalte, Klienten
-- Büro : Meine Upload-Dateien, Meine Auszüge
+- Büro : Meine ablaufenden Upload-Dateien, Meine Upload-Dateien, Meine Auszüge
 - Kalender : Meine Termine, Überfällige Termine, Meine unbestätigten Termine, Meine überfälligen Termine, Meine Aufgaben, Einsätze auf Ersatzsuche, Kalender, Mitarbeiterplaner
 - Aufträge : Garten (Garten), Umzüge (Umzüge), Renovierung (Renovierung), Haushaltshilfe (Haushaltshilfe), Heimpflege (Heimpflege), Büro (Büro), Wartende Aufträge, Aktive Aufträge, Dringende Aufträge
 - Verkauf : Verkaufsrechnungen (SLS), Händische Rechnungen (MAN), Rechnungen erstellen
