@@ -11,6 +11,15 @@ site_calendar default_event_type
 max_auto_events hide_events_before
 """
 
+rt.models.uploads.UploadsByController.insert_layout = """
+file
+type end_date needed
+company
+#contact_person
+description
+"""
+
+
 # if False:
 #     rt.models.calview.WeekDetail.main = "body workers"
 #     rt.models.calview.WeekDetail.workers = dd.Panel("""
