@@ -13,7 +13,7 @@ before_install:
 
 install:
   - pip install -U "setuptools<49.2"
-  - # pip install -r requirements.${REQ_VERSION}.txt
+  - pip install -r requirements.txt
   - # pip install lino-book  # just for intersphinx
   - pip install -e .
   - inv install  # runs manage.py install in every demo project
