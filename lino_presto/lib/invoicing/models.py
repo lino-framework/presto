@@ -8,14 +8,6 @@ from lino.api import _
 
 
 class Plan(Plan):
-    """An extended invoicing plan.
-
-    .. attribute:: order
-
-        If this field is nonempty, select only enrolments of that
-        given order.
-
-    """
 
     class Meta(Plan.Meta):
         app_label = 'invoicing'
@@ -35,12 +27,6 @@ from lino_xl.lib.invoicing.actions import StartInvoicing
 
 
 class StartInvoicingForOrder(StartInvoicing):
-    """Start an invoicing plan for this order.
-
-    This action is installed onto the :class:`orders.Order
-    <lino_xl.lib.orders.Order>` model as `start_invoicing`.
-
-    """
     show_in_bbar = True
     select_rows = True
     update_after_start = True

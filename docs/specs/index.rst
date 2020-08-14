@@ -8,6 +8,7 @@ Technical specs
     overview
     contacts
     orders
+    invoicing
     cal
     uploads
     menu
