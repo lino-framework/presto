@@ -17,7 +17,7 @@ Invoicing
 
 >>> with translation.override("en"):
 ...     print(dd.plugins.invoicing.verbose_name)
-Orders
+Invoicing
 
 
 .. class:: Plan
