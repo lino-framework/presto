@@ -47,7 +47,6 @@ Complexity factors
 ... #doctest: +NORMALIZE_WHITESPACE +REPORT_UDIFF
 - 43 plugins
 - 80 models
-- 17 user roles
 - 4 user types
 - 307 views
 - 24 dialog actions
