@@ -69,7 +69,7 @@ This document describes the database structure.
  invoicing.Plan              invoicing.Plans              8         1
  invoicing.SalesRule         invoicing.SalesRules         3         17
  invoicing.Tariff            invoicing.Tariffs            7         2
- ledger.Account              ledger.Accounts              18        27
+ ledger.Account              ledger.Accounts              18        21
  ledger.AccountingPeriod     ledger.AccountingPeriods     7         3
  ledger.FiscalYear           ledger.FiscalYears           5         11
  ledger.Journal              ledger.Journals              26        8
