@@ -26,7 +26,7 @@ from lino.utils.quantities import Duration
 from lino.core.requests import BaseRequest
 from lino_xl.lib.products.choicelists import DeliveryUnits
 from lino_xl.lib.orders.choicelists import OrderStates
-from lino_xl.lib.ledger.utils import DEBIT, CREDIT
+from lino_xl.lib.ledger.utils import DC
 from lino_xl.lib.ledger.choicelists import VoucherStates, JournalGroups
 from lino_xl.lib.cal.choicelists import Recurrencies, Weekdays, EntryStates, PlannerColumns, GuestStates
 
@@ -300,7 +300,7 @@ def objects():
     kw = dict(journal_group=JournalGroups.sales)
     MODEL = rt.models.sales.InvoicesByJournal
     # MODEL = rt.models.vat.InvoicesByJournal
-    kw.update(ref="MAN", dc=CREDIT, trade_type="sales")
+    kw.update(ref="MAN", dc=DC.credit, trade_type="sales")
     # kw.update(printed_name=_("Mission"))
     kw.update(dd.str2kw('name', _("Manual invoices")))
     yield MODEL.create_journal(**kw)
@@ -310,7 +310,7 @@ def objects():
     kw = dict(journal_group=JournalGroups.orders)
     MODEL = rt.models.orders.OrdersByJournal
 
-    kw.update(dc=CREDIT, trade_type="sales")
+    kw.update(dc=DC.credit, trade_type="sales")
     kw.update(printed_name=_("Order"))
     # for room in rt.models.cal.Room.objects.all():
     for story in order_stories:
