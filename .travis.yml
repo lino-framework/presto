@@ -12,7 +12,7 @@ before_install:
 #   - libreoffice '--accept=socket,host=127.0.0.1,port=8100;urp;' &
 
 install:
-  - pip install -U "setuptools<49.2"
+  - pip install -U "setuptools"
   - pip install -r requirements.txt
   - # pip install lino-book  # just for intersphinx
   - pip install -e .
