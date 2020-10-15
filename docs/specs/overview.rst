@@ -48,7 +48,7 @@ Complexity factors
 - 43 plugins
 - 80 models
 - 4 user types
-- 307 views
+- 308 views
 - 24 dialog actions
 <BLANKLINE>
 
@@ -92,6 +92,7 @@ Don't read me
  households.MemberRoles          9        11                Haushaltsmitgliedsrollen           Rôles de membres de ménage         Household member roles
  humanlinks.LinkTypes            13       27                Verwandschaftsarten                Types de parenté                   Parency types
  ledger.CommonAccounts           21       29                Gemeinkonten                       Comptes communs                    Common accounts
+ ledger.DC                       2        6                 Booking directions                 Booking directions                 Booking directions
  ledger.JournalGroups            7        26                Journalgruppen                     Groupes de journaux                Journal groups
  ledger.PeriodStates             2        14                Zustände                           États                              States
  ledger.TradeTypes               6        18                Handelsarten                       Types de commerce                  Trade types

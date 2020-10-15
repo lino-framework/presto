@@ -75,7 +75,7 @@ This document describes the database structure.
  ledger.Journal              ledger.Journals              26        8
  ledger.LedgerInfo           ledger.LedgerInfoTable       2         0
  ledger.MatchRule            ledger.MatchRules            3         0
- ledger.Movement             ledger.Movements             12        58
+ ledger.Movement             ledger.Movements             11        58
  ledger.PaymentTerm          ledger.PaymentTerms          11        8
  ledger.Voucher              ledger.AllVouchers           8         143
  notes.EventType             notes.EventTypes             8         1
