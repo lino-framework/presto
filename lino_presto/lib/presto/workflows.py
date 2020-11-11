@@ -6,7 +6,7 @@ The default :attr:`workflows_module
 <lino.core.site.Site.workflows_module>` for the :ref:`presto` applications.
 
 Extends :mod:`lino_xl.lib.cal.workflows.voga` and
-:mod:`lino_xl.lib.courses.workflows`.
+:mod:`lino_xl.lib.courses.workflows.std`.
 
 """
 
@@ -24,7 +24,7 @@ EntryStates.draft.text = _("Scheduled")
 
 
 from lino_xl.lib.cal.workflows.voga import *
-from lino_xl.lib.courses.workflows import *
+from lino_xl.lib.courses.workflows.std import *
 
 EntryStates.ignore_required_states = True
 
@@ -40,7 +40,7 @@ EntryStates.missed.add_transition(
 # calendar entry can have taken place even though there are invited workers.
 EntryStates.took_place.transition.refuse_guest_states = None
 
-    
+
 
 # print("20181107b", EntryStates.draft.button_text)
 
