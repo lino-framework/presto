@@ -35,7 +35,7 @@ This document describes the database structure.
  cal.GuestRole               cal.GuestRoles               5         2
  cal.RecurrentEvent          cal.RecurrentEvents          22        16
  cal.RemoteCalendar          cal.RemoteCalendars          7         0
- cal.Room                    cal.AllRooms                 13        6
+ cal.Room                    cal.Rooms                    13        6
  cal.Subscription            cal.Subscriptions            4         0
  cal.Task                    cal.Tasks                    19        6
  calview.DailyPlannerRow     calview.DailyPlannerRows     7         2
