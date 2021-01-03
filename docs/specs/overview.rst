@@ -114,7 +114,7 @@ Don't read me
  users.UserTypes                 4        21                Benutzerarten                      Types d'utilisateur                User types
  vat.DeclarationFieldsBase       0        4                 Declaration fields                 Declaration fields                 Declaration fields
  vat.VatAreas                    3        13                MWSt-Zonen                         Zones TVA                          VAT areas
- vat.VatClasses                  7        31                MwSt.-Klassen                      Classes TVA                        VAT classes
+ vat.VatClasses                  8        31                MwSt.-Klassen                      Classes TVA                        VAT classes
  vat.VatColumns                  0        4                 MWSt-Kolonnen                      MWSt-Kolonnen                      VAT columns
  vat.VatRegimes                  1        6                 MwSt.-Regimes                      MwSt.-Regimes                      VAT regimes
  vat.VatRules                    1        39                MwSt-Regeln                        MwSt-Regeln                        VAT rules
