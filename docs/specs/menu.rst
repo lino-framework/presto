@@ -14,7 +14,7 @@ The menu
 >>> from lino.api.doctest import *
 
 
->>> rt.login('rolf').show_menu()
+>>> show_menu('rolf')
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF -SKIP
 - Kontakte : Arbeiter, Organisationen, Personen, Haushalte, Klienten
 - Büro : Meine ablaufenden Upload-Dateien, Meine Upload-Dateien, Meine Auszüge
