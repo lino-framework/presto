@@ -94,7 +94,7 @@ This document describes the database structure.
  sales.PaperType             sales.PaperTypes             5         3
  sales.VatProductInvoice     sales.Invoices               27        29
  sepa.Account                sepa.Accounts                6         17
- sessions.Session            sessions.SessionTable        3         ...
+ sessions.Session            users.Sessions               3         ...
  system.SiteConfig           system.SiteConfigs           10        1
  tinymce.TextFieldTemplate   tinymce.TextFieldTemplates   5         2
  topics.Interest             topics.Interests             6         0

@@ -43,4 +43,4 @@ The menu
   - Verkauf : Verkaufsrechnungen, Sales invoice items, Fakturationspläne, Verkaufsregeln
   - SEPA : Bankkonten
   - MwSt. : MWSt-Zonen, MwSt.-Regimes, MwSt.-Klassen, MWSt-Kolonnen, Rechnungen, MwSt-Regeln
-- Site : Info
+- Site : Info, Benutzersitzungen
