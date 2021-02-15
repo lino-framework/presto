@@ -5,7 +5,7 @@
 from etgen.html import E, iselement
 from etgen.html2rst import html2rst
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from lino.core.gfks import gfk2lookup
 from lino.core.fields import make_remote_field
 
