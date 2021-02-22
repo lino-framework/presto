@@ -39,7 +39,7 @@ This document describes the database structure.
  cal.Subscription            cal.Subscriptions            4         0
  cal.Task                    cal.Tasks                    19        6
  calview.DailyPlannerRow     calview.DailyPlannerRows     7         2
- checkdata.Problem           checkdata.Problems           6         329
+ checkdata.Problem           checkdata.Problems           6         330
  clients.ClientContact       clients.ClientContacts       7         0
  clients.ClientContactType   clients.ClientContactTypes   5         5
  contacts.Company            contacts.Companies           30        31
@@ -99,7 +99,7 @@ This document describes the database structure.
  tinymce.TextFieldTemplate   tinymce.TextFieldTemplates   5         2
  topics.Interest             topics.Interests             6         0
  topics.Topic                topics.Topics                8         3
- uploads.Upload              uploads.Uploads              19        10
+ uploads.Upload              uploads.Uploads              20        10
  uploads.UploadType          uploads.UploadTypes          10        11
  uploads.Volume              uploads.Volumes              5         0
  users.Authority             users.Authorities            3         0

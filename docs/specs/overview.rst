@@ -79,7 +79,7 @@ Don't read me
  cal.Weekdays                    7        10                None                               None                               None
  cal.YearMonths                  12       9                 None                               None                               None
  calview.Planners                2        17                None                               None                               None
- checkdata.Checkers              13       54                Datentests                         Tests de données                   Data checkers
+ checkdata.Checkers              15       54                Datentests                         Tests de données                   Data checkers
  clients.ClientEvents            3        10                Beobachtungskriterien              Évènements observés                Observed events
  clients.ClientStates            3        9                 Bearbeitungszustände Klienten      Etats bénéficiaires                Client states
  clients.KnownContactTypes       2        9                 Standard-Klientenkontaktarten      Types de contact connus            Known contact types
