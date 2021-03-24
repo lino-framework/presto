@@ -22,7 +22,7 @@ This document describes the database structure.
 >>> print(analyzer.show_db_overview())
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
 43 apps: lino, staticfiles, about, jinja, bootstrap3, extjs, printing, system, users, office, xl, countries, contacts, uploads, contenttypes, gfks, checkdata, cal, weasyprint, ledger, orders, dashboard, calview, clients, households, addresses, phones, humanlinks, topics, healthcare, products, memo, excerpts, vat, sales, invoicing, sepa, notes, appypod, export_excel, tinymce, presto, sessions.
-80 models:
+81 models:
 =========================== ============================ ========= =======
  Name                        Default table                #fields   #rows
 --------------------------- ---------------------------- --------- -------
@@ -50,7 +50,7 @@ This document describes the database structure.
  contacts.Role               contacts.Roles               4         4
  contacts.RoleType           contacts.RoleTypes           5         5
  contacts.Worker             contacts.Workers             38        9
- contenttypes.ContentType    gfks.ContentTypes            3         80
+ contenttypes.ContentType    gfks.ContentTypes            3         81
  countries.Country           countries.Countries          6         8
  countries.Place             countries.Places             9         78
  dashboard.Widget            dashboard.Widgets            5         0
@@ -76,6 +76,7 @@ This document describes the database structure.
  ledger.LedgerInfo           ledger.LedgerInfoTable       2         0
  ledger.MatchRule            ledger.MatchRules            3         0
  ledger.Movement             ledger.Movements             11        58
+ ledger.PaymentMethod        ledger.PaymentMethods        5         0
  ledger.PaymentTerm          ledger.PaymentTerms          11        8
  ledger.Voucher              ledger.AllVouchers           8         143
  notes.EventType             notes.EventTypes             8         1
@@ -87,12 +88,12 @@ This document describes the database structure.
  phones.ContactDetail        phones.ContactDetails        7         15
  presto.Client               presto.Clients               43        65
  presto.LifeMode             presto.LifeModes             4         6
+ products.Category           products.Categories          7         2
  products.PriceRule          products.PriceRules          5         12
  products.Product            products.Products            14        8
- products.ProductCat         products.ProductCats         6         2
  sales.InvoiceItem           sales.InvoiceItems           15        72
  sales.PaperType             sales.PaperTypes             5         3
- sales.VatProductInvoice     sales.Invoices               27        29
+ sales.VatProductInvoice     sales.Invoices               28        29
  sepa.Account                sepa.Accounts                6         17
  sessions.Session            users.Sessions               3         ...
  system.SiteConfig           system.SiteConfigs           10        1
@@ -105,6 +106,6 @@ This document describes the database structure.
  users.Authority             users.Authorities            3         0
  users.User                  users.AllUsers               18        4
  vat.InvoiceItem             vat.InvoiceItemTable         9         0
- vat.VatAccountInvoice       vat.Invoices                 20        0
+ vat.VatAccountInvoice       vat.Invoices                 21        0
 =========================== ============================ ========= =======
 <BLANKLINE>

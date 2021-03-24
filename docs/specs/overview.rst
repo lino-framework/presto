@@ -46,9 +46,9 @@ Complexity factors
 >>> print(analyzer.show_complexity_factors())
 ... #doctest: +NORMALIZE_WHITESPACE +REPORT_UDIFF
 - 43 plugins
-- 80 models
+- 81 models
 - 4 user types
-- 308 views
+- 309 views
 - 24 dialog actions
 <BLANKLINE>
 

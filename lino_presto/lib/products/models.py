@@ -14,7 +14,7 @@ add('200', _("Furniture"), 'furniture', table_name="products.Products")
 class ProductDetail(ProductDetail):
     # Make the sales_price visible
     main = """
-    id cat sales_price vat_class delivery_unit
+    id category sales_price vat_class delivery_unit
     name
     description
     """

@@ -28,7 +28,7 @@ The menu
   - Kontakte : Organisationsarten, Funktionen, Klientenkontaktarten, Haushaltsarten, Themen, Krankenkassen, Krankenkassen-Regeln, Lebensweisen
   - Büro : Dateibibliotheken, Upload-Arten, Notizarten, Ereignisarten, Meine Einfügetexte, Auszugsarten
   - Kalender : Kalenderliste, Teams, Regelmäßige Ereignisse, Gastrollen, Kalendereintragsarten, Wiederholungsregeln, Externe Kalender, Tagesplanerzeilen
-  - Buchhaltung : Konten, Journale, Geschäftsjahre, Buchungsperioden, Zahlungsbedingungen
+  - Buchhaltung : Konten, Journale, Geschäftsjahre, Buchungsperioden, Zahlungsbedingungen, Zahlungsmethoden
   - Produkte : Dienstleistungen, Möbel, Produktkategorien, Preisregeln
   - Verkauf : Papierarten, Pauschalen, Fakturationsbereiche
   - Orte : Länder, Orte

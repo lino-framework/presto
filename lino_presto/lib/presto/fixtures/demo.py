@@ -53,7 +53,7 @@ Product = rt.models.products.Product
 Tariff = rt.models.invoicing.Tariff
 PaperType = rt.models.sales.PaperType
 ProductTypes = rt.models.products.ProductTypes
-ProductCat = rt.models.products.ProductCat
+Category = rt.models.products.Category
 Account = rt.models.ledger.Account
 Topic = rt.models.topics.Topic
 Journal = rt.models.ledger.Journal
@@ -139,10 +139,10 @@ def objects():
         ref="7010")
     yield sales_on_services
 
-    presence = named(ProductCat, _("Fees"))
+    presence = named(Category, _("Fees"))
     yield presence
 
-    consuming = named(ProductCat, _("Consuming items"))
+    consuming = named(Category, _("Consuming items"))
     yield consuming
 
 
@@ -213,7 +213,7 @@ def objects():
         work = named(
             Product, format_lazy("{} {}", _("Work by hour"), ic),
             sales_account=sales_on_services,
-            sales_price=Decimal("3.75") * (i+1), cat=presence,
+            sales_price=Decimal("3.75") * (i+1), category=presence,
             product_type=ProductTypes.default)
         yield work
         yield PriceRule(selector=garden_et, product=work, pf_income=ic)
@@ -223,11 +223,11 @@ def objects():
 
     yield named(
         Product, _("Travel per Km"),
-        sales_price=0.50, sales_account=sales_on_services, cat=consuming,
+        sales_price=0.50, sales_account=sales_on_services, category=consuming,
         product_type=ProductTypes.default)
     yield named(
         Product, _("Other consuming items"),
-        sales_price=1.50, sales_account=sales_on_services, cat=consuming,
+        sales_price=1.50, sales_account=sales_on_services, category=consuming,
         product_type=ProductTypes.default)
 
     yield named(Product, _("Other"), sales_price=35)
@@ -333,7 +333,7 @@ def objects():
     OFFSETS = Cycler(1, 0, 0, 1, 1, 1, 1, 2)
     START_TIMES = Cycler("8:00", "9:00", "11:00", "13:00", "14:00")
     DURATIONS = Cycler([Duration(x) for x in ("1:00", "0:30", "2:00", "3:00", "4:00")])
-    ITEM_PRODUCTS = Cycler(Product.objects.filter(cat=consuming))
+    ITEM_PRODUCTS = Cycler(Product.objects.filter(category=consuming))
     USERS = Cycler(User.objects.exclude(user_type=""))
     EVERY_UNITS = Cycler([Recurrencies.get_by_value(x) for x in "ODWM"])
     STATES = Cycler(OrderStates.get_list_items())
