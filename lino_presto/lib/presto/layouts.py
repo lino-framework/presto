@@ -4,12 +4,12 @@
 
 from lino.api import dd, rt, _
 
-rt.models.system.SiteConfigs.detail_layout = """
+rt.models.system.SiteConfigs.set_detail_layout("""
 site_company next_partner_id:10
 default_build_method simulate_today
 site_calendar default_event_type
 max_auto_events hide_events_before
-"""
+""", window_size=(60, 'auto'))
 
 rt.models.uploads.UploadsByController.insert_layout = """
 file

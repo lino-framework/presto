@@ -552,7 +552,8 @@ class WorkersParameters(EventsParameters):
 class WeeklySlave(WorkersParameters, WeeklySlaveBase, Workers):
 # 20200430 class WeeklySlave(Workers, WeeklySlaveBase):
     column_names_template = "name_column:20 {vcolumns}"
-    hide_top_toolbar = False
+    hide_navigator = False  # why?
+    # hide_top_toolbar = False
 
 
 class DailySlave(WorkersParameters, DailySlaveBase, Workers):

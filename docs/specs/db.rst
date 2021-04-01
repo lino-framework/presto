@@ -85,7 +85,7 @@ This document describes the database structure.
  orders.Enrolment            orders.Enrolments            5         136
  orders.Order                orders.Orders                32        114
  orders.OrderItem            orders.OrderItems            6         114
- phones.ContactDetail        phones.ContactDetails        7         15
+ phones.ContactDetail        phones.ContactDetails        8         15
  presto.Client               presto.Clients               43        65
  presto.LifeMode             presto.LifeModes             4         6
  products.Category           products.Categories          7         2
