@@ -28,24 +28,9 @@ interproject.configure(
 # absolute, like shown here.
 #sys.path.append(os.path.abspath('some/directory'))
 
-# General configuration
-# ---------------------
-
-# Add any paths that contain templates here, relative to this directory.
-# templates_path = ['.templates']
-
-# The suffix of source filenames.
-source_suffix = '.rst'
-
-# The encoding of source files.
-#source_encoding = 'utf-8-sig'
-
-# The master toctree document.
-master_doc = 'index'
-
 # General substitutions.
-project = u'Lino Presto Benutzerhandbuch'
-copyright = '2019 Rumma & Ko Ltd'
+project = 'Lino Presto Benutzerhandbuch'
+copyright = '2019-2021 Rumma & Ko Ltd'
 
 from lino_presto import SETUP_INFO
 
