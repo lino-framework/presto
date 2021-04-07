@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 # Copyright 2015-2020 Rumma & Ko Ltd
-# License: BSD (see file COPYING for details)
+# License: GNU Affero General Public License v3 (see file COPYING for details)
 
 # Note that this module may not have a docstring because any
 # global variable defined here will override the global
@@ -17,12 +17,12 @@ SETUP_INFO = dict(
     install_requires=['lino_xl'],
     tests_require=['bleach'],
     description="A Lino application for managing services",
-    license='BSD-2-Clause',
+    license_files=['COPYING'],
     include_package_data=True,
     zip_safe=False,
     author='Luc Saffre',
     author_email='luc.saffre@gmail.com',
-    url="http://presto.lino-framework.org",
+    url="https://github.com/lino-framework/presto",
     #~ test_suite = 'lino.test_apps',
     test_suite='tests',
     classifiers="""\
@@ -33,7 +33,7 @@ SETUP_INFO = dict(
   Framework :: Django
   Intended Audience :: Developers
   Intended Audience :: System Administrators
-  License :: OSI Approved :: BSD License
+  License :: OSI Approved :: GNU Affero General Public License v3
   Natural Language :: English
   Natural Language :: French
   Natural Language :: German

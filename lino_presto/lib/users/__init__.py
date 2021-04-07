@@ -1,5 +1,5 @@
 # Copyright 2014-2019 Rumma & Ko Ltd
-# License: BSD (see file COPYING for details)
+# License: GNU Affero General Public License v3 (see file COPYING for details)
 
 """
 Lino Presto extension of :mod:`lino.modlib.users`.
