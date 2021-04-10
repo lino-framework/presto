@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2012-2019 Rumma & Ko Ltd
-# This file is part of Lino Presto.
-#
+# Copyright 2012-2021 Rumma & Ko Ltd
+# License: GNU Affero General Public License v3 (see file COPYING for details)
 
 """See :ref:`presto`.
 
@@ -16,15 +15,11 @@
 
 from os.path import join, dirname
 
-SETUP_INFO = dict()
-# execfile(join(dirname(__file__), 'setup_info.py'))
-with open(join(dirname(__file__), 'setup_info.py')) as setup_info:
-    exec(setup_info.read())
+from .setup_info import SETUP_INFO
+
 __version__ = SETUP_INFO['version']
 intersphinx_urls = dict(
-    docs="http://presto.lino-framework.org",
-    dedocs="http://de.presto.lino-framework.org")
+    docs="https://presto.lino-framework.org",
+    dedocs="https://de.presto.lino-framework.org")
 srcref_url = 'https://github.com/lino-framework/presto/blob/master/%s'
 doc_trees = ['docs', 'dedocs']
-
-
