@@ -88,9 +88,9 @@ This document describes the database structure.
  phones.ContactDetail        phones.ContactDetails        8         15
  presto.Client               presto.Clients               43        65
  presto.LifeMode             presto.LifeModes             4         6
- products.Category           products.Categories          7         2
+ products.Category           products.Categories          15         2
  products.PriceRule          products.PriceRules          5         12
- products.Product            products.Products            14        8
+ products.Product            products.Products            20        8
  sales.InvoiceItem           sales.InvoiceItems           15        72
  sales.PaperType             sales.PaperTypes             5         3
  sales.VatProductInvoice     sales.Invoices               28        29

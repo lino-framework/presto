@@ -16,5 +16,5 @@ class ProductDetail(ProductDetail):
     main = """
     id category sales_price vat_class delivery_unit
     name
-    description
+    body
     """
