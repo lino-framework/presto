@@ -2,8 +2,7 @@
 The ``lino_presto`` package
 ===========================
 
-
-
+Warning: Development has moved to https://gitlab.com/lino-framework/presto
 
 Lino Presto is an application for managing services with physical on-site
 presence of the workers.  Services can be individually scheduled or recurring
